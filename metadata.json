@@ -1,0 +1,6 @@
+{
+  "name": "Madagascar Vision",
+  "description": "Premium multi-sector development, investment, and infrastructure portal for Madagascar Vision. Showcasing global enterprise solutions, local sustainability, and eco-friendly holdings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

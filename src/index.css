@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+    background-color: #020905; /* Sophisticated Eco Dark obsidian forest base */
+    color: #f8fafc; /* slate-50 base color */
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  /* Custom high-end scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #020905;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.3);
+  }
+  
+  /* Selection styling */
+  ::selection {
+    background: rgba(16, 185, 129, 0.25);
+    color: #ffffff;
+  }
+}
+
+/* Glassmorphism Classes (Sophisticated Eco Dark) */
+.glass {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-accent {
+  background: rgba(16, 185, 129, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-nav {
+  background: rgba(2, 9, 5, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #db5b1a 0%, #9cb933 50%, #1f8a5a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.premium-gradient {
+  background: linear-gradient(135deg, #ca5a27 0%, #9cb933 50%, #1f8a5a 100%);
+}
+
+.premium-gradient-interactive {
+  background: linear-gradient(135deg, #db5b1a 0%, #8ebd33 50%, #1f8a5a 100%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-gradient-interactive:hover {
+  background: linear-gradient(135deg, #ec6624 0%, #9cd339 50%, #25a46b 100%);
+  box-shadow: 0 10px 30px -10px rgba(219, 91, 26, 0.45);
+  transform: translateY(-1px);
+}
+
+.premium-border-glow {
+  border-color: rgba(219, 91, 26, 0.25);
+  box-shadow: 0 0 35px -8px rgba(156, 185, 51, 0.15);
+}
+
+/* Styled Background Ambient Glow Orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb-blue {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(219, 91, 26, 0.2) 0%, rgba(156, 185, 51, 0.1) 50%, rgba(31, 138, 90, 0) 100%);
+}
+
+.orb-purple {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(31, 138, 90, 0.2) 0%, rgba(156, 185, 51, 0.08) 60%, rgba(2, 9, 5, 0) 100%);
+}
+
+/* Card Hover Animations & Transformations */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover:hover {
+  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.25);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.25);
+}
+
+.glow-blue {
+  box-shadow: 0 0 40px -10px rgba(20, 184, 166, 0.25);
+}
+
+.glow-purple {
+  box-shadow: 0 0 40px -10px rgba(4, 120, 87, 0.2);
+}
+
+/* Neon animated border */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(16, 185, 129, 0.15); }
+  50% { border-color: rgba(20, 184, 166, 0.45); }
+}
+
+.neon-border {
+  animation: border-glow 6s infinite ease-in-out;
+}
+
