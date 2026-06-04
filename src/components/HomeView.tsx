@@ -14,11 +14,11 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
   const translations = {
     EN: {
       tagline: 'Orchestrating Diverse Sectors. Engineering Tomorrow Hub.',
-      subline: 'Madagascar Vision anchors resilient pathways in clinical health sciences, carbon-neutral master properties, robotic distribution, gigawatt wind fleets, and cloud transformation.',
+      subline: 'Vision Madagascar anchors resilient pathways in clinical health sciences, carbon-neutral master properties, robotic distribution, gigawatt wind fleets, and cloud transformation.',
       exploreSectors: 'Explore Divisions',
       investorRelations: 'Partner Advisory',
       statsHeader: 'Consolidated Performance Indicators',
-      whyTitle: 'Why Sovereign Leaders Partner With Madagascar Vision',
+      whyTitle: 'Why Sovereign Leaders Partner With Vision Madagascar',
       whySub: 'We leverage combined domain knowledge across physical civil construction and next-gen technical algorithms to offer absolute security and compound long-term yields.',
       partnersTitle: 'Consolidated Alliance Ecosystem',
       carouselTicker: 'Consolidated Portfolio Firms & National Development Authorities',
@@ -29,11 +29,11 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
     },
     FR: {
       tagline: 'Orchestrer Divers Secteurs. Le Prochain Horizon Industriel.',
-      subline: "Madagascar Vision propose des voies d'évolution résilientes dans les sciences de la santé, le développement d'actifs neutres en carbone, la distribution automatisée, l'énergie éolienne de grande puissance et la transition cloud.",
+      subline: "Vision Madagascar propose des voies d'évolution résilientes dans les sciences de la santé, le développement d'actifs neutres en carbone, la distribution automatisée, l'énergie éolienne de grande puissance et la transition cloud.",
       exploreSectors: 'Découvrir nos Divisions',
       investorRelations: 'Partenariats & Advisory',
       statsHeader: 'Indicateurs de Performance Consolidés',
-      whyTitle: "Pourquoi les Institutions Choisissent Madagascar Vision",
+      whyTitle: "Pourquoi les Institutions Choisissent Vision Madagascar",
       whySub: "Nous unissons notre expertise technique de l'infrastructure physique à des algorithmes de pointe pour assurer une rentabilité maximale et une sécurité absolue.",
       partnersTitle: 'Notre Écosystème d’Alliances Consolidé',
       carouselTicker: 'Sociétés en Portefeuille & Autorités Nationales de Développement',
@@ -44,11 +44,11 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
     },
     MG: {
       tagline: 'Mampiray Seha-pihariana Marolafy. Toekarena Vaovao Ho avy.',
-      subline: "Madagascar Vision dia manorina tolotra mafy orina amin'ny fahasalamana klinika, trano sy tany tsy mamoaka karbonina, fitaterana mampiasa milina, famokarana angovo azo havaozina, ary fampitaovana rahona haingana.",
+      subline: "Vision Madagascar dia manorina tolotra mafy orina amin'ny fahasalamana klinika, trano sy tany tsy mamoaka karbonina, fitaterana mampiasa milina, famokarana angovo azo havaozina, ary fampitaovana rahona haingana.",
       exploreSectors: 'Ireo Sampan-draharaha',
       investorRelations: 'Fiaraha-miasa Mpampiasa Vola',
       statsHeader: 'Tondro momba ny Fahombiazana',
-      whyTitle: "Nahoana Ny Mpitantana No Mifidy any amin'i Madagascar Vision",
+      whyTitle: "Nahoana Ny Mpitantana No Mifidy any amin'i Vision Madagascar",
       whySub: "Mampifangaro ny fahaizana fotodrafitrasa sy ny teknika avo lenta izahay mba hanomezana antoka feno sy fidiram-bola maharitra.",
       partnersTitle: 'Ny Fiaraha-miasa Manerantany',
       carouselTicker: 'Ireo Orinasa mpiara-miombon\'antoka sy ny Fampandrosoana',
@@ -229,7 +229,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-block px-3 py-1 rounded-full border border-slate-800 bg-slate-900 text-[10px] font-mono tracking-widest uppercase text-slate-400">
-            Madagascar Vision Divisions
+            Vision Madagascar Divisions
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
             {language === 'EN' ? 'Global Multi-Sector Reach' : language === 'FR' ? 'Portée Multi-Sectorielle Globale' : 'Sehatra Marolafy Manerantany'}

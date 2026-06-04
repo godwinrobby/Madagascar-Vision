@@ -232,7 +232,7 @@ export function NewsView({ language }: NewsViewProps) {
                 <div className="text-slate-300 text-xs sm:text-sm space-y-4 font-light leading-relaxed pt-2">
                   <p>{selectedNews.content}</p>
                   <p>
-                    All strategic updates and M&A developments from the Madagascar Vision executive syndicate represent certified ESG logs validated across decentralized audits.
+                    All strategic updates and M&A developments from the Vision Madagascar executive syndicate represent certified ESG logs validated across decentralized audits.
                   </p>
                 </div>
 

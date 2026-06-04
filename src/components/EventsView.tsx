@@ -13,7 +13,7 @@ export function EventsView({ language }: EventsViewProps) {
   const translations = {
     EN: {
       title: 'Global Conventions & Interactive Foras',
-      sub: 'Monitor upcoming sovereign roundtables, key engineering presentations, and historical assemblies coordinated by Madagascar Vision boards.',
+      sub: 'Monitor upcoming sovereign roundtables, key engineering presentations, and historical assemblies coordinated by Vision Madagascar boards.',
       upcomingBtn: 'Upcoming Summits',
       recentBtn: 'Recent Events & Webcasts',
       timeLabel: 'Scheduled GMT',

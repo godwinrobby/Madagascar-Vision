@@ -29,7 +29,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
   const translations = {
     EN: {
       title: 'Our Executive Stewardship',
-      sub: 'Governing portfolios of integrated physical and algorithmic systems. Madagascar Vision aligns supreme compliance benchmarks to sovereign-scale sustainability mandates.',
+      sub: 'Governing portfolios of integrated physical and algorithmic systems. Vision Madagascar aligns supreme compliance benchmarks to sovereign-scale sustainability mandates.',
       ceoTitle: 'Office of the CEO',
       ceoMessageTitle: 'Fiduciary Duty in a Complex World',
       ceoSub: 'A Message from our Chief Executive officer, Helena Vance-Sterling.',
@@ -45,7 +45,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
     },
     FR: {
       title: 'Notre Direction Exécutive',
-      sub: 'Gestion de portefeuilles de systèmes physiques et algorithmiques intégrés. Madagascar Vision aligne les critères de conformité les plus élevés avec des mandats de durabilité à l’échelle souveraine.',
+      sub: 'Gestion de portefeuilles de systèmes physiques et algorithmiques intégrés. Vision Madagascar aligne les critères de conformité les plus élevés avec des mandats de durabilité à l’échelle souveraine.',
       ceoTitle: 'Bureau de la Direction Générale',
       ceoMessageTitle: 'Devoir Fiduciaire dans un Monde Complexe',
       ceoSub: 'Un Message de notre Directrice Générale, Helena Vance-Sterling.',
@@ -61,7 +61,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
     },
     MG: {
       title: 'Ny Mpitarika sy Birao Fitantanana',
-      sub: 'Mitantana ireo fotodrafitrasa sy rafitra nomerika arifomba. Madagascar Vision dia mampifanaraka ny fenitra avo indrindra amin’ny tontolo iainana sy ny fitantanana.',
+      sub: 'Mitantana ireo fotodrafitrasa sy rafitra nomerika arifomba. Vision Madagascar dia mampifanaraka ny fenitra avo indrindra amin’ny tontolo iainana sy ny fitantanana.',
       ceoTitle: 'Biraon’ny Tale Jeneraly',
       ceoMessageTitle: 'Andraikitra amin’ny Tontolo Sarotra',
       ceoSub: 'Hafatra avy amin’ny Tilikambon’ny fitantanana, Helena Vance-Sterling.',
@@ -210,9 +210,9 @@ export function LeadershipView({ language }: LeadershipViewProps) {
   const philosophyQa = [
     {
       q: { 
-        EN: 'How does Madagascar Vision balance physical heavy asset operations with algorithmic technology?',
-        FR: 'Comment Madagascar Vision équilibre-t-elle les opérations d’actifs physiques lourds avec les technologies algorithmiques ?',
-        MG: 'Ahoana no mampifandanja ny asa goavana ara-batana sy ny teknolojia nomerika ao amin’ny Madagascar Vision ?'
+        EN: 'How does Vision Madagascar balance physical heavy asset operations with algorithmic technology?',
+        FR: 'Comment Vision Madagascar équilibre-t-elle les opérations d’actifs physiques lourds avec les technologies algorithmiques ?',
+        MG: 'Ahoana no mampifandanja ny asa goavana ara-batana sy ny teknolojia nomerika ao amin’ny Vision Madagascar ?'
       },
       a: {
         EN: 'Every concrete deck, turbine blade, and molecular lab is monitored by dynamic twin systems. We do not look at physical assets as static units, but as living nodes inside a software-controlled logistics ecosystem.',
@@ -239,9 +239,9 @@ export function LeadershipView({ language }: LeadershipViewProps) {
         MG: 'Ahoana no hanamarinana sy hitantanana ny renivola avy amin’ny fanjakana ?'
       },
       a: {
-        EN: 'Madagascar Vision implements unified crypto-ledger systems mapping every dollar of ESG bonds and sovereign capital to physical project milestones, generating undeniable proof-of-progress.',
-        FR: 'Madagascar Vision déploie des systèmes de registres cryptographiques unifiés associant chaque dollar d’obligations ESG et de capitaux souverains à des jalons de projet physiques, générant une preuve de progrès incontestable.',
-        MG: 'Madagascar Vision dia mampiasa ny rafitra crypto-ledger unifiés mba hampifandraisana ny vola rehetra amin’ny fandrosoana tena izy amin’ny tetikasa.'
+        EN: 'Vision Madagascar implements unified crypto-ledger systems mapping every dollar of ESG bonds and sovereign capital to physical project milestones, generating undeniable proof-of-progress.',
+        FR: 'Vision Madagascar déploie des systèmes de registres cryptographiques unifiés associant chaque dollar d’obligations ESG et de capitaux souverains à des jalons de projet physiques, générant une preuve de progrès incontestable.',
+        MG: 'Vision Madagascar dia mampiasa ny rafitra crypto-ledger unifiés mba hampifandraisana ny vola rehetra amin’ny fandrosoana tena izy amin’ny tetikasa.'
       }
     }
   ];
@@ -509,7 +509,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 {language === 'EN' ? (
                   <>
                     <p>
-                      At Madagascar Vision, we operate under a simple, non-negotiable directive: <strong>physical infrastructure is no longer separate from digital orchestration</strong>. For the past decade, the global markets treated these as distinct sectors. This division led to severe inefficiencies, carbon overloads, and fragmented operations.
+                      At Vision Madagascar, we operate under a simple, non-negotiable directive: <strong>physical infrastructure is no longer separate from digital orchestration</strong>. For the past decade, the global markets treated these as distinct sectors. This division led to severe inefficiencies, carbon overloads, and fragmented operations.
                     </p>
                     <p>
                       We founded our unified holding with the complete resolve to dissolve these boundaries. By creating software-defined ecosystems matching robotic material sorting, high-voltage wind farms, and clinical genomic processing systems, we protect the sovereign capital allocated with us. Our responsibility is multi-generational.
@@ -524,7 +524,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 ) : language === 'FR' ? (
                   <>
                     <p>
-                      Chez Madagascar Vision, nous opérons sous une directive simple et non négociable : <strong>l’infrastructure physique n’est plus séparée de l’orchestration numérique</strong>. Durant la dernière décennie, les marchés mondiaux ont traité ces secteurs comme distincts. Cette division a entraîné de graves inefficacités, des surcharges de carbone et des opérations fragmentées.
+                      Chez Vision Madagascar, nous opérons sous une directive simple et non négociable : <strong>l’infrastructure physique n’est plus séparée de l’orchestration numérique</strong>. Durant la dernière décennie, les marchés mondiaux ont traité ces secteurs comme distincts. Cette division a entraîné de graves inefficacités, des surcharges de carbone et des opérations fragmentées.
                     </p>
                     <p>
                       Nous avons fondé notre holding unifiée avec la ferme résolution de dissoudre ces frontières. En créant des écosystèmes définis par logiciel associant le tri robotisé des matériaux, des parcs éoliens haute tension et des systèmes de traitement génomique clinique, nous protégeons le capital souverain qui nous est alloué. Notre responsabilité est multigénérationnelle.
@@ -539,7 +539,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 ) : (
                   <>
                     <p>
-                      Ao amin’ny Madagascar Vision, miasa eo ambanin’ny fenitra tsotra sy tsy azo iadian-kevitra izahay: <strong>ny fotodrafitrasa ara-batana dia tsy misaraka ity fitaovana nomerika ity intsony</strong>. Nandritra ny folo taona lasa, ny tsena eran-tany dia nampitaha an’ireo ho sehatra roa samy hafa. Izany fisarahana izany dia niteraka tsy fahombiazana, famoahana carbone tafahoatra ary asa mikorontana.
+                      Ao amin’ny Vision Madagascar, miasa eo ambanin’ny fenitra tsotra sy tsy azo iadian-kevitra izahay: <strong>ny fotodrafitrasa ara-batana dia tsy misaraka ity fitaovana nomerika ity intsony</strong>. Nandritra ny folo taona lasa, ny tsena eran-tany dia nampitaha an’ireo ho sehatra roa samy hafa. Izany fisarahana izany dia niteraka tsy fahombiazana, famoahana carbone tafahoatra ary asa mikorontana.
                     </p>
                     <p>
                       Nanangana ity holding unifiée ity izahay mba handravana an’ireny sisintany ireny. Amin’ny alalan’ny famoronana tontolo nomerika mampifandray ny robotics, parcs éoliens ary genomic processing, dia miaro ny renivola nankinina taminay izahay. Manana andraikitra lehibe ho an’ny taranaka rehetra izahay.

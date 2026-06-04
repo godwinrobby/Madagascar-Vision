@@ -16,7 +16,7 @@ export function BlogsView({ language }: BlogsViewProps) {
   const translations = {
     EN: {
       title: 'Executive Insights & Thought Leadership',
-      sub: 'Analytical whitepapers, market coordinates, technology research, and strategic guides written by the directors of Madagascar Vision.',
+      sub: 'Analytical whitepapers, market coordinates, technology research, and strategic guides written by the directors of Vision Madagascar.',
       searchPlaceholder: 'Search essays & research...',
       allTags: 'All Articles',
       readTime: 'Read Time',
@@ -279,7 +279,7 @@ export function BlogsView({ language }: BlogsViewProps) {
                 <div className="text-slate-300 text-xs sm:text-sm space-y-4 font-light leading-relaxed pt-2">
                   <p>{selectedBlog.content}</p>
                   <p>
-                    Madagascar Vision actively fosters absolute paradigm shifts in resource deployment by prioritizing rigorous open-loop mathematical architectures, rather than reactive market forecasting.
+                    Vision Madagascar actively fosters absolute paradigm shifts in resource deployment by prioritizing rigorous open-loop mathematical architectures, rather than reactive market forecasting.
                   </p>
                 </div>
 

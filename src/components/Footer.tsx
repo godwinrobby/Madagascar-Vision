@@ -103,10 +103,10 @@ export function Footer({ setActiveTab, language }: FooterProps) {
           <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center cursor-pointer" onClick={() => handleLink('home')}>
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#db5b1a] via-[#9cb933] to-[#1f8a5a] flex items-center justify-center mr-3 shadow-lg">
-                <span className="text-white font-black text-xs select-none tracking-tight">MV</span>
+                <span className="text-white font-black text-xs select-none tracking-tight">VM</span>
               </div>
               <span className="text-white font-extrabold text-xl tracking-wider uppercase">
-                Madagascar <span className="text-[#db5b1a] font-mono font-bold text-xs block -mt-1 tracking-widest">Vision</span>
+                Vision <span className="text-[#db5b1a] font-mono font-bold text-xs block -mt-1 tracking-widest">Madagascar</span>
               </span>
             </div>
 
@@ -220,10 +220,10 @@ export function Footer({ setActiveTab, language }: FooterProps) {
           
           <div className="text-right">
             <p className="font-mono text-[10px] tracking-wider text-slate-400 uppercase">
-              MV Madagascar Vision Holding SE & Co. KGaA
+              VM Vision Madagascar Holding SE & Co. KGaA
             </p>
             <p className="mt-0.5">
-              &copy; {new Date().getFullYear()} Madagascar Vision. {translations.rights}
+              &copy; {new Date().getFullYear()} Vision Madagascar. {translations.rights}
             </p>
           </div>
         </div>

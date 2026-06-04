@@ -37,7 +37,7 @@ export default function App() {
 
   // Sync title based on active tab & language to support premium SEO / branding constraints
   useEffect(() => {
-    const brandName = 'Madagascar Vision';
+    const brandName = 'Vision Madagascar';
     const subNames = {
       home: { EN: 'Multi-Sector Corporate Portfolio', FR: "Portefeuille d'Activités Multi-Sectoriel", MG: 'Fasahan-draharaha Marolafy' },
       about: { EN: 'Corporate Story & Board', FR: "Histoire de l'Entreprise & Conseil", MG: 'Tantara sy ny Birao' },

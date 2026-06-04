@@ -36,7 +36,7 @@ export function ContactView({ language }: ContactViewProps) {
       title: 'Globale Niederlassungen & Kontakt',
       sub: 'Kontaktieren Sie unsere Hauptquartiere in Kontinentaleuropa, Asien-Pazifik oder unsere Transportleitstellen.',
       mapTitle: 'Weltkarte der Betriebsstätten & Koordinaten',
-      mapSub: 'Interaktive Karte der behördlich zugelassenen Madagascar Vision-Holdings.',
+      mapSub: 'Interaktive Karte der behördlich zugelassenen Vision Madagascar-Holdings.',
       formTitle: 'Zentrales Anfrage-Formular (Institutionell)',
       nameLabel: 'Name des bevollmächtigten Vertreters',
       emailLabel: 'Offizielle Firmen-E-Mail-Adresse',
@@ -68,7 +68,7 @@ export function ContactView({ language }: ContactViewProps) {
     {
       id: 'zurich',
       city: { EN: 'Zurich (Global HQ)', DE: 'Zürich (Zentrale)', JP: 'チューリッヒ世界本社' },
-      address: 'Madagascar Vision Civic Group AG, Bleicherweg 74, 8002 Zürich, Switzerland',
+      address: 'Vision Madagascar Civic Group AG, Bleicherweg 74, 8002 Zürich, Switzerland',
       tel: '+41 44 910 2000',
       email: 'hq.zurich@aetheris.com',
       hours: { EN: '08:00 - 17:30 CET', DE: '08:00 - 17:30 MEZ', JP: 'スイス時間 08:00 - 17:30' },
@@ -77,7 +77,7 @@ export function ContactView({ language }: ContactViewProps) {
     {
       id: 'frankfurt',
       city: { EN: 'Frankfurt Hub', DE: 'Frankfurt (Logistik)', JP: 'フランクフルト支局' },
-      address: 'Madagascar Vision Logistik & Guss GmbH, Kaiserstraße 12, 60311 Frankfurt am Main, Germany',
+      address: 'Vision Madagascar Logistik & Guss GmbH, Kaiserstraße 12, 60311 Frankfurt am Main, Germany',
       tel: '+49 69 400 9010',
       email: 'hubs.germany@aetheris.de',
       hours: { EN: '08:30 - 18:00 CET', DE: '08:30 - 18:00 MEZ', JP: 'ドイツ時間 08:30 - 18:00' },
@@ -86,7 +86,7 @@ export function ContactView({ language }: ContactViewProps) {
     {
       id: 'tokyo',
       city: { EN: 'Tokyo Ginza Terminal', DE: 'Tokio (Pazifik)', JP: '東京・銀座アジア太平洋本部' },
-      address: 'Madagascar Vision Medical Solutions, Ginza Six 11F, Chuo-ku, Tokyo 104-0061, Japan',
+      address: 'Vision Madagascar Medical Solutions, Ginza Six 11F, Chuo-ku, Tokyo 104-0061, Japan',
       tel: '+81 3 5510 8800',
       email: 'apac.tokyo@aetheris.jp',
       hours: { EN: '09:00 - 18:00 JST', DE: '09:00 - 18:00 JST', JP: '日本時間 09:00 - 18:00（土日祝除く）' },

@@ -155,7 +155,7 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: 'project-1',
-    title: 'Madagascar Vision Helix Healthcare Center',
+    title: 'Vision Madagascar Helix Healthcare Center',
     sector: 'Healthcare Network',
     location: 'Munich, Germany',
     description: 'Constructing and operating Germany`s most technologically advanced molecular research hospital, integrating full robotic-assisted surgeries and carbon-free medical hubs.',
@@ -228,7 +228,7 @@ export const LEADERS: Leader[] = [
     id: 'lead-1',
     name: 'Helena Vance-Sterling',
     role: 'Chief Executive Officer',
-    bio: 'With over 24 years directing multi-billion dollar capital programs, Helena guides Madagascar Vision`s strategic direction, ensuring portfolio diversification and deep alignment with institutional investor pools.',
+    bio: 'With over 24 years directing multi-billion dollar capital programs, Helena guides Vision Madagascar`s strategic direction, ensuring portfolio diversification and deep alignment with institutional investor pools.',
     imageSeed: 'executive_woman_portrait'
   },
   {
@@ -312,7 +312,7 @@ export const CAREER_POSITIONS: JobPosition[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'test-1',
-    quote: "Madagascar Vision re-engineered our entire regional supply network by injecting smart modular picking robots and electric vehicle routing. The transition was smooth, fast, and yielded instantaneous carbon reductions.",
+    quote: "Vision Madagascar re-engineered our entire regional supply network by injecting smart modular picking robots and electric vehicle routing. The transition was smooth, fast, and yielded instantaneous carbon reductions.",
     author: "Klaus-Dieter Hoffmann",
     role: "VP of Global Supply Logistics",
     company: "Sachsen-Automotive AG",
@@ -328,7 +328,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 'test-3',
-    quote: "The molecular healthcare array developed by Madagascar Vision Diagnostics has saved countless lives. Our research physicians now isolate cancer pathways in 2 hours instead of 10 days, with unparalleled clarity.",
+    quote: "The molecular healthcare array developed by Vision Madagascar Diagnostics has saved countless lives. Our research physicians now isolate cancer pathways in 2 hours instead of 10 days, with unparalleled clarity.",
     author: "Prof. Arthur Pendelton MD",
     role: "Director of Genomic Diagnostics",
     company: "Western Oncology & Clinical Systems",
@@ -362,11 +362,11 @@ export const VALUE_PROPS = [
 export const CORPORATE_NEWS: NewsItem[] = [
   {
     id: 'news-1',
-    title: 'Madagascar Vision and European Clean Synergy Trust Sign $850M Offshore Wind Facility',
+    title: 'Vision Madagascar and European Clean Synergy Trust Sign $850M Offshore Wind Facility',
     category: 'M&A & Partnerships',
     date: '2026-05-18',
     summary: 'A joint initiative to construct and operate 420 megawatt deep-sea floating wind turbines in the North Sea corridor.',
-    content: 'Today, Madagascar Vision officially completed high-level terms with the European Clean Synergy Trust for an $850M debt-to-equity investment facility. The capital allocation targets deepwater floating kinetic rigs, engineered to withstand Category-5 marine storm events while feeding steady clean voltages directly into northern continental distribution hubs. Construction begins Q4 2026.',
+    content: 'Today, Vision Madagascar officially completed high-level terms with the European Clean Synergy Trust for an $850M debt-to-equity investment facility. The capital allocation targets deepwater floating kinetic rigs, engineered to withstand Category-5 marine storm events while feeding steady clean voltages directly into northern continental distribution hubs. Construction begins Q4 2026.',
     imageSeed: 'windfarm'
   },
   {
@@ -398,7 +398,7 @@ export const CORPORATE_BLOGS: BlogItem[] = [
     date: '2026-05-24',
     readTime: '6 min read',
     summary: 'How predictive modeling and deep reinforcement learning stabilize local micro-grids without relying on fossil-fuel reserves.',
-    content: 'The rapid integration of utility-scale wind and solar installations presents a systemic bottleneck: intermittency. At Madagascar Vision, we have abandoned traditional thermal-peaker plant safeguards in favor of automated AI routing models. By feeding real-time satellite isobar imagery and micro-climate patterns into neural active routers, we can predict grid surges 4 hours in advance. Read on to explore how molecular battery reserves and predictive load balancing achieve 99.99% operational continuity.',
+    content: 'The rapid integration of utility-scale wind and solar installations presents a systemic bottleneck: intermittency. At Vision Madagascar, we have abandoned traditional thermal-peaker plant safeguards in favor of automated AI routing models. By feeding real-time satellite isobar imagery and micro-climate patterns into neural active routers, we can predict grid surges 4 hours in advance. Read on to explore how molecular battery reserves and predictive load balancing achieve 99.99% operational continuity.',
     imageSeed: 'renewableenergy',
     tags: ['Decarbonization', 'SmartGrid', 'EnergyTransition']
   },
@@ -410,7 +410,7 @@ export const CORPORATE_BLOGS: BlogItem[] = [
     date: '2026-04-15',
     readTime: '8 min read',
     summary: 'An inside look into modern, non-coercive sustainable zoning, passive structural materials, and circular water loops.',
-    content: 'Traditional cities generate nearly 70% of global emissions, primarily driven by cement production, inefficient thermal management, and long-range logistics. By constructing masterproperties around decentralized light-transit cores and utilizing low-hydration geo-polymer concrete, we create urban spaces that act as absolute carbon sinks. The Madagascar Vision Smart City layout integrates natural wind thermal tunnels and circular membrane bioreactors, ensuring that 100% of municipal greywater is filtered and routed back into public hydroponic reserves.',
+    content: 'Traditional cities generate nearly 70% of global emissions, primarily driven by cement production, inefficient thermal management, and long-range logistics. By constructing masterproperties around decentralized light-transit cores and utilizing low-hydration geo-polymer concrete, we create urban spaces that act as absolute carbon sinks. The Vision Madagascar Smart City layout integrates natural wind thermal tunnels and circular membrane bioreactors, ensuring that 100% of municipal greywater is filtered and routed back into public hydroponic reserves.',
     imageSeed: 'smartcity',
     tags: ['SustainableUrbanism', 'SmartCities', 'MaterialsScience']
   },
@@ -482,7 +482,7 @@ export const CORPORATE_EVENTS: CorporateEvent[] = [
     type: 'recent',
     date: '2026-04-03',
     location: 'Nippon Grand Convention Venue, Tokyo',
-    description: 'Detailed showcase of Madagascar Visions carbon-neutral construction techniques and membrane water bioreactor arrays.',
+    description: 'Detailed showcase of Vision Madagascars carbon-neutral construction techniques and membrane water bioreactor arrays.',
     imageSeed: 'tokyobuilding',
     speakers: ['Marcus Vance (CEO)', 'Klaus-Dieter Hoffmann (VP, Sachsen-Automotive)'],
     metrics: { label: 'Audited Decarbonization Value', value: 'LEED Certified' }

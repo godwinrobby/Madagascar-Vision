@@ -30,11 +30,11 @@ export function CareersView({ language }: CareersViewProps) {
   const translations = {
     EN: {
       title: 'Join Our Global Mission',
-      sub: 'Madagascar Vision values cross-sector innovators engineering resilient pathways. Join a sovereign group shaping tomorrow.',
+      sub: 'Vision Madagascar values cross-sector innovators engineering resilient pathways. Join a sovereign group shaping tomorrow.',
       openingsTitle: 'Current Active Career Vacancies',
       openingsSub: 'Click any position to review exact scope, prerequisites, and integrated application channels.',
       benefitsTitle: 'Global Employee Wellness & Benefits',
-      cultureTitle: 'The Cultural Core at Madagascar Vision',
+      cultureTitle: 'The Cultural Core at Vision Madagascar',
       appFormTitle: 'Secure Candidate Application Portal',
       fullNameLabel: 'Full Candidate Name',
       emailLabel: 'Contact Corporate Email Address',
@@ -45,16 +45,16 @@ export function CareersView({ language }: CareersViewProps) {
       dragDropText: 'Drag and drop CV here or click to browse local storage... (Supports PDF, DOCX up to 12MB)',
       submitBtn: 'Submit Fiduciary Application Logs',
       successHeader: 'Application Log Successfully Deposited',
-      successText: 'Your candidate details and verified documents have been indexed securely in Madagascar Vision Talent Registry. Our recruitment board will review credentials shortly.',
+      successText: 'Your candidate details and verified documents have been indexed securely in Vision Madagascar Talent Registry. Our recruitment board will review credentials shortly.',
       applyNow: 'Submit Application'
     },
     FR: {
       title: 'Rejoignez notre Mission Globale',
-      sub: 'Madagascar Vision valorise les innovateurs intersectoriels qui bâtissent des voies résilientes. Rejoignez un groupe souverain qui façonne demain.',
+      sub: 'Vision Madagascar valorise les innovateurs intersectoriels qui bâtissent des voies résilientes. Rejoignez un groupe souverain qui façonne demain.',
       openingsTitle: 'Postes Vacants Actifs',
       openingsSub: 'Cliquez sur un poste pour consulter le cahier des charges, les prérequis et postuler directement.',
       benefitsTitle: 'Bien-être Global & Remises des Employés',
-      cultureTitle: 'Le Noyau Culturel chez Madagascar Vision',
+      cultureTitle: 'Le Noyau Culturel chez Vision Madagascar',
       appFormTitle: 'Portail de Candidature Candidat Sécurisé',
       fullNameLabel: 'Nom Complet du Candidat',
       emailLabel: 'Adresse Email Professionnelle de Contact',
@@ -65,16 +65,16 @@ export function CareersView({ language }: CareersViewProps) {
       dragDropText: 'Déposer votre CV ici ou cliquer pour parcourir vos fichiers... (Prend en charge PDF, DOCX jusqu\'à 12 Mo)',
       submitBtn: 'Soumettre les Détails de Candidature',
       successHeader: 'Candidature Enregistrée avec Succès',
-      successText: 'Vos informations et documents ont été indexés en toute sécurité dans le registre des talents de Madagascar Vision. Notre comité de recrutement examinera vos compétences sous peu.',
+      successText: 'Vos informations et documents ont été indexés en toute sécurité dans le registre des talents de Vision Madagascar. Notre comité de recrutement examinera vos compétences sous peu.',
       applyNow: 'Soumettre la Candidature'
     },
     MG: {
       title: 'Midira amin’ny Tanjonay Manerantany',
-      sub: 'Madagascar Vision dia manome lanja ireo mpamorona manerana ny seha-pifandraisana. Midira amin\'ny vondrona manorina ny ho avy.',
+      sub: 'Vision Madagascar dia manome lanja ireo mpamorona manerana ny seha-pifandraisana. Midira amin\'ny vondrona manorina ny ho avy.',
       openingsTitle: 'Ireo Asa Malalaka Misy Ankehitriny',
       openingsSub: 'Tsindrio ny asa tianao hijerena ny pitsopitsony, ny fepetra ary ny fomba fandefasana bika.',
       benefitsTitle: 'Tombontsoa sy Fandaharana Fahasalamana ho an’ny Mpiasa',
-      cultureTitle: 'Ny Soatoavin’ny Madagascar Vision',
+      cultureTitle: 'Ny Soatoavin’ny Vision Madagascar',
       appFormTitle: 'Fandefasana Taratasy Fidirana Asa',
       fullNameLabel: 'Anarana Feno',
       emailLabel: 'Adiresy Mailaka Fifandraisana',
@@ -85,7 +85,7 @@ export function CareersView({ language }: CareersViewProps) {
       dragDropText: 'Tariho eto ny CV-nao na tsindrio hisafidianana solosaina... (PDF, DOCX hatramin\'ny 12MB)',
       submitBtn: 'Handefa ny fangatahana fidirana asa',
       successHeader: 'Voarainay ny Taratasy Fangatahanao',
-      successText: 'Voasoratra soa aman-tsara ao amin’ny tahirin’ny Madagascar Vision ny diary asanao. Handinika izany haingana ny tompon’andraikitra misahana ny fandraisana mpiasa.',
+      successText: 'Voasoratra soa aman-tsara ao amin’ny tahirin’ny Vision Madagascar ny diary asanao. Handinika izany haingana ny tompon’andraikitra misahana ny fandraisana mpiasa.',
       applyNow: 'Handefa bika'
     }
   }[language];
