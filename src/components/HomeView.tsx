@@ -4,7 +4,7 @@ import { SECTORS, TESTIMONIALS, VALUE_PROPS, CORPORATE_EVENTS } from '../data/co
 import { DynamicIcon } from './DynamicIcon';
 
 interface HomeViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
   setActiveTab: (tab: string) => void;
   setSelectedSectorId: (id: string | null) => void;
 }
@@ -27,44 +27,44 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       consultBtn: 'Schedule Executive Consultation',
       careersBtn: 'Explore Senior Openings'
     },
-    DE: {
-      tagline: 'Sektorübergreifende Synergien. Infrastruktur von morgen.',
-      subline: 'Madagascar Vision steuert resiliente Portfolios in klinischer Diagnostik, CO2-neutralem Städtebau, autonomer Logistik, Gigawatt-Energieparks und digitaler Transformation.',
-      exploreSectors: 'Mischkonzern-Sparten',
-      investorRelations: 'Partner-Beratung',
-      statsHeader: 'Konsolidierte Konzern-Kennzahlen',
-      whyTitle: 'Warum führende Institutionen Madagascar Vision wählen',
-      whySub: 'Wir verschmelzen reale Ingenieurskunst mit modernsten algorithmischen Modellen, um stabile Sachwerte und zukunftsfähige Erträge zu sichern.',
-      partnersTitle: 'Auszug aus unserem Allianz-Netzwerk',
-      carouselTicker: 'Konsolidierte Beteiligungen & Staatliche Entwicklungsbehörden',
-      ctaHeader: 'Gestalten Sie das nächste Zeitalter mit uns',
-      ctaText: 'Egal ob staatlicher Akteur für erneuerbare Energieparks oder Klinikgruppe auf der Suche nach molekularer Diagnostik – wir bewerten Ihre Anlage-Koordinaten.',
-      consultBtn: 'Erstberatung vereinbaren',
-      careersBtn: 'Offene Führungspositionen'
+    FR: {
+      tagline: 'Orchestrer Divers Secteurs. Le Prochain Horizon Industriel.',
+      subline: "Madagascar Vision propose des voies d'évolution résilientes dans les sciences de la santé, le développement d'actifs neutres en carbone, la distribution automatisée, l'énergie éolienne de grande puissance et la transition cloud.",
+      exploreSectors: 'Découvrir nos Divisions',
+      investorRelations: 'Partenariats & Advisory',
+      statsHeader: 'Indicateurs de Performance Consolidés',
+      whyTitle: "Pourquoi les Institutions Choisissent Madagascar Vision",
+      whySub: "Nous unissons notre expertise technique de l'infrastructure physique à des algorithmes de pointe pour assurer une rentabilité maximale et une sécurité absolue.",
+      partnersTitle: 'Notre Écosystème d’Alliances Consolidé',
+      carouselTicker: 'Sociétés en Portefeuille & Autorités Nationales de Développement',
+      ctaHeader: 'Bâtissez le Prochain Horizon Civique avec Nous',
+      ctaText: "Que vous représentiez une entité souveraine souhaitant déployer de l'énergie éolienne ou un groupe clinique en quête de diagnostics automatisés, notre conseil d'administration est prêt à examiner vos projets.",
+      consultBtn: 'Réserver une Consultation Exécutive',
+      careersBtn: "Consulter les Postes à Responsabilité"
     },
-    JP: {
-      tagline: '多セクターの統合。明日のインフラを構想する。',
-      subline: 'マダガスカル・ビジョンは、臨床ヘルスサイエンス、カーボンニュートラルな大規模不動産、自律型配送、ギガワット規模の風力発電、およびクラウド変革に強いポートフォリオを展開しています。',
-      exploreSectors: '事業セクターを探究する',
-      investorRelations: 'アドバイザリー相談',
-      statsHeader: '連結事業パフォーマンス指標',
-      whyTitle: '主要機関や政府がマダガスカル・ビジョンを選択する理由',
-      whySub: '当社は、物理的な都市インフラの構築と次世代のテクノロジーアルゴリズムを組み合わせることで、強固なセキュアアセットと長期にわたる高い収益を確立します。',
-      partnersTitle: '提携アライアンス・エコシステム',
-      carouselTicker: '連結ポートフォリオ企業 ＆ 公共開発公社一覧',
-      ctaHeader: '次世代の都市インフラ開発に参画しませんか',
-      ctaText: 'クリーンエネルギー発電設備を導入したい地方自治体の方、またはインテリジェントな診断技術を導入したい医療法人経営者の方まで、グループ取締役会が綿密に対応を評価いたします。',
-      consultBtn: 'エグゼクティブ諮問を予約する',
-      careersBtn: 'キャリア募集案件'
+    MG: {
+      tagline: 'Mampiray Seha-pihariana Marolafy. Toekarena Vaovao Ho avy.',
+      subline: "Madagascar Vision dia manorina tolotra mafy orina amin'ny fahasalamana klinika, trano sy tany tsy mamoaka karbonina, fitaterana mampiasa milina, famokarana angovo azo havaozina, ary fampitaovana rahona haingana.",
+      exploreSectors: 'Ireo Sampan-draharaha',
+      investorRelations: 'Fiaraha-miasa Mpampiasa Vola',
+      statsHeader: 'Tondro momba ny Fahombiazana',
+      whyTitle: "Nahoana Ny Mpitantana No Mifidy any amin'i Madagascar Vision",
+      whySub: "Mampifangaro ny fahaizana fotodrafitrasa sy ny teknika avo lenta izahay mba hanomezana antoka feno sy fidiram-bola maharitra.",
+      partnersTitle: 'Ny Fiaraha-miasa Manerantany',
+      carouselTicker: 'Ireo Orinasa mpiara-miombon\'antoka sy ny Fampandrosoana',
+      ctaHeader: 'Andao Hiaraka Hamorona ny Ho Avy',
+      ctaText: "Na mpitantana fanjakana ianao te-hametraka angovo azo havaozina, na vondrona fitsaboana mitady fitiliana arifomba, vonona ny handray sy handinika ny fiaraha-miasa ny birao mpitantana.",
+      consultBtn: 'Fandaharana Fihaonana Mpitantana',
+      careersBtn: 'Hijery ny asa misy rehetra'
     }
   }[language];
 
   // Animated numbers
   const stats = [
-    { value: '14+', label: { EN: 'Years Group Advisory', DE: 'Jahre Konzerngeschichte', JP: 'グループ創業（年）' }, icon: Award },
-    { value: '74', label: { EN: 'Global Maritime Hubs', DE: 'Globale Logistik-Knoten', JP: 'グローバル物流・海運拠点' }, icon: Truck },
-    { value: '115+', label: { EN: 'Mega Projects Completed', DE: 'Abgeschlossene Großprojekte', JP: '完了したメガプロジェクト' }, icon: CheckCircle },
-    { value: '3.2M', label: { EN: 'Families Supplied with Clean Power', DE: 'Mit Windenergie versorgte Haushalte', JP: '供給先の世帯数（再生エネ）' }, icon: Sparkles }
+    { value: '14+', label: { EN: 'Years Group Advisory', FR: 'Années d’Advisory du Groupe', MG: 'Taona Nitantanana ny Vondrona' }, icon: Award },
+    { value: '74', label: { EN: 'Global Maritime Hubs', FR: 'Hubs Maritimes Globaux', MG: 'Seranan-tsambo Iraisam-pirenena' }, icon: Truck },
+    { value: '115+', label: { EN: 'Mega Projects Completed', FR: 'Méga-Projets Finalisés', MG: 'Tetik’asa Goavana Vita' }, icon: CheckCircle },
+    { value: '3.2M', label: { EN: 'Families Supplied Clean Power', FR: 'Foyers Alimentés en Énergie Propre', MG: 'Tokantrano Mahazo Angovo Propre' }, icon: Sparkles }
   ];
 
   // Fake partner brand names representing high-end alliances
@@ -111,13 +111,13 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
                 <>
                   Orchestrating Diverse Sectors. <span className="gradient-text">Next Horizon</span> of Industry.
                 </>
-              ) : language === 'DE' ? (
+              ) : language === 'FR' ? (
                 <>
-                  Synergien gestalten. Herausforderung der <span className="gradient-text">Zukunft meistern.</span>
+                  Orchestrer Divers Secteurs. <span className="gradient-text">Le Prochain Horizon</span> de l'Industrie.
                 </>
               ) : (
                 <>
-                  多セクターの統合。 <span className="gradient-text">次の地平線</span>を拓くグローバルインフラ。
+                  Mampiray Seha-pihariana. <span className="gradient-text">Tandrimo Vaovao</span> amin'ny Ho avy.
                 </>
               )}
             </h1>
@@ -232,10 +232,10 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
             Madagascar Vision Divisions
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            {language === 'EN' ? 'Global Multi-Sector Reach' : language === 'DE' ? 'Multidimensionale Sektorführerschaft' : '多角的なグローバル事業領域'}
+            {language === 'EN' ? 'Global Multi-Sector Reach' : language === 'FR' ? 'Portée Multi-Sectorielle Globale' : 'Sehatra Marolafy Manerantany'}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            {language === 'EN' ? 'Operating synchronized business verticals managed by cross-disciplinary executive boards, delivering reliable sovereign solutions.' : language === 'DE' ? 'Integrierte Geschäftsbereiche, geleitet von fachübergreifenden Vorständen, liefern verlässliche Lösungen für Staat & Wirtschaft.' : '専門分野を横断する取締役会体制のもと、ガバナンス and シナジーを効かせた強固な事業開発をグローバルに展開しています。'}
+            {language === 'EN' ? 'Operating synchronized business verticals managed by cross-disciplinary executive boards, delivering reliable sovereign solutions.' : language === 'FR' ? 'Gestion de branches d’activités synchronisées par un conseil d’administration interdisciplinaire, fournissant des solutions souveraines de confiance.' : 'Mitantana sampan-draharaha mirindra sy fehezin’ny mpitantana manam-pahaizana, manome vahaolana mahomby sy azo antoka.'}
           </p>
         </div>
 
@@ -347,10 +347,10 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10" id="testimonials-section">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            {language === 'EN' ? 'Global Operational Audits' : language === 'DE' ? 'Auszug aus Projektberichten' : '実証された事業評価と信頼'}
+            {language === 'EN' ? 'Global Operational Audits' : language === 'FR' ? 'Audits Opérationnels Globaux' : 'Fanaraha-maso sy Tombana Iraisam-pirenena'}
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            {language === 'EN' ? 'How national administrative boards and institutional compliance partners evaluate our executed multi-sector architectures.' : language === 'DE' ? 'Wie staatliche Verwaltungsorgane und institutionelle Governance-Akteure unsere Großprojekte bewerten.' : '国内外の自治体およびグローバルパートナーによる、エーテリスの共同開発プロジェクトの実績評価です。'}
+            {language === 'EN' ? 'How national administrative boards and institutional compliance partners evaluate our executed multi-sector architectures.' : language === 'FR' ? 'Comment les commissions nationales et les partenaires institutionnels évaluent nos architectures multi-sectorielles exécutées.' : 'Ny fomba entin’ireo vaomieram-panjakana sy ny mpiara-miombon’antoka manombatombana ny zava-bita marolafy.'}
           </p>
         </div>
 
@@ -393,10 +393,10 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
             Group Symposia Registry
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            {language === 'EN' ? 'Upcomings & Recent Assemblies' : language === 'DE' ? 'Ausschuss- & Eventprotokolle' : '公式サミット・開催イベント記録'}
+            {language === 'EN' ? 'Upcomings & Recent Assemblies' : language === 'FR' ? 'Assemblées Récentes & À Venir' : 'Fihaonambe Ho avy & Hetsika Manan-tantara'}
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            {language === 'EN' ? 'Join our board live at upcoming structural roundtables or review clinical and mechanical documentation of recent assemblies.' : language === 'DE' ? 'Nehmen Sie an anstehenden Gipfeltreffen teil oder sichten Sie Protokolle und medizinische Auswertungen kürzlicher Kongresse.' : '今後開催予定の戦略的サミットへの出席、または直近に開催された各種評価委員会の公式議事録・検証結果を閲覧いただけます。'}
+            {language === 'EN' ? 'Join our board live at upcoming structural roundtables or review clinical and mechanical documentation of recent assemblies.' : language === 'FR' ? 'Rejoignez notre conseil d’administration lors des prochaines tables rondes ou examinez les rapports cliniques et techniques d’assemblées récentes.' : 'Manatreha mivantana ireo fihaonana an-tabilao boribory, na jereo ny tatitra ara-teknika sy fitsaboana rehetra.'}
           </p>
         </div>
 

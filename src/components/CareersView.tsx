@@ -5,7 +5,7 @@ import { JobPosition } from '../types';
 import { Briefcase, MapPin, Clock, Calendar, CheckCircle2, ChevronDown, ChevronUp, FileUp, Sparkles, Send, AlertCircle, X } from 'lucide-react';
 
 interface CareersViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
 }
 
 export function CareersView({ language }: CareersViewProps) {
@@ -48,45 +48,45 @@ export function CareersView({ language }: CareersViewProps) {
       successText: 'Your candidate details and verified documents have been indexed securely in Madagascar Vision Talent Registry. Our recruitment board will review credentials shortly.',
       applyNow: 'Submit Application'
     },
-    DE: {
-      title: 'Gestalten Sie die Zukunft mit uns',
-      sub: 'Madagascar Vision fördert Querdenker und Visionäre. Werden Sie Teil eines globalen Sektor-Syndikats.',
-      openingsTitle: 'Aktuelle Vakanzen an unseren Standorten',
-      openingsSub: 'Klicken Sie auf eine Position, um Anforderungsprofile und Aufgabenbereiche einzusehen.',
-      benefitsTitle: 'Ihre Vorteile & Corporate Wellness',
-      cultureTitle: 'Unsere Unternehmenskultur',
-      appFormTitle: 'Kandidaten-Bewerbungsportal',
-      fullNameLabel: 'Vollständiger Name des Bewerbers',
-      emailLabel: 'E-Mail-Adresse',
-      phoneLabel: 'Telefonnummer',
-      positionLabel: 'Gewünschte Position',
-      coverLabel: 'Kurzes Motivationsschreiben',
-      resumeLabel: 'Lebenslauf (CV) hochladen',
-      dragDropText: 'Lebenslauf hier ablegen oder durchsuchen... (PDF, DOCX bis 12MB)',
-      submitBtn: 'Bewerbung einreichen',
-      successHeader: 'Bewerbungsunterlagen erhalten',
-      successText: 'Ihre Angaben wurden verschlüsselt in unserem Talent-Register erfasst. Unser HR-Komitee prüft Ihre Qualifikationen und meldet sich zeitnah.',
-      applyNow: 'Jetzt bewerben'
+    FR: {
+      title: 'Rejoignez notre Mission Globale',
+      sub: 'Madagascar Vision valorise les innovateurs intersectoriels qui bâtissent des voies résilientes. Rejoignez un groupe souverain qui façonne demain.',
+      openingsTitle: 'Postes Vacants Actifs',
+      openingsSub: 'Cliquez sur un poste pour consulter le cahier des charges, les prérequis et postuler directement.',
+      benefitsTitle: 'Bien-être Global & Remises des Employés',
+      cultureTitle: 'Le Noyau Culturel chez Madagascar Vision',
+      appFormTitle: 'Portail de Candidature Candidat Sécurisé',
+      fullNameLabel: 'Nom Complet du Candidat',
+      emailLabel: 'Adresse Email Professionnelle de Contact',
+      phoneLabel: 'Numéro de Téléphone Portable',
+      positionLabel: 'Poste Professionnel Visé',
+      coverLabel: 'Résumé de Motivation Professionnelle',
+      resumeLabel: 'Téléverser votre Curriculum Vitae (CV)',
+      dragDropText: 'Déposer votre CV ici ou cliquer pour parcourir vos fichiers... (Prend en charge PDF, DOCX jusqu\'à 12 Mo)',
+      submitBtn: 'Soumettre les Détails de Candidature',
+      successHeader: 'Candidature Enregistrée avec Succès',
+      successText: 'Vos informations et documents ont été indexés en toute sécurité dans le registre des talents de Madagascar Vision. Notre comité de recrutement examinera vos compétences sous peu.',
+      applyNow: 'Soumettre la Candidature'
     },
-    JP: {
-      title: 'グローバルチームへの参画',
-      sub: 'マダガスカル・ビジョンでは、多セクターを結び、地球規模で強固なインフラを設計する革新的なタレントを募っています。',
-      openingsTitle: '現在募集中のキャリア求人案件',
-      openingsSub: '各求人をクリックして、職務範囲、必須要件、および申請フォームをご参照ください。',
-      benefitsTitle: 'グローバルの厚生・福利厚生体系',
-      cultureTitle: 'マダガスカル・ビジョンの組織・カルチャーの核心',
-      appFormTitle: 'セキュア候補者申請ポータル',
-      fullNameLabel: 'お名前（フルネーム）',
-      emailLabel: 'ご連絡先電子メールアドレス',
-      phoneLabel: 'ご連絡先お電話番号',
-      positionLabel: '応募職種',
-      coverLabel: '自己紹介・志望動機要約（数行）',
-      resumeLabel: '履歴書・職務経歴書（CV）のアップロード',
-      dragDropText: '履歴書（CV）をここに部下にドラッグ＆ドロップ、またはファイル選択... （PDF/Word対応, 最大12MB）',
-      submitBtn: '応募書類を提出する',
-      successHeader: '応募ログが安全に送信されました',
-      successText: '提出された職務データおよび verified documents 等は暗号化され、人事部門へ正常にインデックス登録されました。選考委員会にて速やかに審査に入ります。',
-      applyNow: '応募する'
+    MG: {
+      title: 'Midira amin’ny Tanjonay Manerantany',
+      sub: 'Madagascar Vision dia manome lanja ireo mpamorona manerana ny seha-pifandraisana. Midira amin\'ny vondrona manorina ny ho avy.',
+      openingsTitle: 'Ireo Asa Malalaka Misy Ankehitriny',
+      openingsSub: 'Tsindrio ny asa tianao hijerena ny pitsopitsony, ny fepetra ary ny fomba fandefasana bika.',
+      benefitsTitle: 'Tombontsoa sy Fandaharana Fahasalamana ho an’ny Mpiasa',
+      cultureTitle: 'Ny Soatoavin’ny Madagascar Vision',
+      appFormTitle: 'Fandefasana Taratasy Fidirana Asa',
+      fullNameLabel: 'Anarana Feno',
+      emailLabel: 'Adiresy Mailaka Fifandraisana',
+      phoneLabel: 'Laharana finday',
+      positionLabel: 'Asa Kendrena',
+      coverLabel: 'Taratasy Fandresen-dahatra Vetivety',
+      resumeLabel: 'Hampidiro ny Diary Asa (CV)',
+      dragDropText: 'Tariho eto ny CV-nao na tsindrio hisafidianana solosaina... (PDF, DOCX hatramin\'ny 12MB)',
+      submitBtn: 'Handefa ny fangatahana fidirana asa',
+      successHeader: 'Voarainay ny Taratasy Fangatahanao',
+      successText: 'Voasoratra soa aman-tsara ao amin’ny tahirin’ny Madagascar Vision ny diary asanao. Handinika izany haingana ny tompon’andraikitra misahana ny fandraisana mpiasa.',
+      applyNow: 'Handefa bika'
     }
   }[language];
 
@@ -128,9 +128,9 @@ export function CareersView({ language }: CareersViewProps) {
       setErrorMessage(
         language === 'EN' 
           ? 'Mandatory fields missing. Full Name, Email, Target Position and CV are required.' 
-          : language === 'DE' 
-          ? 'Bitte füllen Sie Name, E-Mail, Wunschposition aus und laden Sie Ihren Lebenslauf hoch.' 
-          : '必須項目が不足しています。お名前、メール、目標職種、および履歴書ファイルの登録は必須です。'
+          : language === 'FR' 
+          ? 'Champs obligatoires manquants. Le nom, l\'adresse email, le poste visé et le CV sont requis.' 
+          : 'Misy banga ny saha tsy maintsy fenoina. Ilaina ny anarana, ny mailaka, ny asa kendrena ary ny CV.'
       );
       return;
     }
@@ -163,10 +163,10 @@ export function CareersView({ language }: CareersViewProps) {
 
   // Benefits grid
   const benefits = [
-    { title: { EN: 'Multi-Currency Compensation', DE: 'Multi-Währungs-Vergütung', JP: '多通貨による報酬割当' }, desc: { EN: 'Competitive salary packages structured in Swiss Francs (CHF), Euros, or USD adjusted for regional purchasing powers.', DE: 'Attraktive Spitzengehälter, wahlweise auszahlbar in CHF, EUR oder USD, angepasst an regionale Kaufkraft.', JP: 'スイス・フラン（CHF）、ユーロ、または米ドルに基づき設計される高い水準の基本給与。' } },
-    { title: { EN: 'Unified Care Insurance', DE: 'Premium-Gesundheitsschutz', JP: '最高水準の医療・介護保険' }, desc: { EN: 'Comprehensive family clinical care covering molecular diagnostic pipelines, travel health registries, and global mental support.', DE: 'Vollständiger Krankenschutz für Sie und Ihre Familie inklusive Zugang zu modernster klinischer Medizin.', JP: '提携する最先端医療・検査、および高度なグローバルケアサポートに直接アクセス可能な家族保険。' } },
-    { title: { EN: 'Remote-First Sovereignty', DE: 'Flexible Work-Life Balance', JP: 'フレキシブル遠隔地リモート' }, desc: { EN: 'Our teams coordinate across continents utilizing high-speed digital twin simulations—giving you autonomy on schedule grids.', DE: 'Dezentrale Arbeitsorganisation gepaart mit höchstem Vertrauen und flexiblen Zeiteinteilungen.', JP: '大陸を横断して稼働するデジタルツイン設計体制のもと、完全なスケジュール裁量と自由を提供。' } },
-    { title: { EN: 'Sabbatical ESG Allowances', DE: 'Kompensation für ESG-Engagement', JP: 'サステナビリティ特別有給' }, desc: { EN: 'We offer paid sabbaticals up to 4 weeks annually for workers directing community CSR and ocean rehabilitation tasks.', DE: 'Sonderurlaube für ehrenamtliches Engagement im Bereich Klimaschutz, Meeresreinhaltung oder Sozialprojekte.', JP: 'クリーンエネルギー活動支援、CSR、地方ボランティアなど環境保全タスクへの有休提供（最大4週/年）。' } }
+    { title: { EN: 'Multi-Currency Compensation', FR: 'Rémunération Multidevises', MG: 'Tambin-karama isan-karazany' }, desc: { EN: 'Competitive salary packages structured in Swiss Francs (CHF), Euros, or USD adjusted for regional purchasing powers.', FR: 'Forfaits salariaux compétitifs structurés en francs suisses (CHF), en euros ou en USD ajustés aux pouvoirs d’achat régionaux.', MG: 'Karama mifaninana amin’ny CHF, Euros na USD mifanaraka amin’ny fahefa-mividy isam-paritra.' } },
+    { title: { EN: 'Unified Care Insurance', FR: 'Assurance Maladie Unifiée', MG: 'Fiarovana ara-pahasalamana iraisana' }, desc: { EN: 'Comprehensive family clinical care covering molecular diagnostic pipelines, travel health registries, and global mental support.', FR: 'Prise en charge clinique complète de la famille couvrant les diagnostics moléculaires, l’assistance voyage et le soutien mental global.', MG: 'Fahasalamam-pianakaviana feno ahitana fitiliana arifomba, fanampiana amin’ny dia ary fanohanana ara-tsaina manerantany.' } },
+    { title: { EN: 'Remote-First Sovereignty', FR: 'Télétravail-First', MG: 'Fahalalahana miasa lavidavitra' }, desc: { EN: 'Our teams coordinate across continents utilizing high-speed digital twin simulations—giving you autonomy on schedule grids.', FR: 'Nos équipes collaborent à travers les continents à l’aide de simulations numériques rapides, vous offrant une autonomie sur vos horaires.', MG: 'Miasa lavidavitra nefa mirindra tsara ny mpiasa mampiasa fampitaovana nomerika avo lenta mba hanome fahalalahana anao.' } },
+    { title: { EN: 'Sabbatical ESG Allowances', FR: 'Congés Sabbatical ESG', MG: 'Fialan-tsasatra manokana ESG' }, desc: { EN: 'We offer paid sabbaticals up to 4 weeks annually for workers directing community CSR and ocean rehabilitation tasks.', FR: 'Nous offrons des congés payés pouvant aller jusqu’à 4 semaines par an pour les employés menant des projets RSE et de restauration océanique.', MG: 'Manolotra fialan-tsasatra misy karama hatramin’ny 4 herinandro isan-taona izahay ho an’izay mpiasa mirotsaka amin’ny tetikasa RSE sy fiarovana ny ranomasina.' } }
   ];
 
   return (
@@ -175,7 +175,7 @@ export function CareersView({ language }: CareersViewProps) {
       {/* 1. Page Header */}
       <section className="relative pt-32 pb-8 overflow-hidden text-center max-w-4xl mx-auto px-4" id="careers-intro">
         <span className="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20">
-          {language === 'EN' ? 'GLOBAL HUMAN CAPITAL' : language === 'DE' ? 'KARRIERE-NETWORK' : 'タレント採用・採用情報'}
+          {language === 'EN' ? 'GLOBAL HUMAN CAPITAL' : language === 'FR' ? 'CAPITAL HUMAIN GLOBAL' : 'NY MPIASA MANERANTANY'}
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">
           {translations.title}
@@ -273,7 +273,7 @@ export function CareersView({ language }: CareersViewProps) {
                     
                     <div className="space-y-2">
                       <h4 className="text-slate-300 text-xs font-bold uppercase tracking-wider">
-                        {language === 'EN' ? 'Scope of Role Strategy' : language === 'DE' ? 'Rolle & Aufgabenbeschreibung' : '職務範囲とミッション'}
+                        {language === 'EN' ? 'Scope of Role Strategy' : language === 'FR' ? 'Description des Responsabilités' : 'Ny Andraikitra sy ny Asa Kendrena'}
                       </h4>
                       <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-light">
                         {job.description}
@@ -282,7 +282,7 @@ export function CareersView({ language }: CareersViewProps) {
 
                     <div className="space-y-2">
                       <h4 className="text-slate-300 text-xs font-bold uppercase tracking-wider">
-                        {language === 'EN' ? 'Prerequisites & Qualifications' : language === 'DE' ? 'Anforderungsprofil' : '必要なバックグラウンド・スキル'}
+                        {language === 'EN' ? 'Prerequisites & Qualifications' : language === 'FR' ? 'Prérequis & Qualifications' : 'Fepetra sy Fahaizana Ilaina'}
                       </h4>
                       <ul className="space-y-1.5 text-xs text-slate-400">
                         {job.requirements.map((req, rIdx) => (
@@ -327,7 +327,7 @@ export function CareersView({ language }: CareersViewProps) {
             <span>{translations.appFormTitle}</span>
           </h3>
           <p className="text-slate-450 text-[11px] leading-tight mb-6 border-b border-slate-900 pb-3">
-            {language === 'EN' ? 'File verified curriculum documentation securely. Files are routed directly to group-wide directory.' : language === 'DE' ? 'Laden Sie Ihre Dokumente verschlüsselt hoch. Ihre Bewerbung geht direkt an das zuständige HR-Committee.' : '応募書類は安全に暗号化され、人事部門へ直接ルーティングされます。'}
+            {language === 'EN' ? 'File verified curriculum documentation securely. Files are routed directly to group-wide directory.' : language === 'FR' ? 'Déposez votre curriculum en toute sécurité. Les fichiers sont acheminés directement vers la direction du groupe.' : 'Ny diary asa rehetra dia alefa any amin\'ny tahirin\'ny mpiasa voaaro.'}
           </p>
 
           <form onSubmit={handleSubmitApplication} className="space-y-4">
@@ -386,7 +386,7 @@ export function CareersView({ language }: CareersViewProps) {
                 className="w-full bg-slate-900 border border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-2.5 text-xs text-white outline-none transition-all"
               >
                 <option value="" className="bg-slate-950 text-slate-500">
-                  {language === 'EN' ? '-- Select Vacant Position --' : language === 'DE' ? '-- Position auswählen --' : '-- 応募職種を選択してください --'}
+                  {language === 'EN' ? '-- Select Vacant Position --' : language === 'FR' ? '-- Sélectionner un poste --' : '-- Safidio ny asa iriana --'}
                 </option>
                 {CAREER_POSITIONS.map((job) => (
                   <option key={job.id} value={job.id} className="bg-slate-950 text-white text-xs">

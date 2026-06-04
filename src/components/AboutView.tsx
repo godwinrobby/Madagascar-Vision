@@ -4,7 +4,7 @@ import { LEADERS, TIMELINE } from '../data/corporateData';
 import { Target, Globe, Compass, Landmark, ShieldCheck, Zap, Sparkles, Leaf } from 'lucide-react';
 
 interface AboutViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
   setActiveTab?: (tab: string) => void;
 }
 
@@ -23,51 +23,51 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
       missionLabel: 'Operational Mission',
       missionText: 'To engineer robust pipelines matching critical civic utilities to automated intelligence grid vectors, creating resilient communities.'
     },
-    DE: {
-      teamTitle: 'Das Direktorium & Board-Partner',
-      teamSub: 'Herausragende Sektorexperten, die staatliches Branchenwissen, technologische Spitzenforschung, Risiko-Compliance und Nachhaltigkeit vereinen.',
-      valTitle: 'Die Säulen unserer Integrität',
-      valSub: 'Jede Beteiligung, jeder Investitionsetat und jedes Projekt folgt unseren gemeinsamen operativen Leitlinien.',
-      overviewTitle: 'Konzern-Historie & Kapitalstärke',
-      overviewDesc: 'Madagascar Vision ist ein konsolidiertes Sektor-Syndikat zur Steuerung physischer und digitaler Infrastrukturen in CO2-neutrale Bahnen. Wir investieren weltweit in staatstragende Asset-Verbünde und Deep-Tech Implementationen.',
-      visionLabel: 'Unsere Vision',
-      visionText: 'Aufbau zirkulärer, klimaschutzkonformer Großstrukturen bei gleichzeitiger stabiler Wertschöpfung für institutionelle Partner.',
-      missionLabel: 'Unsere Mission',
-      missionText: 'Entwicklung robuster, automatisierter Netz-Korridore zur Verbindung kommunaler Daseinsvorsorge mit KI-optimierter Steuerung.'
+    FR: {
+      teamTitle: 'Le Conseil d’Administration & Associés',
+      teamSub: 'Chefs de file intersectoriels de premier plan associant expertise souveraine institutionnelle, physique technologique, cadres de gestion des risques et portefeuilles de durabilité.',
+      valTitle: 'Les Piliers de nos Opérations',
+      valSub: 'Chaque participation, budget d’investissement et projet d’ingénierie adhère à nos valeurs fiduciaires unifiées.',
+      overviewTitle: 'Fondation du Groupe & Structure du Capital',
+      overviewDesc: 'Madagascar Vision représente un syndicat d’investissement multisectoriel consolidé, structuré pour orienter les services physiques et numériques vers des trajectoires neutres en carbone. Nous ancrons des projets d’infrastructure de niveau souverain et des intégrations technologiques profondes au niveau mondial.',
+      visionLabel: 'Mandat Institutionnel',
+      visionText: 'Pionnier de la circularité modulaire et des systèmes respectueux du climat à l’échelle nationale tout en assurant l’expansion continue des actifs.',
+      missionLabel: 'Mission Opérationnelle',
+      missionText: 'Concevoir des infrastructures robustes reliant les services publics essentiels à des vecteurs de réseaux intelligents automatisés, créant ainsi des communautés résilientes.'
     },
-    JP: {
-      teamTitle: '取締役会および共同パートナー',
-      teamSub: '主要政府・公的機関との調整、科学技術・物理シミュレーション、リスク監査、環境ESGなどの卓越した知見を融合する経営陣です。',
-      valTitle: '事業を支える基本価値基準',
-      valSub: 'グループのすべての投資ポートフォリオ、企業統治、エンジニアリング計画は、この確立された指針を厳格に順守します。',
-      overviewTitle: 'グループ設立と資本持株構造',
-      overviewDesc: 'マダガスカル・ビジョンは、物理インフラと統合デジタルインフラの両面から、持続可能かつカーボンニュートラルな世界経済への移行を主導する、連結コングロマリットです。大規模インフラプロジェクトとAI・クラウド事業の両輪で堅牢な基盤を提供します。',
-      visionLabel: '私たちのビジョン',
-      visionText: '安全な資産価値の維持向上と並行して、ギガワット規模の再生エネルギーや完全循環型のインフラを各国政府レベルで実現。',
-      missionLabel: 'ミッションステートメント',
-      missionText: '高度に調整された都市・公共インフラにAIグリッドを注入し、何世代にもわたって安全で持続可能な生活コミュニティを創造する。'
+    MG: {
+      teamTitle: 'Mpitantana sy ny Mpiara-miombon’antoka',
+      teamSub: 'Ireo mpitarika miavaka mampifandray ny traikefa ara-panjakana, ny fampandrosoana ara-teknolojia, ary ny fahaizana miatrika olana sy ny fandrosoana maharitra.',
+      valTitle: 'Fototry ny Asa Atolotray',
+      valSub: 'Ny fampiasam-bola, ny tetikasa, ary ny drafitra rehetra dia manaraka ny soatoavina iraisana voamarina.',
+      overviewTitle: 'Fototry ny Vondrona sy Renivola',
+      overviewDesc: 'Madagascar Vision dia fikambanana mampiasa vola amin’ny sehatra maro mba hitondrana ny fotodrafitrasa ara-batana sy ara-nomerika ho amin’ny lalana madio tsy hisy karbona. Manorina fotodrafitrasa avo lenta sy teknolojia arifomba ho an’ny firenena izahay.',
+      visionLabel: 'Tanjona Iraisana',
+      visionText: 'Mamorona rafitra maharitra mitsinjo ny tontolo iainana eo amin’ny sehatra nasionaly nefa mampitombo ny tombom-barotry ny fiaraha-miasa.',
+      missionLabel: 'Iraka Atoron’asa',
+      missionText: 'Manorina fotodrafitrasa azo antoka mampifandray ny filan’ny vahoaka amin’ny tambajotra manan-tsaina sy mandeha ho azy, mba hananganana fiaraha-monina matanjaka.'
     }
   }[language];
 
   const valuesEx = [
     {
-      title: { EN: 'Uncompromising Integrity', DE: 'Kompromisslose Integrität', JP: '妥協のないコンプライアンス' },
-      desc: { EN: 'Strict adherence to global ESG standards and fully auditable accounting ledger logs across all portfolios.', DE: 'Vollständige Prüfungspflichten und Einhaltung strenger internationaler Compliance- und ESG-Vorgaben.', JP: 'すべての投資ポートフォリオにおける、完全監査可能なESG開示とガバナンス管理の徹底。' },
+      title: { EN: 'Uncompromising Integrity', FR: 'Intégrité Sans Compromis', MG: 'Fahamendrehana Tsy Mivadika' },
+      desc: { EN: 'Strict adherence to global ESG standards and fully auditable accounting ledger logs across all portfolios.', FR: 'Respect strict des normes ESG mondiales et registres comptables entièrement vérifiables dans tous les portefeuilles.', MG: 'Fanajana hentitra ny fenitra ESG manerantany sy ny fitantanam-bola azo hamarinina amin’ny tetikasa rehetra.' },
       icon: ShieldCheck
     },
     {
-      title: { EN: 'Incessant Innovation', DE: 'Bahnbrechende Innovation', JP: '継続的な研究テクノロジー' },
-      desc: { EN: 'Over 14% of gross holding revenue reinvested in deep-water ocean energy, smart microgrids, and algorithmic diagnostic research.', DE: 'Investition von über 14% des Umsatzes in Meeresenergie, Microgrids und molekularmedizinische Diagnostik.', JP: '総売上比14%以上を先端医療、次世代グリッド、ディープパワー研究などのR&D研究に還元。' },
+      title: { EN: 'Incessant Innovation', FR: 'Innovation Continuelle', MG: 'Fikarohana sy Fandrosoana' },
+      desc: { EN: 'Over 14% of gross holding revenue reinvested in deep-water ocean energy, smart microgrids, and algorithmic diagnostic research.', FR: 'Plus de 14 % des revenus bruts réinvestis dans l’énergie océanique profonde, les micro-réseaux intelligents et la recherche diagnostique.', MG: 'Mampiasa vola maherin’ny 14% amin’ny fidiram-bola amin’ny angovo an-dranomasina, tambajotra kely, ary fitiliana arifomba.' },
       icon: Zap
     },
     {
-      title: { EN: 'Sovereign-Grade Excellence', DE: 'Souveräne Exzellenz', JP: '国家インフラ水準の品質' },
-      desc: { EN: 'Providing reliable civic utility systems trusted by municipal governments and major central pension funds.', DE: 'Bereitstellung hochgradig resilienter, robuster Systeme für Kommunalbehörden und Pensionskassen.', JP: '地方自治体や大手機関投資家・年金基金から信頼される、高安全なインフラ設備を供給。' },
+      title: { EN: 'Sovereign-Grade Excellence', FR: 'Excellence de Niveau Souverain', MG: 'Fahaiza-manao Ambony' },
+      desc: { EN: 'Providing reliable civic utility systems trusted by municipal governments and major central pension funds.', FR: 'Fourniture de services collectifs fiables soutenus par les gouvernements municipaux et les caisses de retraite.', MG: 'Fanomezana fitaovana ho an’ny daholobe izay atokisan’ny governemanta sy ny tahirim-bola lehibe.' },
       icon: Landmark
     },
     {
-      title: { EN: 'Circular Sustainability', DE: 'Zirkuläre Nachhaltigkeit', JP: '完全循環型の環境貢献' },
-      desc: { EN: 'Engineering physical assets to adhere strictly to non-hazardous material recycling and zero-waste logistics patterns.', DE: 'Physische Projektierung nach strengsten Zero-Waste-Richtlinien und langlebiger Material-Rückgewinnung.', JP: '有害物質の完全不使用、建設資材のリサイクル等、サプライチェーン全体でゼロエミッションを徹底。' },
+      title: { EN: 'Circular Sustainability', FR: 'Durabilité Circulaire', MG: 'Fandrosoana Maharitra' },
+      desc: { EN: 'Engineering physical assets to adhere strictly to non-hazardous material recycling and zero-waste logistics patterns.', FR: 'Conception d’actifs physiques respectant strictement le recyclage des matériaux non dangereux et le zéro déchet.', MG: 'Famoronana fotodrafitrasa mitsitsy fitaovana sy tsy misy fako tontolo iainana.' },
       icon: Leaf
     }
   ];
@@ -78,10 +78,10 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
       {/* Page Header banner */}
       <section className="relative pt-32 pb-12 overflow-hidden text-center max-w-4xl mx-auto px-4" id="about-intro">
         <span className="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20">
-          {language === 'EN' ? 'THE COGNITIVE HOLDING' : language === 'DE' ? 'DAS INTEGRATIVE SYNDIKAT' : 'エーテリスの企業体制'}
+          {language === 'EN' ? 'THE COGNITIVE HOLDING' : language === 'FR' ? 'LE HOLDING COGNITIF' : 'NY HOLDING ARA-TSAINA'}
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">
-          {language === 'EN' ? 'Shaping Resilient Multi-Sector Platforms' : language === 'DE' ? 'Pionier neuer industrieller Synergien' : '持続可能な多角インフラの開拓'}
+          {language === 'EN' ? 'Shaping Resilient Multi-Sector Platforms' : language === 'FR' ? 'Façonner des Plateformes Multisectorielles Résilientes' : 'Manorina Rafitra Sehatra Maro Mafy sy Maharitra'}
         </h1>
         <p className="text-slate-400 text-sm sm:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
           {translations.overviewDesc}
@@ -104,7 +104,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
               {translations.visionText}
             </p>
           </div>
-          <span className="text-[10px] text-emerald-400 font-mono tracking-widest uppercase mt-4">AETHERIS TARGET v.2026</span>
+          <span className="text-[10px] text-emerald-400 font-mono tracking-widest uppercase mt-4">VISION TARGET v.2026</span>
         </div>
 
         <div className="glass card-hover rounded-2xl p-8 flex flex-col justify-between h-[250px] relative overflow-hidden group text-left">
@@ -120,7 +120,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
               {translations.missionText}
             </p>
           </div>
-          <span className="text-[10px] text-teal-400 font-mono tracking-widest uppercase mt-4">FIDUCIARY GOVERNANCE</span>
+          <span className="text-[10px] text-teal-400 font-mono tracking-widest uppercase mt-4">FIDOCIARY GOVERNANCE</span>
         </div>
 
       </section>
@@ -129,10 +129,10 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12" id="timeline-section">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h2 className="text-3xl font-bold text-white tracking-tight">
-            {language === 'EN' ? 'Integrated Group Journey' : language === 'DE' ? 'Meilensteine unserer Evolution' : 'コングリット連結開発・沿革'}
+            {language === 'EN' ? 'Integrated Group Journey' : language === 'FR' ? 'Évolution de la Holding' : 'Zotran’ny Fampandrosoana Iraisana'}
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            {language === 'EN' ? 'Strategic scaling benchmarks tracing group growth from a boutique asset advisory team to a unified global holdings partner.' : language === 'DE' ? 'Vom regionalen Beratungsverband zum global koordinierten Multi-Sektor-Mischkonzern.' : '持株会社としての創業から、先端医療・次世代グリッド等の統合分野を確立するまでの開発の軌跡。'}
+            {language === 'EN' ? 'Strategic scaling benchmarks tracing group growth from a boutique asset advisory team to a unified global holdings partner.' : language === 'FR' ? 'Repères de croissance stratégique traçant le développement du groupe d’une équipe de conseil en actifs en un partenaire d’investissement unifié.' : 'Ny dingana lehibe nandalovan’ny vondrona hatramin’ny nanombohana sy ny fampiasam-bola ho an’ny ho avy.'}
           </p>
         </div>
 
@@ -173,7 +173,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <span className="font-mono text-[10px] text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20 inline-block">
-                {language === 'EN' ? 'STEWARD ADVISORY' : language === 'DE' ? 'AUFSICHTSBEHÖRDE' : '信託・統治グループ'}
+                {language === 'EN' ? 'STEWARD ADVISORY' : language === 'FR' ? 'CONSEIL FIDUCIAIRE' : 'FITANTONAN’NY MPIARAHA-MIOMBON’ANTOKA'}
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
                 {translations.teamTitle}
@@ -193,9 +193,9 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
                   <span>
                     {language === 'EN' 
                       ? 'Access Corporate Leadership Portfolios' 
-                      : language === 'DE' 
-                      ? 'Zum vollen Direktorium und Ausschussbereich' 
-                      : '役員紹介、経歴ログ、専門委員会へアクセス'}
+                      : language === 'FR' 
+                      ? 'Accéder au Conseil d’Administration' 
+                      : 'Hijery ny mombamomba ny Mpitantana'}
                   </span>
                   <Sparkles size={14} className="animate-pulse" />
                 </button>

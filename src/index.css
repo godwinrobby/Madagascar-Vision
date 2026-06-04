@@ -103,6 +103,25 @@
   box-shadow: 0 0 35px -8px rgba(156, 185, 51, 0.15);
 }
 
+.glass-menu-active {
+  background: linear-gradient(135deg, rgba(219, 91, 26, 0.2) 0%, rgba(156, 185, 51, 0.12) 50%, rgba(31, 138, 90, 0.2) 100%) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(219, 91, 26, 0.35) !important;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px -3px rgba(219, 91, 26, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.glass-menu-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-menu-hover:hover {
+  background: linear-gradient(135deg, rgba(219, 91, 26, 0.12) 0%, rgba(156, 185, 51, 0.08) 50%, rgba(31, 138, 90, 0.12) 100%) !important;
+  border-color: rgba(219, 91, 26, 0.2) !important;
+  box-shadow: 0 4px 15px -3px rgba(219, 91, 26, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.05) !important;
+}
+
 /* Styled Background Ambient Glow Orbs */
 .orb {
   position: fixed;
@@ -161,4 +180,259 @@
 .neon-border {
   animation: border-glow 6s infinite ease-in-out;
 }
+
+/* ==========================================================================
+   PREMIUM LIGHT THEME CUSTOM OVERRIDES
+   ========================================================================== */
+html.light, html.light body {
+  background-color: #f7f9f8 !important; /* Soft premium off-white with organic green hint */
+  color: #0f172a !important;
+}
+
+/* Custom scrollbar in light mode */
+html.light ::-webkit-scrollbar-track {
+  background: #f7f9f8;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.12);
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(219, 91, 26, 0.35);
+}
+
+/* Base elements styles */
+html.light p, 
+html.light span:not(.text-transparent):not(.bg-clip-text):not(.text-white), 
+html.light label, 
+html.light li {
+  color: #334155; /* Neutral dark readable slate */
+}
+html.light h1, html.light h2, html.light h3, html.light h4, html.light h5, html.light h6 {
+  color: #020905 !important; /* Standout heading dark pine */
+}
+
+/* Strong text colors */
+html.light .text-slate-100,
+html.light .text-slate-50,
+html.light .text-slate-200 {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-300,
+html.light .text-slate-355,
+html.light .text-slate-400,
+html.light .text-slate-450,
+html.light .text-slate-500 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-300\/80 {
+  color: rgba(71, 85, 105, 0.9) !important;
+}
+
+html.light .text-slate-300\/80:hover {
+  color: #0c111d !important;
+}
+
+/* Specific background and border conversions for light mode */
+html.light .bg-slate-950,
+html.light .bg-[#020905],
+html.light .bg-slate-900,
+html.light .bg-slate-900\/50,
+html.light .bg-slate-950\/30 {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-slate-900\/40,
+html.light .bg-slate-950\/40,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-950\/60,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-950\/80 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html.light .border-slate-800,
+html.light .border-slate-900,
+html.light .border-slate-700,
+html.light .border-slate-800\/50,
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Glowing orbs on light mode */
+html.light .orb-blue {
+  background: radial-gradient(circle, rgba(219, 91, 26, 0.07) 0%, rgba(156, 185, 51, 0.04) 50%, rgba(31, 138, 90, 0) 100%) !important;
+}
+html.light .orb-purple {
+  background: radial-gradient(circle, rgba(31, 138, 90, 0.07) 0%, rgba(156, 185, 51, 0.04) 60%, rgba(2, 9, 5, 0) 100%) !important;
+}
+
+/* Glass panel light mode styling */
+html.light .glass {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.07) !important;
+  box-shadow: 0 4px 30px -5px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.06) !important;
+  box-shadow: 0 4px 20px -3px rgba(15, 23, 42, 0.03) !important;
+}
+
+html.light .glass-panel-light {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .glass-nav {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.07) !important;
+  box-shadow: 0 4px 30px -5px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .glass-menu-active {
+  background: linear-gradient(135deg, rgba(219, 91, 26, 0.12) 0%, rgba(156, 185, 51, 0.08) 50%, rgba(31, 138, 90, 0.12) 100%) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(219, 91, 26, 0.25) !important;
+  box-shadow: 0 4px 15px -3px rgba(219, 91, 26, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+html.light .glass-menu-active span {
+  color: #92400e !important; /* amber-800 text in active tab inside light mode */
+}
+
+html.light .glass-menu-hover:hover {
+  background: linear-gradient(135deg, rgba(219, 91, 26, 0.06) 0%, rgba(156, 185, 51, 0.04) 50%, rgba(31, 138, 90, 0.06) 100%) !important;
+  border-color: rgba(219, 91, 26, 0.15) !important;
+  box-shadow: 0 4px 10px -3px rgba(219, 91, 26, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+html.light .glass-menu-hover:hover span {
+  color: #0f172a !important;
+}
+
+/* Card hover adaptation */
+html.light .card-hover:hover {
+  border-color: rgba(219, 91, 26, 0.2) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Maintain colored brand name and gradients */
+html.light .gradient-text,
+html.light span.bg-clip-text {
+  -webkit-text-fill-color: transparent !important;
+}
+
+html.light .text-emerald-400 {
+  color: #1f8a5a !important; /* Emerald branding color */
+}
+
+html.light .text-orange-400 {
+  color: #db5b1a !important; /* Orange corporate color */
+}
+
+html.light .text-amber-200,
+html.light .text-amber-305,
+html.light .text-amber-300 {
+  color: #9a491d !important;
+}
+
+html.light .text-slate-400,
+html.light .text-slate-450 {
+  color: #475569 !important;
+}
+
+html.light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* Keep SVG icons beautiful */
+html.light svg {
+  stroke-width: 1.8px;
+}
+
+/* Form controls & contact cards */
+html.light select,
+html.light input,
+html.light textarea {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+}
+
+/* Footer details on light mode */
+html.light footer {
+  background-color: #f1f5f9 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light footer p,
+html.light footer span,
+html.light footer a {
+  color: #475569 !important;
+}
+
+html.light footer a:hover {
+  color: #db5b1a !important;
+}
+
+/* Language selector absolute drawer */
+html.light .absolute.right-0 {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .absolute.right-0 button {
+  color: #334155 !important;
+}
+
+html.light .absolute.right-0 button:hover {
+  background-color: #f1f5f9 !important;
+  color: #db5b1a !important;
+}
+
+/* Specific view layouts customization */
+html.light .bg-slate-900\/30,
+html.light .bg-slate-900\/50 {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+html.light .text-slate-355 {
+  color: #475569 !important;
+}
+
+html.light .bg-emerald-950\/10 {
+  background-color: rgba(31, 138, 90, 0.06) !important;
+}
+
+html.light .bg-orange-950\/25,
+html.light .bg-orange-950\/10,
+html.light .bg-orange-950\/40 {
+  background-color: rgba(219, 91, 26, 0.06) !important;
+}
+
+/* Custom cards background overlay fixes for Sectors and Services */
+html.light .bg-gradient-to-br.from-slate-900.to-slate-950 {
+  background: #ffffff !important;
+}
+
+html.light .bg-[#051109],
+html.light .bg-[#0a100c],
+html.light .bg-[#060e10] {
+  background: #ffffff !important;
+}
+
 

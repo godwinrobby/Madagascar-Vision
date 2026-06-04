@@ -3,7 +3,7 @@ import { Mail, ArrowRight, ExternalLink, Linkedin, Twitter, AlertCircle, CheckCi
 
 interface FooterProps {
   setActiveTab: (tab: string) => void;
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
 }
 
 export function Footer({ setActiveTab, language }: FooterProps) {
@@ -23,53 +23,53 @@ export function Footer({ setActiveTab, language }: FooterProps) {
       cookieWarn: 'This digital interface operates complete sandboxed privacy protocols. Content matches 2026 corporate targets.',
       rights: 'All rights reserved.'
     },
-    DE: {
-      about: 'Globale konsolidierte Sektorführerschaft in Healthcare, Erneuerbaren Energien, Deep-Tech Cloud, intelligenten Logistik-Systemen und nachhaltiger Premium-Infrastruktur.',
-      sectors: 'Unser Unternehmen',
-      quick: 'Schnellzugriff',
-      newsletter: 'Unternehmen & Investor Updates',
-      placeholder: 'Geschäftliche E-Mail...',
-      desc: 'Erhalt vierteljährlicher Berichte über Konzern-Investitionen und Kreislaufwirtschaft-Bilanzen.',
-      subsSuccess: 'Erfolgreich ins internationale Investor-Verzeichnis eingetragen.',
-      cookieWarn: 'Diese Benutzeroberfläche unterliegt gesicherten Datenschutzprotokollen. Inhalte entsprechen Planungszielen 2026.',
-      rights: 'Alle Rechte vorbehalten.'
+    FR: {
+      about: "Gestion des leaders sectoriels intégrés à l'échelle mondiale dans les domaines de la santé, des énergies renouvelables, du cloud et des infrastructures durables.",
+      sectors: 'Notre Entreprise',
+      quick: 'Liens Rapides',
+      newsletter: 'Informations Opérationnelles',
+      placeholder: 'Adresse email professionnelle...',
+      desc: "Abonnez-vous aux rapports trimestriels sur la performance et l'économie circulaire de notre groupe.",
+      subsSuccess: 'Inscription réussie sur le portail des investisseurs internationaux.',
+      cookieWarn: "Cette interface fonctionne sous des protocoles de confidentialité entièrement sécurisés. Contenu conforme aux objectifs 2026.",
+      rights: 'Tous droits réservés.'
     },
-    JP: {
-      about: 'ヘルスケア、再生エネルギー、ディープテッククラウド、スマートロジスティクス、持続可能なインフラ開発分野で、グローバルに統合されたセクターを牽引しています。',
-      sectors: '当社について',
-      quick: 'クイックリンク',
-      newsletter: 'グローバル運営インテル',
-      placeholder: '代表メールアドレス...',
-      desc: '四半期ごとに公開されるグループ投資および循環型経済のパフォーマンス要約を入手する。',
-      subsSuccess: '国際投資家ポータルへの配信登録が完了しました。',
-      cookieWarn: '本インターフェースは完全なセキュア・サンドボックス仕様です。2026年の企業開発目標に基づいています。',
-      rights: '無断転載・複製を禁じます。'
+    MG: {
+      about: "Mitantana ireo sehatra loha-laharana maneran-tany eo amin'ny Fitsaboana, Angovo azo havaozina, Cloud matanjaka, lojistika ary fotodrafitrasa lovainjafy.",
+      sectors: 'Ny Orinasanay',
+      quick: 'Rohy Vetivety',
+      newsletter: 'Vaovao momba ny Fampiasam-bola',
+      placeholder: 'Hampidiro ny mailaka...',
+      desc: "Misorata anarana hahazoana ny tati-baovao momba ny fampiasam-bola isan-telo volana.",
+      subsSuccess: "Tafiditra soa aman-tsara tao amin'ny lisitry ny mpampiasa vola iraisam-pirenena.",
+      cookieWarn: "Ity sehatra ity dia miasa ao anatin'ny fitsipika fiarovana tsiambaratelo tanteraka. Mifanaraka amin'ny tanjona 2026.",
+      rights: 'Zo rehetra voatana.'
     }
   }[language];
 
   const quickLinks = [
-    { id: 'about', label: { EN: 'About Corporate Story', DE: 'Über unsere Vision', JP: '企業沿革・ストーリー' } },
-    { id: 'leadership', label: { EN: 'Fiduciary Leadership', DE: 'Direktorium & Aufsichtsrat', JP: '役員会議室・経営陣' } },
-    { id: 'services', label: { EN: 'Executive Advisory', DE: 'Senior Consulting & Services', JP: '提供サービス' } },
-    { id: 'portfolio', label: { EN: 'Corporate Asset Portfolio', DE: 'Beteiligungsportfolio', JP: 'アセットポートフォリオ一覧' } },
-    { id: 'sustainability', label: { EN: 'ESG Accountability', DE: 'ESG-Verpflichtungen', JP: 'サステナビリティ/ESG' } },
-    { id: 'careers', label: { EN: 'Global Talent Openings', DE: 'Karriereportale', JP: 'グローバル採用情報' } },
-    { id: 'news', label: { EN: 'Official News Feed', DE: 'Pressemitteilungen', JP: 'プレスリリース・情報開示' } },
-    { id: 'blogs', label: { EN: 'Director Insights Blog', DE: 'Fachartikel & Blogs', JP: 'エグゼクティブ・コラム' } },
-    { id: 'events', label: { EN: 'Corporate Summit Log', DE: 'Events & Gipfel', JP: '開催イベント・サミット一覧' } }
+    { id: 'about', label: { EN: 'About Corporate Story', FR: "Notre Histoire d'Entreprise", MG: "Ny Tantaran’ny Orinasanay" } },
+    { id: 'leadership', label: { EN: 'Fiduciary Leadership', FR: 'Direction Fiduciaire', MG: 'Mpitantana sy Birao Mpiahy' } },
+    { id: 'services', label: { EN: 'Executive Advisory', FR: 'Advisory Exécutif', MG: 'Mpanolotsaina Mpanatanteraka' } },
+    { id: 'portfolio', label: { EN: 'Corporate Asset Portfolio', FR: "Portefeuille d'Actifs", MG: 'Tahirian’asa sy Lovany' } },
+    { id: 'sustainability', label: { EN: 'ESG Accountability', FR: 'Responsabilité ESG', MG: 'Andraikitra momba ny ESG' } },
+    { id: 'careers', label: { EN: 'Global Talent Openings', FR: "Offres d'Emplois Globales", MG: 'Asa sy Tolotra Manerantany' } },
+    { id: 'news', label: { EN: 'Official News Feed', FR: "Fil d'Actualités Officiel", MG: 'Tati-baovao Ofisialy' } },
+    { id: 'blogs', label: { EN: 'Director Insights Blog', FR: 'Blog des Perspectives', MG: 'Espace Fanehoan-kevitra' } },
+    { id: 'events', label: { EN: 'Corporate Summit Log', FR: 'Sommets d’Entreprise', MG: 'Ny Fihaonambe sy Hetsika' } }
   ];
 
   const sectorLinks = [
-    { id: 'healthcare', label: { EN: 'Clinical Diagnostics', DE: 'Klinische Labore & Kliniknetze', JP: 'ヘルスケア / クリニカル' } },
-    { id: 'technology', label: { EN: 'Enterprise AI & Cloud Architectures', DE: 'KI-Systeme & Cloudberatung', JP: 'エンタープライズAI / クラウド' } },
-    { id: 'energy', label: { EN: 'Offshore Solar & Wind Assets', DE: 'Erneuerbare Energien & Netze', JP: '再生エネルギー事業' } },
-    { id: 'realestate', label: { EN: 'Smart Master-Planned Cities', DE: 'Smart Cities & Wohnanlagen', JP: 'スマートシティ開発' } }
+    { id: 'healthcare', label: { EN: 'Clinical Diagnostics', FR: 'Diagnostics Cliniques', MG: 'Fisaintsainana sy Fitiliana' } },
+    { id: 'technology', label: { EN: 'Enterprise AI & Cloud Architectures', FR: "IA d'Entreprise & Architectures Cloud", MG: "AI sy Cloud ho an'ny Orinasa" } },
+    { id: 'energy', label: { EN: 'Offshore Solar & Wind Assets', FR: 'Actifs Solaires & Éoliens Offshore', MG: 'Hery avy amin’ny Masoandro sy Rivotra' } },
+    { id: 'realestate', label: { EN: 'Smart Master-Planned Cities', FR: 'Villes Intelligentes Planifiées', MG: 'Tanàna Vaovao Nomanina' } }
   ];
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
-      setErrorMsg(language === 'EN' ? 'Invalid email schema.' : language === 'DE' ? 'Ungültiges E-Mail-Format.' : '有効な電子メールを入力してください。');
+      setErrorMsg(language === 'EN' ? 'Invalid email schema.' : language === 'FR' ? 'Format d\'email invalide.' : 'Diso ny mailaka nampidirina.');
       return;
     }
     setErrorMsg('');

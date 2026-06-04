@@ -18,7 +18,7 @@ import {
 import { LEADERS } from '../data/corporateData';
 
 interface LeadershipViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
 }
 
 export function LeadershipView({ language }: LeadershipViewProps) {
@@ -43,167 +43,167 @@ export function LeadershipView({ language }: LeadershipViewProps) {
       successMsg: 'Cryptographic liaison handshakes committed. Our corporate secretary will respond within 24 hours.',
       readFull: 'Verify Executive Bio Logs'
     },
-    DE: {
-      title: 'Unser Aufsichtsorgan & Direktorium',
-      sub: 'Verwaltung komplexer technologischer und realer Portfolios. Madagascar Vision verbindet höchste Fiduciary-Standards mit staatlichen Nachhaltigkeitszielen.',
-      ceoTitle: 'Büro der Geschäftsführung',
-      ceoMessageTitle: 'Treuhandpflicht in einer komplexen Welt',
-      ceoSub: 'Eine Botschaft unserer Chief Executive Officer, Helena Vance-Sterling.',
-      comTitle: 'Ausschüsse & Governance-Strukturen',
-      comSub: 'Spezifische Kontrollgremien für regulatorische Prüfungsprozesse und Risikointelligenz.',
-      philTitle: 'Führungsphilosophie & Dialog',
-      philSub: 'Strategische Antworten auf existenzielle Fragen der globalen Realwirtschaft.',
-      contactBoard: 'Aufsichtsrat-Direktverbindung',
-      contactBoardSub: 'Sichere Übertragung geschäftskritischer Anträge an das Generalsekretariat.',
-      sendSecBtn: 'Vorstandsverbindung herstellen',
-      successMsg: 'Verbindungsprotokoll erfolgreich registriert. Die Kanzlei des Vorstands wird sich zeitnah melden.',
-      readFull: 'Exekutiven Werdegang prüfen'
+    FR: {
+      title: 'Notre Direction Exécutive',
+      sub: 'Gestion de portefeuilles de systèmes physiques et algorithmiques intégrés. Madagascar Vision aligne les critères de conformité les plus élevés avec des mandats de durabilité à l’échelle souveraine.',
+      ceoTitle: 'Bureau de la Direction Générale',
+      ceoMessageTitle: 'Devoir Fiduciaire dans un Monde Complexe',
+      ceoSub: 'Un Message de notre Directrice Générale, Helena Vance-Sterling.',
+      comTitle: 'Comités du Conseil & Gouvernance',
+      comSub: 'Mécanismes de surveillance sur mesure appliquant des protocoles d’audit et d’intelligence des risques.',
+      philTitle: 'Philosophie de Direction & Questions-Réponses',
+      philSub: 'Engager des stratégies concrètes pour le déploiement d’actifs multigénérationnels.',
+      contactBoard: 'Ligne Directrice Institutionnelle',
+      contactBoardSub: 'Établir des communications sécurisées avec le Bureau du Secrétariat.',
+      sendSecBtn: 'Initier le protocole de liaison du Conseil',
+      successMsg: 'Protocole de liaison cryptographique validé. Notre secrétaire général répondra sous 24 heures.',
+      readFull: 'Vérifier la biographie exécutive'
     },
-    JP: {
-      title: '経営陣・ガバナンス体制',
-      sub: '物理設計とデジタル・AIアルゴリズムを統括する経営。マダガスカル・ビジョンは、最高水準の監査基準と国家レベルのESGコミットメントを実現します。',
-      ceoTitle: 'CEO オフィス公式メッセージ',
-      ceoMessageTitle: '複雑化するグローバル市場での信託責任',
-      ceoSub: '最高経営責任者 ヘレナ・ヴァンス＝スターリングからのメッセージ。',
-      comTitle: 'ガバナンス専門委員会',
-      comSub: '厳格なデューデリジェンスを実行し、企業倫理とリスク管理を高度化する専任組織。',
-      philTitle: '経営哲学 ＆ エグゼクティブ対話',
-      philSub: '何世代にもわたる産業インフラ・資産運用のための戦略的指針。',
-      contactBoard: '機関・評議会 統合窓口',
-      contactBoardSub: '取締役会事務局に対する信託暗号化ラインを開設します。',
-      sendSecBtn: '公式リエゾン・プロトコルを起動',
-      successMsg: 'セキュアな暗号接続が記録されました。事務局より速やかにご連絡いたします。',
-      readFull: '公式経歴・認証ログを確認する'
+    MG: {
+      title: 'Ny Mpitarika sy Birao Fitantanana',
+      sub: 'Mitantana ireo fotodrafitrasa sy rafitra nomerika arifomba. Madagascar Vision dia mampifanaraka ny fenitra avo indrindra amin’ny tontolo iainana sy ny fitantanana.',
+      ceoTitle: 'Biraon’ny Tale Jeneraly',
+      ceoMessageTitle: 'Andraikitra amin’ny Tontolo Sarotra',
+      ceoSub: 'Hafatra avy amin’ny Tilikambon’ny fitantanana, Helena Vance-Sterling.',
+      comTitle: 'Vaomieram-pitantanana sy ny Birao',
+      comSub: 'Drafitra fanaraha-maso sy fanadihadiana ny loza mety hitranga.',
+      philTitle: 'Fahendren’ny Mpitondra sy Dialogy',
+      philSub: 'Fijerena tetikasa ho an’ny taranaka rehetra ary fandraharahana maharitra.',
+      contactBoard: 'Fifandraisana Ofisialy',
+      contactBoardSub: 'Mifandray mivantana amin’ny Sekretera sy Birao.',
+      sendSecBtn: 'Handefa fangatahana ho an’ny Birao',
+      successMsg: 'Voaray ny fangatahanao. Hamaly anao ao anatin’ny 24 ora ny sekretera.',
+      readFull: 'Hijery ny mombamomba azy feno'
     }
   }[language];
 
   // Rich leader data to augment background info
   const leaderDetails: Record<string, { 
-    education: { EN: string; DE: string; JP: string };
-    history: { EN: string; DE: string; JP: string }[];
+    education: { EN: string; FR: string; MG: string };
+    history: { EN: string; FR: string; MG: string }[];
     credentials: string[];
-    focus: { EN: string; DE: string; JP: string };
+    focus: { EN: string; FR: string; MG: string };
   }> = {
     'lead-1': {
       education: {
         EN: 'M.S. in Civil Infrastructures (ETH Zurich), MBA in Finance (Oxford University)',
-        DE: 'M.S. in Zivilinfrastrukturen (ETH Zürich), MBA in Finance (Oxford University)',
-        JP: 'スイス連邦工科大学(ETHチューリッヒ) 土木インフラ修士、オックスフォード大学 財務MBA'
+        FR: 'Master en Infrastructures Civiles (ETH Zurich), MBA en Finance (Université d’Oxford)',
+        MG: 'M.S. amin’ny fotodrafitrasa (ETH Zurich), MBA amin’ny fitantanam-bola (Oxford University)'
       },
       history: [
         { 
           EN: 'Supervised $12B greenfield harbor master installations in Southeast Asia.', 
-          DE: 'Leitete 12-Mrd.-USD Greenfield-Hafenprojekte in Südostasien.', 
-          JP: '東南アジアにおける120億ドル規模の港湾スマートハブ新設を統治。' 
+          FR: 'A dirigé des installations de ports intelligents de 12 milliards de dollars en Asie du Sud-Est.', 
+          MG: 'Nanara-maso ny tsenan’ny seranan-tsambo mitentina 12 miliara dolara tany Azia Atsimo-atsinanana.' 
         },
         { 
           EN: 'Appointed Strategic Infrastructure Advisor to Eurozone Sovereign Funds.', 
-          DE: 'Ernennung zum strategischen Berater für Eurozonen-Staatsfonds.', 
-          JP: 'ユーロ圏の政府系投資ファンド・インフラ戦略アドバイザーを歴任。' 
+          FR: 'Nommée conseillère stratégique en infrastructures auprès de fonds souverains de la zone euro.', 
+          MG: 'Notsendrena ho Mpanolotsaina momba ny Fotodrafitrasa ho an’ny Tahirim-bolam-panjakana any Eoropa.' 
         }
       ],
       credentials: ['SIA Approved', 'Fellow of World Fiduciary Institute', 'WEF Panelist'],
       focus: {
         EN: 'Sovereign Capital Deployment, Multipolar Geopolitical Risk, Sustainable Portfolios',
-        DE: 'Staatlicher Kapitalfluss, multipolare geopolitische Risiken, nachhaltige Portfolios',
-        JP: '国家インフラ投資、マルチポーラー地政学リスク、持続可能アセット管理'
+        FR: 'Déploiement de capitaux souverains, risques géopolitiques multipolaires, portefeuilles durables',
+        MG: 'Fampiasana ny renivola, ny fitantanana ny loza ara-politika ary ny fitahirizana maharitra'
       }
     },
     'lead-2': {
       education: {
         EN: 'Ph.D. in High-Scale Distributed Intelligence (Stanford University)',
-        DE: 'Ph.D. in verteilter künstlicher Intelligenz (Stanford University)',
-        JP: 'スタンフォード大学 コンピュータサイエンス/分散AI博士'
+        FR: 'Doctorat en Intelligence Distribuée à Grande Échelle (Université de Stanford)',
+        MG: 'Ph.D. amin’ny Intelligence Distribuée (Stanford University)'
       },
       history: [
         { 
           EN: 'Chief Architect of Cognitive Real-Time Networks at leading Smart Cities Initiatives.', 
-          DE: 'Chefarchitekt kognitiver Echtzeitnetze bei führenden Smart-City-Initiativen.', 
-          JP: '先進スマートシティ実証実験での自律制御コグニティブグリッドを設計。' 
+          FR: 'Architecte en chef des réseaux cognitifs en temps réel au sein d’initiatives de villes intelligentes de premier plan.', 
+          MG: 'Mpanorina lehibe ny tambajotra amin’ny Smart Cities Initiatives.' 
         },
         { 
           EN: 'Director of Algorithms and Machine Learning at Quantum Giga-Grid System.', 
-          DE: 'Direktor für Algorithmen und Machine Learning bei Quantum Giga-Grid.', 
-          JP: 'クォンタム・ギガグリッド社にて予測アルゴリズムと量子強化学習を指揮。' 
+          FR: 'Directeur des algorithmes et de l’apprentissage automatique chez Quantum Giga-Grid System.', 
+          MG: 'Tale jeneralin’ny Algorithms sy Machine Learning tao amin’ny Quantum Giga-Grid.' 
         }
       ],
       credentials: ['IEEE Fellow', 'ACM Distinguished Scientist', '14 Patents in AI Routing'],
       focus: {
         EN: 'Physical-Digital Digital Twin Simulation, Zero-Knowledge Security, Neural Supply Lines',
-        DE: 'Digital-Twin Simulationen, Zero-Knowledge Sicherheitssysteme, neuronale Lieferketten',
-        JP: '実デジタルツインシミュレーション、ゼロナレッジセキュア通信、ニューラル制御'
+        FR: 'Simulation de jumeaux numériques physiques et numériques, sécurité zéro connaissance, chaînes d’approvisionnement neuronales',
+        MG: 'Famakafakana ny Digital Twin, fiarovana nomerika, ary fitantanana manan-tsaina ny famatsiana'
       }
     },
     'lead-3': {
       education: {
         EN: 'M.S. in Climate Engineering & Geothermal Systems (M.I.T.)',
-        DE: 'M.S. in Climate Engineering & Geothermie (M.I.T.)',
-        JP: 'マサチューセッツ工科大学(MIT) 気候工学＆地熱統合システム修士'
+        FR: 'M.S. en Génie Climatique & Systèmes Géothermiques (M.I.T.)',
+        MG: 'M.S. amin’ny Climate Engineering sy Geothermal Systems (M.I.T.)'
       },
       history: [
         { 
           EN: 'Director of Offshore Energy and Mooring for Continental Wind Alliances.', 
-          DE: 'Direktor für Offshore-Energie und Ankerungssysteme bei Continental Wind.', 
-          JP: '欧州洋上ウインド・アライアンスにてディープフロー敷設工法を開発。' 
+          FR: 'Directeur de l’énergie offshore et du mouillage pour les alliances éoliennes continentales.', 
+          MG: 'Tale jeneralin’ny sangan’asa momba ny angovo an-dranomasina.' 
         },
         { 
           EN: 'Senior Energy Consultant for sovereign microgrid transitions across West Africa.', 
-          DE: 'Leitender Berater für die Umrüstung staatlicher Microgrids in Westafrika.', 
-          JP: '西アフリカ諸国の国家分散型マイクログリッド転換プロジェクトを統括。' 
+          FR: 'Consultant principal en énergie pour les transitions de micro-réseaux souverains en Afrique de l’Ouest.', 
+          MG: 'Mpanolotsaina ambony momba ny angovo ho an’ny tetikasa mikrogid any Afrika Andrefana.' 
         }
       ],
       credentials: ['PE (Professional Engineer)', 'WEC Global Energy Laureate', 'Chamber of Industry Excellence'],
       focus: {
         EN: 'Mega-scale offshore structures, tidal generation hydrodynamics, microgrid stability',
-        DE: 'Riesige Offshore-Strukturen, Gezeitenkraft-Hydrodynamik, Microgrid-Stabilität',
-        JP: '超深海型浮体式構造、潮流発電流体力学、マイクログリッド安定化制御'
+        FR: 'Structures offshore à méga-échelle, hydrodynamique de génération marémotrice, stabilité des micro-réseaux',
+        MG: 'Fotodrafitrasa lehibe an-dranomasina, angovon’ny rano, ary fitantanana ny tambajotra kely'
       }
     },
     'lead-4': {
       education: {
         EN: 'M.A. in Environmental Economics (London School of Economics)',
-        DE: 'M.A. in Umweltökonomie (London School of Economics)',
-        JP: 'ロンドン・スクール・オブ・エコノミクス(LSE) 環境経済学修士'
+        FR: 'Master en Économie de l’Environnement (London School of Economics)',
+        MG: 'M.A. amin’ny Environmental Economics (London School of Economics)'
       },
       history: [
         { 
           EN: 'Formulated ESG metrics protocols adopted by world pension consortiums.', 
-          DE: 'Entwickelte ESG-Kennzahlen, die von globalen Pensionsfonds übernommen wurden.', 
-          JP: '世界的年金コンソーシアムが採用する統合ESG情報開示基準を規格化。' 
+          FR: 'A formulé les protocoles de mesures ESG adoptés par les consortiums mondiaux de caisses de retraite.', 
+          MG: 'Namorona ny fenitra fandrefesana ESG ho an’ny tahirim-bola misotro ronono.' 
         },
         { 
           EN: 'Special Environmental Auditor to Central European Decarbonization Taskforce.', 
-          DE: 'Sonderprüfer für Umweltkriterien der europäischen Dekarbonisierungs-Taskforce.', 
-          JP: '中央ヨーロッパ脱炭素化推進タスクフォースの特別環境監査役を歴任。' 
+          FR: 'Auditeur environnemental spécial auprès du groupe de travail sur la décarbonation en Europe centrale.', 
+          MG: 'Mpanadihady manokana tontolo iainana ho an’ny decarb tany Eoropa.' 
         }
       ],
       credentials: ['GRI Certified Practitioner', 'LEED Fellow', 'UN Climate Alliance Advisor'],
       focus: {
         EN: 'Circular product life-cycle audit, Scope 1-3 tracking systems, Biodiversity security',
-        DE: 'Audits des zirkulären Produktlebenslaufs, CO2 Scope 1-3 Monitoring, Schutz der Artenvielfalt',
-        JP: '循環型マテリアル監査、温室効果ガスScope 1-3追跡ツール、生物多様性保全'
+        FR: 'Audit du cycle de vie des produits circulaires, système de suivi Scope 1-3, protection de la biodiversité',
+        MG: 'Fanadihadiana ny fizotran’ny fitaovana, fanaraham-maso ny Scope 1-3, ary fiarovana ny tontolo iainana'
       }
     }
   };
 
   const committees = [
     {
-      name: { EN: 'ESG Stewardship & Decarbonization Council', DE: 'ESG & Dekarbonisierungskontrolle', JP: 'ESG監査・脱炭素推進評議会' },
+      name: { EN: 'ESG Stewardship & Decarbonization Council', FR: 'Conseil de gérance ESG & Décarbonation', MG: 'Filan-kevitra ESG sy ny Fanafoanana ny Karbona' },
       leadName: 'Jonathan Reynolds',
-      focusArea: { EN: 'Direct Scope 1, 2, and 3 validation across core material supply channels.', DE: 'Vollständige Prüfung von Scope 1-3 Emissionen in allen Lieferketten.', JP: '中核サプライチェーンにおける温室効果ガス排出量の完全な検証。' },
-      meetings: { EN: 'Bi-weekly audits, compliant with CSRD / GRI regulations.', DE: 'Zweiwöchentlich, CSRD / GRI-konform.', JP: '隔週開催、CSRD/GRI開示規則完全準拠。' }
+      focusArea: { EN: 'Direct Scope 1, 2, and 3 validation across core material supply channels.', FR: 'Validation directe des Scopes 1, 2 et 3 dans les principaux canaux d’approvisionnement en matériaux.', MG: 'Fanamarinana mivantana ny Scope 1, 2, ary 3 amin’ny famatsiana akora.' },
+      meetings: { EN: 'Bi-weekly audits, compliant with CSRD / GRI regulations.', FR: 'Audits bihebdomadaires, conformes aux réglementations CSRD / GRI.', MG: 'Fanadihadiana indroa isan-kerinandro, manaraka ny CSRD / GRI.' }
     },
     {
-      name: { EN: 'Risk, Cyber, & Audit Fiduciary Committee', DE: 'Risiko-, Cyber- & Fiduciary-Ausschuss', JP: 'リスク管理・情報セキュリティ監査委員会' },
+      name: { EN: 'Risk, Cyber, & Audit Fiduciary Committee', FR: 'Comité de Fiducie des Risques, de la Cybersécurité & d’Audit', MG: 'Vaomieran’ny loza, ny teknolojia, sy ny fanadihadiana' },
       leadName: 'Marcus K. Chen, PhD',
-      focusArea: { EN: 'Real-time threat modeling, SCADA system encryption, and financial transparency ledger tracking.', DE: 'Bedrohungsmodellierung in Echtzeit, Verschlüsselung von SCADA-Anlagen und Ledger-Transparenz.', JP: 'SCADA制御系の暗号化システム監査および財務インテグリティ検証。' },
-      meetings: { EN: 'Monthly secure sessions, certified TLS standards.', DE: 'Monatlich, unter verifizierten Sicherheitsstandards.', JP: '月次開催、極秘情報セキュリティ基準。' }
+      focusArea: { EN: 'Real-time threat modeling, SCADA system encryption, and financial transparency ledger tracking.', FR: 'Modélisation des menaces en temps réel, cryptage des systèmes SCADA et suivi du registre de transparence financière.', MG: 'Drafitra fampisehoana loza amin’ny fotoana tena izy sy encryption SCADA.' },
+      meetings: { EN: 'Monthly secure sessions, certified TLS standards.', FR: 'Sessions mensuelles sécurisées, normes TLS certifiées.', MG: 'Fivoriana isam-bolana azo antoka manaraka ny fenitra TLS.' }
     },
     {
-      name: { EN: 'Executive Capital Allocation Review', DE: 'Investitionsprüfungsverband', JP: '最高投資資本アロケーション審査会' },
+      name: { EN: 'Executive Capital Allocation Review', FR: 'Examen de l’allocation des capitaux exécutifs', MG: 'Vaomiera mpanadihady ny fampiasam-bola tsara' },
       leadName: 'Helena Vance-Sterling',
-      focusArea: { EN: 'Vetting sovereign acquisitions, renewable park infrastructure bonding, and strategic R&D budgets.', DE: 'Prüfung staatlicher Übernahmen, Bürgschaften für Windparks und R&D Budgets.', JP: '国家級インフラ買収案件、再生エネ敷設債、先端R&D長期予算の最終承認。' },
-      meetings: { EN: 'Quarterly board summits and as-needed emergency sessions.', DE: 'Quartalsweise sowie Ad-hoc-Sitzungen bei Akquisitionen.', JP: '四半期定例サミット、および要請に応じた臨時査定。' }
+      focusArea: { EN: 'Vetting sovereign acquisitions, renewable park infrastructure bonding, and strategic R&D budgets.', FR: 'Évaluation des acquisitions souveraines, cautionnement des infrastructures éoliennes et budgets stratégiques de R&D.', MG: 'Fanamarinana ny fividianana tetikasa goavana sy ny tetibola R&D.' },
+      meetings: { EN: 'Quarterly board summits and as-needed emergency sessions.', FR: 'Sommets trimestriels du conseil et sessions d’urgence au besoin.', MG: 'Fivoriana isaky ny telo volana na isaky ny misy maika.' }
     }
   ];
 
@@ -211,37 +211,37 @@ export function LeadershipView({ language }: LeadershipViewProps) {
     {
       q: { 
         EN: 'How does Madagascar Vision balance physical heavy asset operations with algorithmic technology?',
-        DE: 'Wie balanciert Madagascar Vision reale physische Vermögenswerte mit künstlicher Intelligenz?',
-        JP: '物理インフラとAI・次世代ソフトウェア技術はどのように融合されていますか？'
+        FR: 'Comment Madagascar Vision équilibre-t-elle les opérations d’actifs physiques lourds avec les technologies algorithmiques ?',
+        MG: 'Ahoana no mampifandanja ny asa goavana ara-batana sy ny teknolojia nomerika ao amin’ny Madagascar Vision ?'
       },
       a: {
         EN: 'Every concrete deck, turbine blade, and molecular lab is monitored by dynamic twin systems. We do not look at physical assets as static units, but as living nodes inside a software-controlled logistics ecosystem.',
-        DE: 'Jedes Bauwerk, jede Turbine und jedes klinische Labor wird von einem digitalen Zwilling überwacht. Physische Anlagen sind keine statischen Objekte, sondern lebendige Netzknoten.',
-        JP: 'すべてのコンクリート基礎、タービンのブレード、先端医療ラボはマダガスカル・ビジョンのデジタルツインで稼働しています。物理的な施設を固定物ではなく、ソフトウェアで動くリアルタイム・データノードとして制御しています。'
+        FR: 'Chaque plateforme en béton, pale de turbine et laboratoire moléculaire est surveillé par des jumeaux numériques dynamiques. Nous ne considérons pas les actifs physiques comme statiques, mais comme des nœuds vivants au sein d’un écosystème logistique contrôlé par logiciel.',
+        MG: 'Ny fotodrafitrasa rehetra dia arahi-maso amin’ny alalan’ny digital twin. Ny fitaovana ara-batana dia tsy zavatra tsy mihetsika fa mifandray amin’ny tambajotra mandeha ho azy ao anaty logiciel.'
       }
     },
     {
       q: {
         EN: 'What is the fiduciary mandate backing the 100% circular zero-waste policy?',
-        DE: 'Was ist das treuhänderische Mandat hinter der 100% zirkulären Zero-Waste-Politik?',
-        JP: '完全なゼロ・ウェイスト（循環型社会）環境方針が、財務パフォーマンスに与える価値とは？'
+        FR: 'Quel est le mandat fiduciaire soutenant la politique 100 % circulaire "zéro déchet" ?',
+        MG: 'Inona no andraikitra fiduciaire mpanohana ny drafi-pandrosoana 100% tsy misy fako ?'
       },
       a: {
         EN: 'Regulatory and resource supply risks are rapidly escalating. Our zero-waste material circularity ensures we decouple our growth from linear resource shocks, securing maximum longevity for our sovereign partners.',
-        DE: 'Ressourcen- und regulatorische Risiken steigen rapide. Unsere Kreislaufwirtschaft entkoppelt das Konzernwachstum von Rohstoffengpässen und sichert maximale Betriebsstabilität.',
-        JP: '資源枯渇リスクやグローバル法規制は急速に強まっています。循環資源の再利用ループ確立によりリニア型資源ショックから経営を切り離し、強固なサプライチェーンの持続性を確立しています。'
+        FR: 'Les risques réglementaires et d’approvisionnement en ressources augmentent rapidement. Notre circularité zéro déchet garantit que nous décorrélons notre croissance des chocs de ressources linéaires, assurant une longévité maximale pour nos partenaires.',
+        MG: 'Mitombo haingana ny loza mitatao amin’ny famatsiana sy ny lalàna. Ny fampihenana ny fako tontolo iainana dia manome antoka fa tsy ho tratry ny olana ara-pitaovana ny fampandrosoana.'
       }
     },
     {
       q: {
         EN: 'How are sovereign-grade funding resources verified and managed?',
-        DE: 'Wie werden die staatlichen Investitionsmittel geprüft und verwaltet?',
-        JP: '持続可能な調達や機関投資資金の透明性はどのように保証されていますか？'
+        FR: 'Comment les ressources financières de niveau souverain sont-elles vérifiées et gérées ?',
+        MG: 'Ahoana no hanamarinana sy hitantanana ny renivola avy amin’ny fanjakana ?'
       },
       a: {
         EN: 'Madagascar Vision implements unified crypto-ledger systems mapping every dollar of ESG bonds and sovereign capital to physical project milestones, generating undeniable proof-of-progress.',
-        DE: 'Wir nutzen kryptografisch abgesicherte Kontroll-Ledger. Jeder Euro aus ESG-Anleihen oder Staatsfonds wird direkt einem physischen Meilenstein zugeordnet, wodurch Datenlücken ausgeschlossen werden.',
-        JP: '当社では透明性の高い暗号台帳(Ledger)を採用しており、ESG公債や国家投資資金の1円単位に至るまでを物理的な開発フェーズにダイレクトに紐づけ、偽りのない進捗監査を公開しています。'
+        FR: 'Madagascar Vision déploie des systèmes de registres cryptographiques unifiés associant chaque dollar d’obligations ESG et de capitaux souverains à des jalons de projet physiques, générant une preuve de progrès incontestable.',
+        MG: 'Madagascar Vision dia mampiasa ny rafitra crypto-ledger unifiés mba hampifandraisana ny vola rehetra amin’ny fandrosoana tena izy amin’ny tetikasa.'
       }
     }
   ];
@@ -276,7 +276,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
       {/* 1. Header Banner */}
       <section className="relative pt-32 pb-6 text-center max-w-4xl mx-auto px-4" id="leadership-header">
         <span className="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20">
-          {language === 'EN' ? 'MADAGASCAR VISION CABINET' : language === 'DE' ? 'AUFSICHTSBEHÖRDE & FÜHRUNGSRAT' : '統制コア・機関ガバナンス'}
+          {language === 'EN' ? 'MADAGASCAR VISION CABINET' : language === 'FR' ? 'CABINET MADAGASCAR VISION' : 'BIRAO MADAGASCAR VISION'}
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">
           {translations.title}
@@ -288,10 +288,10 @@ export function LeadershipView({ language }: LeadershipViewProps) {
         {/* Dynamic Navigation Sub-Bar */}
         <div className="flex justify-center flex-wrap gap-2 mt-8" id="sub-navigation-pills">
           {[
-            { id: 'board', label: { EN: 'Executive Board', DE: 'Vorstandsgremium', JP: '執行役員会' } },
-            { id: 'ceo-message', label: { EN: 'CEO Address', DE: 'Ansprache der CEO', JP: '代表所感' } },
-            { id: 'committees', label: { EN: 'Committees', DE: 'Ausschüsse', JP: '監査評議会' } },
-            { id: 'philosophy', label: { EN: 'Philosophy & Q&A', DE: 'Philosophie & Dialog', JP: '経営哲学Q&A' } }
+            { id: 'board', label: { EN: 'Executive Board', FR: 'Conseil d’Administration', MG: 'Filan-kevi-pitantanana' } },
+            { id: 'ceo-message', label: { EN: 'CEO Address', FR: 'Message de la Directrice Générale', MG: 'Hafatra avy amin’ny Tale' } },
+            { id: 'committees', label: { EN: 'Committees', FR: 'Comités', MG: 'Komity sy Birao' } },
+            { id: 'philosophy', label: { EN: 'Philosophy & Q&A', FR: 'Philosophy & Q&R', MG: 'Fahendrena & Dialogy' } }
           ].map((tab) => (
             <button
               key={tab.id}
@@ -319,7 +319,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
               {/* Left Side: Interactive Selection Cards */}
               <div className="lg:col-span-5 space-y-4">
                 <span className="text-[10px] font-mono tracking-widest text-emerald-400 uppercase font-bold px-1">
-                  {language === 'EN' ? 'STEWARD DISPATCHER' : language === 'DE' ? 'MITGLIEDAUSWAHL' : 'エグゼクティブ・フォルダ'}
+                  {language === 'EN' ? 'STEWARD DISPATCHER' : language === 'FR' ? 'SÉLECTEUR DE DIRIGEANT' : 'FANTINANA MPIANDRAIKITRA'}
                 </span>
                 
                 <div className="space-y-3">
@@ -392,7 +392,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                     <div>
                       <div className="flex items-center space-x-2 text-emerald-400 font-mono text-[9px] tracking-widest uppercase">
                         <Award size={10} />
-                        <span>{language === 'EN' ? 'VERIFIED CABINET PORTFOLIO' : language === 'DE' ? 'EXEKUTIV-ZERTIFIKAT' : '認可済み経歴フォルダ'}</span>
+                        <span>{language === 'EN' ? 'VERIFIED CABINET PORTFOLIO' : language === 'FR' ? 'PORTEFEUILLE DE CABINET VÉRIFIÉ' : 'MOMBA NY BIRAO MARINA'}</span>
                       </div>
                       <h3 className="text-xl sm:text-2xl font-black text-white font-sans tracking-tight mt-1">
                         {currentLeader.name}
@@ -407,7 +407,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                   <div className="space-y-4">
                     <div className="space-y-1">
                       <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block font-bold">
-                        {language === 'EN' ? 'STRICTOR FIDUCIARY BIO' : language === 'DE' ? 'DIREKTORIUMS-VITA' : '公的任務実績'}
+                        {language === 'EN' ? 'STRICTOR FIDUCIARY BIO' : language === 'FR' ? 'BIOGRAPHIE FIDUCIAIRE DIRECTE' : 'tantaran’ny asa sy andraikitra'}
                       </span>
                       <p className="text-slate-350 text-xs sm:text-sm leading-relaxed font-light">
                         {currentLeader.bio}
@@ -418,7 +418,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                       {/* Education */}
                       <div className="space-y-1">
                         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">
-                          {language === 'EN' ? 'ACADEMIC ALUMNI' : language === 'DE' ? 'AKADEMISCHER WERDEGANG' : '最終学歴'}
+                          {language === 'EN' ? 'ACADEMIC ALUMNI' : language === 'FR' ? 'PARCOURS ACADÉMIQUE' : 'fampianarana noraisina'}
                         </span>
                         <div className="flex items-start space-x-1.5">
                           <BookOpen size={12} className="text-emerald-500 mt-0.5 shrink-0" />
@@ -431,7 +431,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                       {/* Strategic focus */}
                       <div className="space-y-1">
                         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">
-                          {language === 'EN' ? 'PORTFOLIO DOMAIN' : language === 'DE' ? 'SCHWERPUNKTBEREICH' : '注力管轄分野'}
+                          {language === 'EN' ? 'PORTFOLIO DOMAIN' : language === 'FR' ? 'DOMAINE DE PORTEFEUILLE' : 'sehatra ifantohana'}
                         </span>
                         <div className="flex items-start space-x-1.5">
                           <Shield size={12} className="text-teal-400 mt-0.5 shrink-0" />
@@ -445,7 +445,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                     {/* Timeline Achievements */}
                     <div className="space-y-2 pt-3 border-t border-slate-900">
                       <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">
-                        {language === 'EN' ? 'TRACK RECORD HIGH-VOLUME MILESTONES' : language === 'DE' ? 'ERGEBNISBILANZ' : '実質インフラ統括実績'}
+                        {language === 'EN' ? 'TRACK RECORD HIGH-VOLUME MILESTONES' : language === 'FR' ? 'HISTORIQUE DES JALONS CLÉS' : 'ireo zava-bita lehibe teo aloha'}
                       </span>
                       <div className="space-y-2.5">
                         {activeDetail.history.map((hist, i) => (
@@ -521,34 +521,34 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                       As we look at the year 2026 and forward, we are stepping into a climate landscape that rewards precision and transparent auditing rather than greenwashing. Our ESG crypto-ledgers provide empirical proof of our progress. We thank our public municipal partnerships and sovereign pension groups for their uncompromising trust.
                     </p>
                   </>
-                ) : language === 'DE' ? (
+                ) : language === 'FR' ? (
                   <>
                     <p>
-                      Bei Madagascar Vision handeln wir nach einer klaren, unverrückbaren Prämisse: <strong>Physische Infrastruktur lässt sich nicht länger von digitaler Orchestrierung trennen</strong>. Zu lange wurden diese Bereiche als getrennte Sektoren behandelt, was globale Lieferketten instabil und ineffizient machte.
+                      Chez Madagascar Vision, nous opérons sous une directive simple et non négociable : <strong>l’infrastructure physique n’est plus séparée de l’orchestration numérique</strong>. Durant la dernière décennie, les marchés mondiaux ont traité ces secteurs comme distincts. Cette division a entraîné de graves inefficacités, des surcharges de carbone et des opérations fragmentées.
                     </p>
                     <p>
-                      Unsere Holding wurde gegründet, um diese Grenzen niederzulegen. Indem wir physische Produktionsprozesse, Offshore-Windparks und Krebsdiagnostik im Labor in eine vernetzte, datengetriebene Plattform einbinden, schützen wir das uns anvertraute Kapital staatlicher und institutioneller Anleger.
+                      Nous avons fondé notre holding unifiée avec la ferme résolution de dissoudre ces frontières. En créant des écosystèmes définis par logiciel associant le tri robotisé des matériaux, des parcs éoliens haute tension et des systèmes de traitement génomique clinique, nous protégeons le capital souverain qui nous est alloué. Notre responsabilité est multigénérationnelle.
                     </p>
                     <p className="italic font-mono text-emerald-300 text-xs bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                      "Wir investieren nicht in bloße Bausubstanz; wir schaffen den digitalen Zwilling der realen Wirtschaft, um sie CO2-neutral und zukunftssicher zu gestalten."
+                      "Nous n’héritons pas d’actifs physiques ; nous construisons leur avenir numérique pour garantir qu’ils servent nos enfants dans un monde neutre en carbone."
                     </p>
                     <p>
-                      Für das Planungsjahr 2026 gilt mehr denn je: Transparenz schlägt Symbolpolitik. Unsere ESG-Prüfungsdaten bieten verifizierbare Belege für den reellen CO2-Entzug und zirkulären Materialumgang. Wir danken unseren Partnern für das entgegengebrachte Vertrauen.
+                      Alors que nous anticipons l’année 2026 et au-delà, nous entrons dans un paysage climatique qui récompense la précision et l’audit transparent plutôt que le greenwashing. Nos registres cryptographiques ESG fournissent des preuves empiriques de nos progrès. Nous remercions nos partenaires municipaux et les groupes de retraite souverains pour leur confiance sans faille.
                     </p>
                   </>
                 ) : (
                   <>
                     <p>
-                      マダガスカル・ビジョンにおいて、私たちはシンプルでありながら極めて厳格なビジョンの下で稼働しています。<strong>「物理的な基盤プラットフォームとデジタルソフトウェア制御は、もはや切り離せない」</strong>ということです。産業のデジタル統合の遅れは、炭素排出量の増大や物流ネットワークの不全を引き起こしてきました。
+                      Ao amin’ny Madagascar Vision, miasa eo ambanin’ny fenitra tsotra sy tsy azo iadian-kevitra izahay: <strong>ny fotodrafitrasa ara-batana dia tsy misaraka ity fitaovana nomerika ity intsony</strong>. Nandritra ny folo taona lasa, ny tsena eran-tany dia nampitaha an’ireo ho sehatra roa samy hafa. Izany fisarahana izany dia niteraka tsy fahombiazana, famoahana carbone tafahoatra ary asa mikorontana.
                     </p>
                     <p>
-                      私たちのコングロマリットは、この業界の境界線を取り払うために組織されました。最先端の自律ピックロボティクス、高圧スマート風力グリッド、そして高度な病理検査分析をソフトウェアと一体化させることで、お預かりした国家インフラ資本の最大価値を引き出し、何世代にもおよぶ安定性と防衛を担保します。
+                      Nanangana ity holding unifiée ity izahay mba handravana an’ireny sisintany ireny. Amin’ny alalan’ny famoronana tontolo nomerika mampifandray ny robotics, parcs éoliens ary genomic processing, dia miaro ny renivola nankinina taminay izahay. Manana andraikitra lehibe ho an’ny taranaka rehetra izahay.
                     </p>
                     <p className="italic font-mono text-emerald-300 text-xs bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                      「私たちは単なるコンクリートの塊を建てておしまいにはしません。物理空間のデジタルツインを設計し、完全な脱炭素を実装した持続可能インフラへ変革します。」
+                      "Tsy mandova fotsiny ny fotodrafitrasa ara-batana izahay, fa manangana ny ho aviny nomerika mba hahazoana antoka fa hanompo ny zanatsika ao anatin’ny tontolo tsy misy carbone izy ireo."
                     </p>
                     <p>
-                      2026年という節目において、産業界に求められるのは表面的な美名（グリーンウォッシング）ではなく、徹底した「透明性と監査証跡」です。持続可能な環境づくりへの参画に感謝申し上げます。
+                      Rehefa mijery ny taona 2026 sy ny ho avy izahay, dia miditra amin’ny tontolo izay manome lanja ny fahitsiana sy ny mangarahara fa tsy ny greenwashing fotsiny.
                     </p>
                   </>
                 )}
@@ -558,7 +558,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
               <div className="mt-8 pt-6 border-t border-slate-900 flex justify-between items-end">
                 <div>
                   <span className="text-[10px] text-slate-500 font-mono tracking-widest uppercase block">
-                    {language === 'EN' ? 'OFFICIAL INK SIGNATURE' : language === 'DE' ? 'UNTERZEICHNUNG' : '直筆署名照合'}
+                    {language === 'EN' ? 'OFFICIAL INK SIGNATURE' : language === 'FR' ? 'SIGNATURE OFFICIELLE' : 'SINO OFISIALY MANAN-KERY'}
                   </span>
                   <span className="font-serif italic text-lg text-white font-bold block mt-1 tracking-wider">
                     Helena Vance-Sterling
@@ -608,14 +608,14 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                     <div className="space-y-2">
                       <div className="space-y-0.5">
                         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">
-                          {language === 'EN' ? 'COMMITTEE CHAIR' : language === 'DE' ? 'AUSSCHUSS-VORSITZ' : '議長・統括者'}
+                          {language === 'EN' ? 'COMMITTEE CHAIR' : language === 'FR' ? 'PRÉSIDENT DU COMITÉ' : 'TALE JENERALY NY BIRAO'}
                         </span>
                         <span className="text-xs text-white font-semibold font-mono">{com.leadName}</span>
                       </div>
 
                       <div className="space-y-0.5">
                         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">
-                          {language === 'EN' ? 'OVERSIGHT REALM' : language === 'DE' ? 'KONTROLLBEREICH' : '管轄方針項目'}
+                          {language === 'EN' ? 'OVERSIGHT REALM' : language === 'FR' ? 'DOMAINE DE SURVEILLANCE' : 'SEHATRA ANDRAIKITRA'}
                         </span>
                         <p className="text-[11px] text-slate-400 leading-relaxed font-light line-clamp-3">
                           {com.focusArea[language]}
@@ -640,14 +640,14 @@ export function LeadershipView({ language }: LeadershipViewProps) {
               </div>
               <div className="space-y-1">
                 <h5 className="text-sm font-bold text-white font-sans">
-                  {language === 'EN' ? 'Fiduciary Audit Integrity Framework' : language === 'DE' ? 'Regelwerk zur Treuhand-Transparenz' : '信託責任に関する会計及び倫理大綱'}
+                  {language === 'EN' ? 'Fiduciary Audit Integrity Framework' : language === 'FR' ? 'Cadre d’intégrité de l’audit fiduciaire' : 'Drafitra Fanaovana Audit Fiduciaire'}
                 </h5>
                 <p className="text-xs text-slate-400 font-light leading-relaxed">
                   {language === 'EN' 
                     ? 'All operations are globally insured and bound in multi-million dollar reserves. Committee policies mandate immediate public ledger disclosure of material carbon deviations and audit findings.' 
-                    : language === 'DE'
-                    ? 'Sämtliche Betriebsprozesse unterliegen einem strengen regulatorischen Absicherungskonzept. Jede materielle CO2-Abweichung wird unverzüglich veröffentlicht.'
-                    : 'すべての事業活動は外部監査法人の監視下にあります。基準を超える二酸化炭素排出量の検知、または重大事項の発生は、速やかに記録が公開されます。'}
+                    : language === 'FR'
+                    ? 'Toutes les opérations sont assurées à l’échelle mondiale et garanties par des réserves de plusieurs millions de dollars. Les politiques du comité imposent une publication immédiate de toute déviation de carbone.'
+                    : 'Ny asa rehetra dia manana fiantohana manerantany ary voaantoka tsara. Ny politika dia mandidy ny fampahafantarana mivantana ny fandrosoana sy ny fivoaran’ny carbone rehetra.'}
                 </p>
               </div>
             </div>
@@ -727,7 +727,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
             
             <div className="space-y-1">
               <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
-                {language === 'EN' ? 'Initiator Name / Title' : language === 'DE' ? 'Name / Amtlicher Titel des Absenders' : '送信者役職・氏名'}
+                {language === 'EN' ? 'Initiator Name / Title' : language === 'FR' ? 'Nom / Titre de l’initiateur' : 'Anarana / Andraikitry ny Mpanentana'}
               </label>
               <input
                 type="text"
@@ -741,7 +741,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
             <div className="space-y-1">
               <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
-                {language === 'EN' ? 'Private Secure Email' : language === 'DE' ? 'Abgesicherte private Mailadresse' : '公式セキュア・メールアドレス'}
+                {language === 'EN' ? 'Private Secure Email' : language === 'FR' ? 'E-mail privé sécurisé' : 'E-mail manokana azo antoka'}
               </label>
               <input
                 type="email"
@@ -755,7 +755,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
             <div className="space-y-1">
               <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
-                {language === 'EN' ? 'Secretariat Message Brief' : language === 'DE' ? 'Gegenstand des Vorstandsantrags' : '取締役会提出案件の briefs 概要'}
+                {language === 'EN' ? 'Secretariat Message Brief' : language === 'FR' ? 'Brève description pour le secrétariat' : 'Hafatra fohy ho an’ny Sekretera'}
               </label>
               <textarea
                 value={secMsg}

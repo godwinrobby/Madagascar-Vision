@@ -17,26 +17,41 @@ import { EventsView } from './components/EventsView';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
-  const [language, setLanguage] = useState<'EN' | 'DE' | 'JP'>('EN');
+  const [language, setLanguage] = useState<'EN' | 'FR' | 'MG'>('EN');
   const [selectedSectorId, setSelectedSectorId] = useState<string | null>(null);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    const saved = localStorage.getItem('mv-theme');
+    return saved === 'light' ? 'light' : 'dark';
+  });
+
+  // Sync theme class on HTML element
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('light');
+    } else {
+      root.classList.remove('light');
+    }
+    localStorage.setItem('mv-theme', theme);
+  }, [theme]);
 
   // Sync title based on active tab & language to support premium SEO / branding constraints
   useEffect(() => {
     const brandName = 'Madagascar Vision';
     const subNames = {
-      home: { EN: 'Multi-Sector Corporate Portfolio', DE: 'Mischkonzern & Beteiligungen', JP: '多角インフラ持株グループ' },
-      about: { EN: 'Corporate Story & Board', DE: 'Über uns & Direktorium', JP: '企業沿革・経営陣' },
-      leadership: { EN: 'Fiduciary Leadership & Board', DE: 'Direktorium & Aufsichtsrat', JP: '役員・ガバナンス体制' },
-      sectors: { EN: 'Global Divisions', DE: 'Geschäftsbereiche', JP: '事業セクター' },
-      services: { EN: 'Executive Solutions', DE: 'Dienstleistungen', JP: 'サービス分野' },
-      portfolio: { EN: 'Asset Portfolio & Mega-Infrastructure', DE: 'Asset-Portfolio & Infrastruktur', JP: '開発実績ポートフォリオ' },
-      sustainability: { EN: 'ESG & Decarbonization Mandate', DE: 'ESG & Nachhaltigkeit', JP: '環境ESG・社会的厚生' },
-      careers: { EN: 'Human Capital & Vacancies', DE: 'Karriere & Vakanzen', JP: '採用情報・キャリア' },
-      contact: { EN: 'Global Inquiries & Coordinates', DE: 'Direktkontakt & Adressen', JP: 'お問い合わせ窓口' },
-      news: { EN: 'Sovereign Disclosures & News Feed', DE: 'Presse & Mitteilungen', JP: '公式プレス開示ログ' },
-      blogs: { EN: 'Executive Insights & Thought Leadership', DE: 'Blogs & Essays', JP: '経営陣インサイト・コラム' },
-      events: { EN: 'Global Conventions & Interactive Foras', DE: 'Konzernkooperationen & Events', JP: 'サミット・開発カンファレンス' }
-    }[activeTab as keyof typeof subNames] || { EN: '', DE: '', JP: '' };
+      home: { EN: 'Multi-Sector Corporate Portfolio', FR: "Portefeuille d'Activités Multi-Sectoriel", MG: 'Fasahan-draharaha Marolafy' },
+      about: { EN: 'Corporate Story & Board', FR: "Histoire de l'Entreprise & Conseil", MG: 'Tantara sy ny Birao' },
+      leadership: { EN: 'Fiduciary Leadership & Board', FR: 'Direction Fiduciaire & Conseil', MG: 'Fitarihana sy ny Birao Fitantanana' },
+      sectors: { EN: 'Global Divisions', FR: 'Divisions Globales', MG: 'Sampan-draharaha Ara-Toe-karena' },
+      services: { EN: 'Executive Solutions', FR: 'Solutions Exécutives', MG: "Vahaolana ho an'ny Mpanatanteraka" },
+      portfolio: { EN: 'Asset Portfolio & Mega-Infrastructure', FR: "Portefeuille d'Actifs & Méga-Infrastructures", MG: 'Tahiry sy Fotodrafitrasa Goavana' },
+      sustainability: { EN: 'ESG & Decarbonization Mandate', FR: 'Mandat ESG & Décarbonation', MG: 'Andraikitra ESG sy Fanafoanana ny Karbona' },
+      careers: { EN: 'Human Capital & Vacancies', FR: 'Capital Humain & Postes Vacants', MG: 'Olombelona sy ny Asa Misy' },
+      contact: { EN: 'Global Inquiries & Coordinates', FR: 'Demandes Globales & Coordonnées', MG: 'Fandraisana an-tanana sy Toerana misy' },
+      news: { EN: 'Sovereign Disclosures & News Feed', FR: 'Publications Souveraines & Actualités', MG: 'Tati-baovao Ofisialy' },
+      blogs: { EN: 'Executive Insights & Thought Leadership', FR: 'Perspectives de la Direction & Leadership', MG: 'Hevitry ny Mpitantana sy Fahalalana' },
+      events: { EN: 'Global Conventions & Interactive Foras', FR: 'Conventions Globales & Forums Interactifs', MG: 'Fihaonambe sy Seha-pifanakalozana' }
+    }[activeTab as keyof typeof subNames] || { EN: '', FR: '', MG: '' };
 
     document.title = `${brandName} | ${subNames[language]}`;
   }, [activeTab, language]);
@@ -107,6 +122,8 @@ export default function App() {
         setActiveTab={setActiveTab}
         language={language}
         setLanguage={setLanguage}
+        theme={theme}
+        setTheme={setTheme}
       />
 
       {/* Primary scrollable view containers wrapper */}
