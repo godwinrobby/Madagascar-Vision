@@ -56,7 +56,8 @@ export function Footer({ setActiveTab, language }: FooterProps) {
     { id: 'careers', label: { EN: 'Global Talent Openings', FR: "Offres d'Emplois Globales", MG: 'Asa sy Tolotra Manerantany' } },
     { id: 'news', label: { EN: 'Official News Feed', FR: "Fil d'Actualités Officiel", MG: 'Tati-baovao Ofisialy' } },
     { id: 'blogs', label: { EN: 'Director Insights Blog', FR: 'Blog des Perspectives', MG: 'Espace Fanehoan-kevitra' } },
-    { id: 'events', label: { EN: 'Corporate Summit Log', FR: 'Sommets d’Entreprise', MG: 'Ny Fihaonambe sy Hetsika' } }
+    { id: 'events', label: { EN: 'Corporate Summit Log', FR: 'Sommets d’Entreprise', MG: 'Ny Fihaonambe sy Hetsika' } },
+    { id: 'corporate-faq', label: { EN: 'Corporate FAQ Support', FR: 'FAQ Accord de Support', MG: 'Fanontaniana sy Fanampiana' } }
   ];
 
   const sectorLinks = [
@@ -83,10 +84,18 @@ export function Footer({ setActiveTab, language }: FooterProps) {
   const handleLink = (id: string, isSector = false) => {
     if (isSector) {
       setActiveTab('sectors');
+    } else if (id === 'corporate-faq') {
+      setActiveTab('contact');
+      setTimeout(() => {
+        const el = document.getElementById('faq-section');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
     } else {
       setActiveTab(id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

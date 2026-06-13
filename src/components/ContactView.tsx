@@ -1,96 +1,143 @@
-import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Clock, 
+  Send, 
+  CheckCircle2, 
+  AlertCircle, 
+  ShieldCheck, 
+  Globe2,
+  CalendarDays,
+  Sparkles,
+  ChevronDown,
+  HelpCircle
+} from 'lucide-react';
 
 interface ContactViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
 }
 
 interface OfficeSpec {
   id: string;
-  city: { EN: string; DE: string; JP: string };
+  city: { EN: string; FR: string; MG: string };
+  role: { EN: string; FR: string; MG: string };
   address: string;
   tel: string;
   email: string;
-  hours: { EN: string; DE: string; JP: string };
-  coords: { x: string; top: string; y: string }; // simple coordinate mapping for rendering on layout representation
+  hours: { EN: string; FR: string; MG: string };
+  timezone: string;
+  coords: { x: string; y: string };
 }
 
 export function ContactView({ language }: ContactViewProps) {
   const translations = {
     EN: {
-      title: 'Global Office Desk Directories',
-      sub: 'Initiating validated executive touchpoints across European hubs Asian terminals and central high-volume logistics registries.',
-      mapTitle: 'Worldwide Asset Operations Center Map',
-      mapSub: 'Interactive coordinates matching fully licensed legal corporate registries.',
-      formTitle: 'Institutional Inquiries Desk',
-      nameLabel: 'Your Authorised representative name',
-      emailLabel: 'Fiduciary Corporate Email Address',
-      typeLabel: 'Portfolio sector realm targeting',
-      msgLabel: 'Confidential Inquiry Specification inbrief',
-      submitBtn: 'Securely Dispatch Inquiry to Committee',
-      formSuccessHeader: 'INQUIRY COMMITTED SUCCESSFULLY',
-      formSuccessText: 'Your request has been cryptographically secured and routed directly to the regional cabinet committee. Our turnaround SLA is nested within 2 business days.',
-      socialLinkText: 'Follow Regional News channels'
+      title: 'Global Administration & Contact',
+      sub: 'Establish verified touchpoints. Explore direct channels for sovereign mandates, multi-sector partnerships, and institutional resources.',
+      mapTitle: 'Operational Location Matrix',
+      mapSub: 'Real-time coordinated corporate coordinates and physical hubs.',
+      formTitle: 'Institutional Request Portal',
+      formSub: 'Submit partner advisory briefs, developmental infrastructure requests, or capital allocations securely.',
+      nameLabel: 'Authorized Representative Name',
+      emailLabel: 'Official Corporate Email Address',
+      typeLabel: 'Portfolio Interest Sector',
+      msgLabel: 'Confidential Inquiry Specifications',
+      submitBtn: 'Securely Dispatch Request',
+      formSuccessHeader: 'REQUEST REGISTERED',
+      formSuccessText: 'Your administrative request has been securely archived and assigned to our regional cabinet panel. Feedback with verified responses will be delivered within our standard 48-hour SLA.',
+      protocolTitle: 'Verification Protocol',
+      protocolDesc: 'To protect sovereign capital allocations and corporate integrity, all transactions and data points undergo strict security routing.',
+      protocolStep1: 'Encrypted administrative transit',
+      protocolStep2: 'Direct advisory panel review',
+      protocolStep3: 'Guaranteed 48-hour SLA response',
+      activeStatus: 'Active Operations',
+      faqTitle: 'Fiduciary Support & FAQ',
+      faqSub: 'Expedite inquiries. Explore critical directives regarding fiduciary protocols, sustainability standards, and capital clearance requests.'
     },
-    DE: {
-      title: 'Globale Niederlassungen & Kontakt',
-      sub: 'Kontaktieren Sie unsere Hauptquartiere in Kontinentaleuropa, Asien-Pazifik oder unsere Transportleitstellen.',
-      mapTitle: 'Weltkarte der Betriebsstätten & Koordinaten',
-      mapSub: 'Interaktive Karte der behördlich zugelassenen Vision Madagascar-Holdings.',
-      formTitle: 'Zentrales Anfrage-Formular (Institutionell)',
-      nameLabel: 'Name des bevollmächtigten Vertreters',
-      emailLabel: 'Offizielle Firmen-E-Mail-Adresse',
-      typeLabel: 'Betreffendes Markt- oder Sektor-Segment',
-      msgLabel: 'Detaillierte Anfrage-Spezifikation (Vertraulich)',
-      submitBtn: 'Anfrage verschlüsselt einsenden',
-      formSuccessHeader: 'ANFRAGE ERFOLGREICH ÜBERMITTELT',
-      formSuccessText: 'Ihre Nachricht wurde verschlüsselt an den regionalen Beirat übertragen. Eine Antwort erfolgt vertragsgemäß innerhalb von 48 Stunden.',
-      socialLinkText: 'Offizielle Kommunikationskanäle'
+    FR: {
+      title: 'Administration Globale & Contacts',
+      sub: 'Établissez des points de contact vérifiés. Explorez les canaux directs pour les mandats souverains, les partenariats multisectoriels et les ressources institutionnelles.',
+      mapTitle: 'Matrice de Localisation Opérationnelle',
+      mapSub: 'Coordonnées d’entreprise en temps réel et centres physiques.',
+      formTitle: 'Portail des Demandes Institutionnelles',
+      formSub: 'Soumettez en toute sécurité des dossiers de partenariat, des demandes d’infrastructures de développement ou des allocations de capitaux.',
+      nameLabel: 'Nom du Représentant Autorisé',
+      emailLabel: 'Adresse E-mail Professionnelle Officielle',
+      typeLabel: 'Secteur d’Intérêt du Portefeuille',
+      msgLabel: 'Spécifications de la Demande Confidentielle',
+      submitBtn: 'Envoyer la Demande en Toute Sécurité',
+      formSuccessHeader: 'DEMANDE ENREGISTRÉE',
+      formSuccessText: 'Votre demande administrative a été archivée avec sécurité et assignée à notre cellule régionale. Un retour d’information vérifié vous sera transmis dans notre délai de traitement standard de 48 heures.',
+      protocolTitle: 'Protocole de Vérification',
+      protocolDesc: 'Afin de préserver l’attribution des fonds souverains et l’intégrité corporative, chaque transmission et point de données suit un protocole de sécurité strict.',
+      protocolStep1: 'Transit administratif entièrement crypté',
+      protocolStep2: 'Examen direct par l’advisory board',
+      protocolStep3: 'Réponse garantie dans un délai de 48 heures',
+      activeStatus: 'Opérations Actives',
+      faqTitle: 'Support Fiduciaire & FAQ',
+      faqSub: 'Accélérez vos demandes. Explorez les directives essentielles concernant les protocoles fiduciaires, les normes de durabilité et le dédouanement des capitaux.'
     },
-    JP: {
-      title: 'グローバル連絡窓口 ＆ 統括オフィス',
-      sub: '欧州本社、アジア統括支局、および地域港湾・複合物流制御センターへの検証可能なダイレクト・コンタクト情報。',
-      mapTitle: 'グローバルフットプリント・対話型アセットマップ',
-      mapSub: 'ライセンス許可済みの登記国・現地法人デスク座標にリンクしています。',
-      formTitle: '機関投資家・提携案 統合申請窓口',
-      nameLabel: '代表・担当役員様ご氏名',
-      emailLabel: '企業発行 公式メールアドレス',
-      typeLabel: '投資検討・連携を希望する事業分野',
-      msgLabel: '契約要件また共同投資の仕様概要など',
-      submitBtn: 'セキュリティ保護の上、審査委員会へ送信',
-      formSuccessHeader: '申請要項が安全に受信されました',
-      formSuccessText: '案件は地域委員会に即座に共有され、原則として2営業日以内に事務局より確認事項をご案内いたします。',
-      socialLinkText: 'ソーシャルネットワーク公式チャンネル'
+    MG: {
+      title: 'Fitantanana sy Fifandraisana Manerantany',
+      sub: 'Mifandraisa mivantana amin’ny tompon’andraikitra. Fantaro ireo lalana ho an’ny tetikasa goavana, ny fiaraha-miasa marolafy, ary ny fampiasam-bola maharitra.',
+      mapTitle: 'Tabilao misy ny Toerana Misy Anay',
+      mapSub: 'Sari-tany mampiseho ireo foibe sy ny fandrindrana ny asa rehetra.',
+      formTitle: 'Sehatra Fandefasana Fangatahana',
+      formSub: 'Alefaso am-pilaminana ny antontan-taratasy momba ny fiaraha-miasa, ny fotodrafitrasa ilaina, na ny fampiasam-bola tianao hatao.',
+      nameLabel: 'Anaran’ny Mpisolo Tena nahazo Lalana',
+      emailLabel: 'Mailaka Ofisialy',
+      typeLabel: 'Seha-pihariana tiana hiresahana',
+      msgLabel: 'Andinindininy momba ny Fangatahanao',
+      submitBtn: 'Handefa ny Fangatahana any amin’ny Vaomiera',
+      formSuccessHeader: 'VOARAY NY FANGATAHANA',
+      formSuccessText: 'Voasoratra soa aman-tsara ao amin’ny tahiry ny fangatahanao ary efa nampitaina amin’ny komity misahana ny faritra. Handray valiny azo antoka ianao ato anatin’ny 48 ora.',
+      protocolTitle: 'Fepeta Fiarovana',
+      protocolDesc: 'Mba hiarovana ny fampiasam-bola sy ny fahamarinan’ny asa, ny fifandraisana rehetra dia mandalo amin’ny rafitra sivana avo lenta.',
+      protocolStep1: 'Fampitana miafina sy azo antoka',
+      protocolStep2: 'Famerenana mivantana ataon’ny komity mpanolotsaina',
+      protocolStep3: 'Valiny azo antoka ao anatin’ny 48 ora',
+      activeStatus: 'Miasa Ankehitriny',
+      faqTitle: 'Fanontaniana Mahazatra (FAQ)',
+      faqSub: 'Hamafiso ny fikarohanao. Vakio eto ny mikasika ny fepetra ara-dalàna, ny fampiasam-bola, ary ny fiarovana ny fotodrafitrasa.'
     }
   }[language];
 
   const offices: OfficeSpec[] = [
     {
       id: 'zurich',
-      city: { EN: 'Zurich (Global HQ)', DE: 'Zürich (Zentrale)', JP: 'チューリッヒ世界本社' },
+      city: { EN: 'Zurich (Global HQ)', FR: 'Zurich (HQ Global)', MG: 'Zurich (Foibe)' },
+      role: { EN: 'Corporate Center & Fiduciary Trust', FR: 'Centre Corporatif & Fiduciaire', MG: 'Foibe Fandrindrana sy Fiarovana' },
       address: 'Vision Madagascar Civic Group AG, Bleicherweg 74, 8002 Zürich, Switzerland',
       tel: '+41 44 910 2000',
       email: 'hq.zurich@aetheris.com',
-      hours: { EN: '08:00 - 17:30 CET', DE: '08:00 - 17:30 MEZ', JP: 'スイス時間 08:00 - 17:30' },
-      coords: { x: '49%', top: '35%', y: '35%' }
+      hours: { EN: '08:00 - 17:30 CET', FR: '08:00 - 17:30 CET', MG: '08:00 - 17:30 CET' },
+      timezone: 'Europe/Zurich',
+      coords: { x: '49%', y: '32%' }
     },
     {
       id: 'frankfurt',
-      city: { EN: 'Frankfurt Hub', DE: 'Frankfurt (Logistik)', JP: 'フランクフルト支局' },
+      city: { EN: 'Frankfurt Hub', FR: 'Hub Francfort', MG: 'Frankfurt Logistika' },
+      role: { EN: 'Logistics Orchestration & ESG Core', FR: 'Logistique & Noyau Durable', MG: 'Drafitra fampitana sy tontolo iainana' },
       address: 'Vision Madagascar Logistik & Guss GmbH, Kaiserstraße 12, 60311 Frankfurt am Main, Germany',
       tel: '+49 69 400 9010',
       email: 'hubs.germany@aetheris.de',
-      hours: { EN: '08:30 - 18:00 CET', DE: '08:30 - 18:00 MEZ', JP: 'ドイツ時間 08:30 - 18:00' },
-      coords: { x: '51%', top: '30%', y: '30%' }
+      hours: { EN: '08:30 - 18:00 CET', FR: '08:30 - 18:00 CET', MG: '08:30 - 18:00 CET' },
+      timezone: 'Europe/Berlin',
+      coords: { x: '52%', y: '29%' }
     },
     {
       id: 'tokyo',
-      city: { EN: 'Tokyo Ginza Terminal', DE: 'Tokio (Pazifik)', JP: '東京・銀座アジア太平洋本部' },
+      city: { EN: 'Tokyo Ginza Terminal', FR: 'Terminal Tokyo Ginza', MG: 'Tokyo Ginza Foibe' },
+      role: { EN: 'APAC Division & MedTech Operations', FR: 'Division APAC & Technologies Cliniques', MG: 'Sampana APAC sy Fitsaboana' },
       address: 'Vision Madagascar Medical Solutions, Ginza Six 11F, Chuo-ku, Tokyo 104-0061, Japan',
       tel: '+81 3 5510 8800',
       email: 'apac.tokyo@aetheris.jp',
-      hours: { EN: '09:00 - 18:00 JST', DE: '09:00 - 18:00 JST', JP: '日本時間 09:00 - 18:00（土日祝除く）' },
-      coords: { x: '82%', top: '48%', y: '48%' }
+      hours: { EN: '09:00 - 18:00 JST', FR: '09:00 - 18:00 JST', MG: '09:00 - 18:00 JST' },
+      timezone: 'Asia/Tokyo',
+      coords: { x: '82%', y: '45%' }
     }
   ];
 
@@ -104,13 +151,118 @@ export function ContactView({ language }: ContactViewProps) {
   const [formSuccess, setFormSuccess] = useState(false);
   const [formErr, setFormErr] = useState('');
 
+  const [clocks, setClocks] = useState<{ [key: string]: string }>({});
+  
+  const [openFaqId, setOpenFaqId] = useState<string | null>(null);
+
+  const toggleFaq = (id: string) => {
+    setOpenFaqId(prev => (prev === id ? null : id));
+  };
+
+  const faqs = [
+    {
+      id: 'foreign-capital',
+      question: {
+        EN: 'How does Vision Madagascar ensure transparency in foreign capital allocations?',
+        FR: 'Comment Vision Madagascar garantit-elle la transparence dans l’allocation des capitaux étrangers ?',
+        MG: 'Ahoana no iantohan’ny Vision Madagascar ny fangaraharana amin’ny fampiasam-bola avy any ivelany?'
+      },
+      answer: {
+        EN: 'All multinational capital flows and ESG assets are certified under strict Swiss compliance frameworks. Operations are subjected to multi-tiered fiduciary oversight, with full transaction ledgers securely recorded using cryptography-based verification protocols.',
+        FR: 'Tous les flux de capitaux multinationaux et actifs ESG sont certifiés selon des cadres de conformité suisses rigoureux. Les opérations font l’objet d’une surveillance fiduciaire à plusieurs niveaux, avec des registres de transactions entièrement sécurisés.',
+        MG: 'Ny fitantanana ny vola rehetra mivoaka sy miditra ary ny tetikasa ESG dia voamarina araka ny fenitra soisa hentitra. Misy ny fanaraha-maso akaiky isaky ny ambaratonga, miaraka amin’ny fitanana an-tsoratra an-tsipiriany amin’ny alalan’ny rafitra azo antoka.'
+      }
+    },
+    {
+      id: 'joint-ventures',
+      question: {
+        EN: 'Who holds authorization to negotiate or sign corporate joint venture agreements?',
+        FR: 'Qui détient l’autorité pour négocier ou signer des accords de joint-venture d’entreprise ?',
+        MG: 'Iza no manana fahefana hifampiraharaha na hanao sonia fifanarahana fiaraha-miasa?'
+      },
+      answer: {
+        EN: 'Only designated Managing Directors and board members holding certified proxy credentials issued by the Vision Madagascar Executive Panel are empowered to execute legally binding agreements and capital allocations.',
+        FR: 'Seuls les directeurs généraux désignés et les membres du conseil d\'administration munis de procurations certifiées émise par le comité exécutif de Vision Madagascar sont autorisés à signer des engagements contractuels.',
+        MG: 'Ireo Tale Mpanatanteraka sy mpikambana ao amin’ny Birao manana fahazoan-dalana ofisialy navoakan’ny Vaomieran’ny Vision Madagascar ihany no manana fahefana ara-dalàna hanao fifanarahana.'
+      }
+    },
+    {
+      id: 'infrastructure-eng',
+      question: {
+        EN: 'Can public entities submit unsolicited bids for sovereign developmental infrastructure?',
+        FR: 'Les entités publiques peuvent-elles soumettre des offres spontanées pour des infrastructures de développement ?',
+        MG: 'Afaka mandefa soso-kevitra momba ny fotodrafitrasa ve ny orinasam-panjakana na fikambanana?'
+      },
+      answer: {
+        EN: 'Yes, we welcome sovereign collaboration. Qualified agencies can submit initial structural bids, feasibility analyses, or capital requirements through our Institutional Request Portal for regional cabinet screening.',
+        FR: 'Oui, nous encourageons la collaboration publique. Les agences qualifiées peuvent soumettre des propositions d\'infrastructures, des analyses de faisabilité ou des exigences de capital via notre portail des demandes institutionnelles.',
+        MG: 'Eny, mandray tsara ny fiaraha-miasa ofisialy izahay. Ny rantsana voasoratra ara-panjakana dia afaka mandefa soso-kevitra, fandinihana ny tetikasa, na ny teti-bola ilaina amin\'ny alalan\'ny sehatra fandefasana fangatahanay.'
+      }
+    },
+    {
+      id: 'esg-sustainability',
+      question: {
+        EN: 'What framework guides the group’s decarbonization and offset standards?',
+        FR: 'Quel cadre guide les normes de décarbonation et de compensation du groupe ?',
+        MG: 'Inona ny rafitra mifehy ny fenitra fampihenana ny fahalotoana eo amin’ny orinasa?'
+      },
+      answer: {
+        EN: 'Our ESG Accountability criteria are governed by a Net-Zero 2030 directive. Over 85% of our portfolio energy requirements are satisfied through offshore sovereign wind arrays, municipal micro-grids, and circular economy waste systems.',
+        FR: 'Nos critères de responsabilité ESG sont régis par une directive stricte Net-Zero d\'ici 2030. Plus de 85 % de nos besoins en énergie sont couverts par des parcs éoliens offshore, des micro-réseaux municipaux et des systèmes circulaires.',
+        MG: 'Ny fitantanana omba ny ESG dia miorina amin\'ny fitsipiky ny Net-Zero 2030 hampihenana ny karbônina. Ny 85% mahery amin\'ny angovo ampiasainay dia azo avy amin’ny masoandro, rivotra, ary fampiasana indray ny fako.'
+      }
+    },
+    {
+      id: 'physical-security',
+      question: {
+        EN: 'Is an active security clearance pass required for physical hub consultations?',
+        FR: 'Une habilitation de sécurité active est-elle requise pour les consultations en présentiel ?',
+        MG: 'Mila karatra fiarovana manokana ve ny fahatongavana mivantana aty amin\'ireo birao?'
+      },
+      answer: {
+        EN: 'Yes. Due to sensitive MedTech formulas, cloud patents, and fiduciary assets, physical entry into any Vision Madagascar facility requires a pre-scheduled directive appointment accompanied by active regional credentials.',
+        FR: 'Oui. En raison de la confidentialité de nos brevets technologiques, formules cliniques et actifs fiduciaires, l’accès physique requiert un rendez-vous préalablement approuvé assorti d’une accréditation régionale active.',
+        MG: 'Eny. Noho ny fiarovana ny teknolojia vao hita, ny patanty momba ny fitsaboana, ary ny antontan-taratasy sarotra, dia mila fotoana mialoha voamarina sy karatra fahazoan-dalana vao afaka miditra mivantana ao amin’ny trano fiasana.'
+      }
+    }
+  ];
+
+  useEffect(() => {
+    const updateTimes = () => {
+      const times: { [key: string]: string } = {};
+      offices.forEach(off => {
+        try {
+          times[off.id] = new Intl.DateTimeFormat('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+            timeZone: off.timezone
+          }).format(new Date());
+        } catch {
+          times[off.id] = '12:00';
+        }
+      });
+      setClocks(times);
+    };
+
+    updateTimes();
+    const interval = setInterval(updateTimes, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormErr('');
     setFormSuccess(false);
 
     if (!fullName.trim() || !compEmail.trim() || !inquiryType || !message.trim()) {
-      setFormErr(language === 'EN' ? 'Please supply all credential parameters in the form before dispatch.' : language === 'DE' ? 'Bitte füllen Sie alle erforderlichen Felder aus.' : 'フォームのすべての必要要件セパレータを入力してください。');
+      setFormErr(
+        language === 'EN' 
+          ? 'Please supply all parameters in the form before dispatch.' 
+          : language === 'FR' 
+            ? 'Veuillez renseigner toutes les informations requises.' 
+            : 'Fenoy avokoa ny banga rehetra amin’ny takelaka.'
+      );
       return;
     }
 
@@ -123,266 +275,557 @@ export function ContactView({ language }: ContactViewProps) {
       setCompEmail('');
       setInquiryType('');
       setMessage('');
-    }, 2000);
+    }, 1800);
   };
 
   return (
-    <div id="contact-view-wrapper" className="space-y-16 pb-12 relative animate-fade-in">
+    <div id="contact-view-wrapper" className="space-y-16 pb-20 relative animate-fade-in text-slate-100 font-sans">
       
-      {/* 1. Header Frame */}
-      <section className="relative pt-32 pb-8 overflow-hidden text-center max-w-4xl mx-auto px-4" id="contact-intro">
-        <span className="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20">
-          {language === 'EN' ? 'SECURE SEC DIRECT' : language === 'DE' ? 'KONTAKT UND ADRESSEN' : 'グローバルオフィス案内'}
-        </span>
-        <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">
+      {/* Absolute Decorative Grid Background Elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_15%,rgba(31,138,90,0.06),transparent_45%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(219,91,26,0.04),transparent_50%)] pointer-events-none" />
+
+      {/* 1. Header Hero section */}
+      <section className="relative pt-32 pb-4 overflow-hidden text-center max-w-4xl mx-auto px-4" id="contact-intro">
+        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-900/60 text-[10px] font-mono tracking-widest uppercase text-emerald-400 select-none animate-pulse-subtle">
+          <Globe2 size={12} className="text-emerald-500 animate-spin" style={{ animationDuration: '6s' }} />
+          <span>{language === 'EN' ? 'Global Desk Directives' : language === 'FR' ? 'Directives de Contact' : 'Fifandraisana Ofisialy'}</span>
+        </div>
+        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mt-5 text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-350">
           {translations.title}
         </h1>
-        <p className="text-slate-400 text-sm sm:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
+        <p className="text-slate-400 text-sm sm:text-base leading-relaxed mt-4 max-w-2xl mx-auto font-light">
           {translations.sub}
         </p>
       </section>
 
-      {/* 2. Interactive Map Grid + Selected Office specs details display */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="map-interactive-grid">
-        
-        {/* Left column: Vector Map with pinpoints (Sizing calculated fluidly) */}
-        <div className="lg:col-span-7 bg-slate-950/80 border border-white/5 rounded-3xl p-6 relative overflow-hidden h-[330px] sm:h-[390px]" id="vector-map-frame">
-          <div className="absolute inset-0 bg-dotted-pattern opacity-10 pointer-events-none" />
+      {/* 2. Unified Location & Interactive Blueprint Grid Map Panel */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="modern-map-section">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
-          <h4 className="text-slate-400 font-mono text-[10px] tracking-widest uppercase mb-4 text-left">
-            {translations.mapTitle}
-          </h4>
+          {/* Left Block (Lg: 5 columns): Office selector sidebar with rich content details */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-4" id="office-selector-sidebar">
+            <div className="space-y-3.5 text-left">
+              <span className="text-[10px] uppercase tracking-widest font-mono text-slate-500 font-bold block bg-transparent">
+                {language === 'EN' ? 'Corporate Administrations' : language === 'FR' ? 'Administrations Corporatives' : 'Sokajy fitantanana'}
+              </span>
+              
+              <div className="space-y-3">
+                {offices.map((off) => {
+                  const active = activeOffice.id === off.id;
+                  return (
+                    <button
+                      key={off.id}
+                      onClick={() => setActiveOffice(off)}
+                      className={`w-full text-left p-4.5 rounded-2xl transition-all duration-300 border block focus:outline-none cursor-pointer relative ${
+                        active 
+                          ? 'bg-gradient-to-br from-slate-900 to-slate-950 border-orange-500/30 shadow-xl shadow-orange-950/20' 
+                          : 'bg-slate-950/40 border-slate-900/50 hover:bg-slate-900/40 hover:border-slate-800'
+                      }`}
+                      id={`office-sidebar-selector-${off.id}`}
+                    >
+                      {active && (
+                        <div className="absolute left-0 top-4 bottom-4 w-1 premium-gradient-active rounded-r" />
+                      )}
 
-          {/* Simple Vector Map Wireframe Outline of Continents for high-end aesthetic value */}
-          <div className="w-full h-[75%] relative border border-white/5 bg-slate-900/30 rounded-2xl overflow-hidden mt-2" id="globe-radar-canvas">
+                      <div className="flex items-start justify-between space-x-3">
+                        <div className="space-y-1">
+                          <span className="text-xs font-bold text-white block font-sans">
+                            {off.city[language]}
+                          </span>
+                          <span className="text-[10px] text-slate-400 block font-light leading-snug font-sans">
+                            {off.role[language]}
+                          </span>
+                        </div>
+                        
+                        <div className="text-right shrink-0">
+                          <div className="text-[11px] font-mono text-emerald-400 font-bold bg-emerald-950/40 border border-emerald-500/20 px-2 py-0.5 rounded-md flex items-center space-x-1.5 justify-end">
+                            <Clock size={10} />
+                            <span>{clocks[off.id] || '00:00'}</span>
+                          </div>
+                          <span className="text-[8px] font-mono uppercase tracking-wide text-slate-500 block mt-1">
+                            {off.timezone.split('/').pop()}
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Display specifications display for the active selected office */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeOffice.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="p-6 rounded-2xl bg-slate-950/80 border border-slate-900 text-left relative overflow-hidden"
+                id="active-office-details-box"
+              >
+                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-emerald-500/5 rounded-full blur-xl pointer-events-none" />
+
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2 pb-2.5 border-b border-slate-900">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[9px] font-mono tracking-widest text-[#9cb933] uppercase font-bold">
+                      {translations.activeStatus}
+                    </span>
+                  </div>
+
+                  <div className="space-y-3.5 text-xs sm:text-sm text-slate-300">
+                    <div className="flex items-start space-x-3">
+                      <MapPin size={16} className="text-orange-500 mt-0.5 shrink-0" />
+                      <span className="font-light leading-relaxed">{activeOffice.address}</span>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <Phone size={14} className="text-slate-500 shrink-0" />
+                      <a href={`tel:${activeOffice.tel}`} className="font-mono text-slate-300 hover:text-orange-400 transition-colors">
+                        {activeOffice.tel}
+                      </a>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <Mail size={14} className="text-slate-500 shrink-0" />
+                      <a href={`mailto:${activeOffice.email}`} className="font-mono text-slate-300 hover:text-emerald-400 transition-colors truncate">
+                        {activeOffice.email}
+                      </a>
+                    </div>
+
+                    <div className="flex items-center space-x-3 pt-1">
+                      <Clock size={14} className="text-slate-500 shrink-0 border-none" />
+                      <span className="font-mono text-xs text-slate-400">
+                        {activeOffice.hours[language]}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Block (Lg: 7 columns): Sleek blueprint coordinate radar grid map */}
+          <div className="lg:col-span-12 xl:col-span-7 bg-slate-950 border border-slate-900 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between" id="blueprint-radar-frame">
             
-            {/* Ambient scanner grid lines */}
-            <div className="absolute inset-0 border-y border-white/5 flex items-center justify-center">
-              <div className="w-44 h-44 rounded-full border border-emerald-500/10 animate-pulse" />
-              <div className="w-[300px] h-[300px] absolute rounded-full border border-teal-500/5" />
+            {/* Engineering Grid Line Decoration */}
+            <div className="absolute inset-0 grid grid-cols-12 grid-rows-8 opacity-[0.07] pointer-events-none">
+              {Array.from({ length: 96 }).map((_, i) => (
+                <div key={i} className="border-t border-l border-slate-500" />
+              ))}
             </div>
 
-            {/* Custom high-end text labels of continents mapped with relative offset */}
-            <div className="absolute top-[20%] left-[20%] text-[10px] font-mono text-slate-700 select-none">NORTH AMERICA</div>
-            <div className="absolute top-[30%] left-[48%] text-[10px] font-mono text-slate-700 select-none">EUROPE</div>
-            <div className="absolute top-[65%] left-[83%] text-[10px] font-mono text-slate-700 select-none">ASIA-PACIFIC</div>
+            <div className="absolute top-0 left-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Map pinpoint anchors */}
-            {offices.map((off) => {
-              const active = activeOffice.id === off.id;
-              return (
-                <button
-                  key={off.id}
-                  onClick={() => setActiveOffice(off)}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer focus:outline-none"
-                  style={{ left: off.coords.x, top: off.coords.y }}
-                  id={`off-pin-${off.id}`}
-                >
-                  <span className="relative flex h-4 w-4 items-center justify-center">
-                    <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-65 ${
-                      active ? 'bg-emerald-400' : 'bg-slate-500'
-                    }`} />
-                    <span className={`relative inline-flex rounded-full h-2.5 w-2.5 shadow-lg border border-white/45 ${
-                      active ? 'bg-emerald-400 scale-125' : 'bg-slate-600 hover:bg-slate-400'
-                    }`} />
-                  </span>
-                  
-                  {/* Tooltip name */}
-                  <span className={`absolute top-5 left-1/2 transform -translate-x-1/2 bg-slate-950 border border-slate-800 text-[9px] font-mono px-2 py-0.5 rounded text-white tracking-widest ${
-                    active ? 'opacity-100 font-bold border-emerald-500/50' : 'opacity-40'
-                  }`}>
-                    {off.id.toUpperCase()}
-                  </span>
-                </button>
-              );
-            })}
+            <div className="flex items-center justify-between border-b border-slate-900 pb-3 z-10">
+              <div className="space-y-0.5 text-left font-sans">
+                <h4 className="text-white font-mono text-xs tracking-wider uppercase flex items-center space-x-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block" />
+                  <span>{translations.mapTitle}</span>
+                </h4>
+                <p className="text-[10px] text-slate-500 font-mono font-light leading-none">
+                  * {translations.mapSub}
+                </p>
+              </div>
+              <span className="text-[9px] font-mono text-slate-600 bg-slate-900/60 border border-slate-800 px-2 py-0.5 rounded-sm uppercase tracking-widest hidden sm:inline">
+                SCALE 1:350,000,000
+              </span>
+            </div>
+
+            {/* Radar Simulation Board Stage */}
+            <div className="w-full h-[280px] sm:h-[350px] relative border border-slate-905/80 bg-slate-900/15 rounded-2xl overflow-hidden mt-4 flex items-center justify-center select-none" id="radar-blueprint-board">
+              
+              {/* Radial sonar line animations */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[12%] h-[12%] rounded-full border border-slate-800" />
+                <div className="w-[30%] h-[30%] rounded-full border border-slate-800" />
+                <div className="w-[55%] h-[55%] rounded-full border border-slate-850" />
+                <div className="w-[80%] h-[80%] rounded-full border border-slate-900" />
+                
+                <div className="absolute inset-x-0 h-px bg-slate-909/50" />
+                <div className="absolute inset-y-0 w-px bg-slate-909/50" />
+                
+                <div className="absolute w-[240px] h-[240px] rounded-full border border-emerald-500/10 animate-ping opacity-75" />
+              </div>
+
+              {/* Aesthetic static background continent names mapped precisely */}
+              <div className="absolute top-[28%] left-[12%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">NORTH AMERICA</div>
+              <div className="absolute top-[48%] left-[16%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">SOUTH AMERICA</div>
+              <div className="absolute top-[18%] left-[45%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">EUROPE</div>
+              <div className="absolute top-[52%] left-[48%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">AFRICA</div>
+              <div className="absolute top-[32%] left-[76%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">ASIA-PACIFIC</div>
+              
+              {/* Connection vector lines linking back to current selected index */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                <g className="opacity-40">
+                  {offices.map((off) => {
+                    if (off.id === activeOffice.id) return null;
+                    return (
+                      <line
+                        key={`line-${off.id}`}
+                        x1={activeOffice.coords.x}
+                        y1={activeOffice.coords.y}
+                        x2={off.coords.x}
+                        y2={off.coords.y}
+                        stroke="#1f8a5a"
+                        strokeWidth="1"
+                        strokeDasharray="4,4"
+                        className="animate-pulse"
+                      />
+                    );
+                  })}
+                </g>
+              </svg>
+
+              {/* Coordinated interactive radar ping points */}
+              {offices.map((off) => {
+                const active = activeOffice.id === off.id;
+                return (
+                  <button
+                    key={off.id}
+                    onClick={() => setActiveOffice(off)}
+                    className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer focus:outline-none z-10 transition-transform hover:scale-110"
+                    style={{ left: off.coords.x, top: off.coords.y }}
+                    id={`modern-off-pin-${off.id}`}
+                  >
+                    <span className="relative flex h-7 w-7 items-center justify-center">
+                      <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-40 ${
+                        active ? 'bg-orange-500' : 'bg-slate-750'
+                      }`} />
+                      <span className={`relative inline-flex rounded-full h-3 w-3 shadow-2xl border ${
+                        active 
+                          ? 'bg-orange-500 border-white ring-4 ring-orange-500/20' 
+                          : 'bg-slate-700 border-slate-500 hover:bg-slate-500'
+                      }`} />
+                    </span>
+                    
+                    <div className={`absolute top-6 left-1/2 transform -translate-x-1/2 bg-slate-950 border text-[8px] font-mono px-2 py-0.5 rounded tracking-widest uppercase transition-all whitespace-nowrap ${
+                      active 
+                        ? 'text-orange-400 font-bold border-orange-500/30 shadow-lg' 
+                        : 'text-slate-500 border-slate-900'
+                    }`}>
+                      {off.id}
+                    </div>
+                  </button>
+                );
+              })}
+
+            </div>
+
+            <div className="mt-4 pt-3.5 border-t border-slate-900 flex flex-wrap gap-4 items-center justify-between text-[9px] font-mono text-slate-600 z-10">
+              <span className="flex items-center space-x-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse" />
+                <span>ALL DESKS ACTIVE</span>
+              </span>
+              <span>GRID-REF COORD: 14.23.009 • 87.11.23</span>
+            </div>
 
           </div>
 
-          <p className="text-[10px] text-slate-550 font-mono text-left mt-2">
-            * {translations.mapSub}
-          </p>
-
         </div>
-
-        {/* Right column: Single Office detailed card */}
-        <div className="lg:col-span-5" id="office-details-card">
-          <div className="glass card-hover rounded-3xl p-6 sm:p-8 flex flex-col justify-between h-[330px] sm:h-[390px] relative overflow-hidden text-left">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
-
-            <div className="space-y-4">
-              <div>
-                <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-widest">
-                  AETHERIS DESK DIRECTORY
-                </span>
-                <h3 className="text-white font-extrabold text-xl font-sans mt-1">
-                  {activeOffice.city[language]}
-                </h3>
-              </div>
-
-              <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
-                <div className="flex items-start space-x-2.5">
-                  <MapPin size={16} className="text-emerald-500 mt-0.5 flex-shrink-0" />
-                  <span className="font-light">{activeOffice.address}</span>
-                </div>
-
-                <div className="flex items-center space-x-2.5">
-                  <Phone size={14} className="text-emerald-550 flex-shrink-0" />
-                  <span className="font-mono">{activeOffice.tel}</span>
-                </div>
-
-                <div className="flex items-center space-x-2.5">
-                  <Mail size={14} className="text-emerald-555 flex-shrink-0" />
-                  <span className="font-mono">{activeOffice.email}</span>
-                </div>
-
-                <div className="flex items-center space-x-2.5">
-                  <Clock size={14} className="text-emerald-555 flex-shrink-0" />
-                  <span className="font-mono text-xs">{activeOffice.hours[language]}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-t border-slate-900 pt-3 mt-4 text-[10px] font-mono text-slate-550 flex justify-between items-center">
-              <span>DESK STATE: ACTIVE</span>
-              <span className="text-emerald-400">MONITORED v.2026</span>
-            </div>
-
-          </div>
-        </div>
-
       </section>
 
-      {/* 3. Business Inquiry parameters secure Form */}
-      <section className="max-w-xl mx-auto px-4" id="contact-business-form">
-        <div className="glass rounded-3xl p-6 sm:p-8 text-left relative overflow-hidden shadow-2xl">
+      {/* 3. Secure Consultation Form & Verification SLA Panel */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="contact-portal-grid">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <h3 className="text-white font-black text-lg sm:text-xl font-sans mb-1.5 flex items-center space-x-2">
-            <Sparkles size={16} className="text-emerald-400" />
-            <span>{translations.formTitle}</span>
-          </h3>
-          <p className="text-slate-450 text-[11px] leading-tight mb-6 border-b border-slate-900 pb-3">
-            {language === 'EN' ? 'File multi-sector operational requirements, partnerships proposals, or institutional investment briefs.' : language === 'DE' ? 'Übermitteln Sie hier Ihre Anforderungen für Großinvestitionen oder Sektor-Kooperationen.' : '新規アセットの共同開発参画、政府アドバイザリー要請等に関するお見積審査はこちら。'}
-          </p>
-
-          <form onSubmit={handleInquirySubmit} className="space-y-4">
+          {/* Left Block (Lg: 7 columns): Beautiful Request Console */}
+          <div className="lg:col-span-12 xl:col-span-7 bg-slate-950 border border-slate-900 rounded-3xl p-6 sm:p-8 text-left relative overflow-hidden shadow-2xl" id="request-console-form-container">
+            <div className="absolute top-0 left-0 w-full h-1 premium-gradient-active" />
             
-            {/* Candidate Name */}
-            <div className="space-y-1 block">
-              <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
-                {translations.nameLabel}
-              </label>
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Dr. Evelyn Ainsworth"
-                className="w-full bg-slate-900 border border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-600 outline-none transition-all"
-              />
+            <div className="space-y-1.5 mb-6 text-left">
+              <h3 className="text-white font-extrabold text-xl sm:text-2xl tracking-tight flex items-center space-x-2">
+                <Sparkles size={18} className="text-orange-400 shrink-0 animate-pulse" />
+                <span>{translations.formTitle}</span>
+              </h3>
+              <p className="text-slate-400 text-xs font-light leading-relaxed">
+                {translations.formSub}
+              </p>
             </div>
 
-            {/* Email + Sector Type choice */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1 block">
-                <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
-                  {translations.emailLabel}
+            <form onSubmit={handleInquirySubmit} className="space-y-5" id="modern-consultation-form">
+              
+              <div className="space-y-1.5 block">
+                <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-400 uppercase">
+                  {translations.nameLabel}
                 </label>
                 <input
-                  type="email"
-                  value={compEmail}
-                  onChange={(e) => setCompEmail(e.target.value)}
-                  placeholder="evelyn.ainsworth@wealthfund.de"
-                  className="w-full bg-slate-900 border border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-600 outline-none transition-all"
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="e.g. Helena Elizabeth Carter"
+                  className="w-full bg-slate-900/60 border border-slate-800 focus:border-orange-500/55 rounded-xl px-4 py-3 text-xs sm:text-sm text-white placeholder-slate-650 outline-none transition-all focus:bg-slate-900"
+                  id="form-input-representative"
                 />
               </div>
 
-              <div className="space-y-1 block">
-                <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
-                  {translations.typeLabel}
-                </label>
-                <select
-                  value={inquiryType}
-                  onChange={(e) => setInquiryType(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-2.5 text-xs text-white outline-none transition-all"
-                >
-                  <option value="" className="bg-slate-950 text-slate-500">
-                    {language === 'EN' ? '-- Select Portfolio Realm --' : language === 'DE' ? '-- Sektor auswählen --' : '-- 分野・部門を選択 --'}
-                  </option>
-                  <option value="healthcare" className="bg-slate-950 text-white">Healthcare & Lab Diagnostics</option>
-                  <option value="tech" className="bg-slate-950 text-white">Cognitive Enterprise AI Solutions</option>
-                  <option value="energy" className="bg-slate-950 text-white">Renewable Winds & Micro-Grids</option>
-                  <option value="smart-cities" className="bg-slate-950 text-white">Urban Real Estate & Smart Cities</option>
-                  <option value="logistics" className="bg-slate-950 text-white">Freight Logistics cold-chain systems</option>
-                  <option value="board" className="bg-slate-950 text-white">Strategic Board Advisory / ESG</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Content text */}
-            <div className="space-y-1 block">
-              <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
-                {translations.msgLabel}
-              </label>
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                rows={4}
-                placeholder="Secure details regarding investment allocation volumes or civic infrastructure coordinates..."
-                className="w-full bg-slate-900 border border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-600 outline-none transition-all resize-none"
-              />
-            </div>
-
-            {/* States feedback UI */}
-            {formSuccess && (
-              <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-550/20 space-y-2 animate-fade-in text-left">
-                <div className="flex items-center space-x-2 text-emerald-400">
-                  <CheckCircle2 size={15} />
-                  <span className="font-bold text-sm">{translations.formSuccessHeader}</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5 block">
+                  <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-400 uppercase">
+                    {translations.emailLabel}
+                  </label>
+                  <input
+                    type="email"
+                    value={compEmail}
+                    onChange={(e) => setCompEmail(e.target.value)}
+                    placeholder="name@organization.com"
+                    className="w-full bg-slate-900/60 border border-slate-800 focus:border-orange-500/55 rounded-xl px-4 py-3 text-xs sm:text-sm text-white placeholder-slate-650 outline-none transition-all focus:bg-slate-900"
+                    id="form-input-corporate-email"
+                  />
                 </div>
-                <p className="text-[11px] text-slate-300 leading-relaxed font-light">
-                  {translations.formSuccessText}
-                </p>
-              </div>
-            )}
 
-            {formErr && (
-              <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/20 text-xs text-red-300 flex items-center space-x-2">
-                <AlertCircle size={14} className="text-red-400" />
-                <span>{formErr}</span>
+                <div className="space-y-1.5 block">
+                  <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-400 uppercase">
+                    {translations.typeLabel}
+                  </label>
+                  <select
+                    value={inquiryType}
+                    onChange={(e) => setInquiryType(e.target.value)}
+                    className="w-full bg-slate-900/60 border border-slate-800 focus:border-orange-500/55 rounded-xl px-4 py-3 text-xs sm:text-sm text-white outline-none transition-all focus:bg-slate-900"
+                    id="form-select-sector"
+                  >
+                    <option value="" className="bg-slate-950 text-slate-400">
+                      {language === 'EN' ? '-- Select Sector Realm --' : language === 'FR' ? '-- Choisir un secteur --' : '-- Safidio ny Sehatra --'}
+                    </option>
+                    <option value="healthcare" className="bg-slate-950 text-white">Healthcare Network & Diagnostics</option>
+                    <option value="tech" className="bg-slate-950 text-white">Cognitive Enterprise AI Solutions</option>
+                    <option value="energy" className="bg-slate-950 text-white">Renewable Winds & Micro-Grids</option>
+                    <option value="smart-cities" className="bg-slate-950 text-white">Urban Real Estate & Smart Cities</option>
+                    <option value="logistics" className="bg-slate-950 text-white">Freight Logistics cold-chain systems</option>
+                    <option value="advisory" className="bg-slate-950 text-white">Strategic advisory</option>
+                  </select>
+                </div>
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl text-xs transition-all shadow-2xl shadow-emerald-600/30 duration-300 flex items-center justify-center space-x-2 active:scale-98 disabled:opacity-50 cursor-pointer"
-            >
-              {submitting ? (
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              ) : (
-                <>
-                  <Send size={12} />
-                  <span>{translations.submitBtn}</span>
-                </>
+              <div className="space-y-1.5 block">
+                <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-400 uppercase">
+                  {translations.msgLabel}
+                </label>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={4}
+                  placeholder="Submit details regarding investment coordinates, partnership proposals, or project criteria..."
+                  className="w-full bg-slate-900/60 border border-slate-800 focus:border-orange-500/55 rounded-xl px-4 py-3 text-xs sm:text-sm text-white placeholder-slate-650 outline-none transition-all focus:bg-slate-900 resize-none"
+                  id="form-textarea-specifications"
+                />
+              </div>
+
+              {formSuccess && (
+                <div className="p-4 rounded-2xl bg-emerald-950/35 border border-emerald-500/20 space-y-2 animate-fade-in text-left">
+                  <div className="flex items-center space-x-2 text-emerald-400">
+                    <CheckCircle2 size={16} className="shrink-0" />
+                    <span className="font-mono text-xs uppercase font-extrabold tracking-wider">{translations.formSuccessHeader}</span>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed font-light">
+                    {translations.formSuccessText}
+                  </p>
+                </div>
               )}
-            </button>
 
-          </form>
+              {formErr && (
+                <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/20 text-xs text-red-350 flex items-center space-x-2 text-left animate-shake">
+                  <AlertCircle size={15} className="text-red-400 shrink-0" />
+                  <span>{formErr}</span>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full py-4 premium-gradient hover:opacity-90 active:scale-99 text-white font-extrabold rounded-xl text-xs uppercase tracking-widest transition-all shadow-xl shadow-orange-950/20 duration-300 flex items-center justify-center space-x-2.5 disabled:opacity-50 cursor-pointer"
+                id="form-submit-trigger"
+              >
+                {submitting ? (
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  <>
+                    <Send size={13} />
+                    <span>{translations.submitBtn}</span>
+                  </>
+                )}
+              </button>
+
+            </form>
+          </div>
+
+          {/* Right Block (Lg: 5 columns): Secure Verification SLA & Fiduciary Trust details */}
+          <div className="lg:col-span-12 xl:col-span-5 space-y-4 font-sans" id="fiduciary-commitment-panel">
+            <div className="glass rounded-3xl p-6 sm:p-8 text-left relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-[#1f8a5a]/5 rounded-full blur-2xl pointer-events-none" />
+
+              <div className="space-y-4">
+                <div className="p-3 rounded-2xl bg-[#1f8a5a]/10 border border-[#1f8a5a]/25 text-emerald-400 w-12 h-12 flex items-center justify-center">
+                  <ShieldCheck size={24} />
+                </div>
+
+                <div className="space-y-1 block">
+                  <h4 className="text-white font-bold text-base tracking-tight">
+                    {translations.protocolTitle}
+                  </h4>
+                  <p className="text-slate-400 text-xs font-light leading-relaxed">
+                    {translations.protocolDesc}
+                  </p>
+                </div>
+
+                {/* Steps mapping with modern timeline lines */}
+                <div className="space-y-4 pt-3 relative" id="commitment-steps">
+                  <div className="absolute left-3 top-4 bottom-4 w-px bg-slate-900" />
+
+                  <div className="flex items-start space-x-4 relative">
+                    <div className="w-6 h-6 rounded-full bg-slate-900 border border-slate-800 text-[10px] font-mono text-slate-400 flex items-center justify-center shrink-0 z-10">
+                      01
+                    </div>
+                    <div className="space-y-0.5 pt-0.5 text-left">
+                      <span className="text-xs font-medium text-white block">
+                        {translations.protocolStep1}
+                      </span>
+                      <span className="text-[10px] text-slate-505 font-mono block uppercase">
+                        AES-256 TRANSIT
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 relative">
+                    <div className="w-6 h-6 rounded-full bg-slate-900 border border-slate-800 text-[10px] font-mono text-slate-400 flex items-center justify-center shrink-0 z-10">
+                      02
+                    </div>
+                    <div className="space-y-0.5 pt-0.5 text-left">
+                      <span className="text-xs font-medium text-white block">
+                        {translations.protocolStep2}
+                      </span>
+                      <span className="text-[10px] text-slate-505 font-mono block uppercase">
+                        DIRECT ROUTED CABINET
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 relative">
+                    <div className="w-6 h-6 rounded-full bg-[#184f37]/30 border border-[#1f8a5a]/40 text-[10px] font-mono text-emerald-400 flex items-center justify-center shrink-0 z-10 font-bold">
+                      03
+                    </div>
+                    <div className="space-y-0.5 pt-0.5 text-left">
+                      <span className="text-xs font-medium text-white block">
+                        {translations.protocolStep3}
+                      </span>
+                      <span className="text-[10px] font-mono block uppercase font-bold text-emerald-450">
+                        GUARANTEED SLA
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Quick Consultation hours assistance badge */}
+            <div className="p-5 rounded-2xl bg-slate-950/40 border border-slate-900/50 text-left flex items-start space-x-3.5">
+              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-850 text-slate-400 shrink-0">
+                <CalendarDays size={16} />
+              </div>
+              <div className="space-y-1 block">
+                <span className="text-xs font-bold text-white block">
+                  {language === 'EN' ? 'Institutional Schedules' : language === 'FR' ? 'Horaires Institutionnels' : 'Ora fiasana ofisialy'}
+                </span>
+                <span className="text-[11px] text-slate-400 block font-light leading-relaxed">
+                  {language === 'EN' 
+                    ? 'Our regional directorates facilitate physical meetings scheduled with active security clearances, weekdays during central local time zones.' 
+                    : language === 'FR' 
+                      ? 'Nos directions régionales facilitent les réunions physiques programmées avec habilitation de sécurité active de l’entreprise.' 
+                      : 'Ny biraonay dia mandray anao amin’ny fomba ofisialy mandritra ny andro fiasana rehefa misy fandaharam-potoana ofisialy.'}
+                </span>
+              </div>
+            </div>
+          </div>
 
         </div>
       </section>
 
-      {/* 4. Global Support Hotlines */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-xs text-slate-500 font-mono border-t border-slate-900" id="contact-supports">
-        <span>SECURITY PROTOCOL: SSL/TLS 1.3 LEDGER CERTIFIED</span>
-        <span className="mx-3">|</span>
-        <span>24/7 NETWORK OPERATIONS CONTROL PHONE: +41 44 910 2099</span>
-        <br />
-        <div className="flex justify-center space-x-2 mt-4 text-[11px]">
-          <span className="text-slate-400 font-bold uppercase">External Alliance Networks:</span>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline">LinkedIn</a>
-          <span>•</span>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline">Twitter / X</a>
+      {/* 4. Collapsible FAQ Accordion Component */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6" id="faq-section">
+        <div className="bg-slate-950 border border-slate-900 rounded-3xl p-6 sm:p-8 text-left relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-orange-500 to-emerald-400" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+
+          {/* FAQ Header */}
+          <div className="space-y-2 mb-8 text-left">
+            <span className="text-[10px] uppercase tracking-widest font-mono text-emerald-400 font-bold block bg-transparent">
+              {language === 'EN' ? 'REDUCE TICKET VOLUMES' : language === 'FR' ? 'RÉDUIRE LE VOLUME DE DEMANDES' : 'FAMPITANANA HAINGANA'}
+            </span>
+            <h3 className="text-white font-extrabold text-xl sm:text-2xl tracking-tight flex items-center space-x-2.5">
+              <HelpCircle size={20} className="text-emerald-500 shrink-0" />
+              <span>{translations.faqTitle}</span>
+            </h3>
+            <p className="text-slate-400 text-xs sm:text-sm font-light leading-relaxed">
+              {translations.faqSub}
+            </p>
+          </div>
+
+          {/* Accordion List */}
+          <div className="space-y-3.5" id="faq-accordion-group">
+            {faqs.map((faq) => {
+              const isOpen = openFaqId === faq.id;
+              return (
+                <div 
+                  key={faq.id} 
+                  className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                    isOpen 
+                      ? 'bg-slate-900/40 border-emerald-500/30' 
+                      : 'bg-slate-950/50 border-slate-900 hover:border-slate-800'
+                  }`}
+                  id={`faq-item-container-${faq.id}`}
+                >
+                  <button
+                    onClick={() => toggleFaq(faq.id)}
+                    className="w-full text-left p-4.5 sm:p-5 flex items-center justify-between space-x-4 focus:outline-none cursor-pointer"
+                    id={`faq-toggle-btn-${faq.id}`}
+                  >
+                    <span className="text-xs sm:text-sm font-semibold text-slate-100 hover:text-white transition-colors">
+                      {faq.question[language]}
+                    </span>
+                    <span className={`p-1.5 rounded-lg bg-slate-900 border border-slate-850 shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 border-emerald-500/20 text-emerald-400' : 'text-slate-500'
+                    }`}>
+                      <ChevronDown size={14} />
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      >
+                        <div className="px-4.5 pb-5 sm:px-5 sm:pb-6 text-xs sm:text-sm text-slate-400 font-light leading-relaxed border-t border-slate-900/60 pt-4 bg-slate-950/30">
+                          {faq.answer[language]}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. Global Support Hotlines */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-xs text-slate-650 font-mono border-t border-slate-900" id="contact-supports">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px]">
+          <span>VERIFIED ENCRYPTED CONTROLS</span>
+          <div className="flex justify-center space-x-3 text-[11px]">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-emerald-400 hover:underline transition-colors">LinkedIn</a>
+            <span className="text-slate-800">•</span>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-orange-400 hover:underline transition-colors">Twitter / X</a>
+          </div>
         </div>
       </section>
 

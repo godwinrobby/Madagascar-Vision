@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CORPORATE_NEWS } from '../data/corporateData';
 import { NewsItem } from '../types';
@@ -6,12 +6,22 @@ import { Calendar, Search, ArrowRight, X, Heart, ShieldCheck, Newspaper } from '
 
 interface NewsViewProps {
   language: 'EN' | 'DE' | 'JP';
+  selectedNewsId?: string | null;
 }
 
-export function NewsView({ language }: NewsViewProps) {
+export function NewsView({ language, selectedNewsId }: NewsViewProps) {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+
+  useEffect(() => {
+    if (selectedNewsId) {
+      const found = CORPORATE_NEWS.find(n => n.id === selectedNewsId);
+      if (found) {
+        setSelectedNews(found);
+      }
+    }
+  }, [selectedNewsId]);
 
   const translations = {
     EN: {

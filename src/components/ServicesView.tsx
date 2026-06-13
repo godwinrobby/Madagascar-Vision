@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { SERVICES } from '../data/corporateData';
 import { DynamicIcon } from './DynamicIcon';
@@ -5,10 +6,22 @@ import { ChevronRight, ArrowRight, ShieldCheck, Cpu, Layers } from 'lucide-react
 
 interface ServicesViewProps {
   language: 'EN' | 'DE' | 'JP';
+  selectedServiceId?: string | null;
 }
 
-export function ServicesView({ language }: ServicesViewProps) {
+export function ServicesView({ language, selectedServiceId }: ServicesViewProps) {
   
+  useEffect(() => {
+    if (selectedServiceId) {
+      const element = document.getElementById(`service-card-${selectedServiceId}`);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+      }
+    }
+  }, [selectedServiceId]);
+
   const translations = {
     EN: {
       title: 'Our Services & Executive Capabilities',
@@ -55,7 +68,11 @@ export function ServicesView({ language }: ServicesViewProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="glass card-hover rounded-2xl p-6 group flex flex-col justify-between h-[390px] relative overflow-hidden"
+              className={`glass card-hover rounded-2xl p-6 group flex flex-col justify-between h-[390px] relative overflow-hidden transition-all duration-500 ${
+                selectedServiceId === serv.id 
+                  ? 'ring-2 ring-orange-500/80 shadow-2xl shadow-orange-500/10' 
+                  : ''
+              }`}
               id={`service-card-${serv.id}`}
             >
               {/* Backglow element */}

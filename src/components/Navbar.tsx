@@ -23,9 +23,10 @@ interface NavbarProps {
   setLanguage: (lang: 'EN' | 'FR' | 'MG') => void;
   theme: 'dark' | 'light';
   setTheme: (theme: 'dark' | 'light') => void;
+  onOpenSearch: () => void;
 }
 
-export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, setTheme }: NavbarProps) {
+export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, setTheme, onOpenSearch }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
@@ -298,6 +299,8 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
           {/* Action / Language Controls */}
           <div className="hidden md:flex items-center space-x-4" id="nav-actions">
             
+
+
             {/* Theme Selector */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -358,6 +361,8 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
 
           {/* Mobile menu button */}
           <div className="flex xl:hidden items-center space-x-3">
+
+
             {/* Quick Theme Switcher */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
