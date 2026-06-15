@@ -35,7 +35,7 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
   const [mobileMediaOpen, setMobileMediaOpen] = useState(true);
 
   const mainNavItems = [
-    { id: 'sectors', label: { EN: 'Our Company', FR: 'Notre Entreprise', MG: 'Ny Orinasanay' } },
+    { id: 'sectors', label: { EN: 'Our Companies', FR: 'Nos Entreprises', MG: 'Ny Orinasanay' } },
     { id: 'services', label: { EN: 'Services', FR: 'Prestations', MG: 'Asa sy Tolotra' } },
     { id: 'portfolio', label: { EN: 'Portfolio', FR: 'Portefeuille', MG: 'Tahiry' } }
   ];

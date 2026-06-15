@@ -2,108 +2,251 @@ import { Sector, Project, Service, Leader, JobPosition, TimelineEvent, Testimoni
 
 export const SECTORS: Sector[] = [
   {
-    id: 'healthcare',
-    name: 'Healthcare Division',
+    id: 'ngo',
+    name: 'ViMa NGO',
     icon: 'Heart',
-    description: 'Pioneering global wellness through cutting-edge diagnostics, state-of-the-art medical technology, and world-class hospital networks delivering compassionate Patient-First experiences.',
+    description: 'A dedicated philanthropic and social development engine driving humanitarian programs, educational scholarships, healthcare access, and regional community empowerment initiatives throughout Madagascar.',
     metrics: [
-      { label: 'Patient Outcomes', value: '99.2% Yes' },
-      { label: 'Advanced Facilities', value: '42 Centers' },
-      { label: 'R&D Investment', value: '$120M+' }
+      { label: 'Active Initiatives', value: '34' },
+      { label: 'Lives Impacted', value: '250,000+' },
+      { label: 'Resource Efficiency', value: '98.5%' }
     ],
-    services: ['Tertiary Care Referral Hospitals', 'Molecular Precision Diagnostics', 'Robotic-Assisted Surgery Integration'],
-    imagingSeed: 'healthcare'
+    services: ['Public School Funding & Supplies', 'Mobile Clinical Outreach Stations', 'Civic Empowerment Workshops'],
+    imagingSeed: 'humanitarian'
   },
   {
-    id: 'technology',
-    name: 'Technology Division',
-    icon: 'Cpu',
-    description: 'Driving enterprise scale via bespoke Next-Gen software development, custom generative AI integrations, advanced cognitive analytics, and secure cloud orchestration architectures.',
+    id: 'tsingy',
+    name: 'ViMa Tsingy Bay',
+    icon: 'Compass',
+    description: 'An elite global eco-hospitality resort and sustainable real estate development project, protecting and celebrating Madagascar\'s pristine coastal ecosystems through zero-carbon design.',
     metrics: [
-      { label: 'SLA Availability', value: '99.999%' },
-      { label: 'Data Protected', value: '4.8 Exabytes' },
-      { label: 'Tech Engineers', value: '2,400+' }
+      { label: 'Net Carbon Footprint', value: '0.0%' },
+      { label: 'Guest satisfaction NPS', value: '98.8%' },
+      { label: 'Protected Bio-reserve', value: '4,500 Ha' }
     ],
-    services: ['Enterprise AI & ML Solutions', 'High-Scale Cloud Engineering', 'Cybersecurity Threat Intelligence'],
-    imagingSeed: 'technology'
+    services: ['Luxury Organic Eco-Resorts', 'Low-Impact Residential Development', 'Biodiversity & Species Conservation'],
+    imagingSeed: 'beach'
+  },
+  {
+    id: 'water',
+    name: 'ViMa Water Bank',
+    icon: 'Droplet',
+    description: 'Providing sustainable access to critical drinking reserves through advanced high-scale filtration, containerized water treatment systems, and municipal distribution grids.',
+    metrics: [
+      { label: 'Purified/Year', value: '12M Liters' },
+      { label: 'Communities Served', value: '110+' },
+      { label: 'Active Pump Stations', value: '48' }
+    ],
+    services: ['High-Output Reverse Osmosis', 'Sovereign Clean-Water Wells', 'Affordable Local Distribution Networks'],
+    imagingSeed: 'purity'
+  },
+  {
+    id: 'france',
+    name: 'ViMa France',
+    icon: 'Globe',
+    description: 'The international liaison and European gateway for the ViMa group, managing offshore trade relations, corporate asset structuring, and cross-continental public-private alliances.',
+    metrics: [
+      { label: 'Foreign Direct Inflow', value: '€450M+' },
+      { label: 'Investment Partners', value: '15' },
+      { label: 'Bilateral Corridors', value: '4' }
+    ],
+    services: ['European Trade Representation', 'Sovereign Investment Alignment', 'Global Asset Management Advisory'],
+    imagingSeed: 'europe'
+  },
+  {
+    id: 'wtc',
+    name: 'ViMa World Trade Center Antananarivo',
+    icon: 'Building2',
+    description: 'The executive showcase, trade matchmaker, and licensed World Trade Center hub of Madagascar, hosting sovereign chambers of commerce and top-tier business exhibitions.',
+    metrics: [
+      { label: 'Leased Office Spaces', value: '92.5%' },
+      { label: 'Executive Members', value: '240+' },
+      { label: 'International Events', value: '12/Year' }
+    ],
+    services: ['Grade-A Premium Building Leasing', 'Executive Business Centers', 'International Trade Facilitation'],
+    imagingSeed: 'wtc'
+  },
+  {
+    id: 'management',
+    name: 'ViMa Management',
+    icon: 'Briefcase',
+    description: 'Providing elite administrative services, executive governance frameworks, legal compliance auditing, and strategic development advisory to cross-border portfolios.',
+    metrics: [
+      { label: 'Supervised Assets', value: '$1.8B' },
+      { label: 'Corporate Clients', value: '88' },
+      { label: 'Accuracy Rating', value: '99.9%' }
+    ],
+    services: ['Strategic Corporate Structuring', 'Sovereign Compliance Auditing', 'Interim Board Placement'],
+    imagingSeed: 'management'
+  },
+  {
+    id: 'agulhas',
+    name: 'ViMa Agulhas',
+    icon: 'Anchor',
+    description: 'An expert maritime agency managing deep-water shipping, logistical custom clearances, vessel chartering, and refrigerated cargo terminals near critical channels.',
+    metrics: [
+      { label: 'Cargo Routed', value: '3.4M Tons' },
+      { label: 'Port Dispatches', value: '840' },
+      { label: 'Green Ground Fleet', value: '92%' }
+    ],
+    services: ['Ocean Freight Integration', 'Sovereign Port Liaisons', 'Refrigerated Depot Solutions'],
+    imagingSeed: 'cargo'
   },
   {
     id: 'realestate',
-    name: 'Real Estate Division',
-    icon: 'Building2',
-    description: 'Shaping the future of community via carbon-neutral smart cities, futuristic commercial towers, premium residential spaces, and ultra-high-efficiency master-planned environments.',
+    name: 'ViMa Real Estate',
+    icon: 'Layout',
+    description: 'Madagascar\'s premier urban masterproperty developer, constructing climate-resilient commercial developments, technology business parks, and smart family apartments.',
     metrics: [
-      { label: 'Leased Portfolio', value: '18M+ sq ft' },
-      { label: 'Green Certification', value: 'LEED Gold+' },
-      { label: 'Resident NPS', value: '78+' }
+      { label: 'Completed Buildings', value: '42' },
+      { label: 'LEED Certified Spaces', value: '2.8M SF' },
+      { label: 'Customer NPS', value: '81' }
     ],
-    services: ['Sustainable Urban Master-Planning', 'High-End Commercial Assets', 'Smart City Technological Integration'],
-    imagingSeed: 'realestate'
+    services: ['Smart Smart-City Zoning', 'A-Grade Commercial Developments', 'Net-Zero Residential Complexes'],
+    imagingSeed: 'apartment'
+  },
+  {
+    id: 'mall',
+    name: 'ViMa Majungasaurus Mall',
+    icon: 'ShoppingBag',
+    description: 'The crowning retail and lifestyle destination of Madagascar, blending high-end fashion, leisure entertainment, and cultural spaces in a fully solar-powered complex.',
+    metrics: [
+      { label: 'Foot Traffic/Year', value: '5.2M' },
+      { label: 'Active Tenants', value: '165' },
+      { label: 'Renewable Power Share', value: '100%' }
+    ],
+    services: ['Anchor Tenant Property Management', 'Eco-Concept Entertainment Centers', 'Cultural Showcase Curation'],
+    imagingSeed: 'mall'
+  },
+  {
+    id: 'serv',
+    name: "ViMa Serv'",
+    icon: 'Settings',
+    description: 'Integrated facilities management, high-security operations, advanced industrial cleaning, corporate food solutions, and mechanical assets support systems.',
+    metrics: [
+      { label: 'Uptime SLA', value: '99.95%' },
+      { label: 'Sites Maintained', value: '180+' },
+      { label: 'Specialized Staff', value: '1,400' }
+    ],
+    services: ['Enterprise Facilities Servicing', 'Institutional Catering Programs', 'Electro-Mechanical Preventive Audits'],
+    imagingSeed: 'services'
+  },
+  {
+    id: 'dis',
+    name: 'ViMa Dis',
+    icon: 'Truck',
+    description: 'The secure nationwide consumer products distribution network of Madagascar, running hyper-efficient cold chains and advanced regional inventory terminals.',
+    metrics: [
+      { label: 'Points of Sale', value: '1,200+' },
+      { label: 'Dispatch Precision', value: '99.7%' },
+      { label: 'Cold-Chain Warehouses', value: '14' }
+    ],
+    services: ['National FMCG Distribution', 'Advanced Warehouse Management', 'Last-Mile Micro-Logistics'],
+    imagingSeed: 'delivery'
+  },
+  {
+    id: 'woods',
+    name: 'ViMa Woods',
+    icon: 'Trees',
+    description: 'Fostering ecological sustainability through FSC-certified forestry nurseries, premium responsible timber cultivations, and high-quality local mill timber production.',
+    metrics: [
+      { label: 'Reforested Saplings', value: '1.2M' },
+      { label: 'FSC Certified Forests', value: '24k Ha' },
+      { label: 'Carbon Sink Output', value: 'Carbon-Neg' }
+    ],
+    services: ['FSC Silviculture & Planting', 'Fine Architectural Woodwork', 'Sovereign Carbon-Sink Offset Audits'],
+    imagingSeed: 'forest'
+  },
+  {
+    id: 'hybrid',
+    name: 'ViMa Hybrid-Energy',
+    icon: 'Zap',
+    description: 'Developing next-generation clean power solutions combining solar photovoltaic technology, automated battery backup arrays, and microgrids for remote villages.',
+    metrics: [
+      { label: 'Decentralized Power', value: '85 MW' },
+      { label: 'CO2 Offset/Year', value: '185k Tons' },
+      { label: 'Sovereign Grid Nodes', value: '120' }
+    ],
+    services: ['Solar Microgrid Installations', 'High-Output Specialized Storage', 'Off-Grid Smart Meter Operations'],
+    imagingSeed: 'solar'
+  },
+  {
+    id: 'hydro',
+    name: 'ViMa Hydro',
+    icon: 'Waves',
+    description: 'Engineering run-of-the-river clean hydroelectric power plants to supply renewable electricity to regional grids without disruptive ecological damage.',
+    metrics: [
+      { label: 'Run-of-River Capacity', value: '210 MW' },
+      { label: 'Emission Reductions', value: '480k Tons' },
+      { label: 'Grid Feed Reliability', value: '99.98%' }
+    ],
+    services: ['Hydro-Kinetic Impact Planning', 'Weir & Turbine Structural Casts', 'Grid Connection High-Voltage Lines'],
+    imagingSeed: 'hydro'
+  },
+  {
+    id: 'yoga',
+    name: 'ViMa Z-Yoga',
+    icon: 'Heart',
+    description: 'Nurturing community wellness, mindfulness training, physical retreats, and eco-fitness hubs designed to promote physical and holistic mental health.',
+    metrics: [
+      { label: 'Sanctuary Members', value: '14,000+' },
+      { label: 'Aesthetic Studios', value: '8' },
+      { label: 'Client Feedback SLA', value: '92%' }
+    ],
+    services: ['Corporate Mind-Body Alignment', 'Immersive Yoga Masterclasses', 'Eco-Wellness Resort Integration'],
+    imagingSeed: 'yoga'
   },
   {
     id: 'construction',
-    name: 'Construction Division',
+    name: 'ViMa Construction',
     icon: 'HardHat',
-    description: 'Constructing robust, multi-generational infrastructure, complex transit facilities, and heavy industrial facilities utilizing proprietary sustainable materials and AI-routed workflows.',
+    description: 'Constructing civil infrastructure of sovereign scale, paving resilient road networks, bridges, and state buildings utilizing green cement products.',
     metrics: [
-      { label: 'Incidents Rate', value: '0.00 (Zero)' },
-      { label: 'Mega Projects', value: '115 Delivered' },
-      { label: 'Material Efficiency', value: '94.5%' }
+      { label: 'Delivered Civil Projects', value: '78' },
+      { label: 'Security SLA Rating', value: '100% Zero' },
+      { label: 'Direct Local Workers', value: '4,500' }
     ],
-    services: ['Transnational Civil Engineering', 'Heavy Prefabricated Assembly', 'Sustainable Structural Design'],
+    services: ['Heavy Public Infrastructure Paving', 'Bespoke Corporate Civil Casting', 'Prefab Eco-Structural Piles'],
     imagingSeed: 'construction'
   },
   {
-    id: 'energy',
-    name: 'Energy Division',
-    icon: 'Sparkles',
-    description: 'Powering transition towards renewable pathways with gigawatt-scale wind farms, concentrated solar arrays, grid-level battery storage, and smart micro-grid utility networks.',
+    id: 'mining',
+    name: 'ViMa Mining',
+    icon: 'Gem',
+    description: 'Conducting high-compliance, ESG-regulated mineral extraction, focusing on premium sand elements and clean graphite under strict soil reclamation programs.',
     metrics: [
-      { label: 'Clean Power Gen', value: '8.4 Gigawatts' },
-      { label: 'CO2 Offset', value: '15.4M Tons' },
-      { label: 'Grid Connection', value: '3.2M Homes' }
+      { label: 'Soil Rehabilitation SLA', value: '100%' },
+      { label: 'Global Compliance Tier', value: 'AAA' },
+      { label: 'Local Community Aid', value: '$42M' }
     ],
-    services: ['Utility-Scale PV Assets', 'Offshore Wind Generation', 'Smart Micro-Grid Logistics'],
-    imagingSeed: 'energy'
+    services: ['Low-Dust Element Extraction', 'Bespoke Ecological Rehabilitation', 'Responsible Export Trade Alignment'],
+    imagingSeed: 'mining'
   },
   {
-    id: 'manufacturing',
-    name: 'Manufacturing Division',
-    icon: 'Combine',
-    description: 'Precision manufacturing of critical micro-components and industrial automation parts, scaling global export channels with full climate-aware green supply operations.',
+    id: 'oilgas',
+    name: 'ViMa Oil And Gas',
+    icon: 'Fuel',
+    description: 'Securing national fuel strategies, liquid storage networks, emergency power buffers, and transition gas conduits to maintain absolute domestic economic uptime.',
     metrics: [
-      { label: 'Yield Rate', value: '99.998%' },
-      { label: 'Automated Plants', value: '14 Facilities' },
-      { label: 'Global Trade Hubs', value: '45 countries' }
+      { label: 'Depot Safe Vaults', value: '4.8M bbl' },
+      { label: 'Zero Spill SLA Record', value: '100%' },
+      { label: 'National Buffer Share', value: 'High' }
     ],
-    services: ['Advanced Micro-Component Cast', 'Fully-Automated Circular Assembly', 'Zero-Waste Supply Routing'],
-    imagingSeed: 'manufacturing'
+    services: ['Strategic Hydrocarbon Reserves', 'Safe Industrial LNG Pipeline Feed', 'Rigid Environmental Leak Controls'],
+    imagingSeed: 'petroleum'
   },
   {
-    id: 'logistics',
-    name: 'Logistics Division',
-    icon: 'Truck',
-    description: 'End-to-end multi-modal routing, advanced temperature-controlled warehousing, and global container movements coordinated by automated real-time cognitive dispatch.',
+    id: 'maromokotro',
+    name: 'ViMa Maromokotro',
+    icon: 'Mountain',
+    description: 'Unlocking eco-tourism networks, high-altitude mountain research trails, zero-input high-altitude tea plantations, and critical forest preservation projects near Madagascar\'s highest summit.',
     metrics: [
-      { label: 'On-Time Performance', value: '99.85%' },
-      { label: 'Cold-Chain Space', value: '4.2M cu ft' },
-      { label: 'Clean Truck Fleet', value: '85% Electric' }
+      { label: 'Station Altitude', value: '2,876m' },
+      { label: 'Highland Conservation', value: '12k Ha' },
+      { label: 'Academy Alliances', value: '8' }
     ],
-    services: ['Secure Global Cargo Flow', 'Dynamic Cold-Chain Logistics', 'Autonomous Warehouse Robotics'],
-    imagingSeed: 'logistics'
-  },
-  {
-    id: 'consulting',
-    name: 'Consulting & Advisory',
-    icon: 'Briefcase',
-    description: 'Transformative management solutions powering boards and leaders with operational blueprinting, strategic transaction advice, and enterprise risk intelligence.',
-    metrics: [
-      { label: 'Client Advisory Value', value: '$45B+' },
-      { label: 'M&A Transactions', value: '280+ Completed' },
-      { label: 'Client Retention', value: '96.4%' }
-    ],
-    services: ['Strategic Board Advisory', 'Digital Capital Assessment', 'Risk & Compliance Restructuring'],
-    imagingSeed: 'consulting'
+    services: ['High-Altitude Ecology Studies', 'Carbon-Neutral Mountain Lodges', 'Organic Highland Crop Cultivation'],
+    imagingSeed: 'mountain'
   }
 ];
 

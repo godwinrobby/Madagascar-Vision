@@ -164,7 +164,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
                 <div className="absolute inset-x-0 inset-y-0 rounded-full bg-gradient-to-tr from-[#db5b1a] via-[#9cb933] to-[#1f8a5a] blur-xl opacity-35 group-hover:opacity-70 transition-opacity" />
                 <div className="w-full h-full rounded-full bg-slate-950 flex flex-col items-center justify-center relative z-10 text-center px-4">
                   <span className="text-[10px] font-mono font-bold tracking-widest uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#db5b1a] to-[#9cb933]">
-                    Our Company
+                    Our Companies
                   </span>
                   <span className="text-white font-extrabold text-xl mt-1 select-none">
                     Æ CORE

@@ -18,6 +18,7 @@ import {
   FileText
 } from 'lucide-react';
 import { SECTORS, SERVICES, CORPORATE_NEWS } from '../data/corporateData';
+import { DynamicIcon } from './DynamicIcon';
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -212,8 +213,9 @@ export function SearchOverlay({ isOpen, onClose, language, onSelectResult }: Sea
 
   const getResultIcon = (item: SearchResult) => {
     if (item.type === 'sector') {
-      const Icon = SECTOR_ICONS[item.id] || Building2;
-      return <Icon size={16} className="text-emerald-400 shrink-0 animate-pulse" />;
+      const companyItem = SECTORS.find(s => s.id === item.id);
+      const iconName = companyItem ? companyItem.icon : 'Building2';
+      return <DynamicIcon name={iconName} size={16} className="text-emerald-400 shrink-0" />;
     }
     if (item.type === 'service') {
       return <Cpu size={16} className="text-orange-400 shrink-0" />;

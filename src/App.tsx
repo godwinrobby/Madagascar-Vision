@@ -123,6 +123,7 @@ export default function App() {
             language={language}
             selectedSectorId={selectedSectorId}
             setSelectedSectorId={setSelectedSectorId}
+            setActiveTab={handleSetActiveTab}
           />
         );
       case 'services':
