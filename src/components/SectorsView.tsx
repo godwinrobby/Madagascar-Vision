@@ -78,6 +78,8 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
       if (found) {
         setSelectedCompany(found);
       }
+    } else {
+      setSelectedCompany(null);
     }
   }, [selectedSectorId]);
 
@@ -205,7 +207,10 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
     return (
       <CompanyDetailView
         companyId={selectedSectorId}
-        onBack={() => setSelectedSectorId(null)}
+        onBack={() => {
+          setSelectedSectorId(null);
+          setSelectedCompany(null);
+        }}
         onInquire={(companyName) => {
           if (setActiveTab) {
             setActiveTab('contact');
