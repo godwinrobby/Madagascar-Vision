@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Group, Heart, Cpu, Building2, HardHat, Sparkles, Combine, Truck, Briefcase, ChevronRight, Award, Shield, CheckCircle, Users, MapPin, Clock, ArrowRight, Calendar } from 'lucide-react';
 import { SECTORS, TESTIMONIALS, VALUE_PROPS, CORPORATE_EVENTS } from '../data/corporateData';
 import { DynamicIcon } from './DynamicIcon';
+import { CompanyLogo } from './CompanyLogo';
 
 interface HomeViewProps {
   language: 'EN' | 'FR' | 'MG';
@@ -252,9 +253,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
               <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div>
-                <div className="w-12 h-12 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-center text-emerald-400 mb-4 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-all">
-                  <DynamicIcon name={sec.icon} size={20} />
-                </div>
+                <CompanyLogo id={sec.id} size="md" className="mb-4 border border-slate-900 group-hover:ring-emerald-500/30 transition-all" />
                 
                 <h3 className="text-white text-base font-bold tracking-tight mb-2 group-hover:text-emerald-400 transition-colors">
                   {sec.name}

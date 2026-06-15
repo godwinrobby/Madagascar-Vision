@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { SECTORS } from '../data/corporateData';
 import { Sector } from '../types';
 import { DynamicIcon } from './DynamicIcon';
+import { CompanyLogo } from './CompanyLogo';
+import { CompanyDetailView } from './CompanyDetailView';
 import {
   Heart,
   Compass,
@@ -199,6 +201,22 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
     return matchesCategory && matchesSearch;
   });
 
+  if (selectedSectorId) {
+    return (
+      <CompanyDetailView
+        companyId={selectedSectorId}
+        onBack={() => setSelectedSectorId(null)}
+        onInquire={(companyName) => {
+          if (setActiveTab) {
+            setActiveTab('contact');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
+        language={language}
+      />
+    );
+  }
+
   return (
     <div id="companies-view-wrapper" className="space-y-16 pb-24 relative">
       
@@ -290,9 +308,7 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
                   <div>
                     {/* Header: Icon & Category Label */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-11 h-11 rounded-xl bg-slate-900/85 border border-slate-800 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-all shadow-inner">
-                        <DynamicIcon name={company.icon} size={18} />
-                      </div>
+                      <CompanyLogo id={company.id} size="md" className="ring-1 ring-slate-900 group-hover:ring-emerald-500/30 transition-all shadow-md" />
                       <span className="text-[9px] font-mono font-semibold tracking-wider text-slate-500 uppercase">
                         {categoryLabel}
                       </span>
@@ -357,13 +373,16 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
                   
                   {/* Floating labels */}
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block mb-1 font-bold">
-                      ACTIVE OPERATIONAL CORRIDOR SEC-{selectedCompany.id.toUpperCase()}
-                    </span>
-                    <h2 className="text-white text-2xl font-black tracking-tight font-sans">
-                      {selectedCompany.name}
-                    </h2>
+                  <div className="absolute bottom-6 left-6 right-6 flex items-end space-x-4">
+                    <CompanyLogo id={selectedCompany.id} size="lg" className="border border-white/10 shadow-xl bg-slate-950/80 rounded-2xl shrink-0" />
+                    <div>
+                      <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block mb-1 font-bold">
+                        ACTIVE OPERATIONAL CORRIDOR SEC-{selectedCompany.id.toUpperCase()}
+                      </span>
+                      <h2 className="text-white text-2xl font-black tracking-tight font-sans">
+                        {selectedCompany.name}
+                      </h2>
+                    </div>
                   </div>
 
                   {/* Absolute X close button */}
