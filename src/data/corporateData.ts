@@ -1,5 +1,11 @@
 import { Sector, Project, Service, Leader, JobPosition, TimelineEvent, Testimonial, NewsItem, BlogItem, CorporateEvent } from '../types';
 
+import ceoHelenaImg from '../assets/images/ceo_helena_portrait_1781508489148.jpg';
+import ctoMarcusImg from '../assets/images/cto_marcus_portrait_1781508505462.jpg';
+import partnerAmaraImg from '../assets/images/partner_amara_portrait_1781508523475.jpg';
+import csoJonathanImg from '../assets/images/cso_jonathan_portrait_1781508539540.jpg';
+
+
 export const SECTORS: Sector[] = [
   {
     id: 'ngo',
@@ -372,28 +378,32 @@ export const LEADERS: Leader[] = [
     name: 'Helena Vance-Sterling',
     role: 'Chief Executive Officer',
     bio: 'With over 24 years directing multi-billion dollar capital programs, Helena guides Vision Madagascar`s strategic direction, ensuring portfolio diversification and deep alignment with institutional investor pools.',
-    imageSeed: 'executive_woman_portrait'
+    imageSeed: 'executive_woman_portrait',
+    imageUrl: ceoHelenaImg
   },
   {
     id: 'lead-2',
     name: 'Marcus K. Chen, PhD',
     role: 'Chief Technology Officer',
     bio: 'A visionary in computer science and edge intelligence, Dr. Chen oversees technology investments, AI deployment, cyber posture, and digital twin systems across our core physical assets.',
-    imageSeed: 'executive_man_glasses'
+    imageSeed: 'executive_man_glasses',
+    imageUrl: ctoMarcusImg
   },
   {
     id: 'lead-3',
     name: 'Amara Diop-Sartre',
     role: 'Managing Partner, Energy Partnerships & Infrastructure',
     bio: 'Amara specializes in global asset investment, renewable power purchase partnerships, and cross-border civil mega-projects, previously directing national infrastructure funds.',
-    imageSeed: 'executive_woman_corporate'
+    imageSeed: 'executive_woman_corporate',
+    imageUrl: partnerAmaraImg
   },
   {
     id: 'lead-4',
     name: 'Jonathan Reynolds',
     role: 'Chief Sustainability Officer',
     bio: 'Jonathan coordinates our multi-sector ESG commitments, ensuring that our operations across manufacturing, building, logistics, and healthcare maintain absolute compliance with global sustainability agreements.',
-    imageSeed: 'executive_man_grey_hair'
+    imageSeed: 'executive_man_grey_hair',
+    imageUrl: csoJonathanImg
   }
 ];
 

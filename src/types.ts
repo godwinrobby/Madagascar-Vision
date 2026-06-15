@@ -38,6 +38,7 @@ export interface Leader {
   role: string;
   bio: string;
   imageSeed: string;
+  imageUrl?: string;
 }
 
 export interface JobPosition {

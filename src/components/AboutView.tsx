@@ -214,7 +214,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
                 >
                   <div className="w-10 h-10 rounded-lg overflow-hidden bg-slate-900 border border-white/5 mb-3">
                     <img 
-                      src={`https://picsum.photos/seed/${lead.imageSeed}/100/100`} 
+                      src={lead.imageUrl || `https://picsum.photos/seed/${lead.imageSeed}/100/100`} 
                       alt={lead.name}
                       className="w-full h-full object-cover grayscale transition-all group-hover:grayscale-0 group-hover:scale-105"
                       referrerPolicy="no-referrer"
