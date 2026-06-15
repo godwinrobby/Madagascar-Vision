@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CompanyLogo } from './CompanyLogo';
 import { 
   Menu, 
   X, 
@@ -99,18 +100,7 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
           
           {/* Logo / Brand */}
           <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => handleNavClick('home')} id="navbar-logo">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#db5b1a] via-[#9cb933] to-[#1f8a5a] flex items-center justify-center shadow-lg relative group mr-3">
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-[#db5b1a] via-[#9cb933] to-[#1f8a5a] blur-md opacity-30 group-hover:opacity-75 transition-opacity" />
-              <span className="text-white font-black text-sm select-none relative z-10 tracking-tight">VM</span>
-            </div>
-            <div>
-              <span className="text-white font-extrabold text-lg sm:text-xl tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
-                Vision
-              </span>
-              <span className="text-emerald-400 text-xs block tracking-widest uppercase font-mono font-bold leading-none -mt-1 ml-0.5">
-                Madagascar
-              </span>
-            </div>
+            <CompanyLogo id="vima" size="md" className="bg-transparent border-0 shadow-none p-0 !w-[100px] !h-[45px]" />
           </div>
 
           {/* Desktop Navigation */}

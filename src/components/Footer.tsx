@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, ArrowRight, ExternalLink, Linkedin, Twitter, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { CompanyLogo } from './CompanyLogo';
 
 interface FooterProps {
   setActiveTab: (tab: string) => void;
@@ -111,12 +112,7 @@ export function Footer({ setActiveTab, language }: FooterProps) {
           {/* Logo, About text & Socials */}
           <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center cursor-pointer" onClick={() => handleLink('home')}>
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#db5b1a] via-[#9cb933] to-[#1f8a5a] flex items-center justify-center mr-3 shadow-lg">
-                <span className="text-white font-black text-xs select-none tracking-tight">VM</span>
-              </div>
-              <span className="text-white font-extrabold text-xl tracking-wider uppercase">
-                Vision <span className="text-[#db5b1a] font-mono font-bold text-xs block -mt-1 tracking-widest">Madagascar</span>
-              </span>
+              <CompanyLogo id="vima" size="md" className="bg-transparent border-0 shadow-none p-0 !w-[100px] !h-[45px]" />
             </div>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">

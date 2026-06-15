@@ -8,7 +8,13 @@ interface CompanyLogoProps {
 
 export function CompanyLogo({ id, size = 'md', className = '' }: CompanyLogoProps) {
   // Determine sizing classes
-  const sizeClasses = {
+  const isVima = id === 'vima';
+  const sizeClasses = isVima ? {
+    sm: 'w-24 h-12 rounded-xl text-xs',
+    md: 'w-36 h-18 rounded-2xl text-sm',
+    lg: 'w-52 h-26 rounded-3xl text-base',
+    xl: 'w-80 h-40 rounded-[2rem] text-xl'
+  }[size] : {
     sm: 'w-10 h-10 rounded-xl text-sm',
     md: 'w-16 h-16 rounded-2xl text-base',
     lg: 'w-24 h-24 rounded-3xl text-lg',
@@ -448,6 +454,43 @@ export function CompanyLogo({ id, size = 'md', className = '' }: CompanyLogoProp
                 <stop offset="100%" stopColor="#0284c7" />
               </linearGradient>
             </defs>
+          </svg>
+        );
+
+      case 'vima':
+        return (
+          <svg viewBox="0 0 240 100" className="w-full h-full p-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Elegant double-curved arc from the image */}
+            <path d="M15 72 C 75 32, 160 7, 225 62" stroke="#426b5d" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+            <path d="M15 72 C 60 65, 90 60, 107 58" stroke="#426b5d" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+            
+            {/* ViMa Custom hybrid typography layout */}
+            <g className="fill-slate-900 dark:fill-white font-sans font-bold select-none leading-none">
+              {/* capital V */}
+              <text x="105" y="70" className="text-[32px] tracking-tight">V</text>
+              
+              {/* lowercase i stem + red dot */}
+              <rect x="128.5" y="47" width="5" height="23" rx="0.8" className="fill-slate-900 dark:fill-white transition-colors" />
+              <circle cx="131" cy="40" r="3.2" fill="#db5b1a" />
+              
+              {/* capital M */}
+              <text x="137" y="70" className="text-[32px] tracking-tight">M</text>
+              
+              {/* lowercase a */}
+              <text x="170" y="70" className="text-[32px] tracking-tight">a</text>
+            </g>
+            
+            {/* "vision madagascar" tracking subtitle, exact layout via textLength */}
+            <text 
+              x="15" 
+              y="90" 
+              textLength="210" 
+              lengthAdjust="spacing" 
+              className="font-sans font-light text-[9px] lowercase opacity-80" 
+              fill="currentColor"
+            >
+              vision madagascar
+            </text>
           </svg>
         );
 
