@@ -96,11 +96,11 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
   return (
     <header className="fixed top-0 left-0 w-full z-50 glass-nav shadow-lg" id="navbar-header">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           
           {/* Logo / Brand */}
           <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => handleNavClick('home')} id="navbar-logo">
-            <CompanyLogo id="vima" size="md" className="bg-transparent border-0 shadow-none p-0 !w-[100px] !h-[45px]" />
+            <CompanyLogo id="vima" size="md" className="bg-transparent border-0 shadow-none p-0 !w-[200px] !h-[84px]" />
           </div>
 
           {/* Desktop Navigation */}

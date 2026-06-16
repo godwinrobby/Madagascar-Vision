@@ -112,7 +112,7 @@ export function Footer({ setActiveTab, language }: FooterProps) {
           {/* Logo, About text & Socials */}
           <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center cursor-pointer" onClick={() => handleLink('home')}>
-              <CompanyLogo id="vima" size="md" className="bg-transparent border-0 shadow-none p-0 !w-[100px] !h-[45px]" />
+              <CompanyLogo id="vima" size="md" className="bg-transparent border-0 shadow-none p-0 !w-[200px] !h-[84px]" />
             </div>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
