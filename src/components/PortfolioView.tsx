@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PROJECTS } from '../data/corporateData';
+import { getTranslatedProjects } from '../utils/translator';
 import { Project } from '../types';
 import { 
   Globe, 
@@ -21,13 +22,15 @@ import {
 } from 'lucide-react';
 
 interface PortfolioViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
 }
 
 export function PortfolioView({ language }: PortfolioViewProps) {
   const [activeFilter, setActiveFilter] = useState<'ALL' | 'HEALTH' | 'RE' | 'ENERGY' | 'LOGISTICS'>('ALL');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [simCapital, setSimCapital] = useState<number>(50); // In Millions USD/EUR
+
+  const translatedProjects = getTranslatedProjects(PROJECTS, language);
 
   const translations = {
     EN: {
@@ -49,43 +52,43 @@ export function PortfolioView({ language }: PortfolioViewProps) {
       co2Reduction: 'CO2 Avoidance Projection',
       efficiencyFactor: 'Systemic Efficiency Gain'
     },
-    DE: {
-      title: 'Unser Asset-Portfolio & Infrastruktur',
-      sub: 'Transparente Verwaltung von staatlich zertifizierten Großbeteiligungen, digitalen Versorgern und dekarbonisierten Versorgungsnetzen.',
-      metricValuation: 'AUM-Anlagen-Bewertung',
-      metricOffset: 'CO₂-Einsparungsquote',
-      metricSLA: 'Systemische Betriebs-SLA',
-      exploreBtn: 'Vollständige Fallstudie einsehen',
-      backBtn: 'Zurück zur Portfolio-Übersicht',
-      filterLabel: 'Anlagenklasse filtern',
-      challengeLabel: 'Die Ausgangslage & Herausforderung',
-      solutionLabel: 'Die realisierte Lösung',
-      resultLabel: 'Die messbaren Ergebnisse',
-      simulatorTitle: 'Zivilgesellschaftlicher Rendite-Rechner',
-      simulatorSub: 'Projizieren Sie den Nachhaltigkeitseffekt von simulierten Eigenkapital-Investitionen.',
-      allocationLabel: 'Geplantes Kapitalvolumen',
-      impactYield: 'Erwarteter Sozialer Ertrag',
-      co2Reduction: 'CO₂-Vermeidungsprognose',
-      efficiencyFactor: 'Betrieblicher Effizienzgewinn'
+    FR: {
+      title: 'Notre Portefeuille d’Actifs & Grands Projets',
+      sub: 'Gouvernance transparente de nos actifs stratégiques, infrastructures publiques et réseaux énergétiques bas-carbone.',
+      metricValuation: 'Valeur des Actifs (AUM)',
+      metricOffset: 'Empreinte Carbone Évitée',
+      metricSLA: 'Taux de Disponibilité SLA',
+      exploreBtn: 'Consulter l’étude de cas réelle',
+      backBtn: 'Retourner au Hub de Projets',
+      filterLabel: 'Filtre des Actifs',
+      challengeLabel: 'Le Contexte et Défi',
+      solutionLabel: 'L’Intervention Déployée',
+      resultLabel: 'Les Résultats Empiriques Clés',
+      simulatorTitle: 'Simulateur d’Impact et Rendement d’Actifs',
+      simulatorSub: 'Simulez l’impact des ressources allouées en fonction de nos métriques de performance historiques.',
+      allocationLabel: 'Ressources de Capital engagées',
+      impactYield: 'Rendement Social Projeté',
+      co2Reduction: 'Réduction de CO2 estimée',
+      efficiencyFactor: 'Gain d’efficience système'
     },
-    JP: {
-      title: 'インフラストラクチャー・資産ポートフォリオ',
-      sub: '国家級の開発持分、デジタルユーティリティ、世界的な脱炭素サプライチェーン・ネットワークの透明なガバナンス管理ログ。',
-      metricValuation: '運用総資産 (AUM)',
-      metricOffset: '年間累積CO₂相殺枠',
-      metricSLA: 'システム運用稼働率 (SLA)',
-      exploreBtn: '詳細ケーススタディ報告書を審査する',
-      backBtn: 'アセット・ポートフォリオに戻る',
-      filterLabel: '資産クラス別フィルター',
-      challengeLabel: '直面していた課題',
-      solutionLabel: '導入されたイノベーション',
-      resultLabel: '実証された事業評価と成果',
-      simulatorTitle: '社会的投資インパクト・シミュレーター',
-      simulatorSub: 'シミュレートされた投資資本比率に基づいた環境・社会インフラの想定リターン分析。',
-      allocationLabel: 'シミュレーション資本投入額',
-      impactYield: '都市社会イノベーション利回り',
-      co2Reduction: '想定CO₂排出回避量',
-      efficiencyFactor: 'システム効率化の向上比率'
+    MG: {
+      title: 'Ny Tahirim-pampiasam-bola sy Tetikasa goavana',
+      sub: 'Tamberisina mangarahara amin’ireo fotodrafitrasa, famokarana angovo maharitra, ary fampiasam-bola manerantany.',
+      metricValuation: 'Sanda manontolon’ny fampiasam-bola',
+      metricOffset: 'Hatafana ny fako karbôna',
+      metricSLA: 'Taham-pahafaha-miasa ofisialy',
+      exploreBtn: 'Hizaha ny tantaram-pahombiazana',
+      backBtn: 'Hiverina amin’ny lisitry ny Tetikasa',
+      filterLabel: 'Sokajy sivana ny Tetikasa',
+      challengeLabel: 'Olana sy zava-tsarotra natrehana',
+      solutionLabel: 'Ny vahaolana natolotry ny Vima',
+      resultLabel: 'Ny vokatra azo tsapain-tanana',
+      simulatorTitle: 'Fitaovana fizahana ny fiantraikan’ny vola',
+      simulatorSub: 'Azonao jerena mivantana eto ny vokatra ateraky ny renivola amin’ny fampandrosoana maharitra.',
+      allocationLabel: 'Renivola fampiasa amin’ny fanorenana',
+      impactYield: 'Taham-pitombon’ny asa sosialy',
+      co2Reduction: 'Fatiantoka karbôna voasoroka',
+      efficiencyFactor: 'Taham-pandrosoana miakatra'
     }
   }[language];
 
@@ -97,7 +100,7 @@ export function PortfolioView({ language }: PortfolioViewProps) {
     LOGISTICS: 'logistics'
   };
 
-  const filteredProjects = PROJECTS.filter((proj) => {
+  const filteredProjects = translatedProjects.filter((proj) => {
     if (activeFilter === 'ALL') return true;
     const filterKey = filterMap[activeFilter];
     return proj.sector.toLowerCase().includes(filterKey) || proj.id.toLowerCase().includes(filterKey);
@@ -114,7 +117,7 @@ export function PortfolioView({ language }: PortfolioViewProps) {
       {/* 1. Elegant Header Area */}
       <section className="relative pt-32 pb-6 overflow-hidden text-center max-w-4xl mx-auto px-4" id="portfolio-intro">
         <span className="font-mono text-[10px] text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20">
-          {language === 'EN' ? 'RELIABLE GLOBAL INFRASTRUCTURE' : language === 'DE' ? 'VERTRAUENSWÜRDIGE SACHWERTE' : '国際信託型アセット保管ログ'}
+          {language === 'EN' ? 'RELIABLE GLOBAL INFRASTRUCTURE' : language === 'FR' ? 'INFRASTRUCTURE NATIONALE FIABLE' : 'FOTODRAFITRASA FAZON-DAHARAHA AZO ANTOKA'}
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">
           {translations.title}
@@ -141,9 +144,9 @@ export function PortfolioView({ language }: PortfolioViewProps) {
               <span className="text-[10px] text-slate-450 block font-light leading-snug">
                 {language === 'EN' 
                   ? 'Representing fully diversified real property, healthcare centers, and clean utility grids.' 
-                  : language === 'DE' 
-                  ? 'Repräsentiert diversifizierte Sachwerte, medizinische Zentren und saubere Netze.' 
-                  : '極めて強固に多角化された実体不動産、先端医療モール、環境電力供給インフラ。'}
+                  : language === 'FR' 
+                  ? 'Bâtiments écologiques de premier ordre, parcs éoliens et cliniques médicales d’excellence.' 
+                  : 'Orinasa miompana amin’ny trano sy tany, famokarana herinaratra, ary fitsaboana.'}
               </span>
             </div>
           </div>
@@ -161,9 +164,9 @@ export function PortfolioView({ language }: PortfolioViewProps) {
               <span className="text-[10px] text-slate-450 block font-light leading-snug">
                 {language === 'EN' 
                   ? 'Vetted environmental carbon offsets produced across North Sea arrays and circular logistic fleets.' 
-                  : language === 'DE' 
-                  ? 'Zertifizierte CO₂-Vermeidung durch Offshore-Windparks und emissionsfreie Flotten.' 
-                  : '北海メガウィンドアレイおよび完全ゼロエミッション・ロジスティクスによる実地削減量。'}
+                  : language === 'FR' 
+                  ? 'Crédits d’évitement carbone réels via notre transition vers des opérations circulaires.' 
+                  : 'Ny tati-pahafahana amin’ny fampihenana ny fako karbôna tontolo iainana ofisialy.'}
               </span>
             </div>
           </div>
@@ -181,9 +184,9 @@ export function PortfolioView({ language }: PortfolioViewProps) {
               <span className="text-[10px] text-slate-450 block font-light leading-snug">
                 {language === 'EN' 
                   ? 'Uninterrupted power-gen and molecular diagnostic cloud servers uptime.' 
-                  : language === 'DE' 
-                  ? 'Unterbrechungsfreie Energieerzeugung und Datenredundanz für digitale Services.' 
-                  : '24時間365日の連続稼働を保証する医療クラウド統合セキュリティおよび次世代電力網。'}
+                  : language === 'FR' 
+                  ? 'Disponibilité absolue garantie pour le réseau d’approvisionnement et diagnostics cloud.' 
+                  : 'Fandaharana sy fahafaha-miasa tsy manam-pahataperana ho an’ny fitantanam-bola.'}
               </span>
             </div>
           </div>
@@ -275,7 +278,7 @@ export function PortfolioView({ language }: PortfolioViewProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8" id="portfolio-interactive-grid">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-900 pb-4">
           <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight text-left">
-            {language === 'EN' ? 'Global Active Holdings Grid' : language === 'DE' ? 'Globale Beteiligungslandschaft' : '現在稼働中の連結アセットポートフォリオ'}
+            {language === 'EN' ? 'Global Active Holdings Grid' : language === 'FR' ? 'Grille des Actifs Globaux Actifs' : 'Lisitry ny Orinasa miasa Manerantany'}
           </h2>
 
           <div className="flex flex-wrap items-center gap-2">
@@ -294,7 +297,7 @@ export function PortfolioView({ language }: PortfolioViewProps) {
                     : 'text-slate-400 hover:text-slate-200 border-slate-900 hover:border-slate-800 bg-slate-950/40'
                 }`}
               >
-                {filter === 'ALL' ? (language === 'EN' ? 'ALL FIELDS' : language === 'DE' ? 'ALLE' : 'すべて表示') : filter}
+                {filter === 'ALL' ? (language === 'EN' ? 'ALL FIELDS' : language === 'FR' ? 'TOUS LES SECTEURS' : 'NY SEHATRA REHETRA') : filter}
               </button>
             ))}
           </div>
@@ -435,7 +438,7 @@ export function PortfolioView({ language }: PortfolioViewProps) {
 
                     <div className="space-y-2">
                       <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block border-b border-slate-900 pb-1.5">
-                        {language === 'EN' ? 'Key Technical Highlights' : language === 'DE' ? 'Spezifische Projekthighlights' : '技術革新における要約'}
+                        {language === 'EN' ? 'Key Technical Highlights' : language === 'FR' ? 'Principaux Points Techniques' : 'Hevitra Niraisana Ara-teknika'}
                       </span>
                       
                       <ul className="space-y-1.5 text-slate-300 text-[11px] leading-relaxed">

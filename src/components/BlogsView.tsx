@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CORPORATE_BLOGS } from '../data/corporateData';
+import { getTranslatedBlogs } from '../utils/translator';
 import { BlogItem } from '../types';
 import { Calendar, User, Search, Clock, ArrowRight, X, Sparkles, BookOpen, Tag } from 'lucide-react';
 
 interface BlogsViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
 }
 
 export function BlogsView({ language }: BlogsViewProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedBlog, setSelectedBlog] = useState<BlogItem | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const translatedBlogs = getTranslatedBlogs(CORPORATE_BLOGS, language);
 
   const translations = {
     EN: {
@@ -25,34 +28,34 @@ export function BlogsView({ language }: BlogsViewProps) {
       backBtn: 'Back to Insights',
       articleTags: 'Article Tags'
     },
-    DE: {
-      title: 'Direktions-Analysen & Vordenker-Artikel',
-      sub: 'Analytische Fachberichte, Markttrends, Technologieforschung und strategische Leitfäden unserer Fachdirektoren.',
-      searchPlaceholder: 'Essays & Publikationen durchsuchen...',
-      allTags: 'Alle Artikel',
-      readTime: 'Lesezeit',
-      writtenBy: 'Autor',
-      closeBtn: 'Schließen',
-      backBtn: 'Zurück zur Übersicht',
-      articleTags: 'Schlagworte'
+    FR: {
+      title: 'Analyses de Direction & Tribunes',
+      sub: 'Rapports d’analyse, tendances du marché, recherche technologique et guides stratégiques rédigés par la direction de Vision Madagascar.',
+      searchPlaceholder: 'Rechercher des essais...',
+      allTags: 'Tous les Articles',
+      readTime: 'Temps de Lecture',
+      writtenBy: 'Écrit Par',
+      closeBtn: 'Fermer l’essai',
+      backBtn: 'Retour aux Analyses',
+      articleTags: 'Mots-clés de l’Article'
     },
-    JP: {
-      title: 'エグゼクティブ・インサイト ＆ 経営論文',
-      sub: 'マダガスカル・ビジョンの代表取締役・各分野統括ディレクターによる分析報告、市場予測、先進技術リサーチ、および都市経営戦略のコラム。',
-      searchPlaceholder: 'エッセイとリサーチ論文を検索...',
-      allTags: 'すべての記事',
-      readTime: '読了時間',
-      writtenBy: '執筆者',
-      closeBtn: 'コラムを閉じる',
-      backBtn: 'インサイトハブに戻る',
-      articleTags: '関連キーワードタグ'
+    MG: {
+      title: 'Hevitra sy Paikady Fitantanana',
+      sub: 'Famakafakana ny tsena, asa fikarohana momba ny teknolojia, ary sangan’asa nosoratan’ireo mpitantana ny Vision Madagascar.',
+      searchPlaceholder: 'Hikaroka lahatsoratra...',
+      allTags: 'Ny Lahatsoratra rehetra',
+      readTime: 'Haharetan’ny famakiana',
+      writtenBy: 'Nolavonin’i',
+      closeBtn: 'Hanakatona',
+      backBtn: 'Hiverina amin’ny pejy fandraisana lahatahiry',
+      articleTags: 'Teny fanalahidin’ny Lahatsoratra'
     }
   }[language];
 
   // Compile all tag options
-  const allTags = Array.from(new Set(CORPORATE_BLOGS.flatMap(b => b.tags)));
+  const allTags = Array.from(new Set(translatedBlogs.flatMap(b => b.tags)));
 
-  const filteredBlogs = CORPORATE_BLOGS.filter(blog => {
+  const filteredBlogs = translatedBlogs.filter(blog => {
     const matchesTag = !selectedTag || blog.tags.includes(selectedTag);
     const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           blog.author.toLowerCase().includes(searchQuery.toLowerCase()) ||

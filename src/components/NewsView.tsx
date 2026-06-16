@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CORPORATE_NEWS } from '../data/corporateData';
+import { getTranslatedNews } from '../utils/translator';
 import { NewsItem } from '../types';
 import { Calendar, Search, ArrowRight, X, Heart, ShieldCheck, Newspaper } from 'lucide-react';
 
 interface NewsViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
   selectedNewsId?: string | null;
 }
 
@@ -14,14 +15,16 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
 
+  const translatedNews = getTranslatedNews(CORPORATE_NEWS, language);
+
   useEffect(() => {
     if (selectedNewsId) {
-      const found = CORPORATE_NEWS.find(n => n.id === selectedNewsId);
+      const found = translatedNews.find(n => n.id === selectedNewsId);
       if (found) {
         setSelectedNews(found);
       }
     }
-  }, [selectedNewsId]);
+  }, [selectedNewsId, language]);
 
   const translations = {
     EN: {
@@ -35,33 +38,33 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
       backBtn: 'Return to Press Hub',
       publishedOn: 'Published'
     },
-    DE: {
-      title: 'Konzernpresse & Offizielle Mitteilungen',
-      sub: 'Verifizierbare Aufzeichnungen, transatlantische Joint-Ventures und wissenschaftliche Durchbrüche unseres Aufsichtsrates.',
-      searchPlaceholder: 'Pressearchiv durchsuchen...',
-      filterAll: 'Alle Mitteilungen',
-      viewArticle: 'Vollständige Meldung lesen',
-      closeBtn: 'Schließen',
-      categoryLabel: 'Kategorie',
-      backBtn: 'Zurück zum Presse-Hub',
-      publishedOn: 'Veröffentlicht am'
+    FR: {
+      title: 'Publications Officielles & Centre de Presse',
+      sub: 'Avis validés par le comité, acquisitions majeures, co-entreprises d’envergure et brevets déposés par la holding.',
+      searchPlaceholder: 'Rechercher dans les archives...',
+      filterAll: 'Toutes les Publications',
+      viewArticle: 'Lire le communiqué entier',
+      closeBtn: 'Fermer',
+      categoryLabel: 'Catégorie',
+      backBtn: 'Retourner au centre de presse',
+      publishedOn: 'Publié le'
     },
-    JP: {
-      title: '連結プレスリリース・公式情報開示ログ',
-      sub: 'マダガスカル・ビジョン取締役会が署名した公式発表、グローバル合弁事業、M&A合意声明、および各研究ユニットの技術ブレイクスルー記録。',
-      searchPlaceholder: '開示アーカイブを検索...',
-      filterAll: 'すべての情報開示',
-      viewArticle: 'プレスリリース全文を読む',
-      closeBtn: '記録を閉じる',
-      categoryLabel: 'カテゴリー',
-      backBtn: '開示ハブに戻る',
-      publishedOn: '発行日'
+    MG: {
+      title: 'Tati-baovao Ofisialy sy Taratasy mivoaka',
+      sub: 'Ireo fanambarana ofisialy rehetra avy amin’ny filan-kevi-pitantanan’ny Vima sy fiaraha-miasa vaovao.',
+      searchPlaceholder: 'Hikaroka amin’ny tahirin-kevitra...',
+      filterAll: 'Ny Tati-baovao rehetra',
+      viewArticle: 'Hamaky ny tati-baovao feno',
+      closeBtn: 'Hanakatona',
+      categoryLabel: 'Sokajy',
+      backBtn: 'Hiverina amin’ny pejy fandraisana tati-baovao',
+      publishedOn: 'Navoaka tamin’ny'
     }
   }[language];
 
-  const categories = ['ALL', ...Array.from(new Set(CORPORATE_NEWS.map(n => n.category)))];
+  const categories = ['ALL', ...Array.from(new Set(translatedNews.map(n => n.category)))];
 
-  const filteredNews = CORPORATE_NEWS.filter(news => {
+  const filteredNews = translatedNews.filter(news => {
     const matchesCategory = activeCategory === 'ALL' || news.category === activeCategory;
     const matchesSearch = news.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           news.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||

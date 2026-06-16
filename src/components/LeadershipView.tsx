@@ -24,6 +24,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { LEADERS } from '../data/corporateData';
+import { getTranslatedLeaders } from '../utils/translator';
 
 interface LeadershipViewProps {
   language: 'EN' | 'FR' | 'MG';
@@ -310,7 +311,8 @@ export function LeadershipView({ language }: LeadershipViewProps) {
     }
   ];
 
-  const currentLeader = LEADERS.find(l => l.id === selectedLeaderId) || LEADERS[0];
+  const translatedLeaders = getTranslatedLeaders(LEADERS, language);
+  const currentLeader = translatedLeaders.find(l => l.id === selectedLeaderId) || translatedLeaders[0];
   const activeDetail = leaderDetails[selectedLeaderId] || leaderDetails['lead-1'];
 
   // Secretariat contact state
@@ -407,7 +409,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
-                  {LEADERS.map((lead) => {
+                  {translatedLeaders.map((lead) => {
                     const isSelected = lead.id === selectedLeaderId;
                     return (
                       <button
@@ -650,7 +652,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                     
                     <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 p-0.5 shadow-lg group-hover:scale-102 transition-transform">
                       <img
-                        src={LEADERS[0].imageUrl || "https://picsum.photos/seed/executive_woman_portrait/250/250"}
+                        src={translatedLeaders[0].imageUrl || "https://picsum.photos/seed/executive_woman_portrait/250/250"}
                         alt="Helena Vance-Sterling"
                         className="w-full h-full object-cover rounded-xl grayscale tracking-tight"
                         referrerPolicy="no-referrer"

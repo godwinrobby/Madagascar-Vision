@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { CORPORATE_EVENTS } from '../data/corporateData';
+import { getTranslatedEvents } from '../utils/translator';
 import { CorporateEvent } from '../types';
 import { Calendar, MapPin, Users, Award, Shield, ArrowRight, Video, Target, Clock, Sparkles } from 'lucide-react';
 
 interface EventsViewProps {
-  language: 'EN' | 'DE' | 'JP';
+  language: 'EN' | 'FR' | 'MG';
 }
 
 export function EventsView({ language }: EventsViewProps) {
@@ -24,35 +25,36 @@ export function EventsView({ language }: EventsViewProps) {
       metricLabel: 'Audited Indicator log',
       empty: 'No events scheduled under this scope.'
     },
-    DE: {
-      title: 'Konzernkooperationen & Foren',
-      sub: 'Überblicken Sie anstehende Verbandstreffen, ingenieurwissenschaftliche Symposien und archivierte Kernversammlungen unseres Präsidiums.',
-      upcomingBtn: 'Anstehende Gipfel',
-      recentBtn: 'Kürzliche Konferenzen & Berichte',
-      timeLabel: 'Uhrzeit',
-      locationLabel: 'Veranstaltungsort',
-      speakersLabel: 'Geladene Diskussionsteilnehmer',
-      registerBtn: 'Executive-Zugangspässe anfordern',
-      viewRecord: 'Dokumentationsdatenbank abrufen',
-      metricLabel: 'Auditierte Leistungsdaten',
-      empty: 'In dieser Rubrik sind aktuell keine Termine angesetzt.'
+    FR: {
+      title: 'Conventions Mandataires & Forums Globaux',
+      sub: 'Aperçu des tables rondes souveraines, thématiques industrielles et assemblées clés développées par Vision Madagascar.',
+      upcomingBtn: 'Sommets de Haut Niveau',
+      recentBtn: 'Congrès Récents & Webcasts',
+      timeLabel: 'Horaire Planifié',
+      locationLabel: 'Lieu de Réunion',
+      speakersLabel: 'Intervenants Clés',
+      registerBtn: 'Demander une carte d’accès',
+      viewRecord: 'Accéder aux documents enregistrés',
+      metricLabel: 'Rapport d’Indicateurs validés',
+      empty: 'Aucun événement planifié pour ce portefeuille.'
     },
-    JP: {
-      title: 'グローバル・サミット ＆ 総合開発カンファレンス',
-      sub: 'マダガスカル・ビジョンが主催する政府高官共同ラウンドテーブル、主要先端エンジニアリング実地デモ、および完了した各種委員会シンポジウムの活動記録。',
-      upcomingBtn: '今後開催予定のサミット (Upcoming)',
-      recentBtn: '最近の活動評価実績・アーカイブ (Recent)',
-      timeLabel: '開催スケジュール設定',
-      locationLabel: 'カンファレンス開催地',
-      speakersLabel: '発表予定の専任スピーカー陣',
-      registerBtn: '特別参画アクセスパスを申請する',
-      viewRecord: 'カンファレンス資料・録画ログを審査する',
-      metricLabel: '公式確認パフォーマンス数値',
-      empty: '現在、この範囲に該当するイベントはありません。'
+    MG: {
+      title: 'Fihaonambe sy Seha-pifanakalozana',
+      sub: 'Araho maso ireo fivoriana lehibe, fandaharana ara-panjakana, ary dinika stratejika mifehy ny ho avin’i Madagasikara.',
+      upcomingBtn: 'Fivoriana ho Avy',
+      recentBtn: 'Fihaonana Lasana & Webcasts',
+      timeLabel: 'Fotoana voatondro GMT',
+      locationLabel: 'Toerana fihaonana',
+      speakersLabel: 'Mpandray teny nasaina',
+      registerBtn: 'Hangata-dalana fandraisana an-tanana',
+      viewRecord: 'Hizaha ny tahirim-pampianarana',
+      metricLabel: 'Tondro sy tati-pahombiazana',
+      empty: 'Tsy misy fivoriana voatondro amin’izao fotoana izao.'
     }
   }[language];
 
-  const filteredEvents = CORPORATE_EVENTS.filter(ev => ev.type === activeTab);
+  const translatedEvents = getTranslatedEvents(CORPORATE_EVENTS, language);
+  const filteredEvents = translatedEvents.filter(ev => ev.type === activeTab);
 
   return (
     <div id="events-view-container" className="space-y-16 pb-24 relative animate-fade-in">

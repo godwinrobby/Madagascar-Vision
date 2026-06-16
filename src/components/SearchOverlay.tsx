@@ -18,6 +18,7 @@ import {
   FileText
 } from 'lucide-react';
 import { SECTORS, SERVICES, CORPORATE_NEWS } from '../data/corporateData';
+import { getTranslatedSectors, getTranslatedNews } from '../utils/translator';
 import { DynamicIcon } from './DynamicIcon';
 import { CompanyLogo } from './CompanyLogo';
 
@@ -116,12 +117,15 @@ export function SearchOverlay({ isOpen, onClose, language, onSelectResult }: Sea
   ];
 
   // Search filter
+  const translatedSectors = getTranslatedSectors(SECTORS, language);
+  const translatedNews = getTranslatedNews(CORPORATE_NEWS, language);
+
   const searchResults: SearchResult[] = [];
   const q = query.trim().toLowerCase();
 
   if (q.length > 0) {
     // 1. Search sectors
-    SECTORS.forEach(sec => {
+    translatedSectors.forEach(sec => {
       const matchName = sec.name.toLowerCase().includes(q);
       const matchDesc = sec.description.toLowerCase().includes(q);
       const matchSubServices = sec.services.some(s => s.toLowerCase().includes(q));
@@ -155,7 +159,7 @@ export function SearchOverlay({ isOpen, onClose, language, onSelectResult }: Sea
     });
 
     // 3. Search corporate news
-    CORPORATE_NEWS.forEach(news => {
+    translatedNews.forEach(news => {
       const matchTitle = news.title.toLowerCase().includes(q);
       const matchSumm = news.summary.toLowerCase().includes(q);
       const matchContent = news.content.toLowerCase().includes(q);

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CAREER_POSITIONS } from '../data/corporateData';
+import { getTranslatedCareers } from '../utils/translator';
 import { JobPosition } from '../types';
 import { Briefcase, MapPin, Clock, Calendar, CheckCircle2, ChevronDown, ChevronUp, FileUp, Sparkles, Send, AlertCircle, X } from 'lucide-react';
 
@@ -9,6 +10,7 @@ interface CareersViewProps {
 }
 
 export function CareersView({ language }: CareersViewProps) {
+  const translatedCareers = getTranslatedCareers(CAREER_POSITIONS, language);
   const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
   
   // Job Application Form State
@@ -226,7 +228,7 @@ export function CareersView({ language }: CareersViewProps) {
         </div>
 
         <div className="space-y-4" id="positions-list">
-          {CAREER_POSITIONS.map((job) => {
+          {translatedCareers.map((job) => {
             const isExpanded = expandedJobId === job.id;
             return (
               <div 
@@ -388,7 +390,7 @@ export function CareersView({ language }: CareersViewProps) {
                 <option value="" className="bg-slate-950 text-slate-500">
                   {language === 'EN' ? '-- Select Vacant Position --' : language === 'FR' ? '-- Sélectionner un poste --' : '-- Safidio ny asa iriana --'}
                 </option>
-                {CAREER_POSITIONS.map((job) => (
+                {translatedCareers.map((job) => (
                   <option key={job.id} value={job.id} className="bg-slate-950 text-white text-xs">
                     [{job.sector}] {job.title} ({job.location})
                   </option>

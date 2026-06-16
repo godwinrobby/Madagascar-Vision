@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { TimelineEvent, Leader } from '../types';
 import { LEADERS, TIMELINE } from '../data/corporateData';
+import { getTranslatedLeaders, getTranslatedTimeline } from '../utils/translator';
 import { Target, Globe, Compass, Landmark, ShieldCheck, Zap, Sparkles, Leaf } from 'lucide-react';
 
 interface AboutViewProps {
@@ -9,6 +10,8 @@ interface AboutViewProps {
 }
 
 export function AboutView({ language, setActiveTab }: AboutViewProps) {
+  const translatedTimeline = getTranslatedTimeline(TIMELINE, language);
+  const translatedLeaders = getTranslatedLeaders(LEADERS, language);
   
   const translations = {
     EN: {
@@ -138,7 +141,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
 
         {/* Timelines grid */}
         <div className="relative border-l border-slate-850 ml-4 md:ml-32 md:space-y-0 space-y-8" id="timeline-track">
-          {TIMELINE.map((evt, idx) => (
+          {translatedTimeline.map((evt, idx) => (
             <div key={idx} className="relative pl-8 md:pl-24 pb-8 group text-left" id={`timeline-evt-${idx}`}>
               
               {/* Year badge display on left */}
@@ -203,7 +206,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              {LEADERS.map((lead) => (
+              {translatedLeaders.map((lead) => (
                 <div 
                   key={lead.id} 
                   onClick={() => {

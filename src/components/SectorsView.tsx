@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SECTORS } from '../data/corporateData';
+import { getTranslatedSectors } from '../utils/translator';
 import { Sector } from '../types';
 import { DynamicIcon } from './DynamicIcon';
 import { CompanyLogo } from './CompanyLogo';
@@ -67,6 +68,7 @@ const COMPANY_CATEGORIES: Record<string, 'social' | 'realestate' | 'energy' | 'l
 };
 
 export function SectorsView({ language, selectedSectorId, setSelectedSectorId, setActiveTab }: SectorsViewProps) {
+  const translatedSectors = getTranslatedSectors(SECTORS, language);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCompany, setSelectedCompany] = useState<Sector | null>(null);
@@ -74,14 +76,14 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
   // Sync from home page / search selection redirects
   useEffect(() => {
     if (selectedSectorId) {
-      const found = SECTORS.find(s => s.id === selectedSectorId);
+      const found = translatedSectors.find(s => s.id === selectedSectorId);
       if (found) {
         setSelectedCompany(found);
       }
     } else {
       setSelectedCompany(null);
     }
-  }, [selectedSectorId]);
+  }, [selectedSectorId, language]);
 
   const handleCloseDetail = () => {
     setSelectedCompany(null);
@@ -195,7 +197,7 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
   };
 
   // Filter companies
-  const filteredCompanies = SECTORS.filter(company => {
+  const filteredCompanies = translatedSectors.filter(company => {
     const matchesCategory = activeCategory === 'all' || COMPANY_CATEGORIES[company.id] === activeCategory;
     const matchesSearch = company.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           company.description.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SECTORS } from '../data/corporateData';
+import { getTranslatedSectors } from '../utils/translator';
 import { Sector } from '../types';
 import { CompanyLogo } from './CompanyLogo';
 import {
@@ -49,15 +50,16 @@ const COMPANY_CATEGORIES: Record<string, 'social' | 'realestate' | 'energy' | 'l
 };
 
 export function CompanyDetailView({ companyId, onBack, onInquire, language }: CompanyDetailViewProps) {
+  const translatedSectors = getTranslatedSectors(SECTORS, language);
   const [company, setCompany] = useState<Sector | null>(null);
 
   useEffect(() => {
-    const found = SECTORS.find((s) => s.id === companyId);
+    const found = translatedSectors.find((s) => s.id === companyId);
     if (found) {
       setCompany(found);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [companyId]);
+  }, [companyId, language]);
 
   if (!company) {
     return (
@@ -68,21 +70,21 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
   }
 
   // Next / Prev actions
-  const currentIndex = SECTORS.findIndex((s) => s.id === company.id);
-  const prevCompany = SECTORS[currentIndex - 1] || SECTORS[SECTORS.length - 1];
-  const nextCompany = SECTORS[currentIndex + 1] || SECTORS[0];
+  const currentIndex = translatedSectors.findIndex((s) => s.id === company.id);
+  const prevCompany = translatedSectors[currentIndex - 1] || translatedSectors[translatedSectors.length - 1];
+  const nextCompany = translatedSectors[currentIndex + 1] || translatedSectors[0];
 
   const handleNext = () => {
     const nextElem = document.getElementById('company-detail-page-top');
     if (nextElem) nextElem.scrollIntoView({ behavior: 'smooth' });
-    const found = SECTORS.find((s) => s.id === nextCompany.id);
+    const found = translatedSectors.find((s) => s.id === nextCompany.id);
     if (found) setCompany(found);
   };
 
   const handlePrev = () => {
     const prevElem = document.getElementById('company-detail-page-top');
     if (prevElem) prevElem.scrollIntoView({ behavior: 'smooth' });
-    const found = SECTORS.find((s) => s.id === prevCompany.id);
+    const found = translatedSectors.find((s) => s.id === prevCompany.id);
     if (found) setCompany(found);
   };
 
