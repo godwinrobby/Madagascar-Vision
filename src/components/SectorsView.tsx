@@ -302,21 +302,21 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
                     setSelectedCompany(company);
                     setSelectedSectorId(company.id);
                   }}
-                  className={`glass card-hover rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between h-[280px] group cursor-pointer border ${
+                  className={`eco-rainbow-border-card eco-rainbow-glow-hover p-6 relative overflow-hidden flex flex-col justify-between h-[280px] group cursor-pointer border-0 ${
                     isSelectedInFlow
-                      ? 'border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)] bg-slate-900/60'
-                      : 'border-slate-900'
+                      ? 'shadow-[0_0_25px_rgba(16,185,129,0.25)] bg-slate-900/60'
+                      : ''
                   }`}
                   id={`company-card-${company.id}`}
                 >
-                  {/* Subtle glowing orb on hover */}
-                  <div className="absolute -top-12 -right-12 w-28 h-28 bg-emerald-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  {/* Subtle glowing orb on hover inside the card */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-tr from-emerald-500/10 to-teal-500/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   <div>
                     {/* Header: Icon & Category Label */}
                     <div className="flex items-center justify-between mb-4">
-                      <CompanyLogo id={company.id} size="md" className="ring-1 ring-slate-900 group-hover:ring-emerald-500/30 transition-all shadow-md" />
-                      <span className="text-[9px] font-mono font-semibold tracking-wider text-slate-500 uppercase">
+                      <CompanyLogo id={company.id} size="md" className="border border-slate-900 group-hover:ring-emerald-500/30 transition-all shadow-md" />
+                      <span className="text-[9px] font-mono font-medium tracking-wider text-slate-500 group-hover:text-amber-400/90 transition-colors uppercase">
                         {categoryLabel}
                       </span>
                     </div>
@@ -332,15 +332,23 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
                     </p>
                   </div>
 
-                  {/* Summary Metric Preview Footer */}
-                  <div className="pt-4 border-t border-slate-900 flex items-center justify-between mt-4">
-                    <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/20 px-2 py-0.5 rounded border border-emerald-500/10">
-                      {company.metrics[0].value} {company.metrics[0].label}
-                    </span>
-                    <span className="text-slate-500 group-hover:text-white transition-colors flex items-center space-x-1 font-mono text-[9px] font-bold">
-                      <span>BLUEPRINT</span>
-                      <ChevronRight size={10} className="transform group-hover:translate-x-1 transition-transform" />
-                    </span>
+                  {/* Summary Metric Preview Footer with interactive Blueprint tag */}
+                  <div className="pt-4 border-t border-slate-900/40 flex items-center justify-between mt-4">
+                    <div className="flex flex-col text-left">
+                      <span className="font-mono text-xs sm:text-sm font-black text-emerald-400 leading-none">
+                        {company.metrics[0].value}
+                      </span>
+                      <span className="text-[8px] font-mono uppercase tracking-widest text-slate-500 mt-1 leading-none">
+                        {company.metrics[0].label}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-1 font-mono text-[9px] sm:text-[10px] bg-slate-900 border border-slate-800/80 px-3 py-1.5 rounded-xl text-slate-400 group-hover:text-white group-hover:bg-emerald-500 group-hover:border-emerald-400/30 transition-all duration-305">
+                      <span>
+                        {language === 'EN' ? 'BLUEPRINT' : language === 'FR' ? 'PLAN' : 'DRAFITRA'}
+                      </span>
+                      <ChevronRight size={11} className="transform group-hover:translate-x-0.5 transition-transform" />
+                    </div>
                   </div>
                 </motion.div>
               );
