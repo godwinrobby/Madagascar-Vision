@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Routes, Route, useNavigate, useLocation, useParams, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
@@ -18,11 +19,10 @@ import { SearchOverlay } from './components/SearchOverlay';
 import { LanguageToast } from './components/LanguageToast';
 
 export default function App() {
-  const [activeTab, setActiveTab ] = useState<string>('home');
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [language, setLanguage] = useState<'EN' | 'FR' | 'MG'>('EN');
-  const [selectedSectorId, setSelectedSectorId] = useState<string | null>(null);
-  const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
-  const [selectedNewsId, setSelectedNewsId] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     const saved = localStorage.getItem('mv-theme');
@@ -31,6 +31,10 @@ export default function App() {
   const [toast, setToast] = useState<{ title: string; desc: string; lang: 'EN' | 'FR' | 'MG' } | null>(null);
 
   const isInitialLang = useRef(true);
+
+  // Derive activeTab from url pathname for Navbar/Footer highlighting compatibility
+  const pathParts = location.pathname.split('/').filter(Boolean);
+  const activeTab = pathParts[0] || 'home';
 
   // Sync theme class on HTML element
   useEffect(() => {
@@ -81,30 +85,31 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Safe tab selection handler that clears sub-details on manual clicks
+  // Safe tab selection handler that navigates to the target page path
   const handleSetActiveTab = (tab: string) => {
-    setActiveTab(tab);
-    setSelectedSectorId(null);
-    setSelectedServiceId(null);
-    setSelectedNewsId(null);
+    if (tab === 'home') {
+      navigate('/');
+    } else {
+      navigate('/' + tab);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectSectorId = (id: string | null) => {
+    if (id) {
+      navigate(`/sectors/${id}`);
+    } else {
+      navigate('/sectors');
+    }
   };
 
   const handleSelectSearchResult = (type: 'sector' | 'service' | 'news', id: string) => {
-    // Reset other sub views
-    setSelectedSectorId(null);
-    setSelectedServiceId(null);
-    setSelectedNewsId(null);
-
-    // Coordinate navigation
     if (type === 'sector') {
-      setSelectedSectorId(id);
-      setActiveTab('sectors');
+      navigate(`/sectors/${id}`);
     } else if (type === 'service') {
-      setSelectedServiceId(id);
-      setActiveTab('services');
+      navigate(`/services/${id}`);
     } else if (type === 'news') {
-      setSelectedNewsId(id);
-      setActiveTab('news');
+      navigate(`/news/${id}`);
     }
     
     // Smooth scroll to top of page
@@ -132,57 +137,6 @@ export default function App() {
     document.title = `${brandName} | ${subNames[language]}`;
   }, [activeTab, language]);
 
-  // View dispatcher
-  const renderView = () => {
-    switch (activeTab) {
-      case 'home':
-        return (
-          <HomeView
-            language={language}
-            setActiveTab={handleSetActiveTab}
-            setSelectedSectorId={setSelectedSectorId}
-          />
-        );
-      case 'about':
-        return <AboutView language={language} setActiveTab={handleSetActiveTab} />;
-      case 'leadership':
-        return <LeadershipView language={language} />;
-      case 'sectors':
-        return (
-          <SectorsView
-            language={language}
-            selectedSectorId={selectedSectorId}
-            setSelectedSectorId={setSelectedSectorId}
-            setActiveTab={handleSetActiveTab}
-          />
-        );
-      case 'services':
-        return <ServicesView language={language} selectedServiceId={selectedServiceId} />;
-      case 'portfolio':
-        return <PortfolioView language={language} />;
-      case 'sustainability':
-        return <SustainabilityView language={language} />;
-      case 'careers':
-        return <CareersView language={language} />;
-      case 'contact':
-        return <ContactView language={language} />;
-      case 'news':
-        return <NewsView language={language} selectedNewsId={selectedNewsId} />;
-      case 'blogs':
-        return <BlogsView language={language} />;
-      case 'events':
-        return <EventsView language={language} />;
-      default:
-        return (
-          <HomeView
-            language={language}
-            setActiveTab={handleSetActiveTab}
-            setSelectedSectorId={setSelectedSectorId}
-          />
-        );
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col justify-between relative text-slate-100 select-none antialiased eco-rainbow-bg" id="aetheris-group-app">
       
@@ -204,9 +158,34 @@ export default function App() {
         onOpenSearch={() => setSearchOpen(true)}
       />
 
-      {/* Primary scrollable view containers wrapper */}
+      {/* Primary scrollable view containers wrapper with proper page-based React Router */}
       <main className="flex-grow z-10 w-full" id="root-viewport-control">
-        {renderView()}
+        <Routes>
+          <Route path="/" element={<HomeView language={language} setActiveTab={handleSetActiveTab} setSelectedSectorId={handleSelectSectorId} />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/about" element={<AboutView language={language} setActiveTab={handleSetActiveTab} />} />
+          <Route path="/leadership" element={<LeadershipView language={language} />} />
+          
+          <Route path="/sectors" element={<SectorsRouteWrapper language={language} handleSelectSectorId={handleSelectSectorId} handleSetActiveTab={handleSetActiveTab} />} />
+          <Route path="/sectors/:id" element={<SectorsRouteWrapper language={language} handleSelectSectorId={handleSelectSectorId} handleSetActiveTab={handleSetActiveTab} />} />
+          
+          <Route path="/services" element={<ServicesRouteWrapper language={language} />} />
+          <Route path="/services/:id" element={<ServicesRouteWrapper language={language} />} />
+          
+          <Route path="/portfolio" element={<PortfolioView language={language} />} />
+          <Route path="/sustainability" element={<SustainabilityView language={language} />} />
+          <Route path="/careers" element={<CareersView language={language} />} />
+          <Route path="/contact" element={<ContactView language={language} />} />
+          
+          <Route path="/news" element={<NewsRouteWrapper language={language} />} />
+          <Route path="/news/:id" element={<NewsRouteWrapper language={language} />} />
+          
+          <Route path="/blogs" element={<BlogsView language={language} />} />
+          <Route path="/events" element={<EventsView language={language} />} />
+          
+          {/* Wildcard Fallback redirection */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
       {/* Enterprise-grade multi-sector board information footer */}
@@ -231,4 +210,31 @@ export default function App() {
 
     </div>
   );
+}
+
+// Router Route Wrapper components for cleaner routing syntax and type safety
+function SectorsRouteWrapper({ language, handleSelectSectorId, handleSetActiveTab }: {
+  language: 'EN' | 'FR' | 'MG';
+  handleSelectSectorId: (id: string | null) => void;
+  handleSetActiveTab: (tab: string) => void;
+}) {
+  const { id } = useParams();
+  return (
+    <SectorsView
+      language={language}
+      selectedSectorId={id || null}
+      setSelectedSectorId={handleSelectSectorId}
+      setActiveTab={handleSetActiveTab}
+    />
+  );
+}
+
+function ServicesRouteWrapper({ language }: { language: 'EN' | 'FR' | 'MG' }) {
+  const { id } = useParams();
+  return <ServicesView language={language} selectedServiceId={id || null} />;
+}
+
+function NewsRouteWrapper({ language }: { language: 'EN' | 'FR' | 'MG' }) {
+  const { id } = useParams();
+  return <NewsView language={language} selectedNewsId={id || null} />;
 }
