@@ -124,7 +124,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       secondaryAction: () => setActiveTab('contact'),
       gradientClass: "from-emerald-950/40 via-teal-950/35 to-violet-950/30",
       glowColor: "glow-emerald",
-      graphicType: "core"
+      graphicType: "core",
+      imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
     },
     {
       id: "energy",
@@ -160,7 +161,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       secondaryAction: () => setActiveTab('sustainability'),
       gradientClass: "from-teal-950/40 via-emerald-950/30 to-amber-950/35",
       glowColor: "glow-teal",
-      graphicType: "energy"
+      graphicType: "energy",
+      imageUrl: "https://images.unsplash.com/photo-1548613053-220086c7b9a5?auto=format&fit=crop&w=1200&q=80"
     },
     {
       id: "properties",
@@ -196,7 +198,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       secondaryAction: () => setActiveTab('contact'),
       gradientClass: "from-amber-950/40 via-emerald-950/35 to-rose-950/30",
       glowColor: "glow-bronze",
-      graphicType: "commerce"
+      graphicType: "commerce",
+      imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
     },
     {
       id: "humanitarian",
@@ -229,7 +232,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       secondaryAction: () => setActiveTab('contact'),
       gradientClass: "from-emerald-950/40 via-purple-950/30 to-blue-950/35",
       glowColor: "glow-blue",
-      graphicType: "humanitarian"
+      graphicType: "humanitarian",
+      imageUrl: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=1200&q=80"
     }
   ];
 
@@ -302,6 +306,29 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
         onMouseLeave={() => setIsPaused(false)}
       >
         
+        {/* Dynamic Photograph Sector Background Image Banner (Smooth Cross-fade matching active slide) */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 0.16, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.85, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <img
+                src={currentBanner.imageUrl}
+                alt=""
+                className="w-full h-full object-cover grayscale mix-blend-luminosity brightness-75 contrast-125"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </AnimatePresence>
+          {/* Ambient rich gradients overlaying the photograph to lock down absolute readable typography contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-slate-950/80" />
+        </div>
+
         {/* Abstract Dynamic Blurred Glowing Assets */}
         <div className="absolute top-[12%] left-[8%] w-[380px] h-[380px] bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-violet-500/10 rounded-full blur-[110px] pointer-events-none prism-graphic" />
         <div className="absolute bottom-[8%] right-[8%] w-[480px] h-[480px] bg-gradient-to-r from-violet-500/5 via-pink-500/5 to-amber-500/10 rounded-full blur-[130px] pointer-events-none prism-graphic" />
