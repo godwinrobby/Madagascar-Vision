@@ -1,6 +1,57 @@
 import React, { useState } from 'react';
-import { Mail, ArrowRight, ExternalLink, Linkedin, Twitter, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, ArrowRight, ExternalLink, Linkedin, Twitter, Instagram, Youtube, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { CompanyLogo } from './CompanyLogo';
+
+interface SocialLinkProps {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+  gradientFromTo: string;
+}
+
+function SocialLink({ href, icon, label, gradientFromTo }: SocialLinkProps) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      whileHover={{ scale: 1.15, y: -4 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 450, damping: 15 }}
+      className="relative p-2.5 bg-slate-900 border border-slate-800 rounded-xl transition-all duration-350 text-slate-400 hover:text-white flex items-center justify-center overflow-hidden cursor-pointer shadow-lg hover:shadow-emerald-500/5 group"
+    >
+      {/* Animated Glowing Rainbow Gradient Background */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1.1 : 0.8 }}
+        transition={{ duration: 0.3 }}
+        className={`absolute inset-0 bg-gradient-to-tr ${gradientFromTo} pointer-events-none blur-[2px]`}
+      />
+
+      {/* Inner dark card overlay to keep layout elegant */}
+      <div className={`absolute inset-[1px] bg-slate-950 rounded-[10px] z-10 transition-colors duration-300 ${hovered ? 'bg-slate-950/90' : ''}`} />
+
+      {/* Animated Dynamic Icon */}
+      <span className={`relative z-20 transition-transform duration-300 ${hovered ? 'scale-110' : ''}`}>
+        {icon}
+      </span>
+
+      {/* Eco-rainbow glow underlines matching overall brand theme */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: hovered ? 1 : 0 }}
+        transition={{ duration: 0.25 }}
+        className={`absolute bottom-0 left-2.5 right-2.5 h-[2px] bg-gradient-to-r ${gradientFromTo} z-30`}
+      />
+    </motion.a>
+  );
+}
 
 interface FooterProps {
   setActiveTab: (tab: string) => void;
@@ -119,14 +170,32 @@ export function Footer({ setActiveTab, language }: FooterProps) {
               {translations.about}
             </p>
 
-            <div className="flex space-x-3">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-slate-900 border border-slate-800 rounded-lg hover:border-emerald-500/50 hover:text-emerald-400 transition-colors text-slate-400">
-                <Linkedin size={18} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-slate-900 border border-slate-800 rounded-lg hover:border-emerald-500/50 hover:text-emerald-400 transition-colors text-slate-400">
-                <Twitter size={18} />
-              </a>
-              <span className="text-xs text-slate-500 font-mono self-center border border-slate-800 px-3 py-1 rounded-md">
+            <div className="flex flex-wrap items-center gap-3">
+              <SocialLink
+                href="https://linkedin.com"
+                icon={<Linkedin size={16} />}
+                label="LinkedIn"
+                gradientFromTo="from-emerald-500 via-teal-400 to-blue-500"
+              />
+              <SocialLink
+                href="https://twitter.com"
+                icon={<Twitter size={16} />}
+                label="Twitter"
+                gradientFromTo="from-blue-400 via-cyan-400 to-teal-500"
+              />
+              <SocialLink
+                href="https://instagram.com"
+                icon={<Instagram size={16} />}
+                label="Instagram"
+                gradientFromTo="from-pink-500 via-purple-500 to-amber-400"
+              />
+              <SocialLink
+                href="https://youtube.com"
+                icon={<Youtube size={16} />}
+                label="YouTube"
+                gradientFromTo="from-red-500 via-orange-500 to-yellow-500"
+              />
+              <span className="text-[10px] text-slate-500 font-mono self-center border border-slate-800 px-2.5 py-1 rounded-md select-none mt-1 sm:mt-0">
                 SEC #E94-902
               </span>
             </div>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { CompanyLogo } from './CompanyLogo';
 import { 
   Menu, 
@@ -16,6 +17,77 @@ import {
   Sun,
   Moon
 } from 'lucide-react';
+
+// Subtle, lightweight particle effect triggering on hover, utilizing Framer Motion
+function HoverParticles() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-lg" aria-hidden="true">
+      {Array.from({ length: 5 }).map((_, i) => {
+        const size = Math.random() * 2.5 + 1.5; // subtle sizes from 1.5px to 4px
+        const xStart = Math.random() * 80 + 10; // offset slightly from edges
+        const delay = i * 0.15; // staggered start
+        const duration = Math.random() * 0.7 + 1.0; // quick and reactive particle lifecycle
+        
+        return (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, scale: 0.2, x: `${xStart}%`, y: '90%' }}
+            animate={{ 
+              opacity: [0, 0.9, 0.4, 0],
+              y: ['90%', '10%'],
+              scale: [0.2, 1.2, 0.5]
+            }}
+            transition={{
+              duration: duration,
+              repeat: Infinity,
+              delay: delay,
+              ease: "easeOut"
+            }}
+            style={{ width: size, height: size }}
+            className="absolute rounded-full bg-gradient-to-r from-amber-300 via-teal-400 to-emerald-400 opacity-0"
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+interface DesktopNavLinkProps {
+  id: string;
+  onClick: () => void;
+  active: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  children: React.ReactNode;
+  key?: string | number;
+}
+
+function DesktopNavLink({ id, onClick, active, onMouseEnter, onMouseLeave, children }: DesktopNavLinkProps) {
+  const [hovered, setHovered] = useState(false);
+  
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => {
+        setHovered(true);
+        if (onMouseEnter) onMouseEnter();
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+        if (onMouseLeave) onMouseLeave();
+      }}
+      id={id}
+      className={`relative overflow-hidden px-3 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 select-none ${
+        active 
+          ? 'glass-menu-active text-amber-200 border border-slate-700/50 shadow-inner shadow-amber-500/5' 
+          : 'text-slate-300/80 glass-menu-hover border border-transparent'
+      }`}
+    >
+      <span className="relative z-10">{children}</span>
+      {hovered && <HoverParticles />}
+    </button>
+  );
+}
 
 interface NavbarProps {
   activeTab: string;
@@ -106,16 +178,13 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex space-x-1 items-center" id="desktop-nav">
             {/* Home */}
-            <button
+            <DesktopNavLink
+              id="nav-btn-home"
               onClick={() => handleNavClick('home')}
-              className={`px-3 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 ${
-                activeTab === 'home' 
-                  ? 'glass-menu-active text-amber-200 border' 
-                  : 'text-slate-300/80 glass-menu-hover border border-transparent'
-              }`}
+              active={activeTab === 'home'}
             >
               {language === 'EN' ? 'Home' : language === 'FR' ? 'Accueil' : 'Fandraisana'}
-            </button>
+            </DesktopNavLink>
 
             {/* About Us Dropdown Trigger */}
             <div 
@@ -123,18 +192,16 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
               onMouseEnter={() => setShowAboutDropdown(true)}
               onMouseLeave={() => setShowAboutDropdown(false)}
             >
-              <button
+              <DesktopNavLink
                 id="nav-btn-about-menu"
                 onClick={() => handleNavClick('about')}
-                className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 outline-none ${
-                  isAboutActive
-                    ? 'glass-menu-active text-amber-200 border' 
-                    : 'text-slate-300/80 glass-menu-hover border border-transparent'
-                }`}
+                active={isAboutActive}
               >
-                <span>{language === 'EN' ? 'About Us' : language === 'FR' ? 'À propos' : 'Mombamomba Anay'}</span>
-                <ChevronDown size={14} className={`opacity-70 transition-transform duration-300 ${showAboutDropdown ? 'rotate-180 text-orange-400' : ''}`} />
-              </button>
+                <span className="flex items-center space-x-1.5 justify-center">
+                  <span>{language === 'EN' ? 'About Us' : language === 'FR' ? 'À propos' : 'Mombamomba Anay'}</span>
+                  <ChevronDown size={14} className={`opacity-70 transition-transform duration-300 ${showAboutDropdown ? 'rotate-180 text-orange-400' : ''}`} />
+                </span>
+              </DesktopNavLink>
 
               {showAboutDropdown && (
                 <div className="absolute left-0 mt-1 w-80 rounded-2xl bg-slate-950 border border-slate-900 shadow-2xl p-3 space-y-1.5 z-50 animate-fade-in">
@@ -189,18 +256,14 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
             {mainNavItems.map((item) => {
               const active = activeTab === item.id;
               return (
-                <button
+                <DesktopNavLink
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
                   id={`nav-btn-${item.id}`}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 ${
-                    active 
-                      ? 'glass-menu-active text-amber-200 border' 
-                      : 'text-slate-300/80 glass-menu-hover border border-transparent'
-                  }`}
+                  onClick={() => handleNavClick(item.id)}
+                  active={active}
                 >
                   {item.label[language]}
-                </button>
+                </DesktopNavLink>
               );
             })}
 
@@ -211,18 +274,16 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
               onMouseLeave={() => setShowMediaDropdown(false)}
               id="nav-media-dropdown-wrapper"
             >
-              <button
+              <DesktopNavLink
                 id="nav-btn-media-menu"
                 onClick={() => handleNavClick('news')}
-                className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 outline-none ${
-                  isMediaActive
-                    ? 'glass-menu-active text-amber-200 border' 
-                    : 'text-slate-300/80 glass-menu-hover border border-transparent'
-                }`}
+                active={isMediaActive}
               >
-                <span>{language === 'EN' ? 'News & Events' : language === 'FR' ? 'Actualités & Événements' : 'Vaovao & Hetsika'}</span>
-                <ChevronDown size={14} className={`opacity-70 transition-transform duration-300 ${showMediaDropdown ? 'rotate-180 text-orange-400' : ''}`} />
-              </button>
+                <span className="flex items-center space-x-1.5 justify-center">
+                  <span>{language === 'EN' ? 'News & Events' : language === 'FR' ? 'Actualités & Événements' : 'Vaovao & Hetsika'}</span>
+                  <ChevronDown size={14} className={`opacity-70 transition-transform duration-300 ${showMediaDropdown ? 'rotate-180 text-orange-400' : ''}`} />
+                </span>
+              </DesktopNavLink>
 
               {showMediaDropdown && (
                 <div className="absolute left-0 mt-1 w-80 rounded-2xl bg-slate-950 border border-slate-900 shadow-2xl p-3 space-y-1.5 z-50 animate-fade-in">
@@ -273,17 +334,13 @@ export function Navbar({ activeTab, setActiveTab, language, setLanguage, theme, 
             </div>
 
             {/* Standalone contact button */}
-            <button
-              onClick={() => handleNavClick('contact')}
+            <DesktopNavLink
               id="nav-btn-contact"
-              className={`px-3 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 ${
-                activeTab === 'contact' 
-                  ? 'glass-menu-active text-amber-200 border' 
-                  : 'text-slate-300/80 glass-menu-hover border border-transparent'
-              }`}
+              onClick={() => handleNavClick('contact')}
+              active={activeTab === 'contact'}
             >
               {language === 'EN' ? 'Contact' : language === 'FR' ? 'Contact' : 'Mifandraisa'}
-            </button>
+            </DesktopNavLink>
           </nav>
 
           {/* Action / Language Controls */}
