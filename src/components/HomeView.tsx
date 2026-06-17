@@ -724,7 +724,9 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
                   </span>
                 </div>
                 <div className="flex items-center space-x-1 font-mono text-[9px] sm:text-[10px] bg-slate-900 border border-slate-800/80 px-3 py-1.5 rounded-xl text-slate-400 group-hover:text-white group-hover:bg-emerald-500 group-hover:border-emerald-400/30 transition-all duration-305">
-                  <span>DISPATCH</span>
+                  <span>
+                    {language === 'EN' ? 'VIEW MORE' : language === 'FR' ? 'VOIR PLUS' : 'HIJERY KOKOA'}
+                  </span>
                   <ChevronRight size={11} className="transform group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
