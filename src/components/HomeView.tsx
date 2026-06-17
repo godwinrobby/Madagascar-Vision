@@ -23,8 +23,6 @@ import {
   Wind,
   Droplet,
   Globe,
-  Play,
-  Pause,
   Activity,
   ShieldCheck
 } from 'lucide-react';
@@ -309,25 +307,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
         <div className="absolute top-[12%] left-[8%] w-[380px] h-[380px] bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-violet-500/10 rounded-full blur-[110px] pointer-events-none prism-graphic" />
         <div className="absolute bottom-[8%] right-[8%] w-[480px] h-[480px] bg-gradient-to-r from-violet-500/5 via-pink-500/5 to-amber-500/10 rounded-full blur-[130px] pointer-events-none prism-graphic" />
 
-        {/* Top Floating Mini-badge showing player state on hover */}
-        <div className="absolute top-[16%] left-[50%] -translate-x-[50%] z-20 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-950/80 border border-slate-900 text-[10px] font-mono tracking-widest text-slate-500 uppercase select-none">
-          {isPaused ? (
-            <>
-              <Pause size={10} className="text-amber-500" />
-              <span>SLIDESHOW AUTOPLAY PAUSED (HOVERING)</span>
-            </>
-          ) : (
-            <>
-              <motion.div 
-                animate={{ rotate: 360 }} 
-                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-              >
-                <Play size={8} className="text-emerald-500 fill-emerald-500" />
-              </motion.div>
-              <span>SLIDESHOW ENGAGED</span>
-            </>
-          )}
-        </div>
+
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-8">
           
