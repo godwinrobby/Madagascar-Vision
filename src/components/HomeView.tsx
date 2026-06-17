@@ -288,7 +288,6 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
 
   const handleSectorClick = (id: string) => {
     setSelectedSectorId(id);
-    setActiveTab('sectors');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
