@@ -50,6 +50,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       exploreSectors: 'Explore Divisions',
       investorRelations: 'Partner Advisory',
       statsHeader: 'Consolidated Performance Indicators',
+      statsTitle: 'Sovereign Scale & Quantifiable Global Impact',
+      statsSub: 'High-integrity performance indicators tracked and verified across medical diagnostics, deep-green master planning, robotic distribution, and renewable grid energy.',
       whyTitle: 'Why Sovereign Leaders Partner With Vision Madagascar',
       whySub: 'We leverage combined domain knowledge across physical civil construction and next-gen technical algorithms to offer absolute security and compound long-term yields.',
       partnersTitle: 'Consolidated Alliance Ecosystem',
@@ -65,6 +67,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       exploreSectors: 'Découvrir nos Divisions',
       investorRelations: 'Partenariats & Advisory',
       statsHeader: 'Indicateurs de Performance Consolidés',
+      statsTitle: 'Échelle Souveraine & Impacts Globaux Quantifiables',
+      statsSub: 'Indicateurs de performance de haute intégrité suivis et validés à travers le diagnostic médical, la logistique verte et les réseaux d’énergie renouvelable.',
       whyTitle: "Pourquoi les Institutions Choisissent Vision Madagascar",
       whySub: "Nous unissons notre expertise technique de l'infrastructure physique à des algorithmes de pointe pour assurer une rentabilité maximale et une sécurité absolue.",
       partnersTitle: 'Notre Écosystème d’Alliances Consolidé',
@@ -80,6 +84,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       exploreSectors: 'Ireo Sampan-draharaha',
       investorRelations: 'Fiaraha-miasa Mpampiasa Vola',
       statsHeader: 'Tondro momba ny Fahombiazana',
+      statsTitle: 'Vokatra Goavana sy Fahombiazana azo Tsapain-tanana',
+      statsSub: 'Tondro fahombiazana matanjaka voamarina sy arahina maso amin’ny fitsaboana, ny fotodrafitrasa maitso, ny fitaterana arifomba, ary ny angovo azo havaozina.',
       whyTitle: "Nahoana Ny Mpitantana No Mifidy any amin'i Vision Madagascar",
       whySub: "Mampifangaro ny fahaizana fotodrafitrasa sy ny teknika avo lenta izahay mba hanomezana antoka feno sy fidiram-bola maharitra.",
       partnersTitle: 'Ny Fiaraha-miasa Manerantany',
@@ -654,11 +660,19 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       </section>
 
       {/* 2. Company Highlights statistics Section */}
-      <section className="relative z-10 py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-y border-slate-900" id="stats-section">
+      <section className="relative z-10 py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-y border-slate-900" id="stats-section">
 
-        <h3 className="text-center font-mono text-xs tracking-widest text-slate-500 uppercase mb-8">
-          {translations.statsHeader}
-        </h3>
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+          <span className="font-mono text-xs font-semibold tracking-widest text-emerald-400 uppercase">
+            {translations.statsHeader}
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-sans">
+            {translations.statsTitle}
+          </h2>
+          <p className="text-sm text-slate-400 font-sans leading-relaxed">
+            {translations.statsSub}
+          </p>
+        </div>
         
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
