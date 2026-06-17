@@ -694,7 +694,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
             <div 
               key={sec.id}
               onClick={() => handleSectorClick(sec.id)}
-              className="glass card-hover rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between h-[230px] group cursor-pointer"
+              className="glass card-hover rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between h-full min-h-[280px] group cursor-pointer border border-white/5 hover:border-emerald-500/20 transition-all duration-300"
               id={`home-sector-${sec.id}`}
             >
               {/* Back ambient lighting block on hover */}
@@ -712,14 +712,19 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
                 </p>
               </div>
 
-              <div className="pt-4 flex items-center justify-between text-[11px] font-semibold text-slate-400 border-t border-slate-900 mt-2">
-                <span className="font-mono text-emerald-400">
-                  {sec.metrics[0].value} {sec.metrics[0].label}
-                </span>
-                <span className="text-slate-500 group-hover:text-white transition-colors flex items-center space-x-1 font-mono">
+              <div className="pt-4 flex items-center justify-between text-[11px] font-semibold text-slate-400 border-t border-slate-900 mt-4">
+                <div className="flex flex-col text-left">
+                  <span className="font-mono text-xs sm:text-sm font-black text-emerald-400 leading-none">
+                    {sec.metrics[0].value}
+                  </span>
+                  <span className="text-[8px] font-mono uppercase tracking-widest text-slate-500 mt-1 leading-none">
+                    {sec.metrics[0].label}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-1 font-mono text-[9px] sm:text-[10px] bg-slate-900 border border-slate-800/80 px-3 py-1.5 rounded-xl text-slate-400 group-hover:text-white group-hover:bg-emerald-500 group-hover:border-emerald-400/30 transition-all duration-305">
                   <span>DISPATCH</span>
-                  <ChevronRight size={10} />
-                </span>
+                  <ChevronRight size={11} className="transform group-hover:translate-x-0.5 transition-transform" />
+                </div>
               </div>
             </div>
           ))}

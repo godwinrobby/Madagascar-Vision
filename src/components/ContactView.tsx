@@ -107,8 +107,19 @@ export function ContactView({ language }: ContactViewProps) {
 
   const offices: OfficeSpec[] = [
     {
+      id: 'antananarivo',
+      city: { EN: 'Antananarivo (Corporate HQ)', FR: 'Antananarivo (Siège Social)', MG: 'Antananarivo (Foibe Be)' },
+      role: { EN: 'Parent Conglomerate HQ & Operations', FR: 'Siège du Conglomérat & Opérations', MG: 'Foibe Fandrindrana ny Vondrona' },
+      address: 'Explorer Business Park, BP 12 128 - Ankorondrano, 101 Antananarivo - Madagascar',
+      tel: '+261 34 14 737 80 / +261 33 15 737 80',
+      email: 'contact@visionmadagascar.com',
+      hours: { EN: '08:00 - 17:00 EAT', FR: '08:00 - 17:00 EAT', MG: '08:00 - 17:00 EAT' },
+      timezone: 'Indian/Antananarivo',
+      coords: { x: '55%', y: '58%' }
+    },
+    {
       id: 'zurich',
-      city: { EN: 'Zurich (Global HQ)', FR: 'Zurich (HQ Global)', MG: 'Zurich (Foibe)' },
+      city: { EN: 'Zurich (Liaison HQ)', FR: 'Zurich (HQ de Liaison)', MG: 'Zurich (Fifandraisana)' },
       role: { EN: 'Corporate Center & Fiduciary Trust', FR: 'Centre Corporatif & Fiduciaire', MG: 'Foibe Fandrindrana sy Fiarovana' },
       address: 'Vision Madagascar Civic Group AG, Bleicherweg 74, 8002 Zürich, Switzerland',
       tel: '+41 44 910 2000',
