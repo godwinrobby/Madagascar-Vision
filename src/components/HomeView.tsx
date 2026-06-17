@@ -124,7 +124,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       },
       primaryAction: () => setActiveTab('sectors'),
       secondaryAction: () => setActiveTab('contact'),
-      gradientClass: "from-emerald-500/10 via-slate-950 to-teal-500/10",
+      gradientClass: "from-emerald-950/40 via-teal-950/35 to-violet-950/30",
       glowColor: "glow-emerald",
       graphicType: "core"
     },
@@ -160,7 +160,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
         setActiveTab('sectors');
       },
       secondaryAction: () => setActiveTab('sustainability'),
-      gradientClass: "from-teal-500/15 via-slate-950 to-emerald-500/15",
+      gradientClass: "from-teal-950/40 via-emerald-950/30 to-amber-950/35",
       glowColor: "glow-teal",
       graphicType: "energy"
     },
@@ -196,7 +196,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
         setActiveTab('sectors');
       },
       secondaryAction: () => setActiveTab('contact'),
-      gradientClass: "from-amber-500/10 via-slate-950 to-orange-500/10",
+      gradientClass: "from-amber-950/40 via-emerald-950/35 to-rose-950/30",
       glowColor: "glow-bronze",
       graphicType: "commerce"
     },
@@ -229,7 +229,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       },
       primaryAction: () => setActiveTab('sustainability'),
       secondaryAction: () => setActiveTab('contact'),
-      gradientClass: "from-blue-500/10 via-slate-950 to-indigo-500/10",
+      gradientClass: "from-emerald-950/40 via-purple-950/30 to-blue-950/35",
       glowColor: "glow-blue",
       graphicType: "humanitarian"
     }
@@ -306,8 +306,8 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
       >
         
         {/* Abstract Dynamic Blurred Glowing Assets */}
-        <div className="absolute top-[15%] left-[5%] w-80 h-80 bg-teal-500/5 rounded-full blur-[90px] pointer-events-none" />
-        <div className="absolute bottom-[10%] right-[5%] w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[110px] pointer-events-none" />
+        <div className="absolute top-[12%] left-[8%] w-[380px] h-[380px] bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-violet-500/10 rounded-full blur-[110px] pointer-events-none prism-graphic" />
+        <div className="absolute bottom-[8%] right-[8%] w-[480px] h-[480px] bg-gradient-to-r from-violet-500/5 via-pink-500/5 to-amber-500/10 rounded-full blur-[130px] pointer-events-none prism-graphic" />
 
         {/* Top Floating Mini-badge showing player state on hover */}
         <div className="absolute top-[16%] left-[50%] -translate-x-[50%] z-20 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-950/80 border border-slate-900 text-[10px] font-mono tracking-widest text-slate-500 uppercase select-none">
@@ -344,13 +344,15 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
                 id={`hero-slide-${currentBanner.id}`}
               >
                 {/* Tagline / Label (Aligned with theme specs) */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-[10px] uppercase tracking-widest text-emerald-400 font-bold">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 text-[10px] uppercase tracking-widest text-emerald-400 font-bold eco-rainbow-border-card border-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span>{currentBanner.badge[language]}</span>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white font-sans">
-                  {currentBanner.title[language]}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight font-sans">
+                  <span className="eco-rainbow-text">
+                    {currentBanner.title[language]}
+                  </span>
                 </h1>
 
                 <p className="text-slate-350 text-sm sm:text-base leading-relaxed max-w-2xl font-light">
@@ -656,10 +658,10 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
           {stats.map((stat, idx) => (
             <div 
               key={idx} 
-              className="glass card-hover rounded-2xl p-6 text-center group"
+              className="eco-rainbow-border-card eco-rainbow-glow-hover p-6 text-center group border-0"
               id={`stat-card-${idx}`}
             >
-              <div className="mx-auto w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 mb-3 group-hover:text-white group-hover:bg-emerald-500 transition-all">
+              <div className="mx-auto w-10 h-10 rounded-xl bg-emerald-950/20 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3 group-hover:scale-110 transition-all">
                 <stat.icon size={18} />
               </div>
               <span className="block text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -694,7 +696,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
             <div 
               key={sec.id}
               onClick={() => handleSectorClick(sec.id)}
-              className="glass card-hover rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between h-full min-h-[280px] group cursor-pointer border border-white/5 hover:border-emerald-500/20 transition-all duration-300"
+              className="eco-rainbow-border-card eco-rainbow-glow-hover p-6 relative overflow-hidden flex flex-col justify-between h-full min-h-[280px] group cursor-pointer border-0"
               id={`home-sector-${sec.id}`}
             >
               {/* Back ambient lighting block on hover */}
@@ -810,7 +812,7 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
           {translatedTestimonials.map((test) => (
             <div 
               key={test.id} 
-              className="glass card-hover rounded-2xl p-6 relative flex flex-col justify-between h-[250px]"
+              className="eco-rainbow-border-card eco-rainbow-glow-hover p-6 relative flex flex-col justify-between h-[250px] border-0"
               id={`testi-${test.id}`}
             >
               <div className="space-y-4">
@@ -977,15 +979,15 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
 
       {/* 7. Bottom Call-to-Action Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="cta-bottom-section">
-        <div className="glass rounded-3xl p-8 sm:p-12 relative overflow-hidden neon-border shadow-2xl">
+        <div className="eco-rainbow-border-card eco-rainbow-glow-hover rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-2xl border-0">
           
           {/* Ambient vector lights inside block */}
           <div className="orb orb-blue absolute top-[-50px] left-[-50px] opacity-25 blur-3xl pointer-events-none" />
           <div className="orb orb-purple absolute bottom-[-50px] right-[-50px] opacity-25 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              {translations.ctaHeader}
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight animate-pulse">
+              <span className="eco-rainbow-text">{translations.ctaHeader}</span>
             </h2>
             
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-light">

@@ -109,46 +109,57 @@ export function ContactView({ language }: ContactViewProps) {
     {
       id: 'antananarivo',
       city: { EN: 'Antananarivo (Corporate HQ)', FR: 'Antananarivo (Siège Social)', MG: 'Antananarivo (Foibe Be)' },
-      role: { EN: 'Parent Conglomerate HQ & Operations', FR: 'Siège du Conglomérat & Opérations', MG: 'Foibe Fandrindrana ny Vondrona' },
-      address: 'Explorer Business Park, BP 12 128 - Ankorondrano, 101 Antananarivo - Madagascar',
+      role: { EN: 'Operations & Group Management', FR: 'Opérations & Gestion du Groupe', MG: 'Foibe Fandrindrana ny Vondrona' },
+      address: 'Explorer Business Park, BP 12 128 - Ankorondrano, 101 Antananarivo, Madagascar',
       tel: '+261 34 14 737 80 / +261 33 15 737 80',
       email: 'contact@visionmadagascar.com',
       hours: { EN: '08:00 - 17:00 EAT', FR: '08:00 - 17:00 EAT', MG: '08:00 - 17:00 EAT' },
       timezone: 'Indian/Antananarivo',
-      coords: { x: '55%', y: '58%' }
+      coords: { x: '52%', y: '55%' }
     },
     {
-      id: 'zurich',
-      city: { EN: 'Zurich (Liaison HQ)', FR: 'Zurich (HQ de Liaison)', MG: 'Zurich (Fifandraisana)' },
-      role: { EN: 'Corporate Center & Fiduciary Trust', FR: 'Centre Corporatif & Fiduciaire', MG: 'Foibe Fandrindrana sy Fiarovana' },
-      address: 'Vision Madagascar Civic Group AG, Bleicherweg 74, 8002 Zürich, Switzerland',
-      tel: '+41 44 910 2000',
-      email: 'hq.zurich@aetheris.com',
-      hours: { EN: '08:00 - 17:30 CET', FR: '08:00 - 17:30 CET', MG: '08:00 - 17:30 CET' },
-      timezone: 'Europe/Zurich',
-      coords: { x: '49%', y: '32%' }
+      id: 'toamasina',
+      city: { EN: 'Toamasina (Logistics Hub)', FR: 'Toamasina (Pôle Logistique)', MG: 'Toamasina (Foibe Logistika)' },
+      role: { EN: 'Port Operations & Customs Orchestration', FR: 'Opérations Portuaires & Douanes', MG: 'Karakara Seranana sy Logistika' },
+      address: "Boulevard de l'Union, Zone Portuaire, 501 Toamasina, Madagascar",
+      tel: '+261 34 14 737 82',
+      email: 'toamasina.port@visionmadagascar.com',
+      hours: { EN: '07:30 - 16:30 EAT', FR: '07:30 - 16:30 EAT', MG: '07:30 - 16:30 EAT' },
+      timezone: 'Indian/Antananarivo',
+      coords: { x: '62%', y: '50%' }
     },
     {
-      id: 'frankfurt',
-      city: { EN: 'Frankfurt Hub', FR: 'Hub Francfort', MG: 'Frankfurt Logistika' },
-      role: { EN: 'Logistics Orchestration & ESG Core', FR: 'Logistique & Noyau Durable', MG: 'Drafitra fampitana sy tontolo iainana' },
-      address: 'Vision Madagascar Logistik & Guss GmbH, Kaiserstraße 12, 60311 Frankfurt am Main, Germany',
-      tel: '+49 69 400 9010',
-      email: 'hubs.germany@aetheris.de',
-      hours: { EN: '08:30 - 18:00 CET', FR: '08:30 - 18:00 CET', MG: '08:30 - 18:00 CET' },
-      timezone: 'Europe/Berlin',
-      coords: { x: '52%', y: '29%' }
+      id: 'antsiranana',
+      city: { EN: 'Antsiranana (Energy & SAVA)', FR: 'Antsiranana (Énergie & SAVA)', MG: 'Antsiranana (Hery sy SAVA)' },
+      role: { EN: 'Renewable Hydro & Sustainable Forestry', FR: 'Secteur Hydro-Énergétique & SAVA', MG: 'Angovo Azo Avaozina' },
+      address: 'Rue Colbert, Quartier Militaire, 201 Antsiranana, Madagascar',
+      tel: '+261 34 14 737 84',
+      email: 'antsiranana.energy@visionmadagascar.com',
+      hours: { EN: '08:00 - 17:00 EAT', FR: '08:00 - 17:00 EAT', MG: '08:00 - 17:00 EAT' },
+      timezone: 'Indian/Antananarivo',
+      coords: { x: '58%', y: '18%' }
     },
     {
-      id: 'tokyo',
-      city: { EN: 'Tokyo Ginza Terminal', FR: 'Terminal Tokyo Ginza', MG: 'Tokyo Ginza Foibe' },
-      role: { EN: 'APAC Division & MedTech Operations', FR: 'Division APAC & Technologies Cliniques', MG: 'Sampana APAC sy Fitsaboana' },
-      address: 'Vision Madagascar Medical Solutions, Ginza Six 11F, Chuo-ku, Tokyo 104-0061, Japan',
-      tel: '+81 3 5510 8800',
-      email: 'apac.tokyo@aetheris.jp',
-      hours: { EN: '09:00 - 18:00 JST', FR: '09:00 - 18:00 JST', MG: '09:00 - 18:00 JST' },
-      timezone: 'Asia/Tokyo',
-      coords: { x: '82%', y: '45%' }
+      id: 'tolagnaro',
+      city: { EN: 'Tolagnaro (Southern Minerals)', FR: 'Tolagnaro (Minéraux du Sud)', MG: "Tolagnaro (Harena Ankibon'ny Tany)" },
+      role: { EN: 'Eco-responsible Mining & Solar Grid', FR: 'Exploitation Éco-responsable & Solaire', MG: 'Harena sy Amboara Solara' },
+      address: 'Boulevard de la Corniche, Libanona Beach, 614 Tolagnaro, Madagascar',
+      tel: '+261 34 14 737 86',
+      email: 'tolagnaro.south@visionmadagascar.com',
+      hours: { EN: '08:00 - 17:00 EAT', FR: '08:00 - 17:00 EAT', MG: '08:00 - 17:00 EAT' },
+      timezone: 'Indian/Antananarivo',
+      coords: { x: '44%', y: '82%' }
+    },
+    {
+      id: 'mahajanga',
+      city: { EN: 'Mahajanga (Agritech & Infra)', FR: 'Mahajanga (Agro-industrie & Infra)', MG: 'Mahajanga (Fambolena sy Fotodrafitrasa)' },
+      role: { EN: 'Farming Ecosystems & Organic Products', FR: 'Agriculture Bio, Miel & Canne à Sucre', MG: 'Fambolena sy Fiompiana Manara-penitra' },
+      address: 'Avenue de la République, Quartier Résidentiel, 401 Mahajanga, Madagascar',
+      tel: '+261 34 14 737 88',
+      email: 'mahajanga.agri@visionmadagascar.com',
+      hours: { EN: '07:30 - 16:30 EAT', FR: '07:30 - 16:30 EAT', MG: '07:30 - 16:30 EAT' },
+      timezone: 'Indian/Antananarivo',
+      coords: { x: '42%', y: '40%' }
     }
   ];
 
@@ -463,12 +474,13 @@ export function ContactView({ language }: ContactViewProps) {
                 <div className="absolute w-[240px] h-[240px] rounded-full border border-emerald-500/10 animate-ping opacity-75" />
               </div>
 
-              {/* Aesthetic static background continent names mapped precisely */}
-              <div className="absolute top-[28%] left-[12%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">NORTH AMERICA</div>
-              <div className="absolute top-[48%] left-[16%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">SOUTH AMERICA</div>
-              <div className="absolute top-[18%] left-[45%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">EUROPE</div>
-              <div className="absolute top-[52%] left-[48%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">AFRICA</div>
-              <div className="absolute top-[32%] left-[76%] text-[9px] font-mono text-slate-700 tracking-widest leading-none font-bold">ASIA-PACIFIC</div>
+              {/* Aesthetic static background Madagascar region and oceanic names mapped precisely */}
+              <div className="absolute top-[14%] left-[54%] text-[9px] font-mono text-emerald-800/60 tracking-widest leading-none font-bold">DIANA / SAVA (NORTH)</div>
+              <div className="absolute top-[38%] left-[14%] text-[9px] font-mono text-slate-800/60 tracking-widest leading-none font-bold">MOZAMBIQUE CHANNEL</div>
+              <div className="absolute top-[40%] left-[46%] text-[9px] font-mono text-emerald-850/60 tracking-widest leading-none font-bold">BOENY REGION</div>
+              <div className="absolute top-[52%] left-[54%] text-[9px] font-mono text-emerald-900/65 tracking-widest leading-none font-bold">ANALAMANGA (HQ) & ATSINANANA</div>
+              <div className="absolute top-[82%] left-[45%] text-[9px] font-mono text-emerald-800/65 tracking-widest leading-none font-bold">ANOSY (SOUTH)</div>
+              <div className="absolute top-[68%] left-[72%] text-[9px] font-mono text-slate-800/60 tracking-widest leading-none font-bold">INDIAN OCEAN</div>
               
               {/* Connection vector lines linking back to current selected index */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">

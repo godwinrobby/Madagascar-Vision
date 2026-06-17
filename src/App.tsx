@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
@@ -15,9 +15,10 @@ import { NewsView } from './components/NewsView';
 import { BlogsView } from './components/BlogsView';
 import { EventsView } from './components/EventsView';
 import { SearchOverlay } from './components/SearchOverlay';
+import { LanguageToast } from './components/LanguageToast';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const [activeTab, setActiveTab ] = useState<string>('home');
   const [language, setLanguage] = useState<'EN' | 'FR' | 'MG'>('EN');
   const [selectedSectorId, setSelectedSectorId] = useState<string | null>(null);
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
@@ -27,6 +28,9 @@ export default function App() {
     const saved = localStorage.getItem('mv-theme');
     return saved === 'light' ? 'light' : 'dark';
   });
+  const [toast, setToast] = useState<{ title: string; desc: string; lang: 'EN' | 'FR' | 'MG' } | null>(null);
+
+  const isInitialLang = useRef(true);
 
   // Sync theme class on HTML element
   useEffect(() => {
@@ -38,6 +42,32 @@ export default function App() {
     }
     localStorage.setItem('mv-theme', theme);
   }, [theme]);
+
+  // Monitor language switches
+  useEffect(() => {
+    if (isInitialLang.current) {
+      isInitialLang.current = false;
+      return;
+    }
+
+    const messages = {
+      EN: { title: 'Language Changed', desc: 'The application is now presented in English.' },
+      FR: { title: 'Langue Modifiée', desc: 'L’application est désormais affichée en Français.' },
+      MG: { title: 'Fiteny Voasolo', desc: 'Mampiasa ny teny Malagasy ny pejy ankehitriny.' }
+    };
+
+    setToast({
+      title: messages[language].title,
+      desc: messages[language].desc,
+      lang: language
+    });
+
+    const timer = setTimeout(() => {
+      setToast(null);
+    }, 4500);
+
+    return () => clearTimeout(timer);
+  }, [language]);
 
   // Global hotkey Cmd+K or Ctrl+K to toggle Search Overlay
   useEffect(() => {
@@ -154,7 +184,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between relative text-slate-100 select-none antialiased" id="aetheris-group-app">
+    <div className="min-h-screen flex flex-col justify-between relative text-slate-100 select-none antialiased eco-rainbow-bg" id="aetheris-group-app">
       
       {/* Dynamic 3D Geometric Floating background canvas */}
       <FloatingCanvas />
@@ -191,6 +221,12 @@ export default function App() {
         onClose={() => setSearchOpen(false)}
         language={language}
         onSelectResult={handleSelectSearchResult}
+      />
+
+      {/* Dynamic Eco & Rainbow Language Change Confirm Toast */}
+      <LanguageToast
+        toast={toast}
+        onClose={() => setToast(null)}
       />
 
     </div>

@@ -39,11 +39,14 @@ export function FloatingCanvas() {
     const nodes: Node[] = [];
     const shapes: FloatingShape[] = [];
 
-    // Colors aligned with palette: Moss, Emerald, Teal Mint
+    // Colors aligned with dynamic Eco & Rainbow palette
     const colors = [
-      'rgba(16, 185, 129, 0.15)',  // Emerald highlight
-      'rgba(20, 184, 166, 0.12)',  // Teal highlight
-      'rgba(4, 120, 87, 0.12)',    // Deep forest green
+      'rgba(16, 185, 129, 0.18)',  // Eco Emerald
+      'rgba(6, 182, 212, 0.15)',   // Teal Mint
+      'rgba(59, 130, 246, 0.13)',  // Electric Blue
+      'rgba(139, 92, 246, 0.13)',  // Soft Violet
+      'rgba(244, 63, 94, 0.13)',   // Rose/Pink
+      'rgba(245, 158, 11, 0.14)',  // Amber Gold
     ];
 
     // Seed background particles
