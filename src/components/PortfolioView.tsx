@@ -123,7 +123,7 @@ export function PortfolioView({ language }: PortfolioViewProps) {
       
       {/* 1. Elegant Header Area */}
       <section className="relative pt-32 pb-6 overflow-hidden text-center max-w-4xl mx-auto px-4" id="portfolio-intro">
-        <span className="font-mono text-[10px] text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20">
+        <span className="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20 font-bold">
           {language === 'EN' ? 'RELIABLE GLOBAL INFRASTRUCTURE' : language === 'FR' ? 'INFRASTRUCTURE NATIONALE FIABLE' : 'FOTODRAFITRASA FAZON-DAHARAHA AZO ANTOKA'}
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">

@@ -249,7 +249,7 @@ export function CareersView({ language }: CareersViewProps) {
                   className="w-full p-5 sm:p-6 flex items-center justify-between text-left focus:outline-none cursor-pointer"
                 >
                   <div className="space-y-2 pr-4">
-                    <span className="inline-block px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-widest leading-none">
+                    <span className="inline-block px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest leading-none">
                       {job.sector}
                     </span>
 
@@ -335,7 +335,7 @@ export function CareersView({ language }: CareersViewProps) {
             <Sparkles size={16} className="text-emerald-400" />
             <span>{translations.appFormTitle}</span>
           </h3>
-          <p className="text-slate-450 text-[11px] leading-tight mb-6 border-b border-slate-900 pb-3">
+          <p className="text-slate-400 text-xs leading-relaxed mb-6 border-b border-slate-900 pb-3">
             {language === 'EN' ? 'File verified curriculum documentation securely. Files are routed directly to group-wide directory.' : language === 'FR' ? 'Déposez votre curriculum en toute sécurité. Les fichiers sont acheminés directement vers la direction du groupe.' : 'Ny diary asa rehetra dia alefa any amin\'ny tahirin\'ny mpiasa voaaro.'}
           </p>
 
@@ -343,7 +343,7 @@ export function CareersView({ language }: CareersViewProps) {
             
             {/* Name Input */}
             <div className="space-y-1 block">
-              <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
+              <label className="block text-xs font-mono tracking-wider font-bold text-slate-400 uppercase">
                 {translations.fullNameLabel}
               </label>
               <input
@@ -358,7 +358,7 @@ export function CareersView({ language }: CareersViewProps) {
             {/* Email + Contact phone */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1 block">
-                <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
+                <label className="block text-xs font-mono tracking-wider font-bold text-slate-400 uppercase">
                   {translations.emailLabel}
                 </label>
                 <input
@@ -371,7 +371,7 @@ export function CareersView({ language }: CareersViewProps) {
               </div>
 
               <div className="space-y-1 block">
-                <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
+                <label className="block text-xs font-mono tracking-wider font-bold text-slate-400 uppercase">
                   {translations.phoneLabel}
                 </label>
                 <input
@@ -386,7 +386,7 @@ export function CareersView({ language }: CareersViewProps) {
 
             {/* Target Job selection dropdown */}
             <div className="space-y-1 block">
-              <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
+              <label className="block text-xs font-mono tracking-wider font-bold text-slate-400 uppercase">
                 {translations.positionLabel}
               </label>
               <select
@@ -407,7 +407,7 @@ export function CareersView({ language }: CareersViewProps) {
 
             {/* Motivation cover note */}
             <div className="space-y-1 block">
-              <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
+              <label className="block text-xs font-mono tracking-wider font-bold text-slate-400 uppercase">
                 {translations.coverLabel}
               </label>
               <textarea
@@ -421,7 +421,7 @@ export function CareersView({ language }: CareersViewProps) {
 
             {/* Drag and Drop resume Upload widget (Usability Pattern Compliance) */}
             <div className="space-y-1 block">
-              <label className="block text-[10px] font-mono tracking-wider font-bold text-slate-500 uppercase">
+              <label className="block text-xs font-mono tracking-wider font-bold text-slate-400 uppercase">
                 {translations.resumeLabel}
               </label>
               
@@ -444,10 +444,10 @@ export function CareersView({ language }: CareersViewProps) {
                 {resumeFile ? (
                   <div className="space-y-1 font-mono text-xs">
                     <span className="block text-emerald-400 font-bold">✓CV LOADED:</span>
-                    <span className="block text-slate-300 text-[10px] truncate max-w-xs">{resumeFile.name} ({(resumeFile.size / 1024).toFixed(1)} KB)</span>
+                    <span className="block text-slate-300 text-xs truncate max-w-xs">{resumeFile.name} ({(resumeFile.size / 1024).toFixed(1)} KB)</span>
                   </div>
                 ) : (
-                  <p className="text-[10.5px] leading-relaxed max-w-sm">
+                  <p className="text-xs leading-relaxed max-w-sm text-slate-400">
                     {translations.dragDropText}
                   </p>
                 )}

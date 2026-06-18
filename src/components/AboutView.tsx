@@ -140,7 +140,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
                 {translations.visionMissionP1}
               </p>
             </div>
-            <span className="text-[10px] text-emerald-400 font-mono tracking-widest uppercase mt-6 block">VISION CORE STATEMENT</span>
+            <span className="text-xs text-emerald-400 font-mono tracking-widest uppercase mt-6 block font-bold">VISION CORE STATEMENT</span>
           </div>
 
           {/* Card 2: Competitiveness & Progress */}
@@ -157,7 +157,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
                 {translations.visionMissionP2}
               </p>
             </div>
-            <span className="text-[10px] text-teal-400 font-mono tracking-widest uppercase mt-6 block">CREATIVE COMPETITIVENESS</span>
+            <span className="text-xs text-teal-400 font-mono tracking-widest uppercase mt-6 block font-bold">CREATIVE COMPETITIVENESS</span>
           </div>
 
           {/* Card 3: Energy & Expertise */}
@@ -174,7 +174,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
                 {translations.visionMissionP3}
               </p>
             </div>
-            <span className="text-[10px] text-amber-400 font-mono tracking-widest uppercase mt-6 block">OPERATIONAL EXCELLENCE</span>
+            <span className="text-xs text-amber-400 font-mono tracking-widest uppercase mt-6 block font-bold">OPERATIONAL EXCELLENCE</span>
           </div>
         </div>
       </section>
@@ -226,7 +226,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
-              <span className="font-mono text-[10px] text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20 inline-block">
+              <span className="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-3 py-1 rounded-full bg-emerald-950/20 inline-block font-semibold">
                 {language === 'EN' ? 'STEWARD ADVISORY' : language === 'FR' ? 'CONSEIL FIDUCIAIRE' : 'FITANTONAN’NY MPIARAHA-MIOMBON’ANTOKA'}
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
@@ -277,7 +277,7 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
                   <h4 className="text-white text-xs font-bold leading-tight font-sans group-hover:text-emerald-400 transition-colors">
                     {lead.name}
                   </h4>
-                  <span className="text-[9px] text-slate-500 font-mono tracking-wider block mt-1 uppercase truncate">
+                  <span className="text-xs text-slate-400 font-mono tracking-wider block mt-1 uppercase truncate font-medium">
                     {lead.role}
                   </span>
                 </div>

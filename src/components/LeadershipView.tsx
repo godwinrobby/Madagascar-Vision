@@ -993,12 +993,12 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 <div className="space-y-6">
                   <div className="flex justify-between items-center bg-slate-950/60 p-3 rounded-xl border border-white/5 width-full">
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                       <div className="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                         <Leaf size={16} />
                       </div>
-                      <span className="text-[10px] font-mono text-slate-300 font-black uppercase">COMMITTEE FILE // SEC-01</span>
+                      <span className="text-xs font-mono text-slate-300 font-extrabold uppercase">COMMITTEE FILE // SEC-01</span>
                     </div>
-                    <span className="text-[9px] font-mono text-emerald-400 animate-pulse flex items-center gap-1">
+                    <span className="text-xs font-mono text-emerald-400 animate-pulse flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
                       COMPLIANCE ACTIVE
                     </span>
@@ -1010,21 +1010,21 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1 bg-slate-950/45 p-3 rounded-lg border border-white/5">
-                      <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest block font-bold">COMMITTEE CHAIR</span>
+                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block font-bold">COMMITTEE CHAIR</span>
                       <span className="text-xs text-white font-semibold font-mono">{committees[0].leadName}</span>
                     </div>
                     <div className="space-y-1 bg-slate-950/45 p-3 rounded-lg border border-white/5">
-                      <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest block font-bold">OVERSIGHT REALM</span>
-                      <p className="text-[10px] text-slate-300 font-light leading-snug line-clamp-2">
+                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block font-bold">OVERSIGHT REALM</span>
+                      <p className="text-xs text-slate-300 font-light leading-snug line-clamp-2">
                         {committees[0].focusArea[language]}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t border-slate-900/60 pt-4 mt-6 flex justify-between items-center text-[10px] font-mono text-slate-500">
+                <div className="border-t border-slate-900/60 pt-4 mt-6 flex justify-between items-center text-xs font-mono text-slate-400">
                   <span className="flex items-center gap-1"><History size={12} /> {committees[0].meetings[language]}</span>
-                  <span className="text-emerald-400 uppercase font-bold tracking-widest text-[9px]">GRI / CSRD VERIFIED</span>
+                  <span className="text-emerald-400 uppercase font-bold tracking-widest text-xs">GRI / CSRD VERIFIED</span>
                 </div>
               </div>
 
@@ -1038,9 +1038,9 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                       <div className="w-8 h-8 rounded-lg bg-amber-955 border border-amber-500/10 flex items-center justify-center text-amber-400">
                         <Cpu size={16} />
                       </div>
-                      <span className="text-[10px] font-mono text-slate-300 font-black uppercase">SEC-02</span>
+                      <span className="text-xs font-mono text-slate-300 font-extrabold uppercase">SEC-02</span>
                     </div>
-                    <span className="text-[9px] font-mono text-amber-400 uppercase font-semibold">CIPHER LOCK // STABLE</span>
+                    <span className="text-xs font-mono text-amber-400 uppercase font-semibold">CIPHER LOCK // STABLE</span>
                   </div>
 
                   <h4 className="text-white text-base sm:text-lg font-bold font-sans tracking-tight leading-tight group-hover:text-amber-400 transition-colors">
@@ -1049,20 +1049,20 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
                   <div className="space-y-2.5">
                     <div className="space-y-1">
-                      <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest block font-bold">COMMITTEE CHAIR</span>
+                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block font-bold">COMMITTEE CHAIR</span>
                       <span className="text-xs text-white font-semibold font-mono">{committees[1].leadName}</span>
                     </div>
                     <div className="space-y-1 bg-slate-950/30 p-2.5 rounded-lg border border-white/5">
-                      <p className="text-[10px] text-slate-350 leading-relaxed font-light">
+                      <p className="text-xs text-slate-350 leading-relaxed font-light">
                         {committees[1].focusArea[language]}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t border-slate-900/60 pt-4 mt-6 flex justify-between items-center text-[10px] font-mono text-slate-500">
+                <div className="border-t border-slate-900/60 pt-4 mt-6 flex justify-between items-center text-xs font-mono text-slate-400">
                   <span className="flex items-center gap-1"><History size={12} /> {committees[1].meetings[language]}</span>
-                  <span className="text-amber-400">TLS SECURED</span>
+                  <span className="text-amber-400 uppercase tracking-wider text-xs font-mono">TLS SECURED</span>
                 </div>
               </div>
 
@@ -1073,36 +1073,36 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                   
                   <div className="md:col-span-5 space-y-4">
-                    <div className="inline-flex items-center space-x-2 bg-cyan-950/20 border border-cyan-500/10 rounded-lg px-2.5 py-1">
+                     <div className="inline-flex items-center space-x-2 bg-cyan-950/20 border border-cyan-500/10 rounded-lg px-2.5 py-1">
                       <div className="w-5 h-5 bg-cyan-950 rounded border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs">
                         <Scale size={11} />
                       </div>
-                      <span className="text-[9px] font-mono text-cyan-400 font-bold uppercase tracking-wider">CAPITAL_MATRIX // SEC-03</span>
+                      <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">CAPITAL_MATRIX // SEC-03</span>
                     </div>
 
                     <h4 className="text-white text-lg sm:text-xl font-bold font-sans tracking-tight leading-tight group-hover:text-cyan-400 transition-colors">
                       {committees[2].name[language]}
                     </h4>
 
-                    <div className="flex items-center gap-4 text-[10px] font-mono text-slate-500">
+                    <div className="flex items-center gap-4 text-xs font-mono text-slate-405">
                       <span className="flex items-center gap-1"><History size={12} /> {committees[2].meetings[language]}</span>
                       <span className="text-cyan-400 font-bold uppercase tracking-wider">SECURE ESCROW AUTHORIZED</span>
                     </div>
                   </div>
 
                   <div className="md:col-span-4 bg-slate-950/50 p-5 rounded-2xl border border-slate-900 flex flex-col justify-center space-y-1.5 h-full">
-                    <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest block font-bold">OVERSIGHT REALM & RESPONSIBILITY</span>
-                    <p className="text-[11px] text-slate-350 leading-relaxed font-light">
+                    <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block font-bold">OVERSIGHT REALM & RESPONSIBILITY</span>
+                    <p className="text-xs text-slate-350 leading-relaxed font-light">
                       {committees[2].focusArea[language]}
                     </p>
                   </div>
 
                   <div className="md:col-span-3 bg-slate-950/50 p-5 rounded-2xl border border-slate-905 flex flex-col justify-center space-y-2.5 text-center sm:text-left h-full">
                     <div>
-                      <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest block font-bold mb-0.5">COMMITTEE CHAIR</span>
+                      <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block font-bold mb-0.5">COMMITTEE CHAIR</span>
                       <span className="text-sm text-white font-extrabold font-mono">{committees[2].leadName}</span>
                     </div>
-                    <div className="text-[9px] font-mono text-slate-450 uppercase leading-none">
+                    <div className="text-xs font-mono text-slate-400 uppercase leading-none">
                       Active Bonding Reserves: $150M+
                     </div>
                   </div>

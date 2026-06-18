@@ -218,7 +218,7 @@ export function SustainabilityView({ language }: SustainabilityViewProps) {
                   <span className="text-white text-3xl font-black tracking-tight leading-none">
                     {esgGoals[activeGoal].percent}%
                   </span>
-                  <span className="text-[9px] font-mono font-bold text-slate-500 tracking-wider mt-1 uppercase">
+                  <span className="text-xs font-mono font-bold text-slate-400 tracking-wider mt-1 uppercase">
                     {esgGoals[activeGoal].indicator}
                   </span>
                 </div>
@@ -227,7 +227,7 @@ export function SustainabilityView({ language }: SustainabilityViewProps) {
               {/* Text explanation */}
               <div className="space-y-4">
                 <div>
-                  <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block">
+                  <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block font-bold">
                     TARGET DEADLINE YEAR • {esgGoals[activeGoal].targetYear}
                   </span>
                   <h3 className="text-white font-extrabold text-base sm:text-lg font-sans mt-0.5">
@@ -239,7 +239,7 @@ export function SustainabilityView({ language }: SustainabilityViewProps) {
                   {esgGoals[activeGoal].desc[language]}
                 </p>
 
-                <div className="pt-2 border-t border-slate-900 text-[10px] font-mono text-slate-500 flex justify-between">
+                <div className="pt-2 border-t border-slate-900 text-xs font-mono text-slate-400 flex justify-between">
                   <span>UN-SDG INDEX METRIC</span>
                   <span>VERIFIED LOGS v.2026</span>
                 </div>
