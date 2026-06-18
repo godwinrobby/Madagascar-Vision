@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { LEADERS } from '../data/corporateData';
 import { getTranslatedLeaders } from '../utils/translator';
+import { Helmet } from './Helmet';
 
 interface LeadershipViewProps {
   language: 'EN' | 'FR' | 'MG';
@@ -312,6 +313,38 @@ export function LeadershipView({ language }: LeadershipViewProps) {
   ];
 
   const translatedLeaders = getTranslatedLeaders(LEADERS, language);
+  
+  const companyMaps = {
+    'lead-1': {
+      EN: 'ViMa Management & Holding',
+      FR: 'ViMa Direction & Gestion',
+      MG: "ViMa Fitantanana & Holding",
+      icon: Layers,
+      code: 'VIMA-MGMT'
+    },
+    'lead-2': {
+      EN: 'ViMa Tech & World Trade Center',
+      FR: 'ViMa Technologie & WTC',
+      MG: "ViMa Teknolojia & WTC",
+      icon: Cpu,
+      code: 'VIMA-TECH'
+    },
+    'lead-3': {
+      EN: 'ViMa Energy & Infrastructure',
+      FR: 'ViMa Énergie & Infrastructures',
+      MG: "ViMa Angovo sy Fotodrafitrasa",
+      icon: Radio,
+      code: 'VIMA-ENRG'
+    },
+    'lead-4': {
+      EN: 'ViMa NGO & Circular Ecosystems',
+      FR: 'ViMa Bureau Vert & Affaires Sociales',
+      MG: "ViMa Sosialy & Fandrosoana",
+      icon: Leaf,
+      code: 'VIMA-SUST'
+    }
+  };
+
   const currentLeader = translatedLeaders.find(l => l.id === selectedLeaderId) || translatedLeaders[0];
   const activeDetail = leaderDetails[selectedLeaderId] || leaderDetails['lead-1'];
 
@@ -338,6 +371,12 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
   return (
     <div id="leadership-view-wrapper" className="space-y-24 pb-20 relative animate-fade-in text-slate-200">
+      <Helmet
+        title={language === 'EN' ? 'Fiduciary Leadership & Board' : language === 'FR' ? 'Direction Fiduciaire & Conseil' : 'Fitarihana sy ny Birao Fitantanana'}
+        description="Fiduciary leadership and corporate governance representing deep intersectoral industry experience and strategic growth."
+        keywords="fiduciary leadership, managing partners, corporate governance, strategic growth, board of directors, Vision Madagascar, Aetheris Group"
+        language={language}
+      />
       
       {/* Absolute Decorative Accent Lights */}
       <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
@@ -403,7 +442,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
               <div className="lg:col-span-4 space-y-6">
                 <div className="border-b border-slate-900 pb-3 flex justify-between items-center px-1">
                   <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-black">
-                    {language === 'EN' ? 'STEWARD DIRECTORY FILE' : language === 'FR' ? 'REGISTRE DU CABINET' : 'LISITRY NY MPIANDRAIKITRA'}
+                    {language === 'EN' ? 'SUBSIDIARY REGISTER' : language === 'FR' ? 'FILIALES DU GROUPE' : 'REKOTRY NY RANTSANA'}
                   </span>
                   <span className="text-[10px] font-mono text-emerald-400">VIMA-A09</span>
                 </div>
@@ -411,47 +450,64 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
                   {translatedLeaders.map((lead) => {
                     const isSelected = lead.id === selectedLeaderId;
+                    const comp = companyMaps[lead.id as keyof typeof companyMaps] || companyMaps['lead-1'];
+                    const CompIcon = comp.icon;
                     return (
                       <button
                         key={lead.id}
                         onClick={() => setSelectedLeaderId(lead.id)}
-                        className={`w-full text-left p-4.5 rounded-2xl border transition-all flex items-center space-x-4 relative overflow-hidden group outline-none cursor-pointer ${
+                        className={`w-full text-left p-4.5 rounded-2xl border transition-all flex items-start space-x-4 relative overflow-hidden group outline-none cursor-pointer ${
                           isSelected
-                            ? 'bg-slate-900/90 border-emerald-500/40 shadow-xl shadow-emerald-950/10'
+                            ? 'bg-slate-900/90 border-emerald-500/40 shadow-xl shadow-emerald-955/10'
                             : 'bg-slate-950/50 border-slate-900/80 hover:border-slate-800/80 hover:bg-slate-900/20'
                         }`}
-                        id={`btn-leader-${lead.id}`}
+                        id={`btn-company-tab-${lead.id}`}
                       >
                         {isSelected && (
                           <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-emerald-500 to-teal-500" />
                         )}
                         
-                        {/* Styled Micro Portrait frame */}
-                        <div className="w-12 h-12 rounded-xl overflow-hidden bg-slate-950 shrink-0 border border-slate-800 flex items-center justify-center p-0.5 shadow-inner">
-                          <img
-                            src={lead.imageUrl || `https://picsum.photos/seed/${lead.imageSeed}/150/150`}
-                            alt={lead.name}
-                            className={`w-full h-full object-cover rounded-lg transition-transform duration-500 ${
-                              isSelected ? 'grayscale-0 scale-105' : 'grayscale group-hover:grayscale-0 group-hover:scale-102'
-                            }`}
-                            referrerPolicy="no-referrer"
-                          />
+                        {/* Subsidiary Division Icon instead of tiny photogird to emphasize company-focus */}
+                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300 ${
+                          isSelected 
+                            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
+                            : 'bg-slate-950 border-slate-800 text-slate-500 group-hover:text-slate-300'
+                        }`}>
+                          <CompIcon size={18} />
                         </div>
 
                         <div className="flex-grow min-w-0">
-                          <h4 className={`text-sm font-bold font-sans tracking-tight truncate ${
-                            isSelected ? 'text-white' : 'text-slate-300'
+                          <div className="flex items-center justify-between gap-1.5">
+                            <span className={`text-[8px] font-mono tracking-wider uppercase font-bold ${
+                              isSelected ? 'text-emerald-400' : 'text-slate-500'
+                            }`}>
+                              {comp.code}
+                            </span>
+                            <span className="text-[8px] font-mono text-slate-600">DIRECTORATE</span>
+                          </div>
+                          
+                          <h4 className={`text-xs font-black font-sans tracking-wide uppercase mt-1 transition-colors ${
+                            isSelected ? 'text-white' : 'text-slate-250 group-hover:text-slate-100'
                           }`}>
-                            {lead.name}
+                            {comp[language]}
                           </h4>
-                          <span className="text-[9px] font-mono tracking-widest uppercase text-slate-500 block mt-1 truncate group-hover:text-slate-400">
-                            {lead.role}
-                          </span>
+                          
+                          <div className="mt-2.5 pt-2.5 border-t border-white/5 space-y-0.5">
+                            <span className="text-[10px] text-slate-400 font-light block truncate">
+                              {language === 'EN' ? 'Leader: ' : language === 'FR' ? 'Dirigeant: ' : 'Mpitantana: '}
+                              <strong className={`${isSelected ? 'text-white font-bold' : 'text-slate-300 font-semibold'}`}>
+                                {lead.name}
+                              </strong>
+                            </span>
+                            <span className="text-[9px] font-mono text-slate-500 tracking-tight block truncate uppercase">
+                              {lead.role}
+                            </span>
+                          </div>
                         </div>
 
                         <ChevronRight 
                           size={14} 
-                          className={`text-slate-600 shrink-0 transition-transform ${
+                          className={`text-slate-600 shrink-0 transition-transform self-center ${
                             isSelected ? 'translate-x-1 text-emerald-400' : 'group-hover:translate-x-0.5 text-slate-500'
                           }`} 
                         />

@@ -3,6 +3,7 @@ import { TimelineEvent, Leader } from '../types';
 import { LEADERS, TIMELINE } from '../data/corporateData';
 import { getTranslatedLeaders, getTranslatedTimeline } from '../utils/translator';
 import { Target, Globe, Compass, Landmark, ShieldCheck, Zap, Sparkles, Leaf, Users, Heart } from 'lucide-react';
+import { Helmet } from './Helmet';
 
 interface AboutViewProps {
   language: 'EN' | 'FR' | 'MG';
@@ -93,6 +94,12 @@ export function AboutView({ language, setActiveTab }: AboutViewProps) {
 
   return (
     <div id="about-us-view-wrapper" className="space-y-24 pb-12 relative animate-fade-in">
+      <Helmet
+        title={language === 'EN' ? 'Corporate Story & Board' : language === 'FR' ? "Histoire de l'Entreprise & Conseil" : 'Tantara sy ny Birao'}
+        description={translations.overviewDesc}
+        keywords="capital base, group foundation, corporate story, Madagascar infrastructure, Vision Madagascar, Aetheris Group history"
+        language={language}
+      />
       
       {/* Page Header banner */}
       <section className="relative pt-32 pb-4 overflow-hidden text-center max-w-4xl mx-auto px-4" id="about-intro">

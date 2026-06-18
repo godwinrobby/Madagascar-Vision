@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Leaf, Award, Recycle, ShieldCheck, HelpCircle, Users, Sparkles, Heart } from 'lucide-react';
+import { Helmet } from './Helmet';
 
 interface SustainabilityViewProps {
   language: 'EN' | 'FR' | 'MG';
@@ -118,6 +119,12 @@ export function SustainabilityView({ language }: SustainabilityViewProps) {
 
   return (
     <div id="sustainability-view-wrapper" className="space-y-16 pb-12 relative animate-fade-in">
+      <Helmet
+        title={language === 'EN' ? 'Sustainability & Global ESG Mandate' : language === 'FR' ? 'Durabilité & Mandat ESG Global' : 'Fandrosoana Maharitra sy ESG'}
+        description={translations.sub}
+        keywords="decarbonization mandate, circular roadmap, climate audit, community welfare, Vision Madagascar ESG, Aetheris Group environment"
+        language={language}
+      />
       
       {/* 1. Introductory block */}
       <section className="relative pt-32 pb-8 overflow-hidden text-center max-w-4xl mx-auto px-4" id="sustainability-intro">

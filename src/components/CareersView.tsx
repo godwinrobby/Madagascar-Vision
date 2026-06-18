@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { CAREER_POSITIONS } from '../data/corporateData';
 import { getTranslatedCareers } from '../utils/translator';
 import { JobPosition } from '../types';
+import { Helmet } from './Helmet';
 import { Briefcase, MapPin, Clock, Calendar, CheckCircle2, ChevronDown, ChevronUp, FileUp, Sparkles, Send, AlertCircle, X } from 'lucide-react';
 
 interface CareersViewProps {
@@ -173,6 +174,12 @@ export function CareersView({ language }: CareersViewProps) {
 
   return (
     <div id="careers-view-wrapper" className="space-y-16 pb-12 relative animate-fade-in">
+      <Helmet
+        title={language === 'EN' ? 'Sovereign Careers & Open Roles' : language === 'FR' ? "Carrières Souveraines & Postes Ouverts" : 'Asa sy Tolon-draharaha'}
+        description="Explore sovereign careers, compensation packages, and open job roles across our multi-sector investment holding."
+        keywords="careers, job openings, recruitment, multi-currency compensation, Vision Madagascar careers, Aetheris Group jobs"
+        language={language}
+      />
       
       {/* 1. Page Header */}
       <section className="relative pt-32 pb-8 overflow-hidden text-center max-w-4xl mx-auto px-4" id="careers-intro">

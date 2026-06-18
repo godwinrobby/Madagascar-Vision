@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { PROJECTS } from '../data/corporateData';
 import { getTranslatedProjects } from '../utils/translator';
 import { Project } from '../types';
+import { Helmet } from './Helmet';
 import { 
   Globe, 
   ArrowRight, 
@@ -113,6 +114,12 @@ export function PortfolioView({ language }: PortfolioViewProps) {
 
   return (
     <div id="portfolio-view-wrapper" className="space-y-16 pb-24 relative animate-fade-in">
+      <Helmet
+        title={language === 'EN' ? 'Asset Portfolio & Mega-Infrastructure' : language === 'FR' ? "Portefeuille d'Actifs & Méga-Infrastructures" : 'Tahiry sy Fotodrafitrasa Goavana'}
+        description={translations.sub}
+        keywords="asset portfolio, infrastructure portfolio, energy grids, smart cities, Vision Madagascar, Aetheris Group portfolio"
+        language={language}
+      />
       
       {/* 1. Elegant Header Area */}
       <section className="relative pt-32 pb-6 overflow-hidden text-center max-w-4xl mx-auto px-4" id="portfolio-intro">

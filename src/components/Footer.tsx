@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, ArrowRight, ExternalLink, Linkedin, Twitter, Instagram, Youtube, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, ArrowRight, ExternalLink, Linkedin, Twitter, Instagram, Youtube, Facebook, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { CompanyLogo } from './CompanyLogo';
 
@@ -172,19 +172,25 @@ export function Footer({ setActiveTab, language }: FooterProps) {
 
             <div className="flex flex-wrap items-center gap-3">
               <SocialLink
-                href="https://linkedin.com"
+                href="https://web.facebook.com/VisionMadagascar"
+                icon={<Facebook size={16} />}
+                label="Facebook"
+                gradientFromTo="from-blue-600 via-teal-400 to-emerald-500"
+              />
+              <SocialLink
+                href="https://www.linkedin.com/in/vision-madagascar-49a62a214"
                 icon={<Linkedin size={16} />}
                 label="LinkedIn"
                 gradientFromTo="from-emerald-500 via-teal-400 to-blue-500"
               />
               <SocialLink
-                href="https://twitter.com"
+                href="https://twitter.com/VisionMadagasc1"
                 icon={<Twitter size={16} />}
                 label="Twitter"
                 gradientFromTo="from-blue-400 via-cyan-400 to-teal-500"
               />
               <SocialLink
-                href="https://instagram.com"
+                href="https://www.instagram.com/vision_madagascar"
                 icon={<Instagram size={16} />}
                 label="Instagram"
                 gradientFromTo="from-pink-500 via-purple-500 to-amber-400"

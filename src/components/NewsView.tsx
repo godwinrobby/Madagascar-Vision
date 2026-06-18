@@ -4,6 +4,7 @@ import { CORPORATE_NEWS } from '../data/corporateData';
 import { getTranslatedNews } from '../utils/translator';
 import { NewsItem } from '../types';
 import { Calendar, Search, ArrowRight, X, Heart, ShieldCheck, Newspaper } from 'lucide-react';
+import { Helmet } from './Helmet';
 
 interface NewsViewProps {
   language: 'EN' | 'FR' | 'MG';
@@ -74,6 +75,14 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
 
   return (
     <div id="news-view-container" className="space-y-16 pb-24 relative animate-fade-in">
+      <Helmet
+        title={selectedNews ? selectedNews.title : translations.title}
+        description={selectedNews ? selectedNews.summary : translations.sub}
+        keywords={selectedNews ? `${selectedNews.category}, ${selectedNews.title}, Aetheris Group, Vision Madagascar Press` : undefined}
+        ogImage={selectedNews ? `https://picsum.photos/seed/${selectedNews.imageSeed}/800/500` : undefined}
+        ogType={selectedNews ? 'article' : 'website'}
+        language={language}
+      />
       
       {/* Hero Header */}
       <section className="relative pt-32 pb-4 overflow-hidden text-center max-w-4xl mx-auto px-4" id="news-intro">

@@ -30,6 +30,7 @@ import { SECTORS, TESTIMONIALS, VALUE_PROPS, CORPORATE_EVENTS } from '../data/co
 import { getTranslatedSectors, getTranslatedTestimonials, getTranslatedValueProps, getTranslatedEvents } from '../utils/translator';
 import { DynamicIcon } from './DynamicIcon';
 import { CompanyLogo } from './CompanyLogo';
+import { Helmet } from './Helmet';
 
 interface HomeViewProps {
   language: 'EN' | 'FR' | 'MG';
@@ -303,6 +304,9 @@ export function HomeView({ language, setActiveTab, setSelectedSectorId }: HomeVi
 
   return (
     <div id="home-view-wrapper" className="space-y-24 pb-12 relative">
+      <Helmet
+        language={language}
+      />
       
       {/* 1. STATEFUL MULTIPLE BANNER HERO COMPONENT */}
       <section 

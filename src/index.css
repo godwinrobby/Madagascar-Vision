@@ -253,6 +253,58 @@ html.light .text-slate-300\/80:hover {
   color: #0c111d !important;
 }
 
+/* Comprehensive background and border overrides for light mode */
+html.light [class*="bg-slate-"],
+html.light [class*="bg-zinc-"] {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Smart Nested card backgrounds logic in Light Mode */
+html.light [class*="bg-slate-900/10"],
+html.light [class*="bg-slate-950/10"],
+html.light [class*="bg-slate-900/20"],
+html.light [class*="bg-slate-950/20"],
+html.light [class*="bg-slate-900/30"],
+html.light [class*="bg-slate-950/30"],
+html.light [class*="bg-slate-900/40"],
+html.light [class*="bg-slate-950/40"],
+html.light [class*="bg-slate-950/65"],
+html.light [class*="bg-slate-900/60"],
+html.light [class*="bg-slate-950/45"],
+html.light [class*="bg-emerald-950/20"] {
+  background-color: #f1f5f9 !important;
+}
+
+html.light [class*="border-slate-"],
+html.light [class*="border-zinc-"],
+html.light [class*="border-white/5"],
+html.light [class*="border-white/10"] {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Precise White Text light contrast overrides (keeps buttons and badges white) */
+html.light .glass .text-white,
+html.light .glass-panel .text-white,
+html.light .glass-panel-light .text-white,
+html.light .eco-rainbow-border-card .text-white,
+html.light #stats-section .text-white,
+html.light #companies-view-wrapper .text-white,
+html.light #leadership-view-wrapper .text-white,
+html.light #about-view-wrapper .text-white,
+html.light #sustainability-view-wrapper .text-white,
+html.light #careers-view-wrapper .text-white,
+html.light #services-view-wrapper .text-white,
+html.light #search-overlay-wrapper .text-white,
+html.light #news-view-wrapper .text-white,
+html.light #blogs-view-wrapper .text-white,
+html.light #events-view-wrapper .text-white,
+html.light #portfolio-view-wrapper .text-white,
+html.light #contact-view-wrapper .text-white,
+html.light .text-white:not(button):not(button *):not(.bg-gradient-to-r *):not(.bg-emerald-500 *):not(.bg-emerald-600 *):not(.bg-teal-500 *):not(.bg-blue-500 *):not(.bg-cyan-500 *):not(.bg-amber-500 *):not(.bg-slate-900 *):not(.active-tab-override *):not(.badge-override *) {
+  color: #0f172a !important;
+}
+
 /* Specific background and border conversions for light mode */
 html.light .bg-slate-950,
 html.light .bg-[#020905],
@@ -321,21 +373,21 @@ html.light .glass-nav {
 }
 
 html.light .glass-menu-active {
-  background: linear-gradient(135deg, rgba(219, 91, 26, 0.12) 0%, rgba(156, 185, 51, 0.08) 50%, rgba(31, 138, 90, 0.12) 100%) !important;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.05) 50%, rgba(245, 158, 11, 0.05) 100%) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(219, 91, 26, 0.25) !important;
-  box-shadow: 0 4px 15px -3px rgba(219, 91, 26, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 4px 15px -3px rgba(16, 185, 129, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.6) !important;
 }
 
 html.light .glass-menu-active span {
-  color: #92400e !important; /* amber-800 text in active tab inside light mode */
+  color: #065f46 !important; /* Deep emerald text in active tab inside light mode */
+  font-weight: 600 !important;
 }
 
 html.light .glass-menu-hover:hover {
-  background: linear-gradient(135deg, rgba(219, 91, 26, 0.06) 0%, rgba(156, 185, 51, 0.04) 50%, rgba(31, 138, 90, 0.06) 100%) !important;
-  border-color: rgba(219, 91, 26, 0.15) !important;
-  box-shadow: 0 4px 10px -3px rgba(219, 91, 26, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.3) !important;
+  background: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
 }
 
 html.light .glass-menu-hover:hover span {

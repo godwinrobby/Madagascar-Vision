@@ -4,6 +4,7 @@ import { SECTORS } from '../data/corporateData';
 import { getTranslatedSectors } from '../utils/translator';
 import { Sector } from '../types';
 import { CompanyLogo } from './CompanyLogo';
+import { Helmet } from './Helmet';
 import {
   ArrowLeft,
   Activity,
@@ -191,6 +192,13 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
 
   return (
     <div className="pt-24 pb-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12" id="company-detail-page-top">
+      <Helmet
+        title={`${company.name} | Division File`}
+        description={company.description}
+        keywords={`${company.name}, sub-sector, ${company.id}, Aetheris Group, Vision Madagascar`}
+        ogImage={`https://picsum.photos/seed/${company.imagingSeed}/800/400`}
+        language={language}
+      />
       
       {/* 1. Header Navigation Bar / Back button */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-900 pb-6">

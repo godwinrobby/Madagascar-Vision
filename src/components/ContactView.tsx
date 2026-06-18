@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Helmet } from './Helmet';
 import { 
   MapPin, 
   Phone, 
@@ -302,6 +303,12 @@ export function ContactView({ language }: ContactViewProps) {
 
   return (
     <div id="contact-view-wrapper" className="space-y-16 pb-20 relative animate-fade-in text-slate-100 font-sans">
+      <Helmet
+        title={language === 'EN' ? 'Global Offices & Verified Inquiries' : language === 'FR' ? 'Bureaux Globaux & Demandes Validées' : 'Biraomanerantany sy Fifandraisana'}
+        description="Connect with Vision Madagascar and Aetheris Group. Submit secure partnerships, discover international hubs, and contact institutional board members with sub-second feedback."
+        keywords="contact us, offices, Antananarivo, Paris, Singapore, customer support, Vision Madagascar contact, Aetheris Group inquiry"
+        language={language}
+      />
       
       {/* Absolute Decorative Grid Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_15%,rgba(31,138,90,0.06),transparent_45%)] pointer-events-none" />
@@ -845,9 +852,13 @@ export function ContactView({ language }: ContactViewProps) {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px]">
           <span>VERIFIED ENCRYPTED CONTROLS</span>
           <div className="flex justify-center space-x-3 text-[11px]">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-emerald-400 hover:underline transition-colors">LinkedIn</a>
+            <a href="https://web.facebook.com/VisionMadagascar" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-emerald-400 hover:underline transition-colors">Facebook</a>
             <span className="text-slate-800">•</span>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-orange-400 hover:underline transition-colors">Twitter / X</a>
+            <a href="https://www.linkedin.com/in/vision-madagascar-49a62a214" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-emerald-400 hover:underline transition-colors">LinkedIn</a>
+            <span className="text-slate-800">•</span>
+            <a href="https://twitter.com/VisionMadagasc1" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-orange-400 hover:underline transition-colors">Twitter / X</a>
+            <span className="text-slate-800">•</span>
+            <a href="https://www.instagram.com/vision_madagascar" target="_blank" rel="noreferrer" className="text-slate-450 hover:text-emerald-400 hover:underline transition-colors">Instagram</a>
           </div>
         </div>
       </section>

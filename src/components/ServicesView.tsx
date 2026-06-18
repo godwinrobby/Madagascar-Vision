@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SERVICES } from '../data/corporateData';
 import { DynamicIcon } from './DynamicIcon';
+import { Helmet } from './Helmet';
 import { 
   ChevronRight, 
   ArrowRight, 
@@ -469,6 +470,12 @@ export function ServicesView({ language, selectedServiceId }: ServicesViewProps)
 
   return (
     <div id="services-viewport-control" className="space-y-16 pb-16 relative overflow-hidden">
+      <Helmet
+        title={selectedServiceDetails ? `${selectedServiceDetails.name} | Services` : undefined}
+        description={selectedServiceDetails ? selectedServiceDetails.desc : undefined}
+        keywords="consulting, engineering, advisory, green advisory, Vision Madagascar, Aetheris Group services"
+        language={language}
+      />
       
       {/* 1. ULTRA MODERN GLOWING INTRO HEADER */}
       <section className="relative pt-32 pb-8 overflow-hidden px-4" id="services-intro-panel">

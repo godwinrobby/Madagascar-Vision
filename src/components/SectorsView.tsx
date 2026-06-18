@@ -6,6 +6,7 @@ import { Sector } from '../types';
 import { DynamicIcon } from './DynamicIcon';
 import { CompanyLogo } from './CompanyLogo';
 import { CompanyDetailView } from './CompanyDetailView';
+import { Helmet } from './Helmet';
 import {
   Heart,
   Compass,
@@ -226,6 +227,12 @@ export function SectorsView({ language, selectedSectorId, setSelectedSectorId, s
 
   return (
     <div id="companies-view-wrapper" className="space-y-16 pb-24 relative">
+      <Helmet
+        title={translations.title}
+        description={translations.sub}
+        keywords="sovereign holding, strategic divisions, real estate development, green logistics, energy grids, Vision Madagascar, Aetheris Group"
+        language={language}
+      />
       
       {/* 1. Header Area with spacious geometric negative space */}
       <section className="relative pt-32 pb-6 text-center max-w-4xl mx-auto px-4" id="companies-intro">
