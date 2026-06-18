@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Routes, Route, useNavigate, useLocation, useParams, Navigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
@@ -161,43 +160,32 @@ export default function App() {
 
       {/* Primary scrollable view containers wrapper with proper page-based React Router */}
       <main className="flex-grow z-10 w-full overflow-hidden" id="root-viewport-control">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.04 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full h-full flex flex-col"
-          >
-            <Routes>
-              <Route path="/" element={<HomeView language={language} setActiveTab={handleSetActiveTab} setSelectedSectorId={handleSelectSectorId} />} />
-              <Route path="/home" element={<Navigate to="/" replace />} />
-              <Route path="/about" element={<AboutView language={language} setActiveTab={handleSetActiveTab} />} />
-              <Route path="/leadership" element={<LeadershipView language={language} />} />
-              
-              <Route path="/sectors" element={<SectorsRouteWrapper language={language} handleSelectSectorId={handleSelectSectorId} handleSetActiveTab={handleSetActiveTab} />} />
-              <Route path="/sectors/:id" element={<SectorsRouteWrapper language={language} handleSelectSectorId={handleSelectSectorId} handleSetActiveTab={handleSetActiveTab} />} />
-              
-              <Route path="/services" element={<ServicesRouteWrapper language={language} />} />
-              <Route path="/services/:id" element={<ServicesRouteWrapper language={language} />} />
-              
-              <Route path="/portfolio" element={<PortfolioView language={language} />} />
-              <Route path="/sustainability" element={<SustainabilityView language={language} />} />
-              <Route path="/careers" element={<CareersView language={language} />} />
-              <Route path="/contact" element={<ContactView language={language} />} />
-              
-              <Route path="/news" element={<NewsRouteWrapper language={language} />} />
-              <Route path="/news/:id" element={<NewsRouteWrapper language={language} />} />
-              
-              <Route path="/blogs" element={<BlogsView language={language} />} />
-              <Route path="/events" element={<EventsView language={language} />} />
-              
-              {/* Wildcard Fallback redirection */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </motion.div>
-        </AnimatePresence>
+        <Routes>
+          <Route path="/" element={<HomeView language={language} setActiveTab={handleSetActiveTab} setSelectedSectorId={handleSelectSectorId} />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/about" element={<AboutView language={language} setActiveTab={handleSetActiveTab} />} />
+          <Route path="/leadership" element={<LeadershipView language={language} />} />
+          
+          <Route path="/sectors" element={<SectorsRouteWrapper language={language} handleSelectSectorId={handleSelectSectorId} handleSetActiveTab={handleSetActiveTab} />} />
+          <Route path="/sectors/:id" element={<SectorsRouteWrapper language={language} handleSelectSectorId={handleSelectSectorId} handleSetActiveTab={handleSetActiveTab} />} />
+          
+          <Route path="/services" element={<ServicesRouteWrapper language={language} />} />
+          <Route path="/services/:id" element={<ServicesRouteWrapper language={language} />} />
+          
+          <Route path="/portfolio" element={<PortfolioView language={language} />} />
+          <Route path="/sustainability" element={<SustainabilityView language={language} />} />
+          <Route path="/careers" element={<CareersView language={language} />} />
+          <Route path="/contact" element={<ContactView language={language} />} />
+          
+          <Route path="/news" element={<NewsRouteWrapper language={language} />} />
+          <Route path="/news/:id" element={<NewsRouteWrapper language={language} />} />
+          
+          <Route path="/blogs" element={<BlogsView language={language} />} />
+          <Route path="/events" element={<EventsView language={language} />} />
+          
+          {/* Wildcard Fallback redirection */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
       {/* Enterprise-grade multi-sector board information footer */}

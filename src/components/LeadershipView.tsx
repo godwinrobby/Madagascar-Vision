@@ -431,7 +431,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
           </span>
         </div>
 
-        <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight mt-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-emerald-400">
+        <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-4">
           {sectionTitle}
         </h1>
         
