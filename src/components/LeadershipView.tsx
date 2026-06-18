@@ -21,19 +21,24 @@ import {
   Lock,
   Globe,
   Radio,
-  FileCheck
+  FileCheck,
+  Search,
+  Activity
 } from 'lucide-react';
-import { LEADERS } from '../data/corporateData';
-import { getTranslatedLeaders } from '../utils/translator';
+import { LEADERS, SECTORS } from '../data/corporateData';
+import { getTranslatedLeaders, getTranslatedSectors } from '../utils/translator';
 import { Helmet } from './Helmet';
+import { DynamicIcon } from './DynamicIcon';
 
 interface LeadershipViewProps {
   language: 'EN' | 'FR' | 'MG';
 }
 
 export function LeadershipView({ language }: LeadershipViewProps) {
-  const [selectedLeaderId, setSelectedLeaderId] = useState<string>('lead-1');
-  const [activeTab, setActiveTab] = useState<'ceo-message' | 'board' | 'committees' | 'philosophy'>('board');
+  const [selectedCompanyId, setSelectedCompanyId] = useState<string>('ngo');
+  const [activeTab, setActiveTab] = useState<'companies' | 'ceo-message' | 'committees' | 'philosophy'>('companies');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState<'all' | 'realestate' | 'energy' | 'logistics' | 'social'>('all');
   const [expandedQa, setExpandedQa] = useState<number | null>(null);
 
   // Scroll to top of tab view when active tab changes, smooth animation
@@ -313,40 +318,63 @@ export function LeadershipView({ language }: LeadershipViewProps) {
   ];
 
   const translatedLeaders = getTranslatedLeaders(LEADERS, language);
-  
-  const companyMaps = {
-    'lead-1': {
-      EN: 'ViMa Management & Holding',
-      FR: 'ViMa Direction & Gestion',
-      MG: "ViMa Fitantanana & Holding",
-      icon: Layers,
-      code: 'VIMA-MGMT'
-    },
-    'lead-2': {
-      EN: 'ViMa Tech & World Trade Center',
-      FR: 'ViMa Technologie & WTC',
-      MG: "ViMa Teknolojia & WTC",
-      icon: Cpu,
-      code: 'VIMA-TECH'
-    },
-    'lead-3': {
-      EN: 'ViMa Energy & Infrastructure',
-      FR: 'ViMa Énergie & Infrastructures',
-      MG: "ViMa Angovo sy Fotodrafitrasa",
-      icon: Radio,
-      code: 'VIMA-ENRG'
-    },
-    'lead-4': {
-      EN: 'ViMa NGO & Circular Ecosystems',
-      FR: 'ViMa Bureau Vert & Affaires Sociales',
-      MG: "ViMa Sosialy & Fandrosoana",
-      icon: Leaf,
-      code: 'VIMA-SUST'
-    }
+  const translatedSectors = getTranslatedSectors(SECTORS, language);
+
+  const COMPANY_CATEGORIES: Record<string, 'social' | 'realestate' | 'energy' | 'logistics'> = {
+    ngo: 'social',
+    tsingy: 'realestate',
+    water: 'social',
+    france: 'realestate',
+    wtc: 'logistics',
+    management: 'realestate',
+    agulhas: 'logistics',
+    realestate: 'realestate',
+    mall: 'realestate',
+    serv: 'social',
+    dis: 'logistics',
+    woods: 'social',
+    hybrid: 'energy',
+    hydro: 'energy',
+    yoga: 'social',
+    construction: 'energy',
+    mining: 'energy',
+    oilgas: 'energy',
+    maromokotro: 'realestate'
   };
 
-  const currentLeader = translatedLeaders.find(l => l.id === selectedLeaderId) || translatedLeaders[0];
-  const activeDetail = leaderDetails[selectedLeaderId] || leaderDetails['lead-1'];
+  const companyLeaderMapping: Record<string, string> = {
+    ngo: 'lead-4',
+    tsingy: 'lead-1',
+    water: 'lead-4',
+    france: 'lead-1',
+    wtc: 'lead-2',
+    management: 'lead-1',
+    agulhas: 'lead-3',
+    realestate: 'lead-1',
+    mall: 'lead-1',
+    serv: 'lead-4',
+    dis: 'lead-2',
+    woods: 'lead-4',
+    hybrid: 'lead-3',
+    hydro: 'lead-3',
+    yoga: 'lead-4',
+    construction: 'lead-3',
+    mining: 'lead-3',
+    oilgas: 'lead-3',
+    maromokotro: 'lead-1'
+  };
+
+  const selectedCompany = translatedSectors.find(s => s.id === selectedCompanyId) || translatedSectors[0];
+  const activeLeaderId = companyLeaderMapping[selectedCompanyId] || 'lead-1';
+  const currentLeader = translatedLeaders.find(l => l.id === activeLeaderId) || translatedLeaders[0];
+  const activeDetail = leaderDetails[activeLeaderId] || leaderDetails['lead-1'];
+
+  const filteredCompanies = translatedSectors.filter(comp => {
+    const matchesCategory = activeCategory === 'all' || COMPANY_CATEGORIES[comp.id] === activeCategory;
+    const matchesSearch = comp.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          comp.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   // Secretariat contact state
   const [secName, setSecName] = useState('');
@@ -368,6 +396,18 @@ export function LeadershipView({ language }: LeadershipViewProps) {
       setTimeout(() => setSecSuccess(false), 5500);
     }, 1500);
   };
+
+  const sectionTitle = {
+    EN: 'Service Companies & Directors',
+    FR: 'Filiales de Service & Dirigeants',
+    MG: 'Orinasa sy ny Mpitarika'
+  }[language];
+
+  const sectionSub = {
+    EN: 'Interactive directory of certified holding entities, active business fields, and governing corporate directors.',
+    FR: 'Registre interactif des filiales agréées du groupe, de leurs secteurs d’activité et de leurs dirigeants référents.',
+    MG: 'Drafitra mifandray mivantana amin’ireo sampana sy orinasa rantsana ary ny mpanatanteraka miandraikitra azy.'
+  }[language];
 
   return (
     <div id="leadership-view-wrapper" className="space-y-24 pb-20 relative animate-fade-in text-slate-200">
@@ -391,129 +431,171 @@ export function LeadershipView({ language }: LeadershipViewProps) {
           </span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight mt-6 leading-none uppercase">
-          {translations.title}
+        <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight mt-6 leading-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-emerald-400">
+          {sectionTitle}
         </h1>
         
         <p className="text-slate-400 text-sm sm:text-base leading-relaxed mt-5 max-w-3xl mx-auto font-light">
-          {translations.sub}
+          {sectionSub}
         </p>
-
-        {/* Dynamic Navigation Sub-Bar - Floating architectural pills */}
-        <div className="flex justify-center flex-wrap gap-2.5 mt-10 max-w-3xl mx-auto p-1.5 bg-slate-950/40 rounded-2xl border border-slate-900/60 backdrop-blur" id="leadership-tabs-anchor">
-          {[
-            { id: 'board', label: { EN: 'Executive Board Directory', FR: 'Membres du Conseil', MG: 'Ny Filan-kevi-pitantanana' }, icon: Users },
-            { id: 'ceo-message', label: { EN: 'CEO Address Letter', FR: 'Adresse de la Direction', MG: 'Hafatra avy amin’ny Tale' }, icon: FileCheck },
-            { id: 'committees', label: { EN: 'Board Committees', FR: 'Comités Structurés', MG: 'Vaomiera mpanadihady' }, icon: Shield },
-            { id: 'philosophy', label: { EN: 'Philosophy & Dialogues', FR: 'Philosophie & Q&R', MG: 'Fijery & Dialogy' }, icon: MessageSquare }
-          ].map((tab) => {
-            const TabIcon = tab.icon;
-            const isTabActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center space-x-2 px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border outline-none cursor-pointer ${
-                  isTabActive
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-500/20 shadow-xl shadow-emerald-505/10'
-                    : 'bg-transparent text-slate-450 border-transparent hover:text-slate-200 hover:bg-slate-900/40'
-                }`}
-                id={`tab-btn-${tab.id}`}
-              >
-                <TabIcon size={14} className={isTabActive ? 'text-white' : 'text-slate-500'} />
-                <span>{tab.label[language]}</span>
-              </button>
-            );
-          })}
-        </div>
       </section>
 
       {/* Main Switcher Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* TAB 1: EXECUTIVE BOARD DIRECTORY (IMPROVED DESIGN) */}
-        {activeTab === 'board' && (
+        {/* TAB 1: SERVICE COMPANIES DIRECTORY */}
+        {activeTab === 'companies' && (
           <div className="space-y-12 animate-fade-in" id="leaders-board-tab">
+            
+            {/* Centered Search & Category Filter Box - Full View with Larger Typography */}
+            <div className="w-full glass rounded-3xl p-6 sm:p-8 border border-slate-900/90 space-y-6 shadow-2xl bg-slate-950/25">
+              
+              {/* Search Bar */}
+              <div className="relative max-w-3xl mx-auto">
+                <Search size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-emerald-450 animate-pulse" />
+                <input
+                  type="text"
+                  placeholder={language === 'EN' ? 'Search company or sector...' : language === 'FR' ? 'Rechercher une filiale ou un secteur...' : 'Tadiavo ny orinasa na sehatra...'}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-6 py-3.5 sm:py-4.5 bg-slate-950 border border-slate-900/90 rounded-2xl text-xs sm:text-sm text-white placeholder-slate-500 font-sans focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all font-light"
+                />
+              </div>
+
+              {/* Horizontal Category Filters */}
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-2">
+                {[
+                  { id: 'all', EN: 'All Companies', FR: 'Toutes les filiales', MG: 'Orinasa Rehetra' },
+                  { id: 'realestate', EN: 'Property', FR: 'Immobilier', MG: 'Harena' },
+                  { id: 'energy', EN: 'Energy', FR: 'Énergie', MG: 'Angovo' },
+                  { id: 'logistics', EN: 'Trade & Logistics', FR: 'Commerce & Logistique', MG: 'Varotra' },
+                  { id: 'social', EN: 'Social & NGO', FR: 'Social & ONG', MG: 'Sosialy' }
+                ].map((cat) => {
+                  const isCatActive = activeCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => {
+                        setActiveCategory(cat.id as any);
+                        const matches = translatedSectors.filter(comp => {
+                          const matchesCat = cat.id === 'all' || COMPANY_CATEGORIES[comp.id] === cat.id;
+                          const matchesS = comp.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                            comp.description.toLowerCase().includes(searchQuery.toLowerCase());
+                          return matchesCat && matchesS;
+                        });
+                        if (matches.length > 0 && !matches.some(m => m.id === selectedCompanyId)) {
+                          setSelectedCompanyId(matches[0].id);
+                        }
+                      }}
+                      className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all border outline-none cursor-pointer ${
+                        isCatActive
+                          ? 'bg-gradient-to-r from-emerald-500/10 to-teal-500/5 border-emerald-500/30 text-emerald-450 shadow-md shadow-emerald-500/5'
+                          : 'bg-slate-950/40 text-slate-500 border-transparent hover:text-slate-300 hover:bg-slate-900/30'
+                      }`}
+                    >
+                      {cat[language] || cat.EN}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
             
             {/* Split layout: Selector board on the left (asymmetric grid) & Premium Dossier on the right */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
               {/* Left Column: Grid selector of executives */}
               <div className="lg:col-span-4 space-y-6">
+
                 <div className="border-b border-slate-900 pb-3 flex justify-between items-center px-1">
-                  <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-black">
+                  <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-black font-sans">
                     {language === 'EN' ? 'SUBSIDIARY REGISTER' : language === 'FR' ? 'FILIALES DU GROUPE' : 'REKOTRY NY RANTSANA'}
                   </span>
-                  <span className="text-[10px] font-mono text-emerald-400">VIMA-A09</span>
+                  <span className="text-[10px] font-mono text-emerald-400">{filteredCompanies.length} {language === 'EN' ? 'UNITS' : language === 'FR' ? 'ENTITÉS' : 'RANTSANA'}</span>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
-                  {translatedLeaders.map((lead) => {
-                    const isSelected = lead.id === selectedLeaderId;
-                    const comp = companyMaps[lead.id as keyof typeof companyMaps] || companyMaps['lead-1'];
-                    const CompIcon = comp.icon;
-                    return (
-                      <button
-                        key={lead.id}
-                        onClick={() => setSelectedLeaderId(lead.id)}
-                        className={`w-full text-left p-4.5 rounded-2xl border transition-all flex items-start space-x-4 relative overflow-hidden group outline-none cursor-pointer ${
-                          isSelected
-                            ? 'bg-slate-900/90 border-emerald-500/40 shadow-xl shadow-emerald-955/10'
-                            : 'bg-slate-950/50 border-slate-900/80 hover:border-slate-800/80 hover:bg-slate-900/20'
-                        }`}
-                        id={`btn-company-tab-${lead.id}`}
-                      >
-                        {isSelected && (
-                          <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-emerald-500 to-teal-500" />
-                        )}
-                        
-                        {/* Subsidiary Division Icon instead of tiny photogird to emphasize company-focus */}
-                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300 ${
-                          isSelected 
-                            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
-                            : 'bg-slate-950 border-slate-800 text-slate-500 group-hover:text-slate-300'
-                        }`}>
-                          <CompIcon size={18} />
-                        </div>
+                {/* Scrollable company elements */}
+                <div className="space-y-3.5 max-h-[520px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-900 scrollbar-track-transparent">
+                  {filteredCompanies.length === 0 ? (
+                    <div className="text-center py-10 border border-slate-900/60 rounded-2xl bg-slate-950/30">
+                      <span className="text-xs text-slate-500 font-light block">
+                        {language === 'EN' ? 'No registered companies found.' : language === 'FR' ? 'Aucune filiale trouvée.' : 'Tsy nisy orinasa hita.'}
+                      </span>
+                    </div>
+                  ) : (
+                    filteredCompanies.map((comp) => {
+                      const isSelected = comp.id === selectedCompanyId;
+                      const mappedLeaderId = companyLeaderMapping[comp.id] || 'lead-1';
+                      const governingLeader = translatedLeaders.find(l => l.id === mappedLeaderId) || translatedLeaders[0];
+                      const compCategoryLabel = {
+                        social: { EN: 'Social & Eco', FR: 'Social & Éco', MG: 'Sosialy' },
+                        realestate: { EN: 'Property & Li', FR: 'Immo & Liaison', MG: 'Harena' },
+                        energy: { EN: 'Energy & Infr', FR: 'Énergie & Infr', MG: 'Angovo' },
+                        logistics: { EN: 'Trade & Log', FR: 'Varotra & Log', MG: 'Varotra' }
+                      }[COMPANY_CATEGORIES[comp.id] || 'social'][language];
 
-                        <div className="flex-grow min-w-0">
-                          <div className="flex items-center justify-between gap-1.5">
-                            <span className={`text-[8px] font-mono tracking-wider uppercase font-bold ${
-                              isSelected ? 'text-emerald-400' : 'text-slate-500'
-                            }`}>
-                              {comp.code}
-                            </span>
-                            <span className="text-[8px] font-mono text-slate-600">DIRECTORATE</span>
-                          </div>
+                      return (
+                        <button
+                          key={comp.id}
+                          onClick={() => setSelectedCompanyId(comp.id)}
+                          className={`w-full text-left p-4 rounded-xl border transition-all flex items-start space-x-3.5 relative overflow-hidden group outline-none cursor-pointer ${
+                            isSelected
+                              ? 'bg-slate-900/90 border-emerald-500/40 shadow-xl shadow-emerald-955/10'
+                              : 'bg-slate-950/40 border-slate-900/80 hover:border-slate-800/80 hover:bg-slate-900/20'
+                          }`}
+                          id={`btn-company-tab-${comp.id}`}
+                        >
+                          {isSelected && (
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-500 to-teal-500" />
+                          )}
                           
-                          <h4 className={`text-xs font-black font-sans tracking-wide uppercase mt-1 transition-colors ${
-                            isSelected ? 'text-white' : 'text-slate-250 group-hover:text-slate-100'
+                          {/* Subsidiary Division Icon dynamically fetched */}
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border transition-all duration-300 ${
+                            isSelected 
+                              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 font-bold' 
+                              : 'bg-slate-950 border-slate-900 text-slate-500 group-hover:text-slate-300'
                           }`}>
-                            {comp[language]}
-                          </h4>
-                          
-                          <div className="mt-2.5 pt-2.5 border-t border-white/5 space-y-0.5">
-                            <span className="text-[10px] text-slate-400 font-light block truncate">
-                              {language === 'EN' ? 'Leader: ' : language === 'FR' ? 'Dirigeant: ' : 'Mpitantana: '}
-                              <strong className={`${isSelected ? 'text-white font-bold' : 'text-slate-300 font-semibold'}`}>
-                                {lead.name}
-                              </strong>
-                            </span>
-                            <span className="text-[9px] font-mono text-slate-500 tracking-tight block truncate uppercase">
-                              {lead.role}
-                            </span>
+                            <DynamicIcon name={comp.icon} size={16} />
                           </div>
-                        </div>
 
-                        <ChevronRight 
-                          size={14} 
-                          className={`text-slate-600 shrink-0 transition-transform self-center ${
-                            isSelected ? 'translate-x-1 text-emerald-400' : 'group-hover:translate-x-0.5 text-slate-500'
-                          }`} 
-                        />
-                      </button>
-                    );
-                  })}
+                          <div className="flex-grow min-w-0">
+                            <div className="flex items-center justify-between gap-1.5">
+                              <span className={`text-[8px] font-mono tracking-wider uppercase font-bold ${
+                                isSelected ? 'text-emerald-400' : 'text-slate-500'
+                              }`}>
+                                {compCategoryLabel}
+                              </span>
+                              <span className="text-[8px] font-mono text-slate-600">ACTIVE DIVISION</span>
+                            </div>
+                            
+                            <h4 className={`text-xs font-black font-sans tracking-wide uppercase mt-1 transition-colors ${
+                              isSelected ? 'text-white' : 'text-slate-300 group-hover:text-slate-100'
+                            }`}>
+                              {comp.name}
+                            </h4>
+                            
+                            <div className="mt-2 pt-2 border-t border-white/5 flex items-center justify-between gap-2">
+                              <span className="text-[10px] text-slate-455 font-light truncate block">
+                                {language === 'EN' ? 'Director: ' : language === 'FR' ? 'Dirigeant: ' : 'Mpitantana: '}
+                                <strong className={`${isSelected ? 'text-white font-semibold' : 'text-slate-300'}`}>
+                                  {governingLeader.name.split(' ')[0]} {governingLeader.name.split(' ').slice(-1)[0]}
+                                </strong>
+                              </span>
+                              <span className="text-[7.5px] font-mono text-slate-500 shrink-0 uppercase tracking-tight font-bold">
+                                {governingLeader.id.toUpperCase()}
+                              </span>
+                            </div>
+                          </div>
+
+                          <ChevronRight 
+                            size={12} 
+                            className={`text-slate-600 shrink-0 transition-transform self-center ${
+                              isSelected ? 'translate-x-1 text-emerald-450' : 'group-hover:translate-x-0.5 text-slate-500'
+                            }`} 
+                          />
+                        </button>
+                      );
+                    })
+                  )}
                 </div>
               </div>
 
@@ -521,7 +603,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
               <div className="lg:col-span-8" id="leader-dossier-panel">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={selectedLeaderId}
+                    key={selectedCompanyId}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
@@ -532,140 +614,193 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                     <div className="absolute top-0 right-0 w-64 h-64 bg-dotted-pattern opacity-10 pointer-events-none" />
                     <div className="absolute -bottom-10 -left-10 w-44 h-44 bg-emerald-500/2 rounded-full blur-3xl pointer-events-none" />
 
-                    {/* Dossier Header */}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/5 pb-6">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-emerald-400">
-                          <Fingerprint size={20} />
-                        </div>
-                        <div>
-                          <span className="text-[9px] font-mono text-slate-500 tracking-wider block font-bold uppercase">{translations.statusLabel}</span>
-                          <span className="text-[10px] font-mono text-emerald-450 font-bold block mt-0.5">{translations.activeStatus}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="text-[10px] font-mono text-slate-500 bg-slate-950/60 px-3.5 py-1.5 rounded-lg border border-white/5">
-                        REGID_SEC_{currentLeader.id.toUpperCase()}_02
-                      </div>
-                    </div>
-
-                    {/* Primary Portrait + Title Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                      {/* Oversized Cinematic Executive Portrait Grid */}
-                      <div className="md:col-span-4 relative group">
-                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/20 to-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none" />
-                        
-                        <div className="relative aspect-square md:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 p-1">
-                          <img
-                            src={currentLeader.imageUrl || `https://picsum.photos/seed/${currentLeader.imageSeed}/400/500`}
-                            alt={currentLeader.name}
-                            className="w-full h-full object-cover rounded-xl grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700"
-                            referrerPolicy="no-referrer"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 pointer-events-none" />
-                        </div>
-
-                        {/* Interactive overlay scale stats */}
-                        <div className="absolute bottom-3 left-3 bg-slate-950/95 border border-slate-800 rounded-lg px-3 py-1 text-[8px] font-mono text-slate-400 flex items-center gap-1.5 backdrop-blur shadow-md">
-                          <Radio size={8} className="text-emerald-400 animate-pulse" />
-                          <span>MAPPING STATUS: ONLINE</span>
-                        </div>
-                      </div>
-
-                      {/* Bio Narrative & Academic Overview */}
-                      <div className="md:col-span-8 space-y-6">
-                        <div className="space-y-1.5">
-                          <span className="text-[11px] font-mono text-emerald-450 tracking-wider font-bold">
-                            {translations.dossierTitle}
-                          </span>
-                          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                            {currentLeader.name}
-                          </h2>
-                          <div className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest pt-1">
-                            {currentLeader.role}
+                    {/* --- LEVEL 1: SUBSIDIARY COMPANY HEADER PROFILE --- */}
+                    <div className="space-y-4 border-b border-white/5 pb-6">
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div className="flex items-center space-x-3.5">
+                          <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-xl shadow-emerald-955/20 shrink-0">
+                            <DynamicIcon name={selectedCompany.icon} size={22} />
                           </div>
-                        </div>
-
-                        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light">
-                          {currentLeader.bio}
-                        </p>
-
-                        {/* Academic Pedigree card layout */}
-                        <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-850 space-y-2">
-                          <div className="flex items-center space-x-2 text-[9px] font-mono text-slate-500 uppercase tracking-wider font-bold border-b border-white/5 pb-1.5">
-                            <BookOpen size={12} className="text-emerald-500" />
-                            <span>Academic Background</span>
-                          </div>
-                          <span className="block text-xs text-slate-300 font-light leading-snug">
-                            {activeDetail.education[language]}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Dynamic Strategic Focus Gauges (Progress bar styling as requested) */}
-                    <div className="space-y-4 pt-6 border-t border-slate-900" id="strategic-focus-indices">
-                      <span className="text-[11px] font-mono text-emerald-400 uppercase tracking-widest block font-bold">
-                        {translations.focusHeader}
-                      </span>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                        {activeDetail.metrics.map((met, idx) => (
-                          <div key={idx} className="bg-slate-950/40 p-4 rounded-xl border border-slate-900/60 space-y-2.5">
-                            <div className="flex justify-between items-center text-[10px] font-mono">
-                              <span className="text-slate-400 truncate pr-2">{met.name}</span>
-                              <span className="text-white font-black">{met.value}%</span>
-                            </div>
-                            
-                            <div className="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden p-0.5 border border-white/5">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: `${met.value}%` }}
-                                transition={{ duration: 0.8, delay: idx * 0.15 }}
-                                className="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full"
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Timeline Milestones Section */}
-                    <div className="space-y-4 pt-6 border-t border-slate-900" id="operational-timeline">
-                      <span className="text-[11px] font-mono text-emerald-400 uppercase tracking-widest block font-bold">
-                        {translations.timelineHeader}
-                      </span>
-
-                      <div className="space-y-3">
-                        {activeDetail.history.map((hist, i) => (
-                          <div key={i} className="flex gap-4 items-start bg-slate-950/20 p-4 rounded-xl border border-slate-900/80 hover:bg-slate-900/10 transition-colors">
-                            <div className="w-8 h-8 rounded-lg bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center shrink-0">
-                              0{i+1}
-                            </div>
-                            <div className="space-y-1">
-                              <span className="text-[9px] font-mono text-slate-500 uppercase block">CORE CHRONO_LOG // INDEX_{i}</span>
-                              <p className="text-xs text-slate-300 font-light leading-relaxed">{hist[language]}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Credentials Verification List */}
-                    <div className="space-y-3 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                      <div>
-                        <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-black mb-1.5">{translations.credentialsHeader}</span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {activeDetail.credentials.map((cred, i) => (
-                            <span key={i} className="text-[9px] font-mono bg-emerald-950/30 text-emerald-300 border border-emerald-500/10 px-2.5 py-1 rounded-md font-medium">
-                              {cred}
+                          <div>
+                            <span className="text-[9px] font-mono text-emerald-450 tracking-widest block font-bold uppercase">
+                              {language === 'EN' ? 'GLOBAL DIVISION REGISTER' : language === 'FR' ? 'FILIALE CERTIFIÉE' : 'ANTSAN-DRAHARAHA OFISIALY'}
                             </span>
+                            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase mt-0.5 leading-none">
+                              {selectedCompany.name}
+                            </h2>
+                          </div>
+                        </div>
+                        
+                        <div className="text-[10px] font-mono text-slate-500 bg-slate-950/60 px-4 py-2 rounded-xl border border-white/5 self-start">
+                          REGID_{selectedCompany.id.toUpperCase()}_REV03
+                        </div>
+                      </div>
+
+                      <p className="text-slate-300 text-sm leading-relaxed font-light">
+                        {selectedCompany.description}
+                      </p>
+
+                      {/* Subsidiary Metrics & Services Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+                        {/* Metrics Panel */}
+                        <div className="bg-slate-950/40 border border-slate-900 p-4.5 rounded-2xl space-y-3">
+                          <span className="text-[8px] font-mono text-slate-550 uppercase tracking-widest block font-bold">
+                            {language === 'EN' ? 'Performance Indices / Metrics' : language === 'FR' ? 'Indices de Performance' : 'Tondro fitsarana asa'}
+                          </span>
+                          <div className="grid grid-cols-3 gap-2">
+                            {selectedCompany.metrics?.map((m: any, i: number) => (
+                              <div key={i} className="text-center p-2 rounded-lg bg-slate-950 border border-white/5 space-y-1">
+                                <span className="text-[10px] font-black text-white block truncate">{m.value}</span>
+                                <span className="text-[7.5px] font-mono text-slate-500 block truncate uppercase leading-none">{m.label}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Specialty Services List */}
+                        <div className="bg-slate-950/40 border border-slate-900 p-4.5 rounded-2xl space-y-3">
+                          <span className="text-[8px] font-mono text-slate-550 uppercase tracking-widest block font-bold">
+                            {language === 'EN' ? 'Strategic Business Fields' : language === 'FR' ? 'Champs d’Action Stratégiques' : 'Saha iasàna manokana'}
+                          </span>
+                          <div className="space-y-1.5">
+                            {selectedCompany.services?.slice(0, 3).map((serv: string, i: number) => (
+                              <div key={i} className="flex items-center space-x-2 text-[10.5px] text-slate-350 font-light">
+                                <span className="w-1 h-1 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
+                                <span className="truncate">{serv}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* --- LEVEL 2: GOVERNING BOARD EXECUTIVE PROFILE CONTROLS --- */}
+                    <div className="space-y-6 pt-2">
+                      <div className="flex items-center space-x-2 bg-slate-950/45 border border-slate-900/60 rounded-xl px-3 py-1.5 w-fit">
+                        <Users size={12} className="text-emerald-450" />
+                        <span className="font-mono text-[9px] text-emerald-400 font-bold uppercase tracking-wider">
+                          {language === 'EN' ? 'GOVERNING EXECUTIVE STEWARD' : language === 'FR' ? 'EXÉCUTIF DE TUTELLE RESPONSABLE' : 'MPITANTANA AMBONY MIANDRAIKITRA'}
+                        </span>
+                      </div>
+
+                      {/* Primary Portrait + Title Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        {/* Oversized Cinematic Executive Portrait Grid */}
+                        <div className="md:col-span-4 relative group">
+                          <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/20 to-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none" />
+                          
+                          <div className="relative aspect-square md:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-850 p-1">
+                            <img
+                              src={currentLeader.imageUrl || `https://picsum.photos/seed/${currentLeader.imageSeed}/400/500`}
+                              alt={currentLeader.name}
+                              className="w-full h-full object-cover rounded-xl filter grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700"
+                              referrerPolicy="no-referrer"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 pointer-events-none" />
+                          </div>
+
+                          {/* Interactive status stats */}
+                          <div className="absolute bottom-3 left-3 bg-slate-950/95 border border-slate-800 rounded-lg px-3 py-1 text-[8px] font-mono text-slate-400 flex items-center gap-1.5 backdrop-blur shadow-md">
+                            <Radio size={8} className="text-emerald-405 animate-pulse" />
+                            <span>MAPPING STATUS: DEPLOYED</span>
+                          </div>
+                        </div>
+
+                        {/* Bio Narrative & Academic Overview */}
+                        <div className="md:col-span-8 space-y-5">
+                          <div className="space-y-1">
+                            <span className="text-[10px] font-mono text-emerald-450 tracking-wider font-bold uppercase">
+                              {currentLeader.role}
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">
+                              {currentLeader.name}
+                            </h3>
+                            <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block pt-0.5">
+                              {translations.dossierTitle}
+                            </span>
+                          </div>
+
+                          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light">
+                            {currentLeader.bio}
+                          </p>
+
+                          {/* Academic Pedigree card layout */}
+                          <div className="bg-slate-950/50 p-3.5 rounded-xl border border-slate-850 space-y-1.5 animate-pulse">
+                            <div className="flex items-center space-x-2 text-[9px] font-mono text-slate-500 uppercase tracking-wider font-bold border-b border-white/5 pb-1">
+                              <BookOpen size={10} className="text-emerald-500" />
+                              <span>Academic Background</span>
+                            </div>
+                            <span className="block text-xs text-slate-300 font-light leading-snug">
+                              {activeDetail.education[language]}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Dynamic Strategic Focus Gauges */}
+                      <div className="space-y-4 pt-4 border-t border-slate-900" id="strategic-focus-indices">
+                        <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block font-bold">
+                          {translations.focusHeader}
+                        </span>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          {activeDetail.metrics.map((met, idx) => (
+                            <div key={idx} className="bg-slate-950/40 p-3.5 rounded-xl border border-slate-905 space-y-2">
+                              <div className="flex justify-between items-center text-[9px] font-mono">
+                                <span className="text-slate-450 truncate pr-2">{met.name}</span>
+                                <span className="text-white font-black">{met.value}%</span>
+                              </div>
+                              
+                              <div className="w-full bg-slate-900 h-1 rounded-full overflow-hidden p-0.5 border border-white/5">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${met.value}%` }}
+                                  transition={{ duration: 0.8, delay: idx * 0.15 }}
+                                  className="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full"
+                                />
+                              </div>
+                            </div>
                           ))}
                         </div>
                       </div>
 
-                      <div className="text-[9px] font-mono text-slate-600 bg-slate-950/40 p-2 border border-slate-900/80 rounded-lg shrink-0 w-full sm:w-auto text-center sm:text-right">
-                        AES SERIAL: SEC-{currentLeader.name.toUpperCase().substring(0, 4)}-AUTHENTICATED
+                      {/* Timeline Milestones Section */}
+                      <div className="space-y-4 pt-4 border-t border-slate-900" id="operational-timeline">
+                        <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block font-bold animate-pulse">
+                          {translations.timelineHeader}
+                        </span>
+
+                        <div className="space-y-2.5">
+                          {activeDetail.history.map((hist, i) => (
+                            <div key={i} className="flex gap-4 items-start bg-slate-950/20 p-3.5 rounded-xl border border-slate-900/80 hover:bg-slate-900/10 transition-colors">
+                              <div className="w-7 h-7 rounded bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center shrink-0">
+                                0{i+1}
+                              </div>
+                              <div className="space-y-1">
+                                <span className="text-[8px] font-mono text-slate-500 uppercase block">CORE CHRONO_LOG // REGID_{i}</span>
+                                <p className="text-xs text-slate-350 font-light leading-relaxed">{hist[language]}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Credentials Verification List */}
+                      <div className="space-y-3 pt-4 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                          <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-black mb-1.5">{translations.credentialsHeader}</span>
+                          <div className="flex flex-wrap gap-1">
+                            {activeDetail.credentials.map((cred, i) => (
+                              <span key={i} className="text-[8.5px] font-mono bg-emerald-950/30 text-emerald-300 border border-emerald-500/10 px-2 py-0.5 rounded font-medium">
+                                {cred}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="text-[8.5px] font-mono text-slate-600 bg-slate-950/40 p-2 border border-slate-900/80 rounded-lg shrink-0 w-full sm:w-auto text-center sm:text-right">
+                          SHA PROTOCOL: SEC-{currentLeader.name.toUpperCase().substring(0, 4)}-AUTHENTICATED
+                        </div>
                       </div>
                     </div>
 
