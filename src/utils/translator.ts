@@ -77,7 +77,7 @@ const sectorTranslations: Record<'FR' | 'MG', Record<string, Partial<Sector>>> =
       services: ['Étude d’impact hydrocinétique', 'Ouvrages de turbines et de déversoirs', 'Lignes haute tension pour connexion réseau']
     },
     yoga: {
-      name: 'ViMa Z-Yoga',
+      name: 'Z-Yoga',
       description: 'Promouvoir le bien-être communautaire, la pleine conscience, les retraites de yoga et les centres de fitness écologiques pour préserver la santé physique et holistique.',
       services: ['Bien-être corps-esprit en entreprise', 'Masterclasses de yoga immersives', 'Intégration d’éco-wellness en resort']
     },
@@ -174,8 +174,8 @@ const sectorTranslations: Record<'FR' | 'MG', Record<string, Partial<Sector>>> =
       services: ['Fandinihana ny herin’ny rano', 'Fananganana toby famokarana sy turbina', 'Fametrahana tariby mitondra herinaratra matanjaka']
     },
     yoga: {
-      name: 'ViMa Z-Yoga',
-      description: 'Fampiroboroboana ny fahasalamana, ny fisaintsainana, fitsaboana ara-kolontsaina ary toerana fanatanjahantena mitsinjo ny fahasalaman’ny vatana sy ny saina.',
+      name: 'Z-Yoga',
+      description: 'Fampiroboroboana ny fahasalamana, ny fisaintsainana, fitsaboana ara-kolontsaina ary toerana fanatanjahantena mitsinjo ny fahasalaman’ny vatana sy ny siena.',
       services: ['Fikarakarana fahasalamana any amin’ny orinasa', 'Atrikasa manokana momba ny Yoga', 'Wellness ekolojika ho an’ny mpitsidika']
     },
     construction: {

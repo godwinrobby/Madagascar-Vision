@@ -431,7 +431,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
           </span>
         </div>
 
-        <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight mt-6 leading-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-emerald-400">
+        <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight mt-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-emerald-400">
           {sectionTitle}
         </h1>
         
@@ -487,7 +487,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                           setSelectedCompanyId(matches[0].id);
                         }
                       }}
-                      className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all border outline-none cursor-pointer ${
+                      className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all border outline-none cursor-pointer ${
                         isCatActive
                           ? 'bg-gradient-to-r from-emerald-500/10 to-teal-500/5 border-emerald-500/30 text-emerald-450 shadow-md shadow-emerald-500/5'
                           : 'bg-slate-950/40 text-slate-500 border-transparent hover:text-slate-300 hover:bg-slate-900/30'
@@ -507,17 +507,17 @@ export function LeadershipView({ language }: LeadershipViewProps) {
               <div className="lg:col-span-4 space-y-6">
 
                 <div className="border-b border-slate-900 pb-3 flex justify-between items-center px-1">
-                  <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-black font-sans">
+                  <span className="text-xs font-mono tracking-widest text-slate-400 uppercase font-black font-sans">
                     {language === 'EN' ? 'SUBSIDIARY REGISTER' : language === 'FR' ? 'FILIALES DU GROUPE' : 'REKOTRY NY RANTSANA'}
                   </span>
-                  <span className="text-[10px] font-mono text-emerald-400">{filteredCompanies.length} {language === 'EN' ? 'UNITS' : language === 'FR' ? 'ENTITÉS' : 'RANTSANA'}</span>
+                  <span className="text-xs font-mono text-emerald-400">{filteredCompanies.length} {language === 'EN' ? 'UNITS' : language === 'FR' ? 'ENTITÉS' : 'RANTSANA'}</span>
                 </div>
                 
                 {/* Scrollable company elements */}
                 <div className="space-y-3.5 max-h-[520px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-900 scrollbar-track-transparent">
                   {filteredCompanies.length === 0 ? (
                     <div className="text-center py-10 border border-slate-900/60 rounded-2xl bg-slate-950/30">
-                      <span className="text-xs text-slate-500 font-light block">
+                      <span className="text-sm text-slate-500 font-light block">
                         {language === 'EN' ? 'No registered companies found.' : language === 'FR' ? 'Aucune filiale trouvée.' : 'Tsy nisy orinasa hita.'}
                       </span>
                     </div>
@@ -559,28 +559,28 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
                           <div className="flex-grow min-w-0">
                             <div className="flex items-center justify-between gap-1.5">
-                              <span className={`text-[8px] font-mono tracking-wider uppercase font-bold ${
+                              <span className={`text-[10px] font-mono tracking-wider uppercase font-bold ${
                                 isSelected ? 'text-emerald-400' : 'text-slate-500'
                               }`}>
                                 {compCategoryLabel}
                               </span>
-                              <span className="text-[8px] font-mono text-slate-600">ACTIVE DIVISION</span>
+                              <span className="text-[10px] font-mono text-slate-500">ACTIVE DIVISION</span>
                             </div>
                             
-                            <h4 className={`text-xs font-black font-sans tracking-wide uppercase mt-1 transition-colors ${
+                            <h4 className={`text-sm font-black font-sans tracking-wide uppercase mt-1 transition-colors ${
                               isSelected ? 'text-white' : 'text-slate-300 group-hover:text-slate-100'
                             }`}>
                               {comp.name}
                             </h4>
                             
                             <div className="mt-2 pt-2 border-t border-white/5 flex items-center justify-between gap-2">
-                              <span className="text-[10px] text-slate-455 font-light truncate block">
+                              <span className="text-xs text-slate-400 font-light truncate block">
                                 {language === 'EN' ? 'Director: ' : language === 'FR' ? 'Dirigeant: ' : 'Mpitantana: '}
                                 <strong className={`${isSelected ? 'text-white font-semibold' : 'text-slate-300'}`}>
                                   {governingLeader.name.split(' ')[0]} {governingLeader.name.split(' ').slice(-1)[0]}
                                 </strong>
                               </span>
-                              <span className="text-[7.5px] font-mono text-slate-500 shrink-0 uppercase tracking-tight font-bold">
+                              <span className="text-[9px] font-mono text-slate-500 shrink-0 uppercase tracking-tight font-bold">
                                 {governingLeader.id.toUpperCase()}
                               </span>
                             </div>
@@ -622,7 +622,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                             <DynamicIcon name={selectedCompany.icon} size={22} />
                           </div>
                           <div>
-                            <span className="text-[9px] font-mono text-emerald-450 tracking-widest block font-bold uppercase">
+                            <span className="text-xs font-mono text-emerald-450 tracking-widest block font-bold uppercase">
                               {language === 'EN' ? 'GLOBAL DIVISION REGISTER' : language === 'FR' ? 'FILIALE CERTIFIÉE' : 'ANTSAN-DRAHARAHA OFISIALY'}
                             </span>
                             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase mt-0.5 leading-none">
@@ -631,7 +631,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                           </div>
                         </div>
                         
-                        <div className="text-[10px] font-mono text-slate-500 bg-slate-950/60 px-4 py-2 rounded-xl border border-white/5 self-start">
+                        <div className="text-xs font-mono text-slate-400 bg-slate-950/60 px-4 py-2 rounded-xl border border-white/5 self-start">
                           REGID_{selectedCompany.id.toUpperCase()}_REV03
                         </div>
                       </div>
@@ -644,14 +644,14 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
                         {/* Metrics Panel */}
                         <div className="bg-slate-950/40 border border-slate-900 p-4.5 rounded-2xl space-y-3">
-                          <span className="text-[8px] font-mono text-slate-550 uppercase tracking-widest block font-bold">
+                          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block font-bold">
                             {language === 'EN' ? 'Performance Indices / Metrics' : language === 'FR' ? 'Indices de Performance' : 'Tondro fitsarana asa'}
                           </span>
                           <div className="grid grid-cols-3 gap-2">
                             {selectedCompany.metrics?.map((m: any, i: number) => (
                               <div key={i} className="text-center p-2 rounded-lg bg-slate-950 border border-white/5 space-y-1">
-                                <span className="text-[10px] font-black text-white block truncate">{m.value}</span>
-                                <span className="text-[7.5px] font-mono text-slate-500 block truncate uppercase leading-none">{m.label}</span>
+                                <span className="text-xs sm:text-sm font-black text-white block truncate">{m.value}</span>
+                                <span className="text-[9px] font-mono text-slate-500 block truncate uppercase leading-none">{m.label}</span>
                               </div>
                             ))}
                           </div>
@@ -659,12 +659,12 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
                         {/* Specialty Services List */}
                         <div className="bg-slate-950/40 border border-slate-900 p-4.5 rounded-2xl space-y-3">
-                          <span className="text-[8px] font-mono text-slate-550 uppercase tracking-widest block font-bold">
+                          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block font-bold">
                             {language === 'EN' ? 'Strategic Business Fields' : language === 'FR' ? 'Champs d’Action Stratégiques' : 'Saha iasàna manokana'}
                           </span>
                           <div className="space-y-1.5">
                             {selectedCompany.services?.slice(0, 3).map((serv: string, i: number) => (
-                              <div key={i} className="flex items-center space-x-2 text-[10.5px] text-slate-350 font-light">
+                              <div key={i} className="flex items-center space-x-2 text-xs sm:text-sm text-slate-300 font-light">
                                 <span className="w-1 h-1 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
                                 <span className="truncate">{serv}</span>
                               </div>
@@ -678,7 +678,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                     <div className="space-y-6 pt-2">
                       <div className="flex items-center space-x-2 bg-slate-950/45 border border-slate-900/60 rounded-xl px-3 py-1.5 w-fit">
                         <Users size={12} className="text-emerald-450" />
-                        <span className="font-mono text-[9px] text-emerald-400 font-bold uppercase tracking-wider">
+                        <span className="font-mono text-xs text-emerald-400 font-bold uppercase tracking-wider">
                           {language === 'EN' ? 'GOVERNING EXECUTIVE STEWARD' : language === 'FR' ? 'EXÉCUTIF DE TUTELLE RESPONSABLE' : 'MPITANTANA AMBONY MIANDRAIKITRA'}
                         </span>
                       </div>
@@ -700,7 +700,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                           </div>
 
                           {/* Interactive status stats */}
-                          <div className="absolute bottom-3 left-3 bg-slate-950/95 border border-slate-800 rounded-lg px-3 py-1 text-[8px] font-mono text-slate-400 flex items-center gap-1.5 backdrop-blur shadow-md">
+                          <div className="absolute bottom-3 left-3 bg-slate-950/95 border border-slate-800 rounded-lg px-3 py-1 text-[10px] font-mono text-slate-400 flex items-center gap-1.5 backdrop-blur shadow-md">
                             <Radio size={8} className="text-emerald-405 animate-pulse" />
                             <span>MAPPING STATUS: DEPLOYED</span>
                           </div>
@@ -709,13 +709,13 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                         {/* Bio Narrative & Academic Overview */}
                         <div className="md:col-span-8 space-y-5">
                           <div className="space-y-1">
-                            <span className="text-[10px] font-mono text-emerald-450 tracking-wider font-bold uppercase">
+                            <span className="text-xs font-mono text-emerald-450 tracking-wider font-bold uppercase">
                               {currentLeader.role}
                             </span>
                             <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">
                               {currentLeader.name}
                             </h3>
-                            <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block pt-0.5">
+                            <span className="text-xs font-mono text-slate-450 uppercase tracking-widest block pt-0.5">
                               {translations.dossierTitle}
                             </span>
                           </div>
@@ -726,7 +726,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
                           {/* Academic Pedigree card layout */}
                           <div className="bg-slate-950/50 p-3.5 rounded-xl border border-slate-850 space-y-1.5 animate-pulse">
-                            <div className="flex items-center space-x-2 text-[9px] font-mono text-slate-500 uppercase tracking-wider font-bold border-b border-white/5 pb-1">
+                            <div className="flex items-center space-x-2 text-[10.5px] font-mono text-slate-400 uppercase tracking-wider font-bold border-b border-white/5 pb-1">
                               <BookOpen size={10} className="text-emerald-500" />
                               <span>Academic Background</span>
                             </div>
@@ -739,15 +739,15 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
                       {/* Dynamic Strategic Focus Gauges */}
                       <div className="space-y-4 pt-4 border-t border-slate-900" id="strategic-focus-indices">
-                        <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block font-bold">
+                        <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block font-bold">
                           {translations.focusHeader}
                         </span>
                         
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                           {activeDetail.metrics.map((met, idx) => (
                             <div key={idx} className="bg-slate-950/40 p-3.5 rounded-xl border border-slate-905 space-y-2">
-                              <div className="flex justify-between items-center text-[9px] font-mono">
-                                <span className="text-slate-450 truncate pr-2">{met.name}</span>
+                              <div className="flex justify-between items-center text-[10.5px] font-mono">
+                                <span className="text-slate-400 truncate pr-2">{met.name}</span>
                                 <span className="text-white font-black">{met.value}%</span>
                               </div>
                               
@@ -766,7 +766,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
 
                       {/* Timeline Milestones Section */}
                       <div className="space-y-4 pt-4 border-t border-slate-900" id="operational-timeline">
-                        <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block font-bold animate-pulse">
+                        <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block font-bold animate-pulse">
                           {translations.timelineHeader}
                         </span>
 
@@ -777,7 +777,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                                 0{i+1}
                               </div>
                               <div className="space-y-1">
-                                <span className="text-[8px] font-mono text-slate-500 uppercase block">CORE CHRONO_LOG // REGID_{i}</span>
+                                <span className="text-[10px] font-mono text-slate-500 uppercase block">CORE CHRONO_LOG // REGID_{i}</span>
                                 <p className="text-xs text-slate-350 font-light leading-relaxed">{hist[language]}</p>
                               </div>
                             </div>
@@ -788,17 +788,17 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                       {/* Credentials Verification List */}
                       <div className="space-y-3 pt-4 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
-                          <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-black mb-1.5">{translations.credentialsHeader}</span>
+                          <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block font-black mb-1.5">{translations.credentialsHeader}</span>
                           <div className="flex flex-wrap gap-1">
                             {activeDetail.credentials.map((cred, i) => (
-                              <span key={i} className="text-[8.5px] font-mono bg-emerald-950/30 text-emerald-300 border border-emerald-500/10 px-2 py-0.5 rounded font-medium">
+                              <span key={i} className="text-[10.5px] font-mono bg-emerald-950/30 text-emerald-300 border border-emerald-500/10 px-2 py-0.5 rounded font-medium">
                                 {cred}
                               </span>
                             ))}
                           </div>
                         </div>
 
-                        <div className="text-[8.5px] font-mono text-slate-600 bg-slate-950/40 p-2 border border-slate-900/80 rounded-lg shrink-0 w-full sm:w-auto text-center sm:text-right">
+                        <div className="text-[10.5px] font-mono text-slate-550 bg-slate-950/40 p-2 border border-slate-900/80 rounded-lg shrink-0 w-full sm:w-auto text-center sm:text-right font-bold">
                           SHA PROTOCOL: SEC-{currentLeader.name.toUpperCase().substring(0, 4)}-AUTHENTICATED
                         </div>
                       </div>
@@ -824,7 +824,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                 <div className="md:col-span-8 space-y-3">
                   <div className="inline-flex items-center space-x-2 bg-emerald-950/10 border border-emerald-500/20 rounded-lg px-2.5 py-1">
                     <Award size={10} className="text-emerald-400" />
-                    <span className="font-mono text-[9px] text-emerald-400 font-bold uppercase tracking-wider">{translations.ceoTitle}</span>
+                    <span className="font-mono text-xs text-emerald-300 font-bold uppercase tracking-wider">{translations.ceoTitle}</span>
                   </div>
                   
                   <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-none uppercase">
@@ -868,7 +868,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                         We founded our unified holding with the complete resolve to dissolve these boundaries permanently. By creating software-defined operating ecosystems matching heavy robotic sorting installations, high-voltage offshore wind farms, and clinical genomic processing systems, we secure and multiply every dollar of institutional capital.
                       </p>
                       <div className="border-l-2 border-emerald-500/40 bg-emerald-950/10 p-5.5 rounded-r-xl italic font-mono text-emerald-400 text-xs space-y-1 shadow-inner">
-                        <span className="block text-[8px] text-slate-500 uppercase not-italic font-bold">KEY CORPORATE DICTUM // OFFICERS MANUAL</span>
+                        <span className="block text-[10px] font-mono text-slate-400 uppercase not-italic font-bold">KEY CORPORATE DICTUM // OFFICERS MANUAL</span>
                         <p className="leading-relaxed">
                           "We do not inherit static physical assets; we build their digital coordinate twins to guarantee they serve our children in a carbon-neutral multipolar world."
                         </p>
@@ -886,7 +886,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                         Nous avons fondé notre holding unifiée avec l’ambition absolue de dissoudre ces frontières. En créant des écosystèmes définis par logiciel mariant tri robotisé de pointe, parcs éoliens haute tension et laboratoires de traitement génomique clinique, nous garantissons la longévité de nos portefeuilles face aux aléas de la transition planétaire.
                       </p>
                       <div className="border-l-2 border-emerald-500/40 bg-emerald-950/10 p-5.5 rounded-r-xl italic font-mono text-emerald-400 text-xs space-y-1 shadow-inner">
-                        <span className="block text-[8px] text-slate-550 uppercase not-italic font-bold">DICTUM CLÉ DE GOUVERNANCE</span>
+                        <span className="block text-[10px] font-mono text-slate-400 uppercase not-italic font-bold">DICTUM CLÉ DE GOUVERNANCE</span>
                         <p className="leading-relaxed">
                           "Nous n’héritons pas d’actifs physiques statiques ; nous projetons leur double numérique pour qu’ils servent de piliers d’efficience d’un monde net-zéro complexe."
                         </p>
@@ -904,13 +904,13 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                         Nanangana ity holding unifiée ity izahay mba handravana an’ireny sisintany ireny. Amin’ny alalan’ny famoronana tontolo nomerika mampifandray ny robotics, parcs éoliens ary genomic processing, dia miaro ny renivola nankinina taminay izahay ka manome antoka ny amin’ny zava-bita.
                       </p>
                       <div className="border-l-2 border-emerald-500/40 bg-emerald-950/10 p-5.5 rounded-r-xl italic font-mono text-emerald-400 text-xs space-y-1 shadow-inner">
-                        <span className="block text-[8px] text-slate-550 uppercase not-italic font-bold">HAFATRA MANAN-KERY FAHASALAMAN’NY VIMA</span>
+                        <span className="block text-[10px] font-mono text-slate-400 uppercase not-italic font-bold">HAFATRA MANAN-KERY FAHASALAMAN’NY VIMA</span>
                         <p className="leading-relaxed">
                           "Tsy mandova fotsiny ny fotodrafitrasa ara-batana izahay, fa manangana ny ho aviny nomerika mba hahazoana antoka fa hanompo ny zanatsika ao anatin’ny tontolo tsy misy carbone izy ireo."
                         </p>
                       </div>
                       <p>
-                        Rehefa mijery ny taona 2026 sy ny ho avy izahay, dia miditra amin’ny tontolo izay manome lanja ny fahitsiana sy ny mangarahara amin’ny alalan’ny technology matotra indrindra.
+                        Rehefa mijery ny taona 2026 sy the ho avy izahay, dia miditra amin’ny tontolo izay manome lanja ny fahitsiana sy ny mangarahara amin’ny alalan’ny technology matotra indrindra.
                       </p>
                     </>
                   )}
@@ -921,7 +921,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                   {/* Signature block styled elegantly */}
                   <div className="bg-slate-950/60 p-6 rounded-2xl border border-slate-900/80 space-y-6">
                     <div>
-                      <span className="text-[9px] text-slate-500 font-mono tracking-widest uppercase block font-bold">
+                      <span className="text-xs text-slate-400 font-mono tracking-widest uppercase block font-bold">
                         {language === 'EN' ? 'OFFICIAL INK SIGNATURE' : language === 'FR' ? 'SIGNATURE OFFICIELLE' : 'SINO OFISIALY MANAN-KERY'}
                       </span>
                       <img 
@@ -932,15 +932,15 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                           (e.target as HTMLElement).style.display = 'none';
                         }}
                       />
-                      <span className="font-serif italic text-xl text-white font-bold block tracking-wider">
+                      <span className="font-serif italic text-xl text-white font-bold block tracking-wider mt-4">
                         Helena Vance-Sterling
                       </span>
-                      <span className="text-[10px] font-mono text-emerald-400 block mt-1 uppercase">
+                      <span className="text-xs font-mono text-emerald-400 block mt-1 uppercase">
                         Group Chief Executive, ViMa Holding
                       </span>
                     </div>
 
-                    <div className="border-t border-slate-900 pt-4 text-[9px] font-mono text-slate-500 space-y-1">
+                    <div className="border-t border-slate-900 pt-4 text-[11px] font-mono text-slate-500 space-y-1">
                       <div>AES AUTH SHA-256 SECURED</div>
                       <div>CERTIFICATE ID // CEO-901-BETA</div>
                     </div>

@@ -191,7 +191,7 @@ export const SECTORS: Sector[] = [
   },
   {
     id: 'yoga',
-    name: 'ViMa Z-Yoga',
+    name: 'Z-Yoga',
     icon: 'Heart',
     description: 'Nurturing community wellness, mindfulness training, physical retreats, and eco-fitness hubs designed to promote physical and holistic mental health.',
     metrics: [
