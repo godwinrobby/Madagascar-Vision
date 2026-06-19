@@ -320,6 +320,182 @@ export function LeadershipView({ language }: LeadershipViewProps) {
   const translatedLeaders = getTranslatedLeaders(LEADERS, language);
   const translatedSectors = getTranslatedSectors(SECTORS, language);
 
+  const SUBSIDIARY_TEAMS = [
+    {
+      id: 'ngo',
+      name: 'ViMa NGO',
+      roles: [
+        { title: { EN: 'Founding Honorary President', FR: 'Président d’Honneur Fondateur', MG: 'Filoha mpanorina mendrika' }, name: 'Zouzar BOUKA' },
+        { title: { EN: 'President', FR: 'Président', MG: 'Filoha' }, name: 'Me Frederika BANKS' },
+        { title: { EN: 'Secretary', FR: 'Secrétaire', MG: 'Sekretera' }, name: 'Gina RATOMPOARILALAINA' },
+        { title: { EN: 'Treasurer', FR: 'Trésorier', MG: 'Mpitahiry vola' }, name: 'Jonah Razafindratsitoagny' }
+      ]
+    },
+    {
+      id: 'tsingy',
+      name: 'ViMa Tsingy Bay',
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Operations Manager', FR: 'Directeur des Opérations', MG: 'Tale miandraikitra ny asa' }, name: 'ZANDRY Jean Phinédit' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Jonah Razafindratsitoagny' }
+      ]
+    },
+    {
+      id: 'water',
+      name: 'ViMa Water Bank',
+      roles: [
+        { title: { EN: 'Manager', FR: 'Gérant', MG: 'Mpitantana' }, name: 'Mourtaza FAZLEABASSE' },
+        { title: { EN: 'Director of Operations and Projects', FR: 'Directeur des Opérations et des Projets', MG: 'Tale misahana ny asa sy ny tetikasa' }, name: 'Rado Rasolomanana' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Mialisoatiana RAZANABOLOLONA' }
+      ]
+    },
+    {
+      id: 'france',
+      name: 'ViMa France',
+      roles: [
+        { title: { EN: 'Managing Director', FR: 'Directeur Général', MG: 'Tale Jeneraly' }, name: 'Mourtaza FAZLEABASSE' }
+      ]
+    },
+    {
+      id: 'wtc',
+      name: 'World Trade Center Antananarivo',
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Operations Manager', FR: 'Directeur des Opérations', MG: 'Tale miandraikitra ny asa' }, name: 'Kaish SABIR' },
+        { title: { EN: 'Administrative and Financial Director', FR: 'Directeur Administratif et Financier', MG: 'Tale miadidy ny fitantanana sy ny fitantanam-bola' }, name: 'Rojo RAKOTOMALALA' }
+      ]
+    },
+    {
+      id: 'management',
+      name: 'ViMa Management',
+      roles: [
+        { title: { EN: 'Co-Director-at-Large', FR: 'Co-Directeur Général délégué', MG: 'Mpiara-mitantana ho an’ny rehetra' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Director-at-Large', FR: 'Co-Directeur Général délégué', MG: 'Mpiara-mitantana ho an’ny rehetra' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'General Counsel', FR: 'Conseiller Juridique Général', MG: 'Mpanolotsaina ara-dalàna ankapobeny' }, name: 'Gina RATOMPOARILALAINA' },
+        { title: { EN: 'Internal Auditor', FR: 'Auditeur Interne', MG: 'Mpanamarina anatiny' }, name: 'Eugénie RAKOTOARISON' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Jonah Razafindratsitoagny' }
+      ]
+    },
+    {
+      id: 'agulhas',
+      name: 'ViMa Agulhas',
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Director of Operations and Projects', FR: 'Directeur des Opérations et des Projets', MG: 'Tale misahana ny asa sy ny tetikasa' }, name: 'Mourtaza FAZLEABASSE' },
+        { title: { EN: 'Administrative and Financial Director', FR: 'Directeur Administratif et Financier', MG: 'Tale miadidy ny fitantanana sy ny fitantanam-bola' }, name: 'Rojo RAKOTOMALALA' }
+      ]
+    },
+    {
+      id: 'realestate',
+      name: 'ViMa Real Estate',
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Director of Operations and Projects', FR: 'Directeur des Opérations et des Projets', MG: 'Tale misahana ny asa sy ny tetikasa' }, name: 'Mourtaza FAZLEABASSE' },
+        { title: { EN: 'Administrative and Financial Director', FR: 'Directeur Administratif et Financier', MG: 'Tale miadidy ny fitantanana sy ny fitantanam-bola' }, name: 'Rojo RAKOTOMALALA' }
+      ]
+    },
+    {
+      id: 'mall',
+      name: 'ViMa Majungasaurus Mall',
+      roles: [
+        { title: { EN: 'Co-Deputy Head', FR: 'Co-Responsable Adjoint', MG: 'Mpiandray andraikitra lefitra' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Deputy Head', FR: 'Co-Responsable Adjoint', MG: 'Mpiandray andraikitra lefitra' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Director of Operations and Projects', FR: 'Directeur des Opérations et des Projets', MG: 'Tale misahana ny asa sy ny tetikasa' }, name: 'Mourtaza FAZLEABASSE' },
+        { title: { EN: 'Administrative and Financial Director', FR: 'Directeur Administratif et Financier', MG: 'Tale miadidy ny fitantanana sy ny fitantanam-bola' }, name: 'Rojo RAKOTOMALALA' },
+        { title: { EN: 'Operations Manager', FR: 'Responsable des Opérations', MG: 'Mpitantana ny asa' }, name: 'Jean de Cléry RABEMANANTSOA' }
+      ]
+    },
+    {
+      id: 'serv',
+      name: "ViMa Serv'",
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Charles RAZAFINDRALAMBO' },
+        { title: { EN: 'Key Account Manager', FR: 'Responsable Grands Comptes', MG: 'Mpitantana mpanjifa lehibe' }, name: 'Gina RAMANANTSOA' }
+      ]
+    },
+    {
+      id: 'dis',
+      name: 'ViMa Dis',
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Director of Operations "UAE"', FR: 'Directeur des Opérations "UAE"', MG: 'Tale misahana ny asa "UAE"' }, name: 'Rado Rasolomanana' },
+        { title: { EN: 'Operations and Business Development Manager', FR: 'Responsable du Développement Opérationnel & Commercial', MG: 'Mpitantana fampandrosoana ara-barotra sy asa' }, name: 'Frederika BERG' },
+        { title: { EN: 'Sales and Marketing Manager', FR: 'Responsable des Ventes et du Marketing', MG: 'Mpitantana ny varotra sy ny dokam-barotra' }, name: 'Valérie Andriamiadanarivo' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Jonah Razafindratsitoagny' }
+      ]
+    },
+    {
+      id: 'woods',
+      name: 'ViMa Woods',
+      roles: [
+        { title: { EN: 'Co-Chairman of the Board of Directors', FR: 'Co-Président du Conseil d’Administration', MG: 'Mpiara-mitantana ny Birao fitantanana' }, name: 'Koureich FIDAHOUSSEN & Sandeep LODHA' },
+        { title: { EN: 'Administrator', FR: 'Administrateur', MG: 'Mpitantana' }, name: 'Lova RAKOTONDRABARY' },
+        { title: { EN: 'Executive Director', FR: 'Directeur Exécutif', MG: 'Tale Mpanatanteraka' }, name: 'Toni RAKOTOMALALA' }
+      ]
+    },
+    {
+      id: 'hybrid',
+      name: 'ViMa Hybrid Energy',
+      roles: [
+        { title: { EN: 'Manager', FR: 'Gérant', MG: 'Mpitantana' }, name: 'Mourtaza FAZLEABASSE' },
+        { title: { EN: 'Director of Operations and Projects', FR: 'Directeur des Opérations et des Projets', MG: 'Tale misahana ny asa sy ny tetikasa' }, name: 'Rado Rasolomanana' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Mialisoatiana RAZANABOLOLONA' }
+      ]
+    },
+    {
+      id: 'hydro',
+      name: 'ViMa Hydro',
+      roles: [
+        { title: { EN: 'Managing Director', FR: 'Directeur Général', MG: 'Tale Jeneraly' }, name: 'Mourtaz FAZLEA BASS' },
+        { title: { EN: 'Operations and Project Directors', FR: 'Directeur des Opérations et des Projets', MG: 'Tale misahana ny asa sy ny tetikasa' }, name: 'Rado Rasolomanana' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Mialisoatiana RAZANABOLOLONA' }
+      ]
+    },
+    {
+      id: 'yoga',
+      name: 'Z-Yoga',
+      roles: [
+        { title: { EN: 'Co-Chairmen of the Board of Directors', FR: 'Co-Président du Conseil d’Administration', MG: 'Mpiara-mitantana ny Birao fitantanana' }, name: 'Koureich FIDAHOUSSEN & Sandeep LODHA' },
+        { title: { EN: 'Executive Director', FR: 'Directeur Exécutif', MG: 'Tale Mpanatanteraka' }, name: 'Zion GODSON' },
+        { title: { EN: 'Chief Financial Officer', FR: 'Directeur Financier', MG: 'Tale misahana ny fitantanam-bola' }, name: 'Rojo RAKOTOMALALA' }
+      ]
+    },
+    {
+      id: 'construction',
+      name: 'ViMa Construction',
+      roles: [
+        { title: { EN: 'Co-Chairmen of the Board of Directors', FR: 'Co-Président du Conseil d’Administration', MG: 'Mpiara-mitantana ny Birao fitantanana' }, name: 'Koureich FIDAHOUSSEN & Sandeep LODHA' },
+        { title: { EN: 'Managing Director', FR: 'Directeur Général', MG: 'Tale Jeneraly' }, name: 'Mourtaza FAZLEABASSE' }
+      ]
+    },
+    {
+      id: 'mining',
+      name: 'ViMa Mining',
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Mialisoatiana RAZANABOLOLONA' }
+      ]
+    },
+    {
+      id: 'oilgas',
+      name: 'ViMa Oil And Gas',
+      roles: [
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Koureich FIDAHOUSSEN' },
+        { title: { EN: 'Co-Manager', FR: 'Co-Gérant', MG: 'Mpiara-mitantana' }, name: 'Sandeep LODHA' },
+        { title: { EN: 'Director of Operations and Projects', FR: 'Directeur des Opérations et des Projets', MG: 'Tale misahana ny asa sy ny tetikasa' }, name: 'Mourtaza FAZLEABASSE' },
+        { title: { EN: 'Administrative and Financial Manager', FR: 'Responsable Administratif et Financier', MG: 'Mpitantana fitantanan-draharaha sy fitantanam-bola' }, name: 'Mialisoatiana RAZANABOLOLONA' }
+      ]
+    }
+  ];
+
   const COMPANY_CATEGORIES: Record<string, 'social' | 'realestate' | 'energy' | 'logistics'> = {
     ngo: 'social',
     tsingy: 'realestate',
@@ -368,6 +544,7 @@ export function LeadershipView({ language }: LeadershipViewProps) {
   const activeLeaderId = companyLeaderMapping[selectedCompanyId] || 'lead-1';
   const currentLeader = translatedLeaders.find(l => l.id === activeLeaderId) || translatedLeaders[0];
   const activeDetail = leaderDetails[activeLeaderId] || leaderDetails['lead-1'];
+  const currentCompanyTeam = SUBSIDIARY_TEAMS.find(t => t.id === selectedCompanyId) || SUBSIDIARY_TEAMS[0];
 
   const filteredCompanies = translatedSectors.filter(comp => {
     const matchesCategory = activeCategory === 'all' || COMPANY_CATEGORIES[comp.id] === activeCategory;
@@ -398,15 +575,21 @@ export function LeadershipView({ language }: LeadershipViewProps) {
   };
 
   const sectionTitle = {
-    EN: 'Service Companies & Directors',
-    FR: 'Filiales de Service & Dirigeants',
-    MG: 'Orinasa sy ny Mpitarika'
+    EN: 'Complementary talents',
+    FR: 'Talents complémentaires',
+    MG: 'Talenta mifameno'
   }[language];
 
   const sectionSub = {
-    EN: 'Interactive directory of certified holding entities, active business fields, and governing corporate directors.',
-    FR: 'Registre interactif des filiales agréées du groupe, de leurs secteurs d’activité et de leurs dirigeants référents.',
-    MG: 'Drafitra mifandray mivantana amin’ireo sampana sy orinasa rantsana ary ny mpanatanteraka miandraikitra azy.'
+    EN: "Vision Madagascar's subsidiaries benefit from strategic management provided by recognized experts. Each entity relies on solid skills in management, finance, operations and development.",
+    FR: "Les filiales de Vision Madagascar bénéficient d’une gestion stratégique assurée par des experts reconnus. Chaque entité s’appuie sur des compétences solides en gestion, finance, opérations et développement.",
+    MG: "Ny rantsan’ny Vision Madagascar dia mahazo tombontsoa amin’ny fitantanana stratejika ataon’ireo manam-pahaizana manokana. Ny rantsana tsirairary dia miankina amin’ny fahaizana mifehy fitantanana, fitantanam-bola sy ny fampandrosoana."
+  }[language];
+
+  const sectionSubIntro = {
+    EN: "Expert governance at the service of the group's ambitions",
+    FR: "Une gouvernance d'experts au service des ambitions du groupe",
+    MG: "Fitantanana manam-pahaizana eo amin'ny fanatratrarana ny tanjon'ny vondrona"
   }[language];
 
   return (
@@ -426,8 +609,8 @@ export function LeadershipView({ language }: LeadershipViewProps) {
       <section className="relative pt-32 pb-4 text-center max-w-5xl mx-auto px-4" id="leadership-header">
         <div className="inline-flex items-center space-x-2 bg-slate-950/80 border border-slate-800/80 rounded-full px-4 py-1.5 backdrop-blur-xl shadow-lg">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono text-[10px] text-emerald-400 tracking-widest uppercase font-bold">
-            {language === 'EN' ? 'MADAGASCAR VISION CABINET' : language === 'FR' ? 'CABINET MADAGASCAR VISION' : 'BIRAO MADAGASCAR VISION'}
+          <span className="font-mono text-[10px] text-emerald-400 tracking-wider uppercase font-bold">
+            {sectionSubIntro}
           </span>
         </div>
 
@@ -524,8 +707,9 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                   ) : (
                     filteredCompanies.map((comp) => {
                       const isSelected = comp.id === selectedCompanyId;
-                      const mappedLeaderId = companyLeaderMapping[comp.id] || 'lead-1';
-                      const governingLeader = translatedLeaders.find(l => l.id === mappedLeaderId) || translatedLeaders[0];
+                      const compTeam = SUBSIDIARY_TEAMS.find(t => t.id === comp.id);
+                      const leaderName = compTeam ? compTeam.roles[0].name : 'Zouzar BOUKA';
+                      const leaderTitle = compTeam ? (compTeam.roles[0].title[language] || compTeam.roles[0].title.EN) : '';
                       const compCategoryLabel = {
                         social: { EN: 'Social & Eco', FR: 'Social & Éco', MG: 'Sosialy' },
                         realestate: { EN: 'Property & Li', FR: 'Immo & Liaison', MG: 'Harena' },
@@ -575,13 +759,10 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                             
                             <div className="mt-2 pt-2 border-t border-white/5 flex items-center justify-between gap-2">
                               <span className="text-xs text-slate-400 font-light truncate block">
-                                {language === 'EN' ? 'Director: ' : language === 'FR' ? 'Dirigeant: ' : 'Mpitantana: '}
+                                <span className={`${isSelected ? 'text-emerald-450' : 'text-slate-500'} font-mono text-[10px] uppercase font-bold mr-1`}>{leaderTitle}:</span>
                                 <strong className={`${isSelected ? 'text-white font-semibold' : 'text-slate-300'}`}>
-                                  {governingLeader.name.split(' ')[0]} {governingLeader.name.split(' ').slice(-1)[0]}
+                                  {leaderName}
                                 </strong>
-                              </span>
-                              <span className="text-[9px] font-mono text-slate-500 shrink-0 uppercase tracking-tight font-bold">
-                                {governingLeader.id.toUpperCase()}
                               </span>
                             </div>
                           </div>
@@ -678,110 +859,74 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                     <div className="space-y-6 pt-2">
                       <div className="flex items-center space-x-2 bg-slate-950/45 border border-slate-900/60 rounded-xl px-3 py-1.5 w-fit">
                         <Users size={12} className="text-emerald-450" />
-                        <span className="font-mono text-xs text-emerald-400 font-bold uppercase tracking-wider">
-                          {language === 'EN' ? 'GOVERNING EXECUTIVE STEWARD' : language === 'FR' ? 'EXÉCUTIF DE TUTELLE RESPONSABLE' : 'MPITANTANA AMBONY MIANDRAIKITRA'}
+                        <span className="font-mono text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
+                          {language === 'EN' ? 'GOVERNING LEADERSHIP & KEY TALENTS' : language === 'FR' ? 'CORPS DE GOUVERNANCE ET TALENTS CLÉS' : 'REKOTRY NY MPITARIKA AMBONY'}
                         </span>
                       </div>
 
-                      {/* Primary Portrait + Title Grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                        {/* Oversized Cinematic Executive Portrait Grid */}
-                        <div className="md:col-span-4 relative group">
-                          <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/20 to-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none" />
-                          
-                          <div className="relative aspect-square md:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-850 p-1">
-                            <img
-                              src={currentLeader.imageUrl || `https://picsum.photos/seed/${currentLeader.imageSeed}/400/500`}
-                              alt={currentLeader.name}
-                              className="w-full h-full object-cover rounded-xl filter grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700"
-                              referrerPolicy="no-referrer"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 pointer-events-none" />
-                          </div>
-
-                          {/* Interactive status stats */}
-                          <div className="absolute bottom-3 left-3 bg-slate-950/95 border border-slate-800 rounded-lg px-3 py-1 text-[10px] font-mono text-slate-400 flex items-center gap-1.5 backdrop-blur shadow-md">
-                            <Radio size={8} className="text-emerald-405 animate-pulse" />
-                            <span>MAPPING STATUS: DEPLOYED</span>
-                          </div>
-                        </div>
-
-                        {/* Bio Narrative & Academic Overview */}
-                        <div className="md:col-span-8 space-y-5">
-                          <div className="space-y-1">
-                            <span className="text-xs font-mono text-emerald-450 tracking-wider font-bold uppercase">
-                              {currentLeader.role}
-                            </span>
-                            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">
-                              {currentLeader.name}
-                            </h3>
-                            <span className="text-xs font-mono text-slate-450 uppercase tracking-widest block pt-0.5">
-                              {translations.dossierTitle}
-                            </span>
-                          </div>
-
-                          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light">
-                            {currentLeader.bio}
-                          </p>
-
-                          {/* Academic Pedigree card layout */}
-                          <div className="bg-slate-950/50 p-3.5 rounded-xl border border-slate-850 space-y-1.5 animate-pulse">
-                            <div className="flex items-center space-x-2 text-[10.5px] font-mono text-slate-400 uppercase tracking-wider font-bold border-b border-white/5 pb-1">
-                              <BookOpen size={10} className="text-emerald-500" />
-                              <span>Academic Background</span>
+                      {/* Subsidiary Leaders Hierarchy Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {currentCompanyTeam?.roles.map((role: any, idx: number) => (
+                          <div 
+                            key={idx} 
+                            className="bg-slate-950/40 p-4 rounded-xl border border-slate-900 hover:border-emerald-500/25 transition-all group duration-300 flex flex-col justify-between"
+                          >
+                            <div className="space-y-1">
+                              <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block font-bold group-hover:text-emerald-300 transition-colors">
+                                {role.title[language] || role.title.EN}
+                              </span>
+                              <h4 className="text-white text-sm sm:text-base font-extrabold tracking-tight font-sans mt-0.5">
+                                {role.name}
+                              </h4>
                             </div>
-                            <span className="block text-xs text-slate-300 font-light leading-snug">
-                              {activeDetail.education[language]}
-                            </span>
+                            <div className="mt-4 pt-1.5 border-t border-slate-900/60 text-[9px] font-mono text-slate-500 flex justify-between items-center">
+                              <span>ACTIVE PORTFOLIO</span>
+                              <span className="text-slate-400 font-bold uppercase">VERIFIED</span>
+                            </div>
                           </div>
-                        </div>
+                        ))}
                       </div>
 
-                      {/* Dynamic Strategic Focus Gauges */}
-                      <div className="space-y-4 pt-4 border-t border-slate-900" id="strategic-focus-indices">
-                        <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block font-bold">
-                          {translations.focusHeader}
-                        </span>
-                        
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          {activeDetail.metrics.map((met, idx) => (
-                            <div key={idx} className="bg-slate-950/40 p-3.5 rounded-xl border border-slate-905 space-y-2">
-                              <div className="flex justify-between items-center text-[10.5px] font-mono">
-                                <span className="text-slate-400 truncate pr-2">{met.name}</span>
-                                <span className="text-white font-black">{met.value}%</span>
+                      {/* Overlap of standard operational timeline and metric indicators as supplemental professional depth */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-900">
+                        {/* Dynamic Strategic Focus Gauges */}
+                        <div className="space-y-4">
+                          <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block font-bold">
+                            {translations.focusHeader}
+                          </span>
+                          <div className="space-y-3">
+                            {activeDetail.metrics.map((met, idx) => (
+                              <div key={idx} className="bg-slate-950/40 p-3 rounded-xl border border-slate-900 space-y-1.5">
+                                <div className="flex justify-between items-center text-[10.5px] font-mono">
+                                  <span className="text-slate-400 truncate pr-2">{met.name}</span>
+                                  <span className="text-white font-black">{met.value}%</span>
+                                </div>
+                                <div className="w-full bg-slate-900 h-1 rounded-full overflow-hidden p-0.5 border border-white/5">
+                                  <div
+                                    style={{ width: `${met.value}%` }}
+                                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full"
+                                  />
+                                </div>
                               </div>
-                              
-                              <div className="w-full bg-slate-900 h-1 rounded-full overflow-hidden p-0.5 border border-white/5">
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${met.value}%` }}
-                                  transition={{ duration: 0.8, delay: idx * 0.15 }}
-                                  className="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full"
-                                />
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
 
-                      {/* Timeline Milestones Section */}
-                      <div className="space-y-4 pt-4 border-t border-slate-900" id="operational-timeline">
-                        <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block font-bold animate-pulse">
-                          {translations.timelineHeader}
-                        </span>
-
-                        <div className="space-y-2.5">
-                          {activeDetail.history.map((hist, i) => (
-                            <div key={i} className="flex gap-4 items-start bg-slate-950/20 p-3.5 rounded-xl border border-slate-900/80 hover:bg-slate-900/10 transition-colors">
-                              <div className="w-7 h-7 rounded bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-bold flex items-center justify-center shrink-0">
-                                0{i+1}
+                        {/* Timeline Milestones Section */}
+                        <div className="space-y-4">
+                          <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block font-bold animate-pulse">
+                            {translations.timelineHeader}
+                          </span>
+                          <div className="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
+                            {activeDetail.history.map((hist, i) => (
+                              <div key={i} className="flex gap-3 items-start bg-slate-950/20 p-3 rounded-lg border border-slate-900/80 hover:bg-slate-900/10 transition-all">
+                                <div className="w-6 h-6 rounded bg-emerald-950/20 border border-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold flex items-center justify-center shrink-0">
+                                  0{i+1}
+                                </div>
+                                <p className="text-[11px] text-slate-350 font-light leading-relaxed">{hist[language]}</p>
                               </div>
-                              <div className="space-y-1">
-                                <span className="text-[10px] font-mono text-slate-500 uppercase block">CORE CHRONO_LOG // REGID_{i}</span>
-                                <p className="text-xs text-slate-350 font-light leading-relaxed">{hist[language]}</p>
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
                       </div>
 
@@ -798,8 +943,8 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                           </div>
                         </div>
 
-                        <div className="text-[10.5px] font-mono text-slate-550 bg-slate-950/40 p-2 border border-slate-900/80 rounded-lg shrink-0 w-full sm:w-auto text-center sm:text-right font-bold">
-                          SHA PROTOCOL: SEC-{currentLeader.name.toUpperCase().substring(0, 4)}-AUTHENTICATED
+                        <div className="text-[10.5px] font-mono text-slate-500 bg-slate-950/40 p-2 border border-slate-900/80 rounded-lg shrink-0 w-full sm:w-auto text-center sm:text-right font-bold">
+                          SHA PROTOCOL: SEC-{selectedCompany.name.toUpperCase().substring(0, 4)}-AUTHENTICATED
                         </div>
                       </div>
                     </div>
