@@ -191,7 +191,7 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
   const wireframe = getWireframeSpecs(company.id);
 
   return (
-    <div className="pt-24 pb-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12" id="company-detail-page-top">
+    <div className="pt-36 sm:pt-40 pb-20 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12" id="company-detail-page-top">
       <Helmet
         title={`${company.name} | Division File`}
         description={company.description}
