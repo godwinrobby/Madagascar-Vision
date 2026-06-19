@@ -13,6 +13,7 @@ import {
   Cpu, 
   Leaf, 
   Mail, 
+  Linkedin,
   ArrowUpRight,
   Fingerprint,
   Layers,
@@ -316,6 +317,139 @@ export function LeadershipView({ language }: LeadershipViewProps) {
       }
     }
   ];
+
+  const getLeaderMeta = (fullName: string) => {
+    const cleanName = fullName.toLowerCase().replace(/[^a-z]/g, '');
+    
+    // Define our robust metadata catalog with realistic custom images and professional mock profiles
+    const catalog: Record<string, { photo: string; linkedin: string; email: string }> = {
+      zouzarbouka: {
+        photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com/in/zouzar-bouka/',
+        email: 'z.bouka@visionmadagascar.com'
+      },
+      mefrederikabanks: {
+        photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'f.banks@visionmadagascar.com'
+      },
+      ginaratompoarilalaina: {
+        photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'g.ratompo@visionmadagascar.com'
+      },
+      jonahrazafindratsitoagny: {
+        photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'j.razafindratsitoagny@visionmadagascar.com'
+      },
+      zandryjeanphinedit: {
+        photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'j.zandry@visionmadagascar.com'
+      },
+      koureichfidahoussen: {
+        photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'k.fidahoussen@visionmadagascar.com'
+      },
+      sandeeplodha: {
+        photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 's.lodha@visionmadagascar.com'
+      },
+      mourtazafazleabasse: {
+        photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'm.fazleabasse@visionmadagascar.com'
+      },
+      mourtazfazleabass: {
+        photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'm.fazleabasse@visionmadagascar.com'
+      },
+      radorasolomanana: {
+        photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'r.rasolomanana@visionmadagascar.com'
+      },
+      mialisoatianarazanabololona: {
+        photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'm.razanabololona@visionmadagascar.com'
+      },
+      kaishsabir: {
+        photo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'k.sabir@visionmadagascar.com'
+      },
+      rojorakotomalala: {
+        photo: 'https://images.unsplash.com/photo-1542909168-82c3ecffd53f?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'r.rakotomalala@visionmadagascar.com'
+      },
+      eugenierakotoarison: {
+        photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'e.rakotoarison@visionmadagascar.com'
+      },
+      jeandecleryrabemanantsoa: {
+        photo: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'j.rabemanantsoa@visionmadagascar.com'
+      },
+      charlesrazafindralambo: {
+        photo: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'c.razafindralambo@visionmadagascar.com'
+      },
+      ginaramanantsoa: {
+        photo: 'https://images.unsplash.com/photo-1594744803329-e58b31de215f?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'g.ramanantsoa@visionmadagascar.com'
+      },
+      frederikaberg: {
+        photo: 'https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'f.berg@visionmadagascar.com'
+      },
+      valerieandriamiadanarivo: {
+        photo: 'https://images.unsplash.com/photo-1598550476439-6847785fce6e?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'v.andriamiadanarivo@visionmadagascar.com'
+      },
+      lovarakotondrabary: {
+        photo: 'https://images.unsplash.com/photo-1534751516642-a131ffd103fd?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'l.rakotondrabary@visionmadagascar.com'
+      },
+      tonirakotomalala: {
+        photo: 'https://images.unsplash.com/photo-1489980508314-941910ded1f4?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 't.rakotomalala@visionmadagascar.com'
+      },
+      ziongodson: {
+        photo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'z.godson@visionmadagascar.com'
+      }
+    };
+
+    if (cleanName.includes('and') || cleanName.includes('amp')) {
+      return {
+        photo: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=200&h=200',
+        linkedin: 'https://www.linkedin.com',
+        email: 'contact@visionmadagascar.com'
+      };
+    }
+
+    // Default premium looking avatar fallback
+    return catalog[cleanName] || {
+      photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200',
+      linkedin: 'https://www.linkedin.com',
+      email: 'info@visionmadagascar.com'
+    };
+  };
 
   const translatedLeaders = getTranslatedLeaders(LEADERS, language);
   const translatedSectors = getTranslatedSectors(SECTORS, language);
@@ -865,26 +999,61 @@ export function LeadershipView({ language }: LeadershipViewProps) {
                       </div>
 
                       {/* Subsidiary Leaders Hierarchy Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {currentCompanyTeam?.roles.map((role: any, idx: number) => (
-                          <div 
-                            key={idx} 
-                            className="bg-slate-950/40 p-4 rounded-xl border border-slate-900 hover:border-emerald-500/25 transition-all group duration-300 flex flex-col justify-between"
-                          >
-                            <div className="space-y-1">
-                              <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block font-bold group-hover:text-emerald-300 transition-colors">
-                                {role.title[language] || role.title.EN}
-                              </span>
-                              <h4 className="text-white text-sm sm:text-base font-extrabold tracking-tight font-sans mt-0.5">
-                                {role.name}
-                              </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {currentCompanyTeam?.roles.map((role: any, idx: number) => {
+                          const meta = getLeaderMeta(role.name);
+                          return (
+                            <div 
+                              key={idx} 
+                              className="bg-slate-950/60 p-5 rounded-2xl border border-slate-900 hover:border-emerald-500/25 transition-all group duration-300 flex flex-col sm:flex-row items-start sm:items-center gap-5 relative overflow-hidden"
+                            >
+                              {/* Glowing highlight indicator */}
+                              <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-emerald-500/0 via-emerald-500/30 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                              
+                              {/* Enlarged Cinematic Professional Portrait */}
+                              <div className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-slate-800/80 group-hover:border-emerald-500/40 transition-all duration-300 bg-slate-900 shadow-lg shadow-black/40">
+                                <img 
+                                  src={meta.photo} 
+                                  alt={role.name}
+                                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 contrast-102 group-hover:scale-105 transition-all duration-500"
+                                  referrerPolicy="no-referrer"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-80" />
+                              </div>
+
+                              {/* Detailed Corporate Profile Credentials */}
+                              <div className="flex-grow min-w-0 space-y-1.5">
+                                <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block font-extrabold group-hover:text-emerald-300 transition-colors">
+                                  {role.title[language] || role.title.EN}
+                                </span>
+                                <h4 className="text-white text-base sm:text-lg font-black tracking-tight font-sans truncate pr-2">
+                                  {role.name}
+                                </h4>
+                                
+                                <div className="flex items-center gap-2 pt-1">
+                                  <a 
+                                    href={meta.linkedin} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-emerald-550/45 hover:text-emerald-400 hover:bg-emerald-950/20 flex items-center gap-1.5 text-[10px] font-mono text-slate-400 transition-all shadow-sm"
+                                    title="LinkedIn"
+                                  >
+                                    <Linkedin size={10} />
+                                    <span>LINKEDIN</span>
+                                  </a>
+                                  <a 
+                                    href={`mailto:${meta.email}`}
+                                    className="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-emerald-550/45 hover:text-emerald-400 hover:bg-emerald-950/20 flex items-center gap-1.5 text-[10px] font-mono text-slate-400 transition-all shadow-sm"
+                                    title="Email"
+                                  >
+                                    <Mail size={10} />
+                                    <span>EMAIL</span>
+                                  </a>
+                                </div>
+                              </div>
                             </div>
-                            <div className="mt-4 pt-1.5 border-t border-slate-900/60 text-[9px] font-mono text-slate-500 flex justify-between items-center">
-                              <span>ACTIVE PORTFOLIO</span>
-                              <span className="text-slate-400 font-bold uppercase">VERIFIED</span>
-                            </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
 
                       {/* Overlap of standard operational timeline and metric indicators as supplemental professional depth */}
