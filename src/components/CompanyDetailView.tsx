@@ -5,6 +5,7 @@ import { getTranslatedSectors } from '../utils/translator';
 import { Sector } from '../types';
 import { CompanyLogo } from './CompanyLogo';
 import { Helmet } from './Helmet';
+import { ImpactMetrics } from './ImpactMetrics';
 import {
   ArrowLeft,
   Activity,
@@ -1183,6 +1184,12 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
             </div>
 
           </div>
+
+          {/* 3.2 Custom NGO Impact Metrics Section */}
+          {company.id === 'ngo' && (
+            <ImpactMetrics language={language} colors={colors} />
+          )}
+
         </motion.div>
       )}
 
