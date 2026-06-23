@@ -7,6 +7,8 @@ import { CompanyLogo } from './CompanyLogo';
 import { Helmet } from './Helmet';
 import { ImpactMetrics } from './ImpactMetrics';
 import { CompanyPortfolioAndProjects } from './CompanyPortfolioAndProjects';
+import { NgoNewsletter } from './NgoNewsletter';
+import { CompanyTeam } from './CompanyTeam';
 import {
   ArrowLeft,
   Activity,
@@ -1193,6 +1195,14 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
 
           {/* 3.3 Custom Portfolio Gallery & Project Accordion */}
           <CompanyPortfolioAndProjects companyId={company.id} language={language} colors={colors} />
+
+          {/* 3.3.5 Custom Sector Team Section */}
+          <CompanyTeam companyId={company.id} language={language} colors={colors} />
+
+          {/* 3.4 Custom NGO Impact Newsletter */}
+          {company.id === 'ngo' && (
+            <NgoNewsletter language={language} colors={colors} />
+          )}
 
         </motion.div>
       )}
