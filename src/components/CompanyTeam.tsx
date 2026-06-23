@@ -10,8 +10,11 @@ import {
   MessageSquare,
   ShieldCheck,
   CheckCircle2,
-  X
+  X,
+  Linkedin,
+  Mail
 } from 'lucide-react';
+import { SUBSIDIARY_TEAMS, getLeaderMeta } from '../data/corporateData';
 
 interface TeamMember {
   id: string;
@@ -1124,8 +1127,116 @@ export function CompanyTeam({ companyId, language, colors }: CompanyTeamProps) {
   const members = getSectorTeam();
   const activeBadgeText = getBadgeTranslation();
 
+  const execTeam = SUBSIDIARY_TEAMS.find(t => t.id === companyId);
+
+  const execTranslations = {
+    EN: {
+      title: 'Executive Board & Governance',
+      sub: 'Key governing corporate officers and executive managers steering this division’s strategic directives.',
+      badgeText: 'CORPORATE STEWARDS'
+    },
+    FR: {
+      title: 'Conseil d’Administration & Gouvernance',
+      sub: 'Cadres dirigeants et directeurs exécutifs guidant les orientations stratégiques de cette division.',
+      badgeText: 'ADMINISTRATIF ET DIRECTION'
+    },
+    MG: {
+      title: 'Birao mpitantana ambony',
+      sub: 'Ireo mpitantana sy mpandrindra mitarika ny lalan-tsaina stratejika amin’ity sampana ity.',
+      badgeText: 'MPITANTANA KOOPERATIVA'
+    }
+  }[language];
+
   return (
     <div className="pt-12 pb-4 space-y-8" id="company-team-section-root">
+      {/* 1. Subsidiary Executive Leadership Portfolio */}
+      {execTeam && execTeam.roles && execTeam.roles.length > 0 && (
+        <div className="space-y-8 pb-10 border-b border-slate-900/40" id="subsidiary-executives-section">
+          {/* Section Divider with Glowing Accent */}
+          <div className="flex items-center space-x-4">
+            <span className="h-[1px] flex-grow bg-slate-900" />
+            <div className={`flex items-center space-x-2 bg-slate-950/80 border ${colors.borderMuted} rounded-full px-4 py-1.5 backdrop-blur shadow-md`}>
+              <Award size={12} className="text-emerald-400" />
+              <span className="font-mono text-[10px] text-emerald-400 tracking-wider font-extrabold uppercase">
+                {execTranslations.badgeText}
+              </span>
+            </div>
+            <span className="h-[1px] flex-grow bg-slate-905" />
+          </div>
+
+          {/* Narrative Header */}
+          <div className="text-center space-y-3 max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
+              {execTranslations.title}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
+              {execTranslations.sub}
+            </p>
+          </div>
+
+          {/* Subsidiary Leaders Hierarchy Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto pt-4">
+            {execTeam.roles.map((role, idx) => {
+              const meta = getLeaderMeta(role.name);
+              return (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1, duration: 0.4 }}
+                  className="bg-slate-950/45 p-5 rounded-2xl border border-slate-900 hover:border-emerald-500/25 transition-all group duration-300 flex flex-col sm:flex-row items-center sm:items-center gap-5 relative overflow-hidden text-left"
+                >
+                  {/* Glowing highlight indicator */}
+                  <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-emerald-500/0 via-emerald-500/30 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Enlarged Cinematic Professional Portrait */}
+                  <div className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-slate-805 group-hover:border-emerald-500/40 transition-all duration-300 bg-slate-900 shadow-lg shadow-black/40">
+                    <img 
+                      src={meta.photo} 
+                      alt={role.name}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 contrast-102 group-hover:scale-105 transition-all duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-80" />
+                  </div>
+
+                  {/* Detailed Corporate Profile Credentials */}
+                  <div className="flex-grow min-w-0 space-y-1.5 text-left">
+                    <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block font-extrabold group-hover:text-emerald-300 transition-colors">
+                      {role.title[language] || role.title.EN}
+                    </span>
+                    <h4 className="text-white text-base sm:text-lg font-black tracking-tight font-sans truncate pr-2">
+                      {role.name}
+                    </h4>
+                    
+                    <div className="flex items-center gap-2 pt-1">
+                      <a 
+                        href={meta.linkedin} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-emerald-550/45 hover:text-emerald-400 hover:bg-emerald-950/20 flex items-center gap-1.5 text-[10px] font-mono text-slate-400 transition-all shadow-sm cursor-pointer"
+                        title="LinkedIn"
+                      >
+                        <Linkedin size={10} />
+                        <span>LINKEDIN</span>
+                      </a>
+                      <a 
+                        href={`mailto:${meta.email}`}
+                        className="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-emerald-550/45 hover:text-emerald-400 hover:bg-emerald-950/20 flex items-center gap-1.5 text-[10px] font-mono text-slate-400 transition-all shadow-sm cursor-pointer"
+                        title="Email"
+                      >
+                        <Mail size={10} />
+                        <span>EMAIL</span>
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Section Divider with Glowing Accent */}
       <div className="flex items-center space-x-4">
         <span className="h-[1px] flex-grow bg-slate-900" />

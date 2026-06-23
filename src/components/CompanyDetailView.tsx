@@ -9,6 +9,9 @@ import { ImpactMetrics } from './ImpactMetrics';
 import { CompanyPortfolioAndProjects } from './CompanyPortfolioAndProjects';
 import { NgoNewsletter } from './NgoNewsletter';
 import { CompanyTeam } from './CompanyTeam';
+import { CsrDownloadSection } from './CsrDownloadSection';
+import { CompanyHistoryTimeline } from './CompanyHistoryTimeline';
+import { RelatedServicesSection } from './RelatedServicesSection';
 import {
   ArrowLeft,
   Activity,
@@ -1196,6 +1199,9 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
           {/* 3.3 Custom Portfolio Gallery & Project Accordion */}
           <CompanyPortfolioAndProjects companyId={company.id} language={language} colors={colors} />
 
+          {/* 3.3.4 Custom 'Milestones & History' Timeline Section */}
+          <CompanyHistoryTimeline companyId={company.id} language={language} colors={colors} />
+
           {/* 3.3.5 Custom Sector Team Section */}
           <CompanyTeam companyId={company.id} language={language} colors={colors} />
 
@@ -1203,6 +1209,12 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
           {company.id === 'ngo' && (
             <NgoNewsletter language={language} colors={colors} />
           )}
+
+          {/* 3.5 Custom CSR Report Download Section for All Sector Pages */}
+          <CsrDownloadSection companyId={company.id} language={language} colors={colors} />
+
+          {/* 3.6 Custom Related Services Cross-Linking Grid for All Sector Pages */}
+          <RelatedServicesSection companyId={company.id} language={language} colors={colors} />
 
         </motion.div>
       )}
