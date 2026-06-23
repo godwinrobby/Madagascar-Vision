@@ -878,393 +878,437 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
         language={language}
       />
       
-      {/* 1. Header Navigation Bar / Back button */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-900 pb-6">
+      {/* 1. Integrated Corporate Header Control */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-900 pb-6"
+        id="company-detail-top-bar"
+      >
         <button
           onClick={onBack}
-          className="flex items-center space-x-2 text-xs font-mono text-slate-400 hover:text-white transition-colors cursor-pointer group"
+          className="flex items-center space-x-3 text-xs font-mono text-slate-450 hover:text-white transition-all cursor-pointer group bg-slate-950/40 px-4 py-2 border border-slate-900 rounded-xl hover:border-slate-800"
           id="company-detail-back-button"
         >
-          <ArrowLeft size={14} className="transform group-hover:-translate-x-1 transition-transform" />
-          <span>{translations.backBtn}</span>
+          <ArrowLeft size={13} className="transform group-hover:-translate-x-1.5 transition-transform text-emerald-400" />
+          <span className="font-bold tracking-wider uppercase">{translations.backBtn}</span>
         </button>
 
-        {/* Top Mini-Navigation indicators */}
-        <div className="flex items-center space-x-3 text-[10px] font-mono text-slate-500">
-          <span>COOPERATIVE FILE // CODE_SECTOR_{company.id.toUpperCase()}_PRO</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        {/* Top Mini-Navigation indicators with precise coordinates */}
+        <div className="flex flex-wrap items-center gap-3.5 text-[10px] font-mono text-slate-500">
+          <span className="bg-slate-950 px-2.5 py-1 rounded border border-slate-900 text-slate-400">
+            LOCID: MG_ANTANANARIVO
+          </span>
+          <span className="hidden sm:inline text-slate-800">|</span>
+          <span className="text-slate-400 uppercase">
+            REG-SYSTEM ACTIVE // SEC_{company.id.toUpperCase()}_PRO_MAPPED
+          </span>
+          <span className="flex items-center gap-1.5 bg-emerald-950/30 border border-emerald-500/20 rounded-full px-2.5 py-0.5 text-emerald-400 font-extrabold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>ONLINE</span>
+          </span>
         </div>
-      </div>
+      </motion.div>
 
-      {/* 2. Panoramic Interactive Premium Hero Banner */}
-      <section className="relative rounded-3xl overflow-hidden min-h-[380px] flex items-end p-8 sm:p-12 border border-slate-900 shadow-2xl" id="company-detail-hero">
-        <div className="absolute inset-0 bg-slate-900">
-          <img
+      {/* 2. Panoramic Interactive Premium Hero Canvas */}
+      <motion.section 
+        initial={{ opacity: 0, scale: 0.99 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7 }}
+        className="relative rounded-3xl overflow-hidden min-h-[420px] flex items-end p-8 sm:p-12 md:p-16 border border-slate-900 shadow-2xl group" 
+        id="company-detail-hero"
+      >
+        <div className="absolute inset-0 bg-slate-950">
+          <motion.img
+            initial={{ scale: 1.05 }}
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
             src={`https://picsum.photos/seed/${company.imagingSeed}/1200/600`}
             alt={company.name}
-            className="w-full h-full object-cover grayscale opacity-60 mix-blend-luminosity hover:scale-105 transition-transform duration-10000"
+            className="w-full h-full object-cover grayscale opacity-50 mix-blend-luminosity brightness-75 hover:grayscale-[30%] hover:opacity-75 transition-all duration-1000"
             referrerPolicy="no-referrer"
           />
           {/* Layered cinematic overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-slate-950 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* Content stacked at bottom-left */}
-        <div className="relative z-10 w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
-          <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 text-center sm:text-left">
-            {/* LARGE COMPANY LOGO - Oversized premium view as requested */}
-            <CompanyLogo
-              id={company.id}
-              size="xl"
-              className="border-2 border-emerald-500/30 rounded-[2.5rem] bg-slate-950/90 shadow-[0_0_30px_rgba(16,185,129,0.2)] p-2 backdrop-blur hover:rotate-3 hover:scale-105 transition-all duration-300 transform"
-            />
+        <div className="relative z-10 w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+          <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 sm:gap-8 w-full md:w-auto">
+            {/* LARGE COMPANY LOGO - Luxurious oversized preview */}
+            <motion.div
+              whileHover={{ rotate: 3, scale: 1.06 }}
+              className="shrink-0"
+            >
+              <CompanyLogo
+                id={company.id}
+                size="xl"
+                className="border-2 border-emerald-500/30 rounded-[2.5rem] bg-slate-950/95 shadow-[0_0_35px_rgba(16,185,129,0.25)] p-3 backdrop-blur transition-all duration-500 transform"
+              />
+            </motion.div>
             
-            <div className="space-y-2">
+            <div className="space-y-3.5 text-center sm:text-left">
               <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                <span className="font-mono text-[9px] text-emerald-400 font-bold border border-emerald-500/35 px-2.5 py-0.5 rounded-full bg-emerald-950/30 uppercase tracking-widest leading-none">
+                <span className={`font-mono text-[9px] ${colors.textAccent} font-extrabold border ${colors.borderMuted} px-3 py-1 rounded-full ${colors.bgMuted} uppercase tracking-widest leading-none`}>
                   SEC-{company.id.toUpperCase()}
                 </span>
-                <span className="font-mono text-[9px] text-slate-400 font-bold border border-slate-800 px-2.5 py-0.5 rounded-full bg-slate-900/60 uppercase tracking-widest leading-none">
+                <span className="font-mono text-[9px] text-slate-400 font-extrabold border border-slate-800 px-3 py-1 rounded-full bg-slate-900/60 uppercase tracking-widest leading-none flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
                   {translations.activeStatus}
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-none">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none uppercase">
                 {company.name}
               </h1>
-              <p className="text-xs text-slate-400 tracking-wider uppercase font-medium max-w-lg font-mono">
+              <p className="text-xs sm:text-sm text-slate-350 tracking-wider uppercase font-semibold max-w-xl font-mono leading-relaxed mx-auto sm:mx-0">
                 {categorySubtitles[catKey][language]}
               </p>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* 3. Deep Bento Grid Specification Panels */}
+      {/* 3. Refined Corporate Specifications Bento Grid */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-8" id="company-detail-grid">
         
-        {/* Column Left (2/3 Grid): Mission, services, specs */}
-        <div className="lg:col-span-2 space-y-8">
+        {/* Left Columns Container (2/3 width) */}
+        <div className="lg:col-span-2 space-y-8 flex flex-col justify-between">
           
-          {/* Card: Narrative overview */}
-          <div className="glass rounded-3xl p-8 border border-slate-900 space-y-6 relative overflow-hidden" id="company-detail-overview-card">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="flex items-center space-x-2 text-slate-400 uppercase font-mono text-xs font-bold">
-              <Layers size={14} className="text-emerald-400" />
-              <span>{translations.specsLabel}</span>
+          {/* Card A: Narrative Charter & Strategic Scope */}
+          <motion.div 
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.3 }}
+            className="glass rounded-3xl p-8 border border-slate-900 space-y-6 relative overflow-hidden bg-slate-950/25 flex-grow" 
+            id="company-detail-overview-card"
+          >
+            <div className={`absolute top-0 right-0 w-32 h-32 ${colors.glow} rounded-full blur-3xl pointer-events-none transition-all duration-500`} />
+            
+            <div className="flex items-center justify-between border-b border-slate-900 pb-4">
+              <div className="flex items-center space-x-2.5 text-slate-400 uppercase font-mono text-xs font-bold">
+                <Layers size={14} className={colors.iconColor} />
+                <span>{translations.specsLabel}</span>
+              </div>
+              <span className="font-mono text-[9px] text-slate-500 bg-slate-950/80 px-2 py-1 rounded border border-slate-900/60">
+                {wireframe.label}
+              </span>
             </div>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-light first-letter:text-3xl first-letter:font-bold first-letter:text-emerald-400 first-letter:float-left first-letter:mr-2">
+
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-light first-letter:text-4xl first-letter:font-extrabold first-letter:text-emerald-450 first-letter:float-left first-letter:mr-2">
               {company.description}
             </p>
 
-            <div className="border-t border-slate-900/60 pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono text-slate-400">
-              <div className="flex items-center space-x-2 bg-slate-900/20 p-2.5 rounded-xl border border-white/5">
-                <Shield size={14} className="text-emerald-500" />
-                <span>{translations.regAuthorityCode}: VIMA-{company.id.toUpperCase()}-90</span>
+            <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-[10px] font-mono text-slate-450 border-t border-slate-900/60">
+              <div className="flex items-center space-x-2.5 bg-slate-950/60 p-3 rounded-xl border border-slate-900">
+                <Shield size={14} className="text-emerald-400" />
+                <span className="truncate">{translations.regAuthorityCode}: VIMA-{company.id.toUpperCase()}-X90</span>
               </div>
-              <div className="flex items-center space-x-2 bg-slate-900/20 p-2.5 rounded-xl border border-white/5">
-                <Clock size={14} className="text-emerald-500" />
-                <span>{translations.corporateAuthority}</span>
+              <div className="flex items-center space-x-2.5 bg-slate-950/60 p-3 rounded-xl border border-slate-900">
+                <Clock size={14} className="text-teal-400" />
+                <span className="truncate">{translations.corporateAuthority}</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Card: Primary Operational Services */}
-          <div className="glass rounded-3xl p-8 border border-slate-900 space-y-6" id="company-detail-services-card">
-            <h3 className="text-white text-sm font-mono font-bold tracking-wider uppercase border-b border-slate-900 pb-3 flex items-center gap-2">
-              <Construction size={14} className="text-emerald-400" />
-              <span>{translations.servicesLabel}</span>
-            </h3>
+          {/* Card B: Primary Operational Services Grid */}
+          <motion.div 
+            whileHover={{ y: -4 }}
+            className="glass rounded-3xl p-8 border border-slate-900 space-y-6 bg-slate-950/25" 
+            id="company-detail-services-card"
+          >
+            <div className="flex items-center justify-between border-b border-slate-900 pb-4">
+              <h3 className="text-white text-xs font-mono font-bold tracking-wider uppercase flex items-center gap-2">
+                <Construction size={14} className={colors.iconColor} />
+                <span>{translations.servicesLabel}</span>
+              </h3>
+              <span className={`text-[9px] font-mono ${colors.textAccent}`}>
+                TOTAL_SERVICES: {company.services.length}
+              </span>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {company.services.map((serv, idx) => (
-                <div key={idx} className="bg-slate-950/40 p-5 rounded-2xl border border-slate-900 flex items-start space-x-3.5 group hover:border-emerald-500/30 transition-colors">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-950/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500/10 transition-colors">
-                    <CheckCircle2 size={14} />
+                <motion.div 
+                  key={idx} 
+                  whileHover={{ scale: 1.01, x: 2 }}
+                  className="bg-slate-950/65 p-4.5 rounded-2xl border border-slate-900 flex items-start space-x-4 group hover:border-emerald-500/20 transition-all duration-300"
+                >
+                  <div className={`w-8 h-8 rounded-lg ${colors.bgMuted} border ${colors.borderMuted} flex items-center justify-center ${colors.iconColor} shrink-0 group-hover:bg-emerald-500/10 transition-all duration-300`}>
+                    <CheckCircle2 size={13} />
                   </div>
-                  <div className="space-y-1">
-                    <span className="block text-xs font-semibold text-slate-200 group-hover:text-emerald-400 transition-colors">
+                  <div className="space-y-1 min-w-0">
+                    <span className="block text-xs font-bold text-slate-200 group-hover:text-emerald-400 transition-colors leading-snug">
                       {serv}
                     </span>
-                    <span className="block text-[10px] font-mono text-slate-500">
-                      SERVICE_KEY_0{idx + 1} // OPERATIONAL_EXECUTION
+                    <span className="block text-[8px] font-mono text-slate-550 uppercase tracking-widest">
+                      SERVICE_0{idx + 1} // ACTIVE_UNIT
                     </span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
         </div>
 
-        {/* Column Right (1/3 Grid): Interactive Diagnostics Block */}
+        {/* Right Columns Container (1/3 width): Sovereign Validation Metrics */}
         <div className="space-y-8 lg:col-span-1">
           
-          {/* Card: Sovereign Validation Metrics */}
-          <div className="glass rounded-3xl p-6 border border-slate-900 space-y-4" id="company-detail-metrics-card">
-            <h3 className="text-white text-xs font-mono font-bold tracking-wider uppercase flex items-center gap-2 border-b border-slate-900 pb-3">
-              <Activity size={14} className="text-emerald-400" />
-              <span>{translations.metricsLabel}</span>
-            </h3>
+          <motion.div 
+            whileHover={{ y: -4 }}
+            className="glass rounded-3xl p-8 border border-slate-900 space-y-6 bg-slate-950/25 h-full flex flex-col justify-between" 
+            id="company-detail-metrics-card"
+          >
+            <div className="space-y-6">
+              <h3 className="text-white text-xs font-mono font-bold tracking-wider uppercase flex items-center gap-2 border-b border-slate-900 pb-4">
+                <Activity size={14} className="text-emerald-400" />
+                <span>{translations.metricsLabel}</span>
+              </h3>
 
-            <div className="space-y-3.5">
-              {company.metrics.map((met, idx) => (
-                <div key={idx} className="bg-slate-950/60 border border-slate-900 rounded-2xl p-4.5 text-center relative overflow-hidden group">
-                  <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-t from-emerald-500 to-teal-500 rounded-l" />
-                  <span className="block text-white font-extrabold text-2xl leading-none">
-                    {met.value}
-                  </span>
-                  <span className="block text-[9px] text-slate-500 font-bold mt-2 uppercase tracking-wider font-mono">
-                    {met.label}
-                  </span>
-                </div>
-              ))}
+              <div className="space-y-4">
+                {company.metrics.map((met, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    whileHover={{ scale: 1.02 }}
+                    className="bg-slate-950/60 border border-slate-900/80 rounded-2xl p-5 text-center relative overflow-hidden group hover:border-emerald-500/15 transition-all shadow-md"
+                  >
+                    {/* Visual left active glow strip */}
+                    <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-t from-emerald-500 to-teal-500 rounded-l" />
+                    <span className="block text-white font-black text-3xl tracking-tight leading-none">
+                      {met.value}
+                    </span>
+                    <span className="block text-[9px] text-slate-500 font-extrabold mt-2 uppercase tracking-widest font-mono">
+                      {met.label}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
 
-
+            <div className="pt-8 border-t border-slate-900/60 text-center">
+              <span className="inline-block px-4 py-1.5 bg-slate-950/80 border border-slate-900 text-slate-550 font-mono text-[9px] uppercase tracking-widest rounded-full">
+                AUDITED ACQUISITION PROTOCOL
+              </span>
+            </div>
+          </motion.div>
 
         </div>
 
       </section>
 
-      {/* 3.1 Custom Dynamic Company Operational Programs Section (rendered for all companies) */}
+      {/* 4. Strategic Pillars and Dynamic Operational Overviews */}
       {activePillarsData && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="space-y-12 pt-4"
+          className="space-y-12 pt-6"
           id="company-expanded-content"
         >
           {/* Section Divider Line with Glowing Accent Dot */}
           <div className="flex items-center space-x-4">
             <span className="h-[1px] flex-grow bg-slate-900" />
-            <div className={`flex items-center space-x-2 bg-slate-950/80 border ${colors.borderMuted} rounded-full px-4 py-1.5 backdrop-blur shadow-md`}>
+            <div className={`flex items-center space-x-2 bg-slate-950/80 border ${colors.borderMuted} rounded-full px-5 py-1.5 backdrop-blur shadow-md`}>
               <Sparkles size={12} className={`${colors.iconColor} animate-pulse`} />
-              <span className={`font-mono text-[10px] ${colors.textAccent} tracking-wider font-extrabold uppercase`}>
-                {language === 'EN' ? 'SUBSIDIARY OPERATIONAL OVERVIEW' : language === 'FR' ? 'APERÇU DE LA FILIALE' : 'SEHATRA SOSIALY ORINASA'}
+              <span className={`font-mono text-[10px] ${colors.textAccent} tracking-widest font-extrabold uppercase`}>
+                {language === 'EN' ? 'SUBSIDIARY STRATEGIC PROTOCOLS' : language === 'FR' ? 'PROTOCOLES STRATÉGIQUES DE LA FILIALE' : 'FANDRAHARAHAN’ITY SAMPANA ITY'}
               </span>
             </div>
             <span className="h-[1px] flex-grow bg-slate-900" />
           </div>
 
-          {/* Pillars Headline Block */}
-          <div className="text-center space-y-3 max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          {/* Pillars Narrative Header */}
+          <div className="text-center space-y-3.5 max-w-3xl mx-auto">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight uppercase leading-snug">
               {activePillarsData.pillarsTitle}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-slate-450 leading-relaxed font-light">
               {activePillarsData.pillarsSub}
             </p>
           </div>
 
-          {/* Pillars Cards Grid */}
+          {/* Pillars Cards Grid with animations */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {activePillarsData.pillars.map((pillar: any, index: number) => {
               const IconComp = pillar.icon;
               return (
-                <div
+                <motion.div
                   key={index}
-                  className={`bg-slate-950/45 p-6 sm:p-8 rounded-3xl border border-slate-900 ${colors.borderHover} transition-all duration-350 group relative overflow-hidden flex flex-col justify-between`}
+                  whileHover={{ y: -6, scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className={`bg-slate-950/45 p-6 sm:p-8 rounded-3xl border border-slate-900/80 ${colors.borderHover} transition-all duration-350 group relative overflow-hidden flex flex-col justify-between shadow-lg`}
                 >
                   <div className={`absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl pointer-events-none transition-colors ${colors.glow}`} />
                   
-                  <div className="space-y-4">
-                    <div className={`w-12 h-12 rounded-xl bg-slate-950/30 border ${colors.borderMuted} flex items-center justify-center ${colors.iconColor} transition-colors shadow-sm`}>
-                      <IconComp size={20} />
+                  <div className="space-y-5">
+                    {/* Icon container */}
+                    <div className={`w-12 h-12 rounded-xl bg-slate-950/80 border ${colors.borderMuted} flex items-center justify-center ${colors.iconColor} shadow-md`}>
+                      <IconComp size={18} />
                     </div>
                     
-                    <div className="space-y-2">
-                      <span className={`inline-block text-[9px] font-mono border ${colors.borderMuted} px-2 py-0.5 rounded ${colors.bgMuted} uppercase tracking-widest font-extrabold ${colors.textAccent}`}>
+                    <div className="space-y-2.5">
+                      <span className={`inline-block text-[8px] font-mono border ${colors.borderMuted} px-2.5 py-0.5 rounded ${colors.bgMuted} uppercase tracking-widest font-extrabold ${colors.textAccent}`}>
                         {pillar.badge}
                       </span>
-                      <h3 className={`text-base font-bold text-white ${colors.textAccentHover} transition-colors`}>
+                      <h3 className={`text-base font-extrabold text-white ${colors.textAccentHover} transition-colors font-sans`}>
                         {pillar.title}
                       </h3>
-                      <p className="text-slate-400 text-xs leading-relaxed font-light">
+                      <p className="text-slate-400 text-xs leading-relaxed font-light font-sans">
                         {pillar.desc}
                       </p>
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-3 border-t border-slate-900/60 flex justify-between items-center text-[9px] font-mono text-slate-500">
-                    <span>STRATEGIC PILLAR_0{index + 1}</span>
-                    <span className={`${colors.textAccent} font-bold uppercase`}>VERIFIED</span>
+                  <div className="mt-8 pt-4 border-t border-slate-900/60 flex justify-between items-center text-[9px] font-mono text-slate-500">
+                    <span className="tracking-widest">STRATEGIC PILLAR_0{index + 1}</span>
+                    <span className={`${colors.textAccent} font-bold uppercase tracking-wider`}>QUALIFIED</span>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
 
-          {/* Active Initiatives Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6">
-            
-            {/* Left side: Strategic initiatives list */}
-            <div className="lg:col-span-8 space-y-6">
-              <div className="space-y-2 pb-2">
-                <span className={`text-xs font-mono ${colors.textAccent} uppercase tracking-widest block font-extrabold`}>
-                  {language === 'EN' ? 'FIELD MISSIONS' : language === 'FR' ? 'MISSIONS DE TERRAIN' : 'FIZAHANA IFOTONY'}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                  {activePillarsData.initiativesTitle}
-                </h3>
-              </div>
+          {/* Active Initiatives / Field Operations Grid */}
+          <div className="space-y-6 pt-8" id="operations-split-row">
+            <div className="space-y-2 pb-2">
+              <span className={`text-[11px] font-mono ${colors.textAccent} uppercase tracking-widest block font-extrabold`}>
+                {language === 'EN' ? 'FIELD MISSIONS' : language === 'FR' ? 'MISSIONS DE TERRAIN' : 'FIZAHANA IFOTONY'}
+              </span>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white tracking-tight uppercase">
+                {activePillarsData.initiativesTitle}
+              </h3>
+            </div>
 
-              <div className="space-y-4">
-                {activePillarsData.initiatives.map((init: any, idx: number) => (
-                  <div
-                    key={idx}
-                    className="bg-slate-950/20 hover:bg-slate-900/10 p-5 rounded-2xl border border-slate-900/80 group transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                  >
-                    <div className="space-y-2 max-w-xl">
-                      <div className="flex items-center space-x-2">
-                        <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${colors.accent === 'rose' ? 'bg-rose-500' : colors.accent === 'indigo' ? 'bg-indigo-500' : colors.accent === 'emerald' ? 'bg-emerald-500' : 'bg-orange-500'}`} />
-                        <h4 className="text-white text-sm sm:text-base font-extrabold font-sans">
-                          {init.title}
-                        </h4>
-                      </div>
-                      <p className="text-slate-400 text-xs leading-relaxed font-light pl-3.5">
-                        {init.desc}
-                      </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {activePillarsData.initiatives.map((init: any, idx: number) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ scale: 1.01, y: -2 }}
+                  className="bg-slate-950/40 hover:bg-slate-950/75 p-5 rounded-2xl border border-slate-900 transition-all flex flex-col justify-between gap-5 relative overflow-hidden"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2.5">
+                      <span className={`w-2 h-2 rounded-full ${colors.accent === 'rose' ? 'bg-rose-500' : colors.accent === 'indigo' ? 'bg-indigo-500' : colors.accent === 'emerald' ? 'bg-emerald-500' : 'bg-orange-500'} shrink-0`} />
+                      <h4 className="text-white text-sm sm:text-base font-extrabold font-sans leading-snug">
+                        {init.title}
+                      </h4>
                     </div>
-                    
-                    <div className="shrink-0 bg-slate-950/60 border border-slate-900/80 rounded-xl px-4 py-2 text-center sm:text-right min-w-[140px]">
-                      <span className="block text-[8px] font-mono text-slate-500 uppercase">Target / Metric</span>
-                      <span className={`block text-xs font-bold ${colors.textAccent} uppercase mt-0.5 font-mono`}>{init.metric}</span>
-                    </div>
+                    <p className="text-slate-400 text-xs leading-relaxed font-light pl-4.5">
+                      {init.desc}
+                    </p>
                   </div>
-                ))}
-              </div>
+                  
+                  <div className="bg-slate-950/85 border border-slate-950 rounded-xl px-4 py-2 text-left w-full mt-2 flex items-center justify-between border-t border-slate-900">
+                    <span className="text-[8px] font-mono text-slate-550 uppercase tracking-widest">TARGET MEASURE</span>
+                    <span className={`text-xs font-mono font-bold ${colors.textAccent} uppercase`}>{init.metric}</span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-
-            {/* Right side: Specialist Team Members Detail */}
-            <div className="lg:col-span-4 space-y-6 bg-slate-950/30 p-6 rounded-3xl border border-slate-900 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="space-y-1 pb-2 border-b border-slate-900">
-                  <span className={`text-xs font-mono ${colors.textAccent} uppercase tracking-widest block font-extrabold`}>
-                    {language === 'EN' ? 'ADMINISTRATIVE OVERSEE' : language === 'FR' ? 'PILOTAGE' : 'FITANTANANA'}
-                  </span>
-                  <h4 className="text-base font-bold text-white tracking-tight">
-                    {activePillarsData.teamTitle}
-                  </h4>
-                  <p className="text-[10px] text-slate-500 font-mono">
-                    {activePillarsData.teamSub}
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  {activePillarsData.team.map((member: any, i: number) => {
-                    const memberFaces = [
-                      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150",
-                      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150",
-                      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150"
-                    ];
-                    return (
-                      <div key={i} className="flex items-center gap-3 bg-slate-950/50 p-3 rounded-xl border border-slate-900/60 hover:border-slate-800 transition-colors">
-                        <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-slate-800 bg-slate-900">
-                          <img
-                            src={memberFaces[i]}
-                            alt={member.name}
-                            className="w-full h-full object-cover grayscale"
-                            referrerPolicy="no-referrer"
-                          />
-                        </div>
-                        <div className="min-w-0">
-                          <h5 className="text-xs font-bold text-white truncate">{member.name}</h5>
-                          <span className="block text-[9px] font-mono text-slate-500 uppercase tracking-wider truncate">
-                            {member.role}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-slate-900 flex justify-between items-center text-[9px] font-mono text-slate-500">
-                <span>GOVERNANCE: CERTIFIED</span>
-                <span className="text-slate-400 font-bold uppercase">PROVOST_OFFICE</span>
-              </div>
-            </div>
-
           </div>
 
-          {/* 3.2 Custom NGO Impact Metrics Section */}
+          {/* 3.2 Custom NGO Impact Metrics Section if relevant */}
           {company.id === 'ngo' && (
-            <ImpactMetrics language={language} colors={colors} />
+            <div className="pt-4 pb-2" id="ngo-impact-metrics-section">
+              <ImpactMetrics language={language} colors={colors} />
+            </div>
           )}
 
-          {/* 3.3 Custom Portfolio Gallery & Project Accordion */}
-          <CompanyPortfolioAndProjects companyId={company.id} language={language} colors={colors} />
+          {/* 3.3 Custom Portfolio Gallery & Project Accordion (Repositioned center stage) */}
+          <div className="pt-6" id="projects-section-container">
+            <CompanyPortfolioAndProjects companyId={company.id} language={language} colors={colors} />
+          </div>
 
-          {/* 3.3.4 Custom 'Milestones & History' Timeline Section */}
-          <CompanyHistoryTimeline companyId={company.id} language={language} colors={colors} />
+          {/* 3.4 Custom 'Milestones & History' Timeline Section */}
+          <div className="pt-6" id="history-timeline-container">
+            <CompanyHistoryTimeline companyId={company.id} language={language} colors={colors} />
+          </div>
 
-          {/* 3.3.5 Custom Sector Team Section */}
-          <CompanyTeam companyId={company.id} language={language} colors={colors} />
+          {/* 3.5 Custom Sector Team / Governing Council Section */}
+          <div className="pt-6" id="corporate-governance-container">
+            <CompanyTeam companyId={company.id} language={language} colors={colors} />
+          </div>
 
-          {/* 3.4 Custom NGO Impact Newsletter */}
+          {/* 3.6 Custom NGO Impact Newsletter panel if applicable */}
           {company.id === 'ngo' && (
-            <NgoNewsletter language={language} colors={colors} />
+            <div className="pt-6" id="ngo-newsletter-container">
+              <NgoNewsletter language={language} colors={colors} />
+            </div>
           )}
 
-          {/* 3.5 Custom CSR Report Download Section for All Sector Pages */}
-          <CsrDownloadSection companyId={company.id} language={language} colors={colors} />
+          {/* 3.7 Custom CSR Reports Download section */}
+          <div className="pt-4" id="csr-reports-container">
+            <CsrDownloadSection companyId={company.id} language={language} colors={colors} />
+          </div>
 
-          {/* 3.6 Custom Related Services Cross-Linking Grid for All Sector Pages */}
-          <RelatedServicesSection companyId={company.id} language={language} colors={colors} />
+          {/* 3.8 Custom Related Peer Subsidiaries Cross-Linking Grid */}
+          <div className="pt-4" id="related-cross-linking-container">
+            <RelatedServicesSection companyId={company.id} language={language} colors={colors} />
+          </div>
 
         </motion.div>
       )}
 
       {/* 4. Sovereign Inquire CTA Actions */}
-      <section className="glass rounded-3xl p-8 border border-slate-900 bg-slate-950/40 text-center space-y-6 max-w-3xl mx-auto" id="company-detail-cta">
-        <div className="w-12 h-12 rounded-2xl bg-emerald-950/20 border border-emerald-500/35 flex items-center justify-center text-emerald-400 mx-auto animate-pulse">
-          <PhoneCall size={18} />
+      <motion.section 
+        whileHover={{ y: -4 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="glass rounded-3xl p-10 border border-slate-900 bg-slate-950/40 text-center space-y-6 max-w-3xl mx-auto shadow-xl relative overflow-hidden" 
+        id="company-detail-cta"
+      >
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="w-14 h-14 rounded-2xl bg-emerald-950/30 border border-emerald-500/25 flex items-center justify-center text-emerald-400 mx-auto animate-pulse shadow-md">
+          <PhoneCall size={20} />
         </div>
-        <div className="space-y-2">
-          <h3 className="text-white text-lg font-black tracking-tight uppercase">
+        <div className="space-y-2.5 max-w-xl mx-auto border-slate-900 pb-2">
+          <h3 className="text-white text-lg sm:text-xl font-black tracking-tight uppercase font-sans">
             {language === 'EN' ? 'INQUIRE ABOUT THIS SUBSIDIARY' : language === 'FR' ? 'SOLICITER CETTE FILIALE' : 'HIFANDRAISANA AMIN’ITY ORINASA ITY'}
           </h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light font-sans">
             {language === 'EN' 
               ? 'Connect directly with the designated management staff, board coordinators, or project operators for this division.' 
               : 'Prenez contact directement avec la direction administrative, les commissaires ou les opérateurs de projets de cette division.'}
           </p>
         </div>
-        <button
-          onClick={() => onInquire(company.name)}
-          className="px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2 mx-auto"
-        >
-          <Sparkles size={13} />
-          <span>{translations.inquireBtn}</span>
-        </button>
-      </section>
+        
+        <div className="pt-2">
+          <button
+            onClick={() => onInquire(company.name)}
+            className="px-7 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl hover:shadow-[0_0_25px_rgba(16,185,129,0.35)] transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2 mx-auto shadow-md"
+          >
+            <Sparkles size={14} className="animate-spin duration-3000" />
+            <span>{translations.inquireBtn}</span>
+          </button>
+        </div>
+      </motion.section>
 
       {/* 5. Custom Cross-Subsidiary Carousel Navigation */}
-      <section className="border-t border-slate-900 pt-8 flex items-center justify-between" id="company-detail-nav-carousel">
+      <section className="border-t border-slate-900/80 pt-10 flex items-center justify-between" id="company-detail-nav-carousel">
         <button
           onClick={handlePrev}
-          className="flex items-center space-x-2 text-xs font-mono text-slate-450 hover:text-white transition-colors cursor-pointer group bg-slate-950/45 px-4 py-2.5 border border-slate-900 rounded-xl"
+          className="flex items-center space-x-3 text-xs font-mono text-slate-440 hover:text-white transition-all cursor-pointer group bg-slate-950/45 px-5 py-3 border border-slate-900 rounded-2xl hover:border-slate-800"
         >
-          <ChevronLeft size={14} className="transform group-hover:-translate-x-1 transition-transform" />
+          <ChevronLeft size={16} className="transform group-hover:-translate-x-1.5 transition-transform text-emerald-400" />
           <div className="text-left hidden sm:block">
-            <span className="block text-[8px] text-slate-550 uppercase font-mono leading-none">{translations.prevBtn}</span>
-            <span className="block text-xs font-bold leading-tight mt-0.5">{prevCompany.name}</span>
+            <span className="block text-[8px] text-slate-500 uppercase font-mono leading-none tracking-widest">{translations.prevBtn}</span>
+            <span className="block text-xs font-bold leading-tight mt-1.5 font-sans uppercase tracking-tight text-slate-300 group-hover:text-white transition-colors">{prevCompany.name}</span>
           </div>
         </button>
 
         <button
           onClick={handleNext}
-          className="flex items-center space-x-2 text-xs font-mono text-slate-450 hover:text-white transition-colors cursor-pointer group bg-slate-950/45 px-4 py-2.5 border border-slate-900 rounded-xl"
+          className="flex items-center space-x-3 text-xs font-mono text-slate-440 hover:text-white transition-all cursor-pointer group bg-slate-950/45 px-5 py-3 border border-slate-900 rounded-2xl hover:border-slate-800"
         >
           <div className="text-right hidden sm:block">
-            <span className="block text-[8px] text-slate-550 uppercase font-mono leading-none">{translations.nextBtn}</span>
-            <span className="block text-xs font-bold leading-tight mt-0.5">{nextCompany.name}</span>
+            <span className="block text-[8px] text-slate-500 uppercase font-mono leading-none tracking-widest">{translations.nextBtn}</span>
+            <span className="block text-xs font-bold leading-tight mt-1.5 font-sans uppercase tracking-tight text-slate-300 group-hover:text-white transition-colors">{nextCompany.name}</span>
           </div>
-          <ChevronRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+          <ChevronRight size={16} className="transform group-hover:translate-x-1.5 transition-transform text-emerald-400" />
         </button>
       </section>
 
