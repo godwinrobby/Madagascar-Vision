@@ -6,6 +6,7 @@ import { Sector } from '../types';
 import { CompanyLogo } from './CompanyLogo';
 import { Helmet } from './Helmet';
 import { ImpactMetrics } from './ImpactMetrics';
+import { CompanyPortfolioAndProjects } from './CompanyPortfolioAndProjects';
 import {
   ArrowLeft,
   Activity,
@@ -1189,6 +1190,9 @@ export function CompanyDetailView({ companyId, onBack, onInquire, language }: Co
           {company.id === 'ngo' && (
             <ImpactMetrics language={language} colors={colors} />
           )}
+
+          {/* 3.3 Custom Portfolio Gallery & Project Accordion */}
+          <CompanyPortfolioAndProjects companyId={company.id} language={language} colors={colors} />
 
         </motion.div>
       )}
