@@ -180,8 +180,10 @@ export default function App() {
           <Route path="/news" element={<NewsRouteWrapper language={language} />} />
           <Route path="/news/:id" element={<NewsRouteWrapper language={language} />} />
           
-          <Route path="/blogs" element={<BlogsView language={language} />} />
-          <Route path="/events" element={<EventsView language={language} />} />
+          <Route path="/blogs" element={<BlogsRouteWrapper language={language} />} />
+          <Route path="/blogs/:id" element={<BlogsRouteWrapper language={language} />} />
+          <Route path="/events" element={<EventsRouteWrapper language={language} />} />
+          <Route path="/events/:id" element={<EventsRouteWrapper language={language} />} />
           
           {/* Wildcard Fallback redirection */}
           <Route path="*" element={<Navigate to="/" replace />} />
@@ -237,4 +239,14 @@ function ServicesRouteWrapper({ language }: { language: 'EN' | 'FR' | 'MG' }) {
 function NewsRouteWrapper({ language }: { language: 'EN' | 'FR' | 'MG' }) {
   const { id } = useParams();
   return <NewsView language={language} selectedNewsId={id || null} />;
+}
+
+function BlogsRouteWrapper({ language }: { language: 'EN' | 'FR' | 'MG' }) {
+  const { id } = useParams();
+  return <BlogsView language={language} selectedBlogId={id || null} />;
+}
+
+function EventsRouteWrapper({ language }: { language: 'EN' | 'FR' | 'MG' }) {
+  const { id } = useParams();
+  return <EventsView language={language} selectedEventId={id || null} />;
 }

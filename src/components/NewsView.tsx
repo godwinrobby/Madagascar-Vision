@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import { CORPORATE_NEWS } from '../data/corporateData';
 import { getTranslatedNews } from '../utils/translator';
 import { NewsItem } from '../types';
-import { Calendar, Search, ArrowRight, X, Heart, ShieldCheck, Newspaper } from 'lucide-react';
+import { Calendar, Search, ArrowRight, ShieldCheck, Newspaper, ArrowLeft, Share2, Sparkles, Tag } from 'lucide-react';
 import { Helmet } from './Helmet';
 
 interface NewsViewProps {
@@ -12,32 +13,33 @@ interface NewsViewProps {
 }
 
 export function NewsView({ language, selectedNewsId }: NewsViewProps) {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [copied, setCopied] = useState<boolean>(false);
 
   const translatedNews = getTranslatedNews(CORPORATE_NEWS, language);
 
-  useEffect(() => {
-    if (selectedNewsId) {
-      const found = translatedNews.find(n => n.id === selectedNewsId);
-      if (found) {
-        setSelectedNews(found);
-      }
-    }
-  }, [selectedNewsId, language]);
+  // Resolve active news if selectedNewsId is active in URL route
+  const selectedNews = selectedNewsId 
+    ? translatedNews.find(n => n.id === selectedNewsId) || null
+    : null;
 
   const translations = {
     EN: {
       title: 'Sovereign Disclosures & News Feed',
-      sub: 'Official verifiable records, global joint ventures, M&A statements, and research breakthroughs published by the groups corporate board.',
+      sub: 'Official verifiable records, global joint ventures, M&A statements, and research breakthroughs published by the group\'s corporate board.',
       searchPlaceholder: 'Search media archives...',
       filterAll: 'All Disclosures',
       viewArticle: 'Read Full Press Release',
       closeBtn: 'Close Record',
       categoryLabel: 'Category',
       backBtn: 'Return to Press Hub',
-      publishedOn: 'Published'
+      publishedOn: 'Published',
+      shareBtn: 'Share Disclosure',
+      copiedText: 'Copied Link!',
+      relatedTitle: 'Related Disclosures & Press releases',
+      readMore: 'ACCESS TRANSCRIPT'
     },
     FR: {
       title: 'Publications Officielles & Centre de Presse',
@@ -48,7 +50,11 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
       closeBtn: 'Fermer',
       categoryLabel: 'Catégorie',
       backBtn: 'Retourner au centre de presse',
-      publishedOn: 'Publié le'
+      publishedOn: 'Publié le',
+      shareBtn: 'Partager la publication',
+      copiedText: 'Lien copié !',
+      relatedTitle: 'Autres Communiqués de Presse',
+      readMore: 'ACCÉDER AU COMMUNIQUÉ'
     },
     MG: {
       title: 'Tati-baovao Ofisialy sy Taratasy mivoaka',
@@ -59,7 +65,11 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
       closeBtn: 'Hanakatona',
       categoryLabel: 'Sokajy',
       backBtn: 'Hiverina amin’ny pejy fandraisana tati-baovao',
-      publishedOn: 'Navoaka tamin’ny'
+      publishedOn: 'Navoaka tamin’ny',
+      shareBtn: 'Hizara ny lahatsoratra',
+      copiedText: 'Voakopia!',
+      relatedTitle: 'Tati-baovao Hafa Mifandraika',
+      readMore: 'HIJERY NY TATI-BAOVAO'
     }
   }[language];
 
@@ -73,14 +83,221 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
     return matchesCategory && matchesSearch;
   });
 
+  // If a news item is selected via URL path, show the dedicated page
+  if (selectedNews) {
+    const relatedNews = translatedNews
+      .filter(n => n.id !== selectedNews.id)
+      .slice(0, 3);
+
+    const handleCopyLink = () => {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    };
+
+    return (
+      <div id="news-detail-container" className="pt-32 pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in relative">
+        <Helmet
+          title={`${selectedNews.title} | Vision Madagascar Press`}
+          description={selectedNews.summary}
+          keywords={`${selectedNews.category}, ${selectedNews.title}, Vision Madagascar`}
+          ogImage={`https://picsum.photos/seed/${selectedNews.imageSeed}/800/500`}
+          ogType="article"
+          language={language}
+        />
+
+        {/* Back navigation & Actions bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <button
+            onClick={() => {
+              navigate('/news');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center space-x-2 text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors uppercase cursor-pointer"
+          >
+            <ArrowLeft size={14} />
+            <span>{translations.backBtn}</span>
+          </button>
+
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={handleCopyLink}
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-[10px] font-mono tracking-wide bg-slate-950/60 border border-slate-900 text-slate-300 hover:text-emerald-400 hover:border-emerald-500/30 transition-all cursor-pointer"
+            >
+              <Share2 size={11} />
+              <span>{copied ? translations.copiedText : translations.shareBtn}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Hero image for news press release */}
+        <div className="aspect-[21/9] w-full rounded-3xl overflow-hidden bg-slate-900 border border-slate-900 shadow-2xl relative mb-10">
+          <img
+            src={`https://picsum.photos/seed/${selectedNews.imageSeed}/1200/600`}
+            alt={selectedNews.title}
+            className="w-full h-full object-cover grayscale brightness-90 contrast-102 hover:grayscale-0 transition-all duration-700"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent" />
+          
+          <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-4 justify-between">
+            {/* Category badge */}
+            <span className="text-[9px] font-mono text-emerald-400 bg-emerald-950/85 border border-emerald-500/30 px-3 py-1 rounded-full uppercase tracking-widest font-extrabold">
+              {selectedNews.category}
+            </span>
+          </div>
+        </div>
+
+        {/* Content Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          {/* Main article body */}
+          <article className="lg:col-span-8 space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight uppercase font-sans">
+                {selectedNews.title}
+              </h1>
+              
+              <div className="flex items-center space-x-3 text-xs text-slate-500 font-mono py-2 border-y border-slate-900/60">
+                <span className="flex items-center space-x-1.5">
+                  <Calendar size={12} />
+                  <span>{translations.publishedOn}: {selectedNews.date}</span>
+                </span>
+                <span className="text-slate-700">•</span>
+                <span className="text-slate-400">DISCLOSURE: PUBLIC ACCESS</span>
+              </div>
+            </div>
+
+            {/* Quote / Summary summary */}
+            <blockquote className="border-l-4 border-emerald-500 bg-emerald-950/5 rounded-r-2xl p-6 text-slate-300 text-sm sm:text-base font-light italic leading-relaxed shadow-sm">
+              {selectedNews.summary}
+            </blockquote>
+
+            {/* Complete content paragraphs */}
+            <div className="text-slate-300 text-sm sm:text-base space-y-6 font-light leading-relaxed prose prose-invert max-w-none">
+              <p>{selectedNews.content}</p>
+              <p>
+                As part of Vision Madagascar's transparent governance mandate, all strategic releases and financial partnerships undergo third-party auditing to align operational metrics with standard SDG frameworks. Our dedication to local economic empowerment dictates that every initiative includes active human-capital capacity building.
+              </p>
+              <p>
+                Vision Madagascar (ViMa) continues to solidify its role as a key contributor to the economic expansion of the country. With reliable infrastructure, diverse holdings, and forward-looking strategic programs, our directors remain focused on facilitating long-term national development across the region.
+              </p>
+            </div>
+
+            {/* Corporate Verifications footer */}
+            <div className="border-t border-slate-900 pt-6 mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 text-[10px] font-mono text-slate-500">
+              <div className="flex items-center space-x-2">
+                <ShieldCheck size={14} className="text-emerald-400" />
+                <span className="tracking-wider uppercase">VERIFIED PUBLIC TRANSCRIPT</span>
+              </div>
+              <div className="sm:text-right">
+                <span className="tracking-wider">SECURITY HASH: Æ-SEC-{selectedNews.id.toUpperCase()}</span>
+              </div>
+            </div>
+
+          </article>
+
+          {/* Right rail sidebar */}
+          <aside className="lg:col-span-4 space-y-8">
+            <div className="glass p-6 rounded-2xl border border-slate-900 space-y-4">
+              <h4 className="text-xs font-mono text-slate-400 uppercase tracking-widest font-black pb-2 border-b border-slate-900">
+                DOCUMENT METADATA
+              </h4>
+              <div className="space-y-3 font-mono text-[10px] text-slate-500">
+                <div className="flex justify-between">
+                  <span>REGISTRY:</span>
+                  <span className="text-emerald-400 font-bold">ACTIVE PRESS</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>COMMITTED BY:</span>
+                  <span className="text-white">ViMa COMMS</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>AUDIT SYSTEM:</span>
+                  <span>CENTRALIZED</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>VERSION:</span>
+                  <span>v1.0.0</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Support info card */}
+            <div className="p-6 rounded-2xl bg-emerald-950/10 border border-emerald-500/20 space-y-4">
+              <Sparkles size={16} className="text-emerald-400" />
+              <div className="space-y-1">
+                <h5 className="text-white text-xs font-bold uppercase tracking-wider">Media Inquiries</h5>
+                <p className="text-slate-400 text-[11px] font-light leading-relaxed">
+                  For press kits, executive interview passes, or high-resolution media assets, please contact our public relations office.
+                </p>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+
+        {/* Related News section */}
+        {relatedNews.length > 0 && (
+          <section className="mt-20 pt-12 border-t border-slate-900/60 space-y-8">
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono text-emerald-400 tracking-widest uppercase block font-bold">
+                OTHER NEWS FROM PRESS DISPATCH
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight uppercase">
+                {translations.relatedTitle}
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {relatedNews.map(news => (
+                <div
+                  key={news.id}
+                  onClick={() => {
+                    navigate(`/news/${news.id}`);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="glass card-hover rounded-2xl p-5 text-left flex flex-col justify-between h-[380px] cursor-pointer group"
+                >
+                  <div className="space-y-4">
+                    <div className="aspect-[16/10] bg-slate-900 rounded-xl overflow-hidden border border-white/5 relative">
+                      <img
+                        src={`https://picsum.photos/seed/${news.imageSeed}/300/180`}
+                        alt={news.title}
+                        className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-500"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <span className="text-[9px] font-mono text-slate-550">{news.date}</span>
+                      <h4 className="text-white text-xs font-extrabold tracking-tight group-hover:text-emerald-400 transition-colors line-clamp-2">
+                        {news.title}
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-slate-900 pt-3 flex items-center justify-between text-[9px] font-mono text-slate-500">
+                    <span className="uppercase">{news.category}</span>
+                    <span className="text-emerald-400 font-bold flex items-center space-x-1 group-hover:text-white transition-colors">
+                      <span>READ</span>
+                      <ArrowRight size={10} />
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+      </div>
+    );
+  }
+
   return (
     <div id="news-view-container" className="space-y-16 pb-24 relative animate-fade-in">
       <Helmet
-        title={selectedNews ? selectedNews.title : translations.title}
-        description={selectedNews ? selectedNews.summary : translations.sub}
-        keywords={selectedNews ? `${selectedNews.category}, ${selectedNews.title}, Aetheris Group, Vision Madagascar Press` : undefined}
-        ogImage={selectedNews ? `https://picsum.photos/seed/${selectedNews.imageSeed}/800/500` : undefined}
-        ogType={selectedNews ? 'article' : 'website'}
+        title={translations.title}
+        description={translations.sub}
         language={language}
       />
       
@@ -140,7 +357,10 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
           {filteredNews.map((news) => (
             <div 
               key={news.id}
-              onClick={() => setSelectedNews(news)}
+              onClick={() => {
+                navigate(`/news/${news.id}`);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className="glass card-hover rounded-2xl p-6 text-left flex flex-col justify-between h-[400px] cursor-pointer group relative overflow-hidden"
               id={`news-card-${news.id}`}
             >
@@ -167,7 +387,7 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
                     <span>{news.date}</span>
                   </div>
 
-                  <h3 className="text-white text-sm sm:text-base font-extrabold tracking-tight group-hover:text-emerald-400 transition-colors line-clamp-2">
+                  <h3 className="text-white text-sm sm:text-base font-extrabold tracking-tight group-hover:text-emerald-400 transition-colors line-clamp-2 uppercase">
                     {news.title}
                   </h3>
 
@@ -182,7 +402,7 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
               <div className="border-t border-slate-900 pt-3 mt-4 flex items-center justify-between text-[10px] font-mono">
                 <span className="text-slate-500 uppercase">Æ PRESS TRANSCRIPT</span>
                 <span className="text-emerald-400 font-bold flex items-center space-x-1 hover:text-white transition-colors">
-                  <span>ACCESS</span>
+                  <span>{translations.readMore.split(' ')[0]}</span>
                   <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
@@ -197,95 +417,6 @@ export function NewsView({ language, selectedNewsId }: NewsViewProps) {
           )}
         </div>
       </section>
-
-      {/* Complete News Modal Disclosure */}
-      <AnimatePresence>
-        {selectedNews && (
-          <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4" id="news-overlay-modal">
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              className="glass w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[85vh] border border-slate-900"
-            >
-              
-              {/* Header */}
-              <div className="p-6 border-b border-slate-900 flex justify-between items-center bg-slate-950/50 backdrop-blur-xl">
-                <div>
-                  <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block mb-0.5">
-                    PRESS DISCLOSURE PROTOCOL • {selectedNews.category}
-                  </span>
-                  <span className="text-[10px] font-mono text-slate-500 flex items-center space-x-1">
-                    <Calendar size={10} />
-                    <span>{translations.publishedOn}: {selectedNews.date}</span>
-                  </span>
-                </div>
-
-                <button
-                  onClick={() => setSelectedNews(null)}
-                  className="p-2 hover:bg-slate-905 rounded-xl transition-colors text-slate-400 hover:text-white cursor-pointer"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-
-              {/* Scrollable details */}
-              <div className="p-6 sm:p-8 space-y-6 overflow-y-auto text-left flex-1 font-light leading-relaxed">
-                
-                {/* Micro-Banner */}
-                <div className="aspect-[21/9] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
-                  <img
-                    src={`https://picsum.photos/seed/${selectedNews.imageSeed}/800/400`}
-                    alt={selectedNews.title}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-
-                <h2 className="text-white text-xl sm:text-2xl font-black tracking-tight font-sans">
-                  {selectedNews.title}
-                </h2>
-
-                <blockquote className="border-l-2 border-emerald-500 pl-4 py-1 text-slate-400 text-xs sm:text-sm font-light italic">
-                  {selectedNews.summary}
-                </blockquote>
-
-                <div className="text-slate-300 text-xs sm:text-sm space-y-4 font-light leading-relaxed pt-2">
-                  <p>{selectedNews.content}</p>
-                  <p>
-                    All strategic updates and M&A developments from the Vision Madagascar executive syndicate represent certified ESG logs validated across decentralized audits.
-                  </p>
-                </div>
-
-                {/* Corporate Verifications footer */}
-                <div className="border-t border-slate-900 pt-5 mt-6 grid grid-cols-2 gap-4 text-[10px] font-mono text-slate-500">
-                  <div className="flex items-center space-x-2">
-                    <ShieldCheck size={14} className="text-emerald-400" />
-                    <span>VERIFIED PUBLIC TRANSCRIPT</span>
-                  </div>
-                  <div className="text-right">
-                    <span>SECURITY HASH: Æ-SEC-14902</span>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Bottom bar */}
-              <div className="p-4 bg-slate-950/80 border-t border-slate-900 flex justify-end">
-                <button
-                  onClick={() => setSelectedNews(null)}
-                  className="px-5 py-2 hover:bg-slate-900 text-slate-300 rounded-xl text-xs font-semibold tracking-wider transition-all border border-slate-850 cursor-pointer"
-                >
-                  {translations.backBtn}
-                </button>
-              </div>
-
-            </motion.div>
-
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );
